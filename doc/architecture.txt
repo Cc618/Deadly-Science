@@ -1,0 +1,6 @@
+    Here is the documentation about the project tree (file and folders).
+
+- web : Website
+- doc : Documentation, documents and log
+- src : Unity project
+- res : Resources, raw format
