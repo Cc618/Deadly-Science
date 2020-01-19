@@ -1,0 +1,5 @@
+# Tex obj
+*.aux
+*.log
+*.synctex.gz
+*.toc
