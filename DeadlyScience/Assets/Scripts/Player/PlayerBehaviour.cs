@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        // Test for input
+        // TODO : Remove
+        if (Input.GetKeyDown(Game.inputs.left))
+            Debug.Log("Left");
+        if (Input.GetKeyDown(Game.inputs.forward))
+            Debug.Log("Forward");
     }
 }
