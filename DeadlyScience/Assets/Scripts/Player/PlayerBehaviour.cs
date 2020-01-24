@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    // Movement speed
+    public float speed;
+
+    private void Start()
+    {
+        body = GetComponent<Rigidbody>();
+    }
+
     void Update()
     {
-        // Test for input
-        // TODO : Remove
-        if (Input.GetKeyDown(Game.inputs.left))
-            Debug.Log("Left");
-        if (Input.GetKeyDown(Game.inputs.forward))
-            Debug.Log("Forward");
+        // Movement
+        if (Input.GetKey(Game.inputs.left))
+            body.AddForce(new Vector3(-1, 0) * speed);
+
+        if (Input.GetKey(Game.inputs.right))
+            body.AddForce(new Vector3(1, 0) * speed);
+
     }
+
+    private Rigidbody body;
 }
