@@ -14,13 +14,13 @@ public abstract class PowerUp : MonoBehaviour
         // TODO : Filter by layers
         if ((other.gameObject.layer & playerLayer) != 0)
         {
-            OnCollect();
+            OnCollect(other.gameObject);
             Destroy(gameObject);
         }
     }
 
     // When a player hits the power up
     // TODO : Pass the player as param
-    protected abstract void OnCollect();
+    protected abstract void OnCollect(GameObject player);
     private int playerLayer;
 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Serum : PowerUp
 {
-    protected override void OnCollect()
+    protected override void OnCollect(GameObject player)
     {
-        Debug.Log("Player -> Serum");
+        // Heal player
+        player.GetComponent<PlayerBehaviour>()
+            .SetStatus(PlayerBehaviour.Status.HEALED);
     }
 }
