@@ -15,10 +15,14 @@ public class PlayerBehaviour : MonoBehaviour
     public float speed;
     public float jumpForce;
 
+    // TODO : Mouse Speed in settings
+    [Range(0, 10)]
+    public float camSpeed;
+
     public Material infectedMaterial;
     public Material healedMaterial;
 
-    private void Start()
+    private void Awake()
     {
         body = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
@@ -30,15 +34,29 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        // Movement
+        // Translation
         if (Input.GetKey(Game.inputs.left))
-            body.AddForce(new Vector3(-1, 0) * speed);
+            body.AddForce(-transform.right * speed);
 
         if (Input.GetKey(Game.inputs.right))
-            body.AddForce(new Vector3(1, 0) * speed);
+            body.AddForce(transform.right * speed);
 
+        if (Input.GetKey(Game.inputs.forward))
+            body.AddForce(transform.forward * speed);
+
+        if (Input.GetKey(Game.inputs.backward))
+            body.AddForce(-transform.forward * speed);
+
+        // Jump
         if (groundSensor.isGrounded && Input.GetKeyDown(Game.inputs.jump))
             body.AddForce(new Vector3(0, 1) * jumpForce);
+
+        // Rotation
+        body.rotation = Quaternion.Euler(
+            body.rotation.eulerAngles.x,
+            body.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * camSpeed,
+            body.rotation.eulerAngles.z
+        );
     }
 
     public void SetStatus(Status status)
