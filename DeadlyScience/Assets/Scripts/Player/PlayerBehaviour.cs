@@ -12,8 +12,11 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     // Movement speed
-    public float speed;
+    [Range(0, 100)]
+    public float acceleration;
     public float jumpForce;
+    [Range(0, 25)]
+    public float maxSpeed;
 
     // TODO : Mouse Speed in settings
     [Range(0, 10)]
@@ -34,18 +37,25 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
+        Vector3 movementForce = new Vector3();
+
         // Translation
         if (Input.GetKey(Game.inputs.left))
-            body.AddForce(-transform.right * speed);
+            movementForce = -transform.right;
 
         if (Input.GetKey(Game.inputs.right))
-            body.AddForce(transform.right * speed);
+            movementForce += transform.right;
 
         if (Input.GetKey(Game.inputs.forward))
-            body.AddForce(transform.forward * speed);
+            movementForce += transform.forward;
 
         if (Input.GetKey(Game.inputs.backward))
-            body.AddForce(-transform.forward * speed);
+            movementForce -= transform.forward;
+
+        // Add force if we haven't reached the max speed
+        // or if the movement is against the current velocity
+        if (body.velocity.sqrMagnitude < maxSpeed * maxSpeed || Vector3.Dot(body.velocity, movementForce) < 0)
+            body.AddForce(movementForce * acceleration);
 
         // Jump
         if (groundSensor.isGrounded && Input.GetKeyDown(Game.inputs.jump))

@@ -1,5 +1,9 @@
 	Changements fait avant la 1ere soutenance :
 - Creation de l'architecture du projet
-- Mouvements joueur
-- Serum qui herite de PowerUp (abstract)
+- G Joueur : Mouvements joueur
+- G Joueur : Serum qui herite de PowerUp (abstract)
+- G Joueur : Phase gueri / infecte
+- G Joueur : Vitesse max
+- G Joueur : Saut
+- G Joueur : Couches de collisions
 
