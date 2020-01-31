@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Material infectedMaterial;
     public Material healedMaterial;
+
+    // TODO : Private
+    public Animator animator;
 
     private void Awake()
     {
@@ -67,6 +71,10 @@ public class PlayerBehaviour : MonoBehaviour
             body.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * camSpeed,
             body.rotation.eulerAngles.z
         );
+
+        // Animation
+        animator.SetBool("grounded", groundSensor.isGrounded);
+        animator.SetBool("moving", body.velocity.x * body.velocity.x + body.velocity.z * body.velocity.z > .2f);
     }
 
     public void SetStatus(Status status)
