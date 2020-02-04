@@ -75,6 +75,13 @@ public class PlayerBehaviour : MonoBehaviour
         // Animation
         animator.SetBool("grounded", groundSensor.isGrounded);
         animator.SetBool("moving", body.velocity.x * body.velocity.x + body.velocity.z * body.velocity.z > .2f);
+
+        // TODO : rm
+        if (Input.GetKey(KeyCode.X))
+            animator.SetBool("moving", true);
+        else
+            animator.SetBool("moving", false);
+
     }
 
     public void SetStatus(Status status)

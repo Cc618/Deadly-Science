@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGroundSensor : MonoBehaviour
 {
     [HideInInspector]
-    public bool isGrounded = false;
+    public bool isGrounded = true;
 
     private void Start()
     {
@@ -14,6 +14,9 @@ public class PlayerGroundSensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.gameObject.layer);
+        Debug.Log("OK");
+
         // Filter layer
         if ((other.gameObject.layer & groundLayer) != 0)
             isGrounded = true;
