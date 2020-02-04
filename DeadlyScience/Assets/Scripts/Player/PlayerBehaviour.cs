@@ -25,6 +25,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Material infectedMaterial;
     public Material healedMaterial;
+    public MeshRenderer stateIndicator;
 
     // TODO : Private
     public Animator animator;
@@ -32,11 +33,10 @@ public class PlayerBehaviour : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
-        meshRenderer = GetComponent<MeshRenderer>();
         groundSensor = GetComponentInChildren<PlayerGroundSensor>();
 
         // Set default material
-        meshRenderer.material = infectedMaterial;
+        stateIndicator.material = infectedMaterial;
     }
 
     void Update()
@@ -84,10 +84,10 @@ public class PlayerBehaviour : MonoBehaviour
         switch (status)
         {
             case Status.HEALED:
-                meshRenderer.material = healedMaterial;
+                stateIndicator.material = healedMaterial;
                 break;
             case Status.INFECTED:
-                meshRenderer.material = infectedMaterial;
+                stateIndicator.material = infectedMaterial;
                 break;
         }
 
@@ -96,7 +96,6 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     private Rigidbody body;
-    private MeshRenderer meshRenderer;
     private PlayerGroundSensor groundSensor;
     private Status status = Status.INFECTED;
 }
