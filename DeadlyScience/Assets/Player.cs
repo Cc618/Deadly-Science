@@ -6,15 +6,24 @@ using UnityEngine.Animations;
 public class Player : MonoBehaviour
 {
     public float gravity;
-    public float speed;
+    [Range(0, 25)]
+    public float acceleration;
+    [Range(0, 25)]
+    public float maxSpeed;
+    [Range(0, 25)]
     public float jumpForce;
+    // Ground friction
+    [Range(0, 100)]
+    public float friction;
+    // Air friction
+    [Range(0, 100)]
+    public float damping;
 
     // TODO : In settings
     public float mouseSensivity;
 
     public Transform groundSensor;
     public LayerMask groundMask;
-
 
     void Start()
     {
@@ -52,20 +61,42 @@ public class Player : MonoBehaviour
 
         // Translation
         if (Input.GetKey(Game.inputs.left))
-            x = -speed;
+            x -= acceleration;
 
         if (Input.GetKey(Game.inputs.right))
-            x = speed;
+            x += acceleration;
 
         if (Input.GetKey(Game.inputs.forward))
-            z = speed;
+            z += acceleration;
 
         if (Input.GetKey(Game.inputs.backward))
-            z = -speed;
+            z -= acceleration;
+
+        // Compute movement force
+        Vector3 movements = x * transform.right + z * transform.forward;
+
+        // Update movements if they serve to brake or they are within speed bounds
+        if (movements.sqrMagnitude > .1 && (velocity.x * velocity.x + velocity.y * velocity.y < maxSpeed * maxSpeed || Vector3.Dot(velocity, movements) < 0))
+            velocity += movements * Time.deltaTime;
+        // If no movements
+        else
+        {
+            // Friction
+            if (grounded)
+            {
+                velocity.x -= velocity.x * Time.deltaTime * friction;
+                velocity.z -= velocity.z * Time.deltaTime * friction;
+            }
+            else
+            {
+                velocity.x -= velocity.x * Time.deltaTime * damping;
+                velocity.z -= velocity.z * Time.deltaTime * damping;
+            }
+        }
 
         // Update position
-        controller.Move((velocity + x * transform.right + z * transform.forward) * Time.deltaTime);
-        animator.SetBool("moving", x * x + z * z > .2f);
+        controller.Move(velocity * Time.deltaTime);
+        animator.SetBool("moving", velocity.x * velocity.x + velocity.z * velocity.z > 2f);
     }
 
     private CharacterController controller;
