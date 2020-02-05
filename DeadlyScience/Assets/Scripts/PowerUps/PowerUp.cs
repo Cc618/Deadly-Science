@@ -13,13 +13,13 @@ public abstract class PowerUp : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if ((other.gameObject.layer & playerLayer) != 0)
-        {
-            OnCollect(other.gameObject);
-            Destroy(gameObject);
-        }
+            if (OnCollect(other.gameObject))
+                Destroy(gameObject);
     }
 
     // When a player hits the power up
-    protected abstract void OnCollect(GameObject player);
+    // Returns whether we must remove the power up
+    protected abstract bool OnCollect(GameObject player);
+
     private int playerLayer;
 }

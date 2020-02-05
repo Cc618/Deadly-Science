@@ -5,18 +5,25 @@ using UnityEngine.Animations;
 
 public class Player : MonoBehaviour
 {
+    public enum PlayerStatus
+    {
+        INFECTED,
+        HEALED,
+        // TODO : GHOST for dead players (No collisions with others)
+    }
+
     public float gravity;
-    [Range(0, 25)]
+    [Range(0, 100)]
     public float acceleration;
     [Range(0, 25)]
     public float maxSpeed;
     [Range(0, 25)]
     public float jumpForce;
     // Ground friction
-    [Range(0, 100)]
+    [Range(0, 10)]
     public float friction;
     // Air friction
-    [Range(0, 100)]
+    [Range(0, 10)]
     public float damping;
 
     // TODO : In settings
@@ -24,6 +31,32 @@ public class Player : MonoBehaviour
 
     public Transform groundSensor;
     public LayerMask groundMask;
+
+    private PlayerStatus status = PlayerStatus.INFECTED;
+    public PlayerStatus Status
+    {
+        set
+        {
+            // Update status
+            status = value;
+
+            // Update material
+            // TODO : Update also anim...
+            switch (status)
+            {
+                case PlayerStatus.HEALED:
+                    Debug.Log("Player has status HEALED");
+                    //stateIndicator.material = healedMaterial;
+                    break;
+                case PlayerStatus.INFECTED:
+                    Debug.Log("Player has status INFECTED");
+                    //stateIndicator.material = infectedMaterial;
+                    break;
+            }
+        }
+
+        get => status;
+    }
 
     void Start()
     {
@@ -75,8 +108,11 @@ public class Player : MonoBehaviour
         // Compute movement force
         Vector3 movements = x * transform.right + z * transform.forward;
 
+        // Squared tangent speed
+        float tangentSpeed = velocity.x * velocity.x + velocity.z * velocity.z;
+
         // Update movements if they serve to brake or they are within speed bounds
-        if (movements.sqrMagnitude > .1 && (velocity.x * velocity.x + velocity.y * velocity.y < maxSpeed * maxSpeed || Vector3.Dot(velocity, movements) < 0))
+        if (movements.sqrMagnitude > .1 && (tangentSpeed < maxSpeed * maxSpeed || velocity.x * movements.x + velocity.z * movements.z < 0))
             velocity += movements * Time.deltaTime;
         // If no movements
         else
@@ -96,7 +132,7 @@ public class Player : MonoBehaviour
 
         // Update position
         controller.Move(velocity * Time.deltaTime);
-        animator.SetBool("moving", velocity.x * velocity.x + velocity.z * velocity.z > 2f);
+        animator.SetBool("moving", tangentSpeed > 1.6f);
     }
 
     private CharacterController controller;

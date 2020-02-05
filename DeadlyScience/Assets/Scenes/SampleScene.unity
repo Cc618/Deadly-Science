@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &307459321
 Transform:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 581923116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7754306, y: 1.7754306, z: 1.7754306}
+  m_LocalScale: {x: 11.466619, y: 11.466619, z: 11.466619}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -722,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -842,8 +842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -40
-  acceleration: 25
-  maxSpeed: 7
+  acceleration: 42.1
+  maxSpeed: 10
   jumpForce: 10
   friction: 5.1
   damping: 2
@@ -956,7 +956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582899331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.74, y: 0.35, z: 7.05}
+  m_LocalPosition: {x: -4.19, y: 0.35, z: 20.23}
   m_LocalScale: {x: 0.56764, y: 0.56764, z: 0.56764}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1065,7 +1065,7 @@ GameObject:
   - component: {fileID: 2082573244}
   - component: {fileID: 2082573243}
   - component: {fileID: 2082573242}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1140,7 +1140,7 @@ Transform:
   m_GameObject: {fileID: 2082573241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.465, y: 0.631, z: 0.02078557}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 4.3383}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
