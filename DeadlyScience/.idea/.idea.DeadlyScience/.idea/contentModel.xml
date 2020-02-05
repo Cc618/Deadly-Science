@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Steve\.Rider2019.2\system\extResources" t="IncludeRecursive" />
@@ -363,11 +363,29 @@
             <e p="PowerUp.cs" t="Include" />
             <e p="Serum.cs" t="Include" />
           </e>
-          <e p="Réseau" t="Include">
-            <e p="CreateRoom.cs" t="Include" />
-            <e p="DDOL.cs" t="Include" />
-            <e p="LobbyNetwork.cs" t="Include" />
-            <e p="PlayerNetwork.cs" t="Include" />
+          <e p="Reseau" t="Include">
+            <e p="Managers" t="Include">
+              <e p="GameSettings.cs" t="Include" />
+              <e p="MasterManager.cs" t="Include" />
+              <e p="ScriptableObjectSingleton.cs" t="Include" />
+              <e p="SingletonReferences.cs" t="Include" />
+              <e p="UI" t="Include">
+                <e p="Rooms" t="Include">
+                  <e p="CreateOrJoinRoomCanvas.cs" t="Include" />
+                  <e p="CreateRoomMenu.cs" t="Include" />
+                  <e p="CurrentRoomCanvas.cs" t="Include" />
+                  <e p="PlayerListing.cs" t="Include" />
+                  <e p="PlayerListingMenu.cs" t="Include" />
+                  <e p="RoomCanvases.cs" t="Include" />
+                  <e p="RoomListing.cs" t="Include" />
+                  <e p="RoomListingMenu.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="TestConnect.cs" t="Include" />
+            <e p="Utilities" t="Include">
+              <e p="ExtTransforms.cs" t="Include" />
+            </e>
           </e>
         </e>
       </e>

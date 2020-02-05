@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 119161531}
   - component: {fileID: 119161533}
   - component: {fileID: 119161532}
+  - component: {fileID: 119161534}
   m_Layer: 5
   m_Name: RoomLayoutGroup
   m_TagString: Untagged
@@ -202,7 +203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000011503924}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &119161532
@@ -244,6 +245,20 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &119161534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119161530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682078dbd48e0214a910f128df17a862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roomListingPrefab: {fileID: 6109548217315717987, guid: 6d6225702d02538448fa76b69744832e,
+    type: 3}
 --- !u!1 &152523674
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +830,7 @@ GameObject:
   - component: {fileID: 723586322}
   - component: {fileID: 723586321}
   - component: {fileID: 723586320}
+  - component: {fileID: 723586324}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -904,6 +920,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &723586324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723586319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503ee2853605a4642a63218ebdeb635b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lobbyCanvas: {fileID: 0}
 --- !u!1 &726359330
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 733530854}
+  - component: {fileID: 733530855}
   m_Layer: 5
   m_Name: Lobby
   m_TagString: Untagged
@@ -972,6 +1002,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &733530855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733530853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c8fe3c38d1d0846ae2d58096f71a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roomLayoutGroup: {fileID: 119161534}
 --- !u!1 &805331230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1192,7 @@ GameObject:
   - component: {fileID: 1477961123}
   - component: {fileID: 1477961122}
   - component: {fileID: 1477961121}
+  - component: {fileID: 1477961124}
   m_Layer: 5
   m_Name: RoomList
   m_TagString: Untagged
@@ -1242,6 +1286,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477961119}
   m_CullTransparentMesh: 0
+--- !u!114 &1477961124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477961119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7822c9457a56643b2ab0bdccf45f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roomListing: {fileID: 7670005694404179918, guid: 6d6225702d02538448fa76b69744832e,
+    type: 3}
+  _content: {fileID: 119161531}
 --- !u!1 &2005666151
 GameObject:
   m_ObjectHideFlags: 0
