@@ -21,7 +21,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     private void GetCurrentRoomPlayers()
     {
-        foreach (KeyValuePair<int,Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+        foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
         }
