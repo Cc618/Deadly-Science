@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 1570478273}
   - component: {fileID: 1570478272}
   m_Layer: 8
-  m_Name: Better Player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

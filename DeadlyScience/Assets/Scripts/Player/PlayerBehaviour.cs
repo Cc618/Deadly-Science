@@ -5,106 +5,138 @@ using UnityEngine.Animations;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    // DEPRECATED //
-    // TODO : rm
-    //public enum Status
-    //{
-    //    INFECTED,
-    //    HEALED,
-    //    // TODO : GHOST for dead players (No collisions with others)
-    //}
+    public enum PlayerStatus
+    {
+        INFECTED,
+        HEALED,
+        // TODO : GHOST for dead players (No collisions with others)
+    }
 
-    //// Movement speed
-    //[Range(0, 100)]
-    //public float acceleration;
-    //public float jumpForce;
-    //[Range(0, 25)]
-    //public float maxSpeed;
+    public float gravity;
+    [Range(0, 100)]
+    public float acceleration;
+    [Range(0, 25)]
+    public float maxSpeed;
+    [Range(0, 25)]
+    public float jumpForce;
+    // Ground friction
+    [Range(0, 10)]
+    public float friction;
+    // Air friction
+    [Range(0, 10)]
+    public float damping;
 
-    //// TODO : Mouse Speed in settings
-    //[Range(0, 10)]
-    //public float camSpeed;
+    // TODO : In settings
+    public float mouseSensivity;
 
-    //public Material infectedMaterial;
-    //public Material healedMaterial;
-    //public MeshRenderer stateIndicator;
+    public Transform groundSensor;
+    public LayerMask groundMask;
 
-    //// TODO : Private
-    //public Animator animator;
+    private PlayerStatus status = PlayerStatus.INFECTED;
+    public PlayerStatus Status
+    {
+        set
+        {
+            // Update status
+            status = value;
 
-    //private void Awake()
-    //{
-    //    body = GetComponent<Rigidbody>();
-    //    groundSensor = GetComponentInChildren<PlayerGroundSensor>();
+            // Update material
+            // TODO : Update also anim...
+            switch (status)
+            {
+                case PlayerStatus.HEALED:
+                    Debug.Log("Player has status HEALED");
+                    //stateIndicator.material = healedMaterial;
+                    break;
+                case PlayerStatus.INFECTED:
+                    Debug.Log("Player has status INFECTED");
+                    //stateIndicator.material = infectedMaterial;
+                    break;
+            }
+        }
 
-    //    // Set default material
-    //    stateIndicator.material = infectedMaterial;
-    //}
+        get => status;
+    }
 
-    //void Update()
-    //{
-    //    Vector3 movementForce = new Vector3();
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
+    }
 
-    //    // Translation
-    //    if (Input.GetKey(Game.inputs.left))
-    //        movementForce = -transform.right;
+    void Update()
+    {
+        grounded = Physics.CheckSphere(groundSensor.position, .1f, groundMask);
+        animator.SetBool("grounded", grounded);
 
-    //    if (Input.GetKey(Game.inputs.right))
-    //        movementForce += transform.right;
+        if (grounded)
+        {
+            // Jump
+            if (Input.GetKeyDown(Game.inputs.jump))
+                velocity.y += jumpForce;
+            else
+                velocity.y = -.5f;
+        }
+        // Gravity
+        else
+            velocity.y += gravity * Time.deltaTime;
 
-    //    if (Input.GetKey(Game.inputs.forward))
-    //        movementForce += transform.forward;
+        // TODO : Cam
+        // Rotation
+        transform.rotation = Quaternion.Euler(
+            transform.rotation.eulerAngles.x,
+            transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity * Time.deltaTime,
+            transform.rotation.eulerAngles.z
+        );
 
-    //    if (Input.GetKey(Game.inputs.backward))
-    //        movementForce -= transform.forward;
+        float x = 0;
+        float z = 0;
 
-    //    // Add force if we haven't reached the max speed
-    //    // or if the movement is against the current velocity
-    //    if (body.velocity.sqrMagnitude < maxSpeed * maxSpeed || Vector3.Dot(body.velocity, movementForce) < 0)
-    //        body.AddForce(movementForce * acceleration);
+        // Translation
+        if (Input.GetKey(Game.inputs.left))
+            x -= acceleration;
 
-    //    // Jump
-    //    if (groundSensor.isGrounded && Input.GetKeyDown(Game.inputs.jump))
-    //        body.AddForce(new Vector3(0, 1) * jumpForce);
+        if (Input.GetKey(Game.inputs.right))
+            x += acceleration;
 
-    //    // Rotation
-    //    body.rotation = Quaternion.Euler(
-    //        body.rotation.eulerAngles.x,
-    //        body.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * camSpeed,
-    //        body.rotation.eulerAngles.z
-    //    );
+        if (Input.GetKey(Game.inputs.forward))
+            z += acceleration;
 
-    //    // Animation
-    //    animator.SetBool("grounded", groundSensor.isGrounded);
-    //    animator.SetBool("moving", body.velocity.x * body.velocity.x + body.velocity.z * body.velocity.z > .2f);
+        if (Input.GetKey(Game.inputs.backward))
+            z -= acceleration;
 
-    //    // TODO : rm
-    //    if (Input.GetKey(KeyCode.X))
-    //        animator.SetBool("moving", true);
-    //    else
-    //        animator.SetBool("moving", false);
+        // Compute movement force
+        Vector3 movements = x * transform.right + z * transform.forward;
 
-    //}
+        // Squared tangent speed
+        float tangentSpeed = velocity.x * velocity.x + velocity.z * velocity.z;
 
-    //public void SetStatus(Status status)
-    //{
-    //    // Update material
-    //    // TODO : Update also anim...
-    //    switch (status)
-    //    {
-    //        case Status.HEALED:
-    //            stateIndicator.material = healedMaterial;
-    //            break;
-    //        case Status.INFECTED:
-    //            stateIndicator.material = infectedMaterial;
-    //            break;
-    //    }
+        // Update movements if they serve to brake or they are within speed bounds
+        if (movements.sqrMagnitude > .1 && (tangentSpeed < maxSpeed * maxSpeed || velocity.x * movements.x + velocity.z * movements.z < 0))
+            velocity += movements * Time.deltaTime;
+        // If no movements
+        else
+        {
+            // Friction
+            if (grounded)
+            {
+                velocity.x -= velocity.x * Time.deltaTime * friction;
+                velocity.z -= velocity.z * Time.deltaTime * friction;
+            }
+            else
+            {
+                velocity.x -= velocity.x * Time.deltaTime * damping;
+                velocity.z -= velocity.z * Time.deltaTime * damping;
+            }
+        }
 
-    //    // Update status
-    //    this.status = status;
-    //}
+        // Update position
+        controller.Move(velocity * Time.deltaTime);
+        animator.SetBool("moving", tangentSpeed > 1.6f);
+    }
 
-    //private Rigidbody body;
-    //private PlayerGroundSensor groundSensor;
-    //private Status status = Status.INFECTED;
+    private CharacterController controller;
+    private Animator animator;
+    private Vector3 velocity = new Vector3();
+    private bool grounded = false;
 }
