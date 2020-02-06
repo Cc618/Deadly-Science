@@ -6,12 +6,12 @@ public class Serum : PowerUp
 {
     protected override bool OnCollect(GameObject player)
     {
-        var p = player.GetComponent<Player>();
+        var p = player.GetComponent<PlayerBrain>();
 
-        if (p.Status == Player.PlayerStatus.INFECTED)
+        if (p.Status == PlayerBrain.PlayerStatus.INFECTED)
         {
             // Heal player
-            p.Status = Player.PlayerStatus.HEALED;
+            p.Status = PlayerBrain.PlayerStatus.HEALED;
             return true;
         }
 
