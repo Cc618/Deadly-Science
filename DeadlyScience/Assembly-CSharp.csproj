@@ -78,7 +78,8 @@
     <Compile Include="Assets\Scripts\Amazing Maze\Generation.cs" />
     <Compile Include="Assets\Scripts\Game\Game.cs" />
     <Compile Include="Assets\Scripts\Game\Inputs.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerBrain.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerLabel.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\Serum.cs" />
     <Compile Include="Assets\Scripts\Réseau\CreateRoom.cs" />

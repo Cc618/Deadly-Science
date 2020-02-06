@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿// The behaviour of the player
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBrain : MonoBehaviour
 {
     public enum PlayerStatus
     {
@@ -40,8 +42,10 @@ public class PlayerBehaviour : MonoBehaviour
             // Update status
             status = value;
 
+            label.SetStatus(status);
+
             // Update material
-            // TODO : Update also anim...
+            // TODO : Update also anim / sound...
             switch (status)
             {
                 case PlayerStatus.HEALED:
@@ -57,6 +61,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         get => status;
     }
+
+    public PlayerLabel label;
 
     void Start()
     {
