@@ -63,8 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game\Game.cs" />
-    <Compile Include="Assets\Game\Inputs.cs" />
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
@@ -78,6 +76,8 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Scripts\Amazing Maze\Generation.cs" />
+    <Compile Include="Assets\Scripts\Game\Game.cs" />
+    <Compile Include="Assets\Scripts\Game\Inputs.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\Serum.cs" />
