@@ -11,6 +11,7 @@ namespace ds
         private void Start()
         {
             print("Se connecte au serveur...");
+            PhotonNetwork.AutomaticallySyncScene = true;
             PhotonNetwork.NickName = MasterManager.GameSettings.Nickname;
             PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
             PhotonNetwork.ConnectUsingSettings();
