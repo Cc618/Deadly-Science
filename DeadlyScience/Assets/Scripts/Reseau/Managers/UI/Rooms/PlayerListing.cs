@@ -11,8 +11,8 @@ namespace ds
         [SerializeField]
         private Text _text;
 
-        public Player Player { get; private set; }
-        public void SetPlayerInfo(Player player)
+        public Photon.Realtime.Player Player { get; private set; }
+        public void SetPlayerInfo(Photon.Realtime.Player player)
         {
             Player = player;
             _text.text = player.NickName;

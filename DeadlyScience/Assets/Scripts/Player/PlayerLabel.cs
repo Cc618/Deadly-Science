@@ -17,7 +17,7 @@ namespace ds
         {
             text = GetComponent<Text>();
 
-            SetStatus(PlayerBrain.PlayerStatus.INFECTED);
+            SetStatus(Player.PlayerStatus.INFECTED);
         }
 
         void LateUpdate()
@@ -27,14 +27,14 @@ namespace ds
         }
 
         // Changes the color
-        public void SetStatus(PlayerBrain.PlayerStatus status)
+        public void SetStatus(Player.PlayerStatus status)
         {
             switch (status)
             {
-                case PlayerBrain.PlayerStatus.HEALED:
+                case Player.PlayerStatus.HEALED:
                     text.color = healedColor;
                     break;
-                case PlayerBrain.PlayerStatus.INFECTED:
+                case Player.PlayerStatus.INFECTED:
                     text.color = infectedColor;
                     break;
             }

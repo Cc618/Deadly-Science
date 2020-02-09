@@ -7,7 +7,7 @@ using UnityEngine.Animations;
 
 namespace ds
 {
-    public class PlayerBrain : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         public enum PlayerStatus
         {

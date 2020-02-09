@@ -33,13 +33,13 @@ namespace ds
 
         private void GetCurrentRoomPlayers()
         {
-            foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+            foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
             {
                 AddPlayerListing(playerInfo.Value);
             }
         }
 
-        private void AddPlayerListing(Player player)
+        private void AddPlayerListing(Photon.Realtime.Player player)
         {
             int index = _listings.FindIndex(x => x.Player == player);
             if (index != -1)
@@ -57,12 +57,12 @@ namespace ds
             }
         }
 
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
         {
             AddPlayerListing(newPlayer);
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
         {
             int index = _listings.FindIndex(x => x.Player == otherPlayer);
             if (index != -1)
