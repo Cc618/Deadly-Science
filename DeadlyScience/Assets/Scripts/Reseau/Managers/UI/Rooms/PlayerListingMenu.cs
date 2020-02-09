@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ds
 {
@@ -13,13 +14,17 @@ namespace ds
         private Transform _content;
         [SerializeField]
         private PlayerListing _playerListing;
+        [SerializeField] 
+        private Text _readyUpText;
 
         private List<PlayerListing> _listings = new List<PlayerListing>();
         private RoomCanvases _roomCanvases;
+        private bool _ready = false;
 
         public override void OnEnable()
         {
             base.OnEnable();
+            SetReadyUp(false);
             GetCurrentRoomPlayers();
         }
 
@@ -27,7 +32,15 @@ namespace ds
         {
             _roomCanvases = canvases;
         }
-        
+
+        private void SetReadyUp(bool state)
+        {
+            _ready = state;
+            if (_ready)
+                _readyUpText.text = "R";
+            else
+                _readyUpText.text = "N";
+        }
 
         public override void OnDisable()
         {
@@ -69,6 +82,11 @@ namespace ds
             }
         }
 
+        public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
+        {
+            _roomCanvases.CurrentRoomCanvas.LeaveRoomMenu.OnClic_LeaveRoom();
+        }
+
         public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
         {
             AddPlayerListing(newPlayer);
@@ -88,9 +106,37 @@ namespace ds
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                for (int i = 0; i < _listings.Count; i++)
+                {
+                    if (_listings[i].Player != PhotonNetwork.LocalPlayer)
+                    {
+                        if (_listings[i].Ready)
+                            return;
+                    }
+                }
+                
                 PhotonNetwork.CurrentRoom.IsOpen = false;
                 PhotonNetwork.CurrentRoom.IsVisible = false;
                 PhotonNetwork.LoadLevel(1);
+            }
+        }
+
+        public void OnClick_ReadyUp()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                SetReadyUp(!_ready);
+                base.photonView.RPC("RPC_ChangeReadyState", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer, _ready);
+            }
+        }
+        
+        [PunRPC]
+        private void RPC_ChangeReadyState(Photon.Realtime.Player player, bool ready)
+        {
+            int index = _listings.FindIndex(x => x.Player == player);
+            if (index != -1)
+            {
+                _listings[index].Ready = ready;
             }
         }
     }
