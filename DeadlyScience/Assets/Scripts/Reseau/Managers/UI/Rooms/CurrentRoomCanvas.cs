@@ -6,10 +6,18 @@ namespace ds
 {
     public class CurrentRoomCanvas : MonoBehaviour
     {
+        [SerializeField] 
+        private PlayerListingMenu _playerListingMenu;
+
+        [SerializeField] 
+        private LeaveRoomMenu _leaveRoomMenu;
+        
         private RoomCanvases _roomCanvases;
         public void FirstInitialize(RoomCanvases canvases)
         {
             _roomCanvases = canvases;
+            _playerListingMenu.FirstInitialize(canvases);
+            _leaveRoomMenu.FirstInitiliaze(canvases);
         }
 
         public void Show()
@@ -17,7 +25,7 @@ namespace ds
             gameObject.SetActive(true);
         }
 
-        private void Hide()
+        public void Hide()
         {
             gameObject.SetActive(false);
         }

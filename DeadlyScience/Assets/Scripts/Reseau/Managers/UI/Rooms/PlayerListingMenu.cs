@@ -15,11 +15,22 @@ namespace ds
         private PlayerListing _playerListing;
 
         private List<PlayerListing> _listings = new List<PlayerListing>();
+        private RoomCanvases _roomCanvases;
 
         public override void OnEnable()
         {
             base.OnEnable();
             GetCurrentRoomPlayers();
+        }
+
+        public void FirstInitialize(RoomCanvases canvases)
+        {
+            _roomCanvases = canvases;
+        }
+
+        public override void OnLeftRoom()
+        {
+            _content.DestroyChildren();
         }
 
         public override void OnDisable()

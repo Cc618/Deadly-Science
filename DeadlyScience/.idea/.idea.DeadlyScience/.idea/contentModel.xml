@@ -360,7 +360,7 @@
             <e p="Inputs.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
-            <e p="PlayerBrain.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
             <e p="PlayerLabel.cs" t="Include" />
           </e>
           <e p="PowerUps" t="Include">
@@ -378,6 +378,7 @@
                   <e p="CreateOrJoinRoomCanvas.cs" t="Include" />
                   <e p="CreateRoomMenu.cs" t="Include" />
                   <e p="CurrentRoomCanvas.cs" t="Include" />
+                  <e p="LeaveRoomMenu.cs" t="Include" />
                   <e p="PlayerListing.cs" t="Include" />
                   <e p="PlayerListingMenu.cs" t="Include" />
                   <e p="RoomCanvases.cs" t="Include" />
