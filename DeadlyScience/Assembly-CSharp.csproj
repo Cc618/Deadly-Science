@@ -85,6 +85,7 @@
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\LeaveRoomMenu.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\PlayerListing.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\PlayerListingMenu.cs" />
+     <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\RandomCustomPropertyGenerator.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\RoomCanvases.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\RoomListing.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\RoomListingMenu.cs" />

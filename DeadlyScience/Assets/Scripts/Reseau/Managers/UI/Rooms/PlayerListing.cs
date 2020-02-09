@@ -15,7 +15,8 @@ namespace ds
         public void SetPlayerInfo(Photon.Realtime.Player player)
         {
             Player = player;
-            _text.text = player.NickName;
+            int result = (int)player.CustomProperties["RandomNumber"];
+            _text.text = result.ToString() + ", " + player.NickName;
         }
     }
 }

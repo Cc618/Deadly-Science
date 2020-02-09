@@ -381,6 +381,7 @@
                   <e p="LeaveRoomMenu.cs" t="Include" />
                   <e p="PlayerListing.cs" t="Include" />
                   <e p="PlayerListingMenu.cs" t="Include" />
+                  <e p="RandomCustomPropertyGenerator.cs" t="Include" />
                   <e p="RoomCanvases.cs" t="Include" />
                   <e p="RoomListing.cs" t="Include" />
                   <e p="RoomListingMenu.cs" t="Include" />
