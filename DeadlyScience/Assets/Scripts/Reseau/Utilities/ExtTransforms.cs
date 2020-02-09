@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 
-public static class Transforms
+namespace ds
 {
-    public static void DestroyChildren(this Transform t, bool destroyImmediately = false)
+    public static class Transforms
     {
-        foreach (Transform child in t)
+        public static void DestroyChildren(this Transform t, bool destroyImmediately = false)
         {
-            if (destroyImmediately)
-                MonoBehaviour.DestroyImmediate(child);
-            else
-                MonoBehaviour.Destroy(child);
+            foreach (Transform child in t)
+            {
+                if (destroyImmediately)
+                    MonoBehaviour.DestroyImmediate(child);
+                else
+                    MonoBehaviour.Destroy(child);
+            }
         }
     }
 }

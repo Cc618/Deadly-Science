@@ -4,15 +4,18 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerListing : MonoBehaviour
+namespace ds
 {
-    [SerializeField]
-    private Text _text;
-
-    public Player Player { get; private set; }
-    public void SetPlayerInfo(Player player)
+    public class PlayerListing : MonoBehaviour
     {
-        Player = player;
-        _text.text = player.NickName;
+        [SerializeField]
+        private Text _text;
+
+        public Player Player { get; private set; }
+        public void SetPlayerInfo(Player player)
+        {
+            Player = player;
+            _text.text = player.NickName;
+        }
     }
 }

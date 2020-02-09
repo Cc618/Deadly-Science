@@ -4,48 +4,51 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class RoomListingMenu : MonoBehaviourPunCallbacks
+namespace ds
 {
-    [SerializeField] 
-    private Transform _content;
-    [SerializeField] 
-    private RoomListing _roomListing;
-    
-    private List<RoomListing> _listings = new List<RoomListing>();
-    private RoomCanvases _roomCanvases;
-
-    public void FirstInitialize(RoomCanvases canvases)
+    public class RoomListingMenu : MonoBehaviourPunCallbacks
     {
-        _roomCanvases = canvases;
-    }
+        [SerializeField]
+        private Transform _content;
+        [SerializeField]
+        private RoomListing _roomListing;
 
-    public override void OnJoinedRoom()
-    {
-        _roomCanvases.CurrentRoomCanvas.Show();
-    }
+        private List<RoomListing> _listings = new List<RoomListing>();
+        private RoomCanvases _roomCanvases;
 
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        foreach (RoomInfo info in roomList)
+        public void FirstInitialize(RoomCanvases canvases)
         {
-            //A été enlevé de RoomList
-            if (info.RemovedFromList)
+            _roomCanvases = canvases;
+        }
+
+        public override void OnJoinedRoom()
+        {
+            _roomCanvases.CurrentRoomCanvas.Show();
+        }
+
+        public override void OnRoomListUpdate(List<RoomInfo> roomList)
+        {
+            foreach (RoomInfo info in roomList)
             {
-                int index = _listings.FindIndex(x => x.RoomInfo.Name == info.Name);
-                if (index != -1)
+                //A été enlevé de RoomList
+                if (info.RemovedFromList)
                 {
-                    Destroy((_listings[index].gameObject));
-                    _listings.RemoveAt(index);
+                    int index = _listings.FindIndex(x => x.RoomInfo.Name == info.Name);
+                    if (index != -1)
+                    {
+                        Destroy((_listings[index].gameObject));
+                        _listings.RemoveAt(index);
+                    }
                 }
-            }
-            //A été ajouté à la RoomList
-            else
-            {
-                RoomListing listing = Instantiate(_roomListing, _content);
-                if (listing != null)
+                //A été ajouté à la RoomList
+                else
                 {
-                    listing.SetRoomInfo(info);
-                    _listings.Add(listing);
+                    RoomListing listing = Instantiate(_roomListing, _content);
+                    if (listing != null)
+                    {
+                        listing.SetRoomInfo(info);
+                        _listings.Add(listing);
+                    }
                 }
             }
         }

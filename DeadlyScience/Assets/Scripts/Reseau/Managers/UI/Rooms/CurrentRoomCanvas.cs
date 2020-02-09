@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrentRoomCanvas : MonoBehaviour
+namespace ds
 {
-    private RoomCanvases _roomCanvases;
-    public void FirstInitialize(RoomCanvases canvases)
+    public class CurrentRoomCanvas : MonoBehaviour
     {
-        _roomCanvases = canvases;
-    }
+        private RoomCanvases _roomCanvases;
+        public void FirstInitialize(RoomCanvases canvases)
+        {
+            _roomCanvases = canvases;
+        }
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
 
-    private void Hide()
-    {
-        gameObject.SetActive(false);
+        private void Hide()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

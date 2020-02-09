@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Serum : PowerUp
+namespace ds
 {
-    protected override bool OnCollect(GameObject player)
+    public class Serum : PowerUp
     {
-        var p = player.GetComponent<PlayerBrain>();
-
-        if (p.Status == PlayerBrain.PlayerStatus.INFECTED)
+        protected override bool OnCollect(GameObject player)
         {
-            // Heal player
-            p.Status = PlayerBrain.PlayerStatus.HEALED;
-            return true;
-        }
+            var p = player.GetComponent<PlayerBrain>();
 
-        return false;
+            if (p.Status == PlayerBrain.PlayerStatus.INFECTED)
+            {
+                // Heal player
+                p.Status = PlayerBrain.PlayerStatus.HEALED;
+                return true;
+            }
+
+            return false;
+        }
     }
 }

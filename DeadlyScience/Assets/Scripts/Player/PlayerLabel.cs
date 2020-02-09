@@ -5,38 +5,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerLabel : MonoBehaviour
+namespace ds
 {
-    public Transform cam;
-    public Color healedColor;
-    public Color infectedColor;
-
-    private void Start()
+    public class PlayerLabel : MonoBehaviour
     {
-        text = GetComponent<Text>();
+        public Transform cam;
+        public Color healedColor;
+        public Color infectedColor;
 
-        SetStatus(PlayerBrain.PlayerStatus.INFECTED);
-    }
-
-    void LateUpdate()
-    {
-        Vector3 target = transform.position - cam.position;
-        transform.rotation = Quaternion.LookRotation(target);
-    }
-
-    // Changes the color
-    public void SetStatus(PlayerBrain.PlayerStatus status)
-    {
-        switch (status)
+        private void Start()
         {
-            case PlayerBrain.PlayerStatus.HEALED:
-                text.color = healedColor;
-                break;
-            case PlayerBrain.PlayerStatus.INFECTED:
-                text.color = infectedColor;
-                break;
-        }
-    }
+            text = GetComponent<Text>();
 
-    private Text text;
+            SetStatus(PlayerBrain.PlayerStatus.INFECTED);
+        }
+
+        void LateUpdate()
+        {
+            Vector3 target = transform.position - cam.position;
+            transform.rotation = Quaternion.LookRotation(target);
+        }
+
+        // Changes the color
+        public void SetStatus(PlayerBrain.PlayerStatus status)
+        {
+            switch (status)
+            {
+                case PlayerBrain.PlayerStatus.HEALED:
+                    text.color = healedColor;
+                    break;
+                case PlayerBrain.PlayerStatus.INFECTED:
+                    text.color = infectedColor;
+                    break;
+            }
+        }
+
+        private Text text;
+    }
 }
