@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Manager/GameSettings")]
-
-public class GameSettings : ScriptableObject
+namespace ds
 {
-    [SerializeField]
-    private string _gameVersion = "0.0.0";
+    [CreateAssetMenu(menuName = "Manager/GameSettings")]
 
-    public string GameVersion => _gameVersion;
-    [SerializeField] 
-    private string _nickname = "Joueur";
-
-    public string Nickname
+    public class GameSettings : ScriptableObject
     {
-        get
+        [SerializeField]
+        private string _gameVersion = "0.0.0";
+
+        public string GameVersion => _gameVersion;
+        [SerializeField]
+        private string _nickname = "Joueur";
+
+        public string Nickname
         {
-            int value = Random.Range(0, 9999);
-            return _nickname + value.ToString();
+            get
+            {
+                int value = Random.Range(0, 9999);
+                return _nickname + value.ToString();
+            }
         }
+
     }
-    
 }

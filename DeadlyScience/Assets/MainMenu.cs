@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace ds
 {
-    public void PlayGame()
+    public class MainMenu : MonoBehaviour
     {
-        SceneManager.LoadScene("Lobby");
-    }
+        public void PlayGame()
+        {
+            SceneManager.LoadScene("Lobby");
+        }
 
-    public void QuitGame()
-    {
-        Debug.Log("QUIT!");
-        Application.Quit();
+        public void QuitGame()
+        {
+            Debug.Log("QUIT!");
+            Application.Quit();
+        }
     }
 }

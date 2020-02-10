@@ -4,26 +4,30 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-public class TestConnect : MonoBehaviourPunCallbacks
+namespace ds
 {
-    private void Start()
+    public class TestConnect : MonoBehaviourPunCallbacks
     {
-        print("Se connecte au serveur...");
-        PhotonNetwork.NickName = MasterManager.GameSettings.Nickname;
-        PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
-        PhotonNetwork.ConnectUsingSettings();
-    }
+        private void Start()
+        {
+            print("Se connecte au serveur...");
+            PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.NickName = MasterManager.GameSettings.Nickname;
+            PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
+            PhotonNetwork.ConnectUsingSettings();
+        }
 
-    public override void OnConnectedToMaster()
-    {
-        print("Est connecté au serveur.");
-        print(PhotonNetwork.LocalPlayer.NickName);
+        public override void OnConnectedToMaster()
+        {
+            print("Est connecté au serveur.");
+            print(PhotonNetwork.LocalPlayer.NickName);
+            if (!PhotonNetwork.InLobby)
+                PhotonNetwork.JoinLobby();
+        }
 
-        PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnDisconnected(DisconnectCause cause)
-    {
-        print("Deconnecté du serveur à cause de " + cause.ToString());
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            print("Deconnecté du serveur à cause de " + cause.ToString());
+        }
     }
 }

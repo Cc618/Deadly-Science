@@ -2,21 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrentRoomCanvas : MonoBehaviour
+namespace ds
 {
-    private RoomCanvases _roomCanvases;
-    public void FirstInitialize(RoomCanvases canvases)
+    public class CurrentRoomCanvas : MonoBehaviour
     {
-        _roomCanvases = canvases;
-    }
+        [SerializeField] 
+        private PlayerListingMenu _playerListingMenu;
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+        [SerializeField] 
+        private LeaveRoomMenu _leaveRoomMenu;
+        public LeaveRoomMenu LeaveRoomMenu { get { return _leaveRoomMenu; } }
+            
+        private RoomCanvases _roomCanvases;
+        public void FirstInitialize(RoomCanvases canvases)
+        {
+            _roomCanvases = canvases;
+            _playerListingMenu.FirstInitialize(canvases);
+            _leaveRoomMenu.FirstInitiliaze(canvases);
+        }
 
-    private void Hide()
-    {
-        gameObject.SetActive(false);
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

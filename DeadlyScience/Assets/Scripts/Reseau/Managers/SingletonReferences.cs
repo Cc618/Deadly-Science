@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingletonReferences : MonoBehaviour
+namespace ds
 {
-    [SerializeField] 
-    private MasterManager _masterManager;
+    public class SingletonReferences : MonoBehaviour
+    {
+        [SerializeField]
+        private MasterManager _masterManager;
+    }
 }
