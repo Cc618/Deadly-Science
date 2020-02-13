@@ -7,4 +7,6 @@
 - G Joueur : Saut
 - G Joueur : Couches de collisions ?
 - G Joueur : Pas de rigid body mais character controller
+- G Joueur : World UI system (LookToCam)
+- G Joueur : Stamina
 

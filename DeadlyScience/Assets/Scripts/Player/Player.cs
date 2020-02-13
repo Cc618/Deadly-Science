@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.UI;
 
 namespace ds
 {
@@ -36,6 +37,9 @@ namespace ds
         public Transform groundSensor;
         public LayerMask groundMask;
 
+        public PlayerName nameLabel;
+        public Slider staminaSlider;
+
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status
         {
@@ -43,8 +47,7 @@ namespace ds
             {
                 // Update status
                 status = value;
-
-                label.SetStatus(status);
+                nameLabel.SetStatus(status);
 
                 // Update material
                 // TODO : Update also anim / sound...
@@ -64,7 +67,18 @@ namespace ds
             get => status;
         }
 
-        public PlayerLabel label;
+        // Between 0 and 1
+        private float stamina = 1;
+        public float Stamina
+        {
+            get => stamina;
+            set
+            {
+                stamina = value;
+                staminaSlider.value = value;
+            }
+        }
+
 
         void Start()
         {
@@ -74,6 +88,10 @@ namespace ds
 
         void Update()
         {
+            // TODO : Remove
+            Stamina *= 0.99f;
+
+
             grounded = Physics.CheckSphere(groundSensor.position, .1f, groundMask);
             animator.SetBool("grounded", grounded);
 

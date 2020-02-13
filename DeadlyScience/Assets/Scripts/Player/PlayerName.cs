@@ -1,4 +1,4 @@
-﻿// Used to rotate a label towards a player
+﻿// Used to change the color of the name
 
 using System.Collections;
 using System.Collections.Generic;
@@ -7,23 +7,16 @@ using UnityEngine.UI;
 
 namespace ds
 {
-    public class PlayerLabel : MonoBehaviour
+    public class PlayerName : MonoBehaviour
     {
-        public Transform cam;
         public Color healedColor;
         public Color infectedColor;
 
-        private void Start()
+        void Awake()
         {
             text = GetComponent<Text>();
 
             SetStatus(Player.PlayerStatus.INFECTED);
-        }
-
-        void LateUpdate()
-        {
-            Vector3 target = transform.position - cam.position;
-            transform.rotation = Quaternion.LookRotation(target);
         }
 
         // Changes the color
