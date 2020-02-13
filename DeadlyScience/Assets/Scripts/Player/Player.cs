@@ -119,7 +119,7 @@ namespace ds
         {
             // TODO : test
             if (Input.GetKeyDown(KeyCode.Mouse0))
-                Stamina -= strength;
+                Hit();
 
 
             // Health regeneration
@@ -197,7 +197,17 @@ namespace ds
 
         // Player to player hit
         // TODO : Hit with other player when network
-        //public void Hit()
+        public void Hit(/* TODO Player player */)
+        {
+            // TODO : status == player.status
+            bool sameStatus = true;
+
+            if (sameStatus)
+                if (!stunned)
+                    // TODO : player.strength
+                    Stamina -= strength;
+            // TODO : Else if infected...
+        }
 
         private CharacterController controller;
         private Animator animator;
