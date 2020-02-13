@@ -8,5 +8,6 @@
 - G Joueur : Couches de collisions ?
 - G Joueur : Pas de rigid body mais character controller
 - G Joueur : World UI system (LookToCam)
-- G Joueur : Stamina
+- G Joueur : Stamina & stunned
+- G Joueur : Hit behaviour
 

@@ -101,11 +101,9 @@ namespace ds
         // How many stamina the player gain
         [Range(0, 1)]
         public float regeneration;
-        // TODO
-        //// In seconds, how many time the player is stunned when stamina is 0
-        //[Range(0, 1)]
-        //public float stunnedTime;
-
+        // The speed is affected when the player is tunned by this factor
+        [Range(0, 1)]
+        public float stunnedSpeedFactor;
 
         void Start()
         {
@@ -171,9 +169,12 @@ namespace ds
             // Squared tangent speed
             float tangentSpeed = velocity.x * velocity.x + velocity.z * velocity.z;
 
+            // The speed ratio
+            float speedFactor = stunned ? stunnedSpeedFactor : 1;
+
             // Update movements if they serve to brake or they are within speed bounds
-            if (!stunned && movements.sqrMagnitude > .1 && (tangentSpeed < maxSpeed * maxSpeed || velocity.x * movements.x + velocity.z * movements.z < 0))
-                velocity += movements * Time.deltaTime;
+            if (movements.sqrMagnitude > .1 && (tangentSpeed < maxSpeed * maxSpeed * speedFactor * speedFactor || velocity.x * movements.x + velocity.z * movements.z < 0))
+                velocity += movements * Time.deltaTime * speedFactor;
             // If no movements
             else
             {

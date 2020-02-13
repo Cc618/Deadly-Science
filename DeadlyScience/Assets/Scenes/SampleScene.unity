@@ -1634,6 +1634,7 @@ MonoBehaviour:
   staminaUi: {fileID: 1516878344}
   strength: 0.4
   regeneration: 0.3
+  stunnedSpeedFactor: 0.1
 --- !u!143 &1570478273
 CharacterController:
   m_ObjectHideFlags: 0
