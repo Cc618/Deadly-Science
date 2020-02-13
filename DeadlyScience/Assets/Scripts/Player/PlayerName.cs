@@ -9,10 +9,7 @@ namespace ds
 {
     public class PlayerName : MonoBehaviour
     {
-        public Color healedColor;
-        public Color infectedColor;
-
-        void Awake()
+        void Start()
         {
             text = GetComponent<Text>();
 
@@ -25,10 +22,10 @@ namespace ds
             switch (status)
             {
                 case Player.PlayerStatus.HEALED:
-                    text.color = healedColor;
+                    text.color = Game.colors.healed;
                     break;
                 case Player.PlayerStatus.INFECTED:
-                    text.color = infectedColor;
+                    text.color = Game.colors.infected;
                     break;
             }
         }

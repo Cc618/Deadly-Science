@@ -37,8 +37,8 @@ namespace ds
         public Transform groundSensor;
         public LayerMask groundMask;
 
-        public PlayerName nameLabel;
-        public Slider staminaSlider;
+        public PlayerName nameUi;
+        public PlayerStamina staminaUi;
 
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status
@@ -47,7 +47,7 @@ namespace ds
             {
                 // Update status
                 status = value;
-                nameLabel.SetStatus(status);
+                nameUi.SetStatus(status);
 
                 // Update material
                 // TODO : Update also anim / sound...
@@ -78,6 +78,7 @@ namespace ds
                 {
                     value = 0;
                     stunned = true;
+                    staminaUi.ChangeStunned(stunned);
 
                     // TODO: rm
                     Debug.Log("Player -> Stunned");
@@ -86,10 +87,11 @@ namespace ds
                 {
                     value = 1;
                     stunned = false;
+                    staminaUi.ChangeStunned(stunned);
                 }
 
                 stamina = value;
-                staminaSlider.value = value;
+                staminaUi.Value = value;
             }
         }
 
@@ -109,6 +111,8 @@ namespace ds
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+
+            Stamina = stamina;
         }
 
         void Update()
@@ -190,6 +194,10 @@ namespace ds
             controller.Move(velocity * Time.deltaTime);
             animator.SetBool("moving", tangentSpeed > 1.6f);
         }
+
+        // Player to player hit
+        // TODO : Hit with other player when network
+        //public void Hit()
 
         private CharacterController controller;
         private Animator animator;

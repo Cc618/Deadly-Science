@@ -1474,6 +1474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1516878342}
   - component: {fileID: 1516878343}
+  - component: {fileID: 1516878344}
   m_Layer: 5
   m_Name: PlayerStamina
   m_TagString: Untagged
@@ -1552,6 +1553,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1516878344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516878341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478c0f8d9dbb947449e737cd8f05e7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fill: {fileID: 201445566}
 --- !u!4 &1538136670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400120, guid: 5917c0e93d180a842b61d1ebc62a195c,
@@ -1616,8 +1630,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
-  nameLabel: {fileID: 1762533296}
-  staminaSlider: {fileID: 1516878343}
+  nameUi: {fileID: 1762533296}
+  staminaUi: {fileID: 1516878344}
   strength: 0.4
   regeneration: 0.3
 --- !u!143 &1570478273
@@ -1734,8 +1748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3191caada1b94e4d8e621582b0fc9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healedColor: {r: 0.24997933, g: 0.8301887, b: 0, a: 1}
-  infectedColor: {r: 0.8113208, g: 0.14352328, b: 0.06505875, a: 1}
 --- !u!1 &1822125226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,6 +1759,7 @@ GameObject:
   - component: {fileID: 1822125229}
   - component: {fileID: 1822125228}
   - component: {fileID: 1822125227}
+  - component: {fileID: 1822125230}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1797,6 +1810,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1822125230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822125226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b793f036c85ce8a438be92d95499ef4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healed: {r: 0.4425676, g: 0.8962264, b: 0.063412234, a: 1}
+  infected: {r: 0.8867924, g: 0.15072148, b: 0.071110725, a: 1}
+  stamina: {r: 0.94189733, g: 0.9716981, b: 0, a: 1}
+  staminaStunned: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
 --- !u!1 &1950072276
 GameObject:
   m_ObjectHideFlags: 0
