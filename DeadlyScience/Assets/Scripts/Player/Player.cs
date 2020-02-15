@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.UI;
 
 namespace ds
 {
@@ -36,6 +37,9 @@ namespace ds
         public Transform groundSensor;
         public LayerMask groundMask;
 
+        public PlayerName nameUi;
+        public PlayerStamina staminaUi;
+
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status
         {
@@ -43,8 +47,7 @@ namespace ds
             {
                 // Update status
                 status = value;
-
-                label.SetStatus(status);
+                nameUi.SetStatus(status);
 
                 // Update material
                 // TODO : Update also anim / sound...
@@ -64,23 +67,70 @@ namespace ds
             get => status;
         }
 
-        public PlayerLabel label;
+        // Between 0 and 1
+        private float stamina = 1;
+        public float Stamina
+        {
+            get => stamina;
+            set
+            {
+                if (value <= 0)
+                {
+                    value = 0;
+                    stunned = true;
+                    staminaUi.ChangeStunned(stunned);
+
+                    // TODO: rm
+                    Debug.Log("Player -> Stunned");
+                }
+                else if (value >= 1)
+                {
+                    value = 1;
+                    stunned = false;
+                    staminaUi.ChangeStunned(stunned);
+                }
+
+                stamina = value;
+                staminaUi.Value = value;
+            }
+        }
+
+        // How many stamina removes the player for a hit
+        [Range(0, 1)]
+        public float strength;
+        // How many stamina the player gain
+        [Range(0, 1)]
+        public float regeneration;
+        // The speed is affected when the player is tunned by this factor
+        [Range(0, 1)]
+        public float stunnedSpeedFactor;
 
         void Start()
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+
+            Stamina = stamina;
         }
 
         void Update()
         {
+            // TODO : test
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                Hit();
+
+
+            // Health regeneration
+            Stamina += Time.deltaTime * regeneration;
+
+            // On ground check
             grounded = Physics.CheckSphere(groundSensor.position, .1f, groundMask);
             animator.SetBool("grounded", grounded);
 
             if (grounded)
             {
                 // Jump
-                if (Input.GetKeyDown(Game.inputs.jump))
+                if (!stunned && Input.GetKeyDown(Game.inputs.jump))
                     velocity.y += jumpForce;
                 else
                     velocity.y = -.5f;
@@ -119,9 +169,12 @@ namespace ds
             // Squared tangent speed
             float tangentSpeed = velocity.x * velocity.x + velocity.z * velocity.z;
 
+            // The speed ratio
+            float speedFactor = stunned ? stunnedSpeedFactor : 1;
+
             // Update movements if they serve to brake or they are within speed bounds
-            if (movements.sqrMagnitude > .1 && (tangentSpeed < maxSpeed * maxSpeed || velocity.x * movements.x + velocity.z * movements.z < 0))
-                velocity += movements * Time.deltaTime;
+            if (movements.sqrMagnitude > .1 && (tangentSpeed < maxSpeed * maxSpeed * speedFactor * speedFactor || velocity.x * movements.x + velocity.z * movements.z < 0))
+                velocity += movements * Time.deltaTime * speedFactor;
             // If no movements
             else
             {
@@ -143,9 +196,25 @@ namespace ds
             animator.SetBool("moving", tangentSpeed > 1.6f);
         }
 
+        // Player to player hit
+        // TODO : Hit with other player when network
+        public void Hit(/* TODO Player player */)
+        {
+            // TODO : status == player.status
+            bool sameStatus = true;
+
+            if (sameStatus)
+                if (!stunned)
+                    // TODO : player.strength
+                    Stamina -= strength;
+            // TODO : Else if infected...
+        }
+
         private CharacterController controller;
         private Animator animator;
         private Vector3 velocity = new Vector3();
         private bool grounded = false;
+        // When stamina = 0, can't move
+        private bool stunned = false;
     }
 }

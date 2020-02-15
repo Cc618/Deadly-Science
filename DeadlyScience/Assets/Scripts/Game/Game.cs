@@ -4,12 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+namespace ds
 {
-    public static Inputs inputs;
-
-    private void Awake()
+    public class Game : MonoBehaviour
     {
-        inputs = GetComponent<Inputs>();
+        public static Inputs inputs;
+        public static Colors colors;
+
+        private void Awake()
+        {
+            inputs = GetComponent<Inputs>();
+            colors = GetComponent<Colors>();
+        }
     }
 }

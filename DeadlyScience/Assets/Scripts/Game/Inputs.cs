@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inputs : MonoBehaviour
+namespace ds
 {
-    // Movements
-    public KeyCode forward,
-        left,
-        right,
-        backward,
-        jump;
+    public class Inputs : MonoBehaviour
+    {
+        // Movements
+        public KeyCode forward,
+            left,
+            right,
+            backward,
+            jump;
+    }
 }
