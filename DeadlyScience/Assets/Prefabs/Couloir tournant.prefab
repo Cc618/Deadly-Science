@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2306263745145868024}
   - component: {fileID: 1056603186116193063}
   - component: {fileID: 4818777460304238076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3200735198943508892}
   - component: {fileID: 8463289333474686645}
   - component: {fileID: 566527529669328311}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 9130287607098300233}
   - component: {fileID: 5839884079316180257}
   - component: {fileID: 6420343451877221551}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 3655247456530908204}
   - component: {fileID: 7878769521573410244}
   - component: {fileID: 772349174427994021}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 1069740551447007823}
   - component: {fileID: 8820776539590887787}
   - component: {fileID: 8081039967136251241}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 2178602211823301852}
   - component: {fileID: 4519156082519035584}
   - component: {fileID: 3923982874405680868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 6106490318058070867}
   - component: {fileID: 4227824136997417256}
   - component: {fileID: 3636601492663094508}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 3576826559733487729}
   - component: {fileID: 2114296451060568357}
   - component: {fileID: 4168827481754905243}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Couloir tournant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 2309259842713005538}
   - component: {fileID: 6149102002469424438}
   - component: {fileID: 6990925967347152735}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 1685605939545805882}
   - component: {fileID: 620681616632613539}
   - component: {fileID: 8799202344317950932}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,7 +942,7 @@ GameObject:
   - component: {fileID: 8693620876589088205}
   - component: {fileID: 2846533360589372026}
   - component: {fileID: 5825877048958918348}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
