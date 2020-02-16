@@ -31,9 +31,6 @@ namespace ds
         [Range(0, 10)]
         public float damping;
 
-        // TODO : In settings
-        public float mouseSensivity;
-
         public Transform groundSensor;
         public LayerMask groundMask;
 
@@ -139,11 +136,10 @@ namespace ds
             else
                 velocity.y += gravity * Time.deltaTime;
 
-            // TODO : Cam
             // Rotation
             transform.rotation = Quaternion.Euler(
                 transform.rotation.eulerAngles.x,
-                transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * mouseSensivity * Time.deltaTime,
+                transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime,
                 transform.rotation.eulerAngles.z
             );
 

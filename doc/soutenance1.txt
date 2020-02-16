@@ -10,4 +10,5 @@
 - G Joueur : World UI system (LookToCam)
 - G Joueur : Stamina & stunned
 - G Joueur : Hit behaviour
-
+- Camera : Movements
+- Camera : Player hide current / show others
