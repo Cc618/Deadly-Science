@@ -9,7 +9,7 @@ namespace ds
     {
         public void PlayGame()
         {
-            SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene("SampleScene");
         }
 
         public void QuitGame()

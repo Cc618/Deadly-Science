@@ -102,8 +102,12 @@ namespace ds
         [Range(0, 1)]
         public float stunnedSpeedFactor;
 
+        InputManager inputManager;
+
         void Start()
         {
+            inputManager = GameObject.FindObjectOfType<InputManager>();
+            
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
 
@@ -130,7 +134,7 @@ namespace ds
             if (grounded)
             {
                 // Jump
-                if (!stunned && Input.GetKeyDown(Game.inputs.jump))
+                if (!stunned && inputManager.IsButtonDown("Jump"))
                     velocity.y += jumpForce;
                 else
                     velocity.y = -.5f;
@@ -150,16 +154,16 @@ namespace ds
             float z = 0;
 
             // Translation
-            if (Input.GetKey(Game.inputs.left))
+            if (inputManager.IsButtonDown("Left"))
                 x -= acceleration;
 
-            if (Input.GetKey(Game.inputs.right))
+            if (inputManager.IsButtonDown("Right"))
                 x += acceleration;
 
-            if (Input.GetKey(Game.inputs.forward))
+            if (inputManager.IsButtonDown("Forward"))
                 z += acceleration;
 
-            if (Input.GetKey(Game.inputs.backward))
+            if (inputManager.IsButtonDown("Backward"))
                 z -= acceleration;
 
             // Compute movement force
