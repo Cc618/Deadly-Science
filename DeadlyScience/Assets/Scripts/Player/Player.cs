@@ -108,6 +108,9 @@ namespace ds
             animator = GetComponentInChildren<Animator>();
 
             Stamina = stamina;
+
+            // TODO : Disable render only if this is the current player
+            GetComponentInChildren<Renderer>().enabled = false;
         }
 
         void Update()
