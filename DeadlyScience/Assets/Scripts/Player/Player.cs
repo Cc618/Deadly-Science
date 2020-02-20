@@ -104,7 +104,8 @@ namespace ds
 
         InputManager inputManager;
 
-        void Start()
+        // Called after the script PlayerNetwork
+        public void StartAfterPlayerNetwork()
         {
             inputManager = GameObject.FindObjectOfType<InputManager>();
             

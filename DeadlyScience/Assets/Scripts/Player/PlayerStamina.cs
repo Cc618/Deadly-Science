@@ -9,7 +9,7 @@ namespace ds
     {
         public Image fill;
 
-        void Start()
+        void Awake()
         {
             slider = GetComponent<Slider>();
 
