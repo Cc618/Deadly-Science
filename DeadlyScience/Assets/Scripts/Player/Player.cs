@@ -1,4 +1,7 @@
 ﻿// The behaviour of the player
+// This script is executed only if
+// this is the player controlled by the user
+// not network players
 
 using System.Collections;
 using System.Collections.Generic;
@@ -107,14 +110,14 @@ namespace ds
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
-            inputManager = GameObject.FindObjectOfType<InputManager>();
+            inputManager = FindObjectOfType<InputManager>();
             
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
 
             Stamina = stamina;
 
-            // TODO : Disable render only if this is the current player
+            // Disable render only if this is the current player
             GetComponentInChildren<Renderer>().enabled = false;
         }
 
