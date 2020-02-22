@@ -127,21 +127,21 @@ namespace ds
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 Hit();
 
-
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;
 
-            // On ground check
-            grounded = Physics.CheckSphere(groundSensor.position, .1f, groundMask);
+            // On ground check (only if the velocity is almost negative)
+            grounded = velocity.y <= .1f && Physics.CheckSphere(groundSensor.position, controller.radius, groundMask);
             animator.SetBool("grounded", grounded);
 
             if (grounded)
             {
-                // Jump
+                // Jump only if not stunned
                 if (!stunned && inputManager.IsButtonDown("Jump"))
                     velocity.y += jumpForce;
                 else
-                    velocity.y = -.5f;
+                    // If grounded and not on jump add a small force
+                    velocity.y = -.1f;
             }
             // Gravity
             else
