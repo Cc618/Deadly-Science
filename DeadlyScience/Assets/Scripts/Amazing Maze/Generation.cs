@@ -11,21 +11,40 @@ public class Generation : MonoBehaviour
     public Transform Tourner;
     public Transform Tout_droit;
     public Transform Bifurc;
+    public Transform Bifurcc;
     public Transform Carrefour;
     public Transform Impasse;
+    public Transform Serum;
     public bool version;
-    public static int[] Aleatoire() //Cette fonction génère une liste de quatres termes aléatoires (de 0 à 3) sans répétition. En gros, elle mélange...
+
+    public static int[]
+        Aleatoire(int n,
+            int m) //Cette fonction génère une liste de quatres termes aléatoires (de 0 à 3) sans répétition. En gros, elle mélange...
     {
-        int[] Directions = new int[] {-1, -1, -1, -1};
-        int[] Avendre = new int[] {0, 1, 2, 3};
+        int[] Directions = new int[n];
+        int[] Avendre = new int[m];
         int a = 0;
-        while (a < 4)
+        while (a < m)
         {
-            int b = Random.Range(0, 3 - a);
+            Avendre[a] = a;
+            a += 1;
+        }
+
+        a = 0;
+        while (a < n)
+        {
+            Directions[a] = -1;
+            a += 1;
+        }
+
+        a = 0;
+        while (a < n)
+        {
+            int b = Random.Range(0, m - a -1);
             while (Avendre[b] == -1)
             {
                 b += 1;
-                if (b == 4)
+                if (b == m)
                 {
                     b = 0;
                 }
@@ -91,7 +110,7 @@ public class Generation : MonoBehaviour
                 int Distance = 0;
                 while (CaseActuelle > -1)
                 {
-                    Directions = Aleatoire();
+                    Directions = Aleatoire(4,4);
                     bool valide = false;
                     int analysea = 0;
                     //A chaque case du trajet, on choisit un ordre de priorité pour les directions. On choisit alors la direction prioritaire possible (ne sont pas possibles les directions qui mènent sur une case du trajet ou qui sortent des limites du dédale).
@@ -262,7 +281,8 @@ public class Generation : MonoBehaviour
                 z += 1;
             }
         }
-        //Ensuite, pour chaque case, on va créer les deux murs opposés aux murs que l'on vient de construire. 
+        //Ensuite, pour chaque case, on va créer les deux murs opposés aux murs que l'on vient de construire.
+        bool room = false;
         while (x < xm)
         {
             z = 0;
@@ -398,15 +418,26 @@ public class Generation : MonoBehaviour
                         if (p == 1)
                         {
                             int a = 0;
-                            Transform newCube = (Transform) Instantiate(Bifurc,
-                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                new Quaternion(0, 90, 0, 90));
+                            Transform newCube;
+                            if (room)
+                            {
+                                newCube = (Transform) Instantiate(Bifurc,
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, 90, 0, 90));
+                            }
+                            else
+                            {
+                                newCube = (Transform) Instantiate(Bifurcc,
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, 90, 0, 90));
+                            }
                             newCube.transform.Rotate(0, -90, 0);
                             while (!passages[a])
                             {
                                 a += 1;
                                 newCube.transform.Rotate(0, 90, 0);
                             }
+                            room = !room;
                         }
 
                         if (p == 0)
@@ -420,6 +451,16 @@ public class Generation : MonoBehaviour
                 z += 1;
             }
             x += 1;
+        }
+        //On rajoute trois sérums.
+        int[] seru = Aleatoire(3, xm * zm);
+        int g = 0;
+        while (g < 3)
+        {
+            Transform newCube = (Transform) Instantiate(Serum,
+                new Vector3((float) (4 * (seru[g]%xm) + 2.5), (float) 2.7, (float) (4 * (seru[g]/xm) + 2.5)),
+                new Quaternion(0, 0, 0, 0));
+            g += 1;
         }
         //Et voila, c'est fini !
     }
