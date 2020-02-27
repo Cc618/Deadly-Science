@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class InputManager : MonoBehaviour
 {
@@ -14,18 +15,40 @@ public class InputManager : MonoBehaviour
         buttonKeys = new Dictionary<string, KeyCode>();
 
         
+        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         //TODO: Read the defaults from a user pref file
         buttonKeys["Jump"] = KeyCode.Space;
         buttonKeys["Forward"] = KeyCode.W;
         buttonKeys["Backward"] = KeyCode.S;
         buttonKeys["Left"] = KeyCode.A;
         buttonKeys["Right"] = KeyCode.D;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
+        try
+        {
+            buttonKeys["Jump"] = (KeyCode)PlayerPrefs.GetInt("Jump");
+            buttonKeys["Forward"] = (KeyCode)PlayerPrefs.GetInt("Forward");
+            buttonKeys["Backward"] = (KeyCode)PlayerPrefs.GetInt("Backward");
+            buttonKeys["Left"] = (KeyCode)PlayerPrefs.GetInt("Left");
+            buttonKeys["Right"] = (KeyCode)PlayerPrefs.GetInt("Right");
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+            Debug.LogWarning("No userPref file for keybindigs found");
+            Debug.Log("Keybindigs take default values");
+
+            foreach (string key in buttonKeys.Keys)
+            {
+                PlayerPrefs.SetInt(key, (int)buttonKeys[key]);
+            }
+
+            PlayerPrefs.Save();
+        }
     }
 
     // Update is called once per frame

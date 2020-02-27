@@ -60,6 +60,8 @@ public class KeybindDialog : MonoBehaviour
                     {
                         inputManager.SetButtonForKey(ButtonToRebind, kc);
                         buttonToLabel[ButtonToRebind].text = kc.ToString();
+                        PlayerPrefs.SetInt(ButtonToRebind, (int)kc);
+                        PlayerPrefs.Save();
                         ButtonToRebind = null;
                         break;
                     }
