@@ -603,6 +603,8 @@ MonoBehaviour:
   strength: 0.4
   regeneration: 0.3
   stunnedSpeedFactor: 0.1
+  searchTime: 0.2
+  revengeTime: 0.2
 --- !u!114 &51949627
 MonoBehaviour:
   m_ObjectHideFlags: 0

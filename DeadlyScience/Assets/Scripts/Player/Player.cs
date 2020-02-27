@@ -11,13 +11,14 @@ using UnityEngine.UI;
 
 namespace ds
 {
-    public class Player : MonoBehaviour
+    public partial class Player : MonoBehaviour
     {
         public enum PlayerStatus
         {
             INFECTED,
             HEALED,
             // TODO : GHOST for dead players (No collisions with others)
+            // TODO : Revenge
         }
 
         public float gravity;
@@ -119,6 +120,9 @@ namespace ds
 
             // Disable render only if this is the current player
             GetComponentInChildren<Renderer>().enabled = false;
+
+            // Begin game
+            StartPhases();
         }
 
         void Update()
@@ -223,5 +227,51 @@ namespace ds
         private bool grounded = false;
         // When stamina = 0, can't move
         private bool stunned = false;
+    }
+
+    // Phases part
+    public partial class Player : MonoBehaviour
+    {
+        // In minutes
+        [Range(0, 5)]
+        public float searchTime;
+        [Range(0, 5)]
+        public float revengeTime;
+
+        // Launches timer coroutines
+        void StartPhases()
+        {
+            StartCoroutine(SearchPhase());
+        }
+
+        // TODO : Useless ?
+        // When all phases are elapsed
+        void OnGameEnd()
+        {
+            Debug.Log("Player : Game end");
+        }
+
+        IEnumerator SearchPhase()
+        {
+            Debug.Log("Player : Search phase has begun");
+
+            yield return new WaitForSeconds(searchTime * 60);
+
+            Debug.Log("Player : Search phase ended");
+
+            // TODO : Update status ...
+
+            // Change phase
+            StartCoroutine(RevengePhase());
+        }
+
+        IEnumerator RevengePhase()
+        {
+            Debug.Log("Player : Revenge phase has begun");
+
+            yield return new WaitForSeconds(revengeTime * 60);
+
+            Debug.Log("Player : Revenge phase ended");
+        }
     }
 }

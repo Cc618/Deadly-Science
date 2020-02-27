@@ -8,8 +8,11 @@ namespace ds
     public class PlayerNetwork : MonoBehaviour
     {
         [HideInInspector]
-        // Whether this player is the handle by the client
+        // Whether this player is handle by the client
         public bool isLocal;
+        [HideInInspector]
+        // Whether this player handles the game
+        public bool isMaster;
 
         // Start is called before the first frame update
         void Start()
@@ -29,12 +32,6 @@ namespace ds
 
                 // TODO : Remove labels
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
         }
     }
 }
