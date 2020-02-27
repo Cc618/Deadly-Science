@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 7606946627681423370}
   - component: {fileID: 522967238742459251}
   - component: {fileID: 3312067038026713112}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Couloir bifurcation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

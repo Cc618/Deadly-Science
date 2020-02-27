@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Generation : MonoBehaviour
 {
+    [Range(0, 2)]
+    public float serumHeight;
     public int xm;
     public int zm;
     public Transform _prefab;
@@ -458,7 +460,7 @@ public class Generation : MonoBehaviour
         while (g < 3)
         {
             Transform newCube = (Transform) Instantiate(Serum,
-                new Vector3((float) (4 * (seru[g]%xm) + 2.5), (float) 2.7, (float) (4 * (seru[g]/xm) + 2.5)),
+                new Vector3((float) (4 * (seru[g]%xm) + 2.5), serumHeight, (float) (4 * (seru[g]/xm) + 2.5)),
                 new Quaternion(0, 0, 0, 0));
             g += 1;
         }
