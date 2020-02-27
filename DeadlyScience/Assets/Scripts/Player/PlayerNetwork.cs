@@ -24,7 +24,8 @@ namespace ds
             }
             else
             {
-                //Destroy(GetComponent<Player>());
+                // Remove labels
+                Destroy(GetComponentInChildren<LookToCam>().gameObject);
 
                 // Start player component
                 var p = GetComponent<Player>();
@@ -35,6 +36,14 @@ namespace ds
             }
 
             PlayerMaster.RegisterPlayer(gameObject);
+        }
+
+        // Called when all players are in game before OnGameBegin
+        public void PrepareGame()
+        {
+            // Look to cam
+            //if (!isLocal)
+            //    GetComponentInChildren<LookToCam>().cam = Camera.main.transform;
         }
     }
 }

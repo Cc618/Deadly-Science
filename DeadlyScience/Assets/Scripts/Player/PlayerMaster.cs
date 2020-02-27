@@ -31,6 +31,9 @@ namespace ds
         {
             Debug.Log("PlayerMaster : All players in game");
 
+            foreach (var player in players)
+                player.GetComponent<PlayerNetwork>().PrepareGame();
+
             localPlayer.OnGameBegin();
         }
     }

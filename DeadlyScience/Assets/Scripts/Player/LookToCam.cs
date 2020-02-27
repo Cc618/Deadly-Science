@@ -9,12 +9,14 @@ namespace ds
 {
     public class LookToCam : MonoBehaviour
     {
-        public Transform cam;
-
         void LateUpdate()
         {
-            Vector3 target = transform.position - cam.position;
-            transform.rotation = Quaternion.LookRotation(target);
+            // Only if we are rendering
+            if (Camera.current)
+            {
+                Vector3 target = transform.position - Camera.current.transform.position;
+                transform.rotation = Quaternion.LookRotation(target);
+            }
         }
     }
 }
