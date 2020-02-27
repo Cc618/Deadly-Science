@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
+using Photon.Pun;
 
 namespace ds
 {
@@ -107,6 +108,9 @@ namespace ds
         public float stunnedSpeedFactor;
 
         InputManager inputManager;
+        
+        [HideInInspector]
+        public PlayerNetwork net;
 
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
@@ -121,8 +125,21 @@ namespace ds
             // Disable render only if this is the current player
             GetComponentInChildren<Renderer>().enabled = false;
 
-            // Begin game
-            StartPhases();
+            // TODO
+            //if (PhotonNetwork.IsMasterClient)
+            //    Debug.Log("MASTER");
+            //// TODO : Wait when all players are connected
+            //// Begin game
+            //    if (net.isMaster)
+            //    StartPhases();
+
+            PlayerMaster.localPlayer = this;
+        }
+
+        // Called by PlayerMaster when all players are in game
+        public void OnGameBegin()
+        {
+            Debug.Log("Player : OnGameBegin");
         }
 
         void Update()
@@ -229,7 +246,7 @@ namespace ds
         private bool stunned = false;
     }
 
-    // Phases part
+    // Phases part (available only if net.isMaster)
     public partial class Player : MonoBehaviour
     {
         // In minutes

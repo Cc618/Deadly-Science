@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace ds
 {
     public class PlayerNetwork : MonoBehaviour
@@ -10,9 +9,6 @@ namespace ds
         [HideInInspector]
         // Whether this player is handle by the client
         public bool isLocal;
-        [HideInInspector]
-        // Whether this player handles the game
-        public bool isMaster;
 
         // Start is called before the first frame update
         void Start()
@@ -21,17 +17,24 @@ namespace ds
             {
                 // Remove camera and behaviour
                 Destroy(GetComponentInChildren<Camera>().gameObject);
-                Destroy(GetComponentInChildren<Player>());
+                Destroy(GetComponent<Player>());
+                Destroy(GetComponent<PlayerMaster>());
 
                 // TODO : Set labels' camera (after all players have spawned)
             }
             else
             {
+                //Destroy(GetComponent<Player>());
+
                 // Start player component
-                GetComponent<Player>().StartAfterPlayerNetwork();
+                var p = GetComponent<Player>();
+                p.net = this;
+                p.StartAfterPlayerNetwork();
 
                 // TODO : Remove labels
             }
+
+            PlayerMaster.RegisterPlayer(gameObject);
         }
     }
 }
