@@ -10,12 +10,7 @@ public class InputManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
-
         buttonKeys = new Dictionary<string, KeyCode>();
-
-        
-        
     }
 
     // Start is called before the first frame update

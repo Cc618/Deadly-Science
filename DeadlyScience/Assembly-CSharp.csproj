@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Game\Colors.cs" />
     <Compile Include="Assets\Scripts\Game\Game.cs" />
     <Compile Include="Assets\Scripts\Game\Inputs.cs" />
+    <Compile Include="Assets\Scripts\Game\QuitGame.cs" />
     <Compile Include="Assets\Scripts\Game\Settings.cs" />
     <Compile Include="Assets\Scripts\MainMenu\InputManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\KeybindDialog.cs" />

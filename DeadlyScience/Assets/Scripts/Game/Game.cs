@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ds
 {
@@ -11,6 +12,8 @@ namespace ds
         public static Settings settings;
         public static Inputs inputs;
         public static Colors colors;
+        public Canvas escape;
+        public bool EscapeMenuOpen = false;
 
         private void Awake()
         {
@@ -31,11 +34,29 @@ namespace ds
         private void Update()
         {
             // TODO : Pause
-            if (Input.GetKeyDown(KeyCode.Escape))
+            /*if (Input.GetKeyDown(KeyCode.Escape))
             {
                 // Unlock and show cursor
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+            }*/
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (EscapeMenuOpen == false)
+                {
+                    escape.gameObject.SetActive(true);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    escape.gameObject.SetActive(false);
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+
+                EscapeMenuOpen = !EscapeMenuOpen;
             }
         }
     }
