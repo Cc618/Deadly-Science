@@ -438,7 +438,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Moi c'est PAS Bob
+  m_Text: Player
 --- !u!114 &1762533296
 MonoBehaviour:
   m_ObjectHideFlags: 0
