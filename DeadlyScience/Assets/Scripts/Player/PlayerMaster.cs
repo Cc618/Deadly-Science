@@ -35,14 +35,6 @@ namespace ds
             get => collectedSerums;
         }
 
-        // Send to each player OnSerum events
-        // !!! Check before that the player is the master
-        public static void SendOnSerum()
-        {
-            // TODO : STEVE : Send event
-            // This event triggers PlayerSlave.OnSerum
-        }
-
         // Send to each player OnPhaseEnd events
         public static void SendOnPhaseEnd(bool firstPhase)
         {

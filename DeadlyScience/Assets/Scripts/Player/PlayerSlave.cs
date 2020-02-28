@@ -10,12 +10,6 @@ namespace ds
 {
     public class PlayerSlave : MonoBehaviour
     {
-        // A serum has been collected
-        public void OnSerum()
-        {
-            Debug.Log("PlayerSlave : OnSerum");
-        }
-
         // A phase ended
         public void OnPhaseEnd(bool firstPhase)
         {

@@ -124,6 +124,17 @@ namespace ds
 
             localPlayer.OnGameBegin();
         }
+
+        // A serum has been collected
+        // TODO : Destroy the serum with this id
+        void OnSerum(int serumId)
+        {
+            Debug.Log("PlayerNetwork : OnSerum");
+
+            // TODO : Update
+            ++PlayerMaster.CollectedSerums;
+        }
+
     }
 
     // Network events part
@@ -137,6 +148,15 @@ namespace ds
 
             // TODO : STEVE : Send event
             // This event sets PlayerState.Status
+        }
+
+        // Send to each player OnSerum events
+        // Serum id serves to destroy the serum
+        // TODO : serumId
+        public static void SendOnSerum(int serumId=-1)
+        {
+            // TODO : STEVE : Send event
+            // This event triggers PlayerNetwork.OnSerum
         }
     }
 }
