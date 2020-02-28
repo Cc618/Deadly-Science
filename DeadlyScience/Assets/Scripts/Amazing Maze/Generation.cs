@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Generation : MonoBehaviour
 {
-    [Range(0, 2)]
+    [Range(0, 4)]
     public float serumHeight;
     public int xm;
     public int zm;
@@ -246,7 +246,11 @@ public class Generation : MonoBehaviour
 
         //J'ai également pensé à ce petit dédale. Il est déjà défini, il faudra juste effectuer un changement de variables si l'on veut le retourner. Ce sera pratique pour les tests...
         int[] Planf = new int[] {0, 2, 0, 1, 3, 3, 0, 3, 1, 2, 0, 2, 0, 0, 3, 2, 1, 3, 2, 2, 1, 1, 3, 1, 3};
-        return Plan;
+
+        return Planf;
+
+        // TODO
+        //return Plan;
     }
 
     // Start is called before the first frame update
@@ -455,7 +459,7 @@ public class Generation : MonoBehaviour
             x += 1;
         }
         //On rajoute trois sérums.
-        int[] seru = Aleatoire(3, xm * zm);
+        int[] seru = { 3, 9, 20 }; // Aleatoire(3, xm * zm);
         int g = 0;
         while (g < 3)
         {

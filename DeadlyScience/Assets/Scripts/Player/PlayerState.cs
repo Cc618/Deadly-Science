@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace ds
 {
@@ -61,6 +62,11 @@ namespace ds
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 if (player)
                     player.Hit();
+
+            // TODO : test
+            // Toggle infected
+            if (Input.GetKeyDown(KeyCode.K) && player)
+                Status = PlayerStatus.INFECTED;
         }
 
         private Player player;
@@ -73,44 +79,34 @@ namespace ds
         // When a player takes a serum
         public void OnSerum()
         {
-            Debug.Log("PlayerState : OnSerum");
+            if (PhotonNetwork.IsMasterClient)
+                ++PlayerMaster.CollectedSerums;
         }
 
-        // Launches timer coroutines
-        public void StartPhases()
+        public void BeginFirstPhase()
         {
-            StartCoroutine(SearchPhase());
+            Debug.Log("PlayerState : 1st phase has begun");
         }
 
-        // TODO : Useless ?
-        // When all phases are elapsed
-        void OnGameEnd()
+        public void EndFirstPhase()
         {
-            Debug.Log("Player : Game end");
-        }
-
-        // TODO : Remove timer
-        IEnumerator SearchPhase()
-        {
-            Debug.Log("Player : Search phase has begun");
-
-            yield return new WaitForSeconds(searchTime * 60);
-
-            Debug.Log("Player : Search phase ended");
+            Debug.Log("PlayerState : 1st phase ended");
 
             // TODO : Update status ...
 
-            // Change phase
-            StartCoroutine(RevengePhase());
+            // Start next phase
+            StartCoroutine(SecondPhase());
         }
 
-        IEnumerator RevengePhase()
+        IEnumerator SecondPhase()
         {
-            Debug.Log("Player : Revenge phase has begun");
+            Debug.Log("PlayerState : 2nd phase has begun");
 
             yield return new WaitForSeconds(revengeTime * 60);
 
-            Debug.Log("Player : Revenge phase ended");
+            Debug.Log("PlayerState : 2nd phase ended");
+
+            PlayerNetwork.OnGameEnd();
         }
     }
 }

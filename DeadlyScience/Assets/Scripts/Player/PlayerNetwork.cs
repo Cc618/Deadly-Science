@@ -54,9 +54,16 @@ namespace ds
         // Called when all players are in game before OnGameBegin
         public void PrepareGame()
         {
+            // TODO : Even if there is only one player ?
+            // Update the number of serums in game
+            if (PhotonNetwork.PlayerList.Length == 1)
+                PlayerMaster.serumCount = 2;
+            else
+                PlayerMaster.serumCount = PhotonNetwork.PlayerList.Length - 1;
+
             // TODO : Begin game...
             if (isLocal)
-                playerState.StartPhases();
+                playerState.BeginFirstPhase();
         }
 
         private PlayerState playerState;
@@ -70,6 +77,7 @@ namespace ds
 
         // List of all players
         private static List<GameObject> players = new List<GameObject>();
+        public static List<GameObject> Players { get => players; }
 
         // Registers a new player in the players list
         public static void RegisterPlayer(GameObject p)
@@ -78,6 +86,12 @@ namespace ds
 
             if (players.Count == PhotonNetwork.PlayerList.Length)
                 OnAllPlayersInGame();
+        }
+        
+        // All phases are elapsed
+        public static void OnGameEnd()
+        {
+            Debug.Log("PlayerNetwork : Game end");
         }
 
         // When all players are in game

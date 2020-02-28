@@ -7,15 +7,32 @@ using UnityEngine;
 
 namespace ds
 {
-    // Static part
+    // Instance part
     public partial class PlayerMaster : MonoBehaviour
     {
         // TODO
     }
 
-    // Instance part
+    // Static part
     public partial class PlayerMaster : MonoBehaviour
     {
-        // TODO
+        private static int collectedSerums = 0;
+        public static int serumCount;
+        public static int CollectedSerums
+        {
+            set
+            {
+                collectedSerums = value;
+
+                // Change phase for all players
+                if (collectedSerums == serumCount)
+                {
+                    // TODO : Change phase remotely
+
+                    PlayerNetwork.localPlayer.GetComponent<PlayerState>().EndFirstPhase();    
+                }
+            }
+            get => collectedSerums;
+        }
     }
 }
