@@ -23,27 +23,27 @@ public class InputManager : MonoBehaviour
         buttonKeys["Left"] = KeyCode.A;
         buttonKeys["Right"] = KeyCode.D;
 
-        try
-        {
-            buttonKeys["Jump"] = (KeyCode)PlayerPrefs.GetInt("Jump");
-            buttonKeys["Forward"] = (KeyCode)PlayerPrefs.GetInt("Forward");
-            buttonKeys["Backward"] = (KeyCode)PlayerPrefs.GetInt("Backward");
-            buttonKeys["Left"] = (KeyCode)PlayerPrefs.GetInt("Left");
-            buttonKeys["Right"] = (KeyCode)PlayerPrefs.GetInt("Right");
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-            Debug.LogWarning("No userPref file for keybindigs found");
-            Debug.Log("Keybindigs take default values");
+        //try
+        //{
+        //    buttonKeys["Jump"] = (KeyCode)PlayerPrefs.GetInt("Jump");
+        //    buttonKeys["Forward"] = (KeyCode)PlayerPrefs.GetInt("Forward");
+        //    buttonKeys["Backward"] = (KeyCode)PlayerPrefs.GetInt("Backward");
+        //    buttonKeys["Left"] = (KeyCode)PlayerPrefs.GetInt("Left");
+        //    buttonKeys["Right"] = (KeyCode)PlayerPrefs.GetInt("Right");
+        //}
+        //catch (Exception e)
+        //{
+        //    Debug.Log(e);
+        //    Debug.LogWarning("No userPref file for keybindigs found");
+        //    Debug.Log("Keybindigs take default values");
 
-            foreach (string key in buttonKeys.Keys)
-            {
-                PlayerPrefs.SetInt(key, (int)buttonKeys[key]);
-            }
+        //    foreach (string key in buttonKeys.Keys)
+        //    {
+        //        PlayerPrefs.SetInt(key, (int)buttonKeys[key]);
+        //    }
 
-            PlayerPrefs.Save();
-        }
+        //    PlayerPrefs.Save();
+        //}
     }
 
     // Update is called once per frame
@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
 
     public bool IsButtonDown(string buttonName)
     {
-        if(buttonKeys.ContainsKey(buttonName) == false)
+        if (buttonKeys.ContainsKey(buttonName) == false)
         {
             Debug.LogError("InputManager::GetButtonDown -- No button named: " + buttonName);
             return false;
