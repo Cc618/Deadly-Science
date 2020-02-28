@@ -23,8 +23,7 @@ namespace ds
                 Destroy(GetComponentInChildren<Camera>().gameObject);
                 Destroy(GetComponent<Player>());
                 Destroy(GetComponent<PlayerMaster>());
-                // TODO
-                //Destroy(GetComponent<PlayerSlave>());
+                Destroy(GetComponent<PlayerSlave>());
 
                 // TODO : Set labels' camera (after all players have spawned)
             }
@@ -33,8 +32,10 @@ namespace ds
                 // Remove labels
                 Destroy(GetComponentInChildren<LookToCam>().gameObject);
 
-                // Remove the master if necessary
-                if (!PhotonNetwork.IsMasterClient)
+                // Remove the master / slave if necessary
+                if (PhotonNetwork.IsMasterClient)
+                    Destroy(GetComponent<PlayerSlave>());
+                else
                     Destroy(GetComponent<PlayerMaster>());
 
                 // Start player component
