@@ -85,9 +85,9 @@ namespace ds
         public void StartAfterPlayerNetwork()
         {
             inputManager = FindObjectOfType<InputManager>();
-            
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+            playerState = GetComponentInChildren<PlayerState>();
 
             Stamina = stamina;
 
@@ -104,8 +104,6 @@ namespace ds
             
             // Update player network
             PlayerNetwork.localPlayer = this;
-
-            
         }
 
         // Called by PlayerMaster when all players are in game
@@ -207,6 +205,14 @@ namespace ds
             // TODO : Else if infected...
         }
 
+        public void OnSerumCollect()
+        {
+            // TODO : Call OnSerum for each clients (net) and remove remotely the serum
+
+            playerState.OnSerum();
+        }
+
+        private PlayerState playerState;
         private CharacterController controller;
         private Animator animator;
         private Vector3 velocity = new Vector3();

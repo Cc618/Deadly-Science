@@ -70,6 +70,12 @@ namespace ds
     // by the client
     public partial class PlayerState : MonoBehaviour
     {
+        // When a player takes a serum
+        public void OnSerum()
+        {
+            Debug.Log("PlayerState : OnSerum");
+        }
+
         // Launches timer coroutines
         public void StartPhases()
         {
