@@ -87,20 +87,12 @@ namespace ds
             inputManager = FindObjectOfType<InputManager>();
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
-            playerState = GetComponentInChildren<PlayerState>();
+            state = GetComponentInChildren<PlayerState>();
 
             Stamina = stamina;
 
             // Disable render only if this is the current player
             GetComponentInChildren<Renderer>().enabled = false;
-
-            // TODO
-            //if (PhotonNetwork.IsMasterClient)
-            //    Debug.Log("MASTER");
-            //// TODO : Wait when all players are connected
-            //// Begin game
-            //    if (net.isMaster)
-            //    StartPhases();
             
             // Update player network
             PlayerNetwork.localPlayer = this;
@@ -205,14 +197,39 @@ namespace ds
             // TODO : Else if infected...
         }
 
+        // When the player controlled by the client hits another player
+        void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            var pState = hit.gameObject.GetComponent<PlayerState>();
+            var pNet = hit.gameObject.GetComponent<PlayerNetwork>();
+            
+            // Not a player
+            if (!pNet)
+                return;
+
+            // The player collides another player
+            // This player must send the event
+            if (net.HasPriority(pNet))
+            {
+                // This player is infected
+                if (state.Status == PlayerState.PlayerStatus.HEALED &&
+                    pState.Status == PlayerState.PlayerStatus.INFECTED)
+                    PlayerNetwork.SendPlayerStatusSet(net.id, PlayerState.PlayerStatus.INFECTED);
+                // The other player is infected
+                else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
+                    state.Status == PlayerState.PlayerStatus.INFECTED)
+                    PlayerNetwork.SendPlayerStatusSet(pNet.id, PlayerState.PlayerStatus.INFECTED);
+            }
+        }
+
         public void OnSerumCollect()
         {
             // TODO : Call OnSerum for each clients (net) and remove remotely the serum
 
-            playerState.OnSerum();
+            state.OnSerum();
         }
 
-        private PlayerState playerState;
+        private PlayerState state;
         private CharacterController controller;
         private Animator animator;
         private Vector3 velocity = new Vector3();

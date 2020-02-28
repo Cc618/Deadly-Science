@@ -40,12 +40,14 @@ namespace ds
         public static void SendOnSerum()
         {
             // TODO : STEVE : Send event
+            // This event triggers PlayerSlave.OnSerum
         }
 
         // Send to each player OnPhaseEnd events
         public static void SendOnPhaseEnd(bool firstPhase)
         {
             // TODO : STEVE : Send event
+            // This event triggers PlayerSlave.OnPhaseEnd
         }
     }
 }

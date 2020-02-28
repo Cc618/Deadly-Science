@@ -8,6 +8,12 @@ namespace ds
     // Instance part
     public partial class PlayerNetwork : MonoBehaviour
     {
+        // To recognize the player with network
+        // Also used to decide which player send callbacks (priority)
+        // * Unique for each player
+        [HideInInspector]
+        public int id;
+
         [HideInInspector]
         // Whether this player is handle by the client
         public bool isLocal;
@@ -44,6 +50,10 @@ namespace ds
                 p.StartAfterPlayerNetwork();
             }
 
+            // TODO : Set master to -1
+            // TODO : Verify same ids on each pc
+            id = players.Count;
+
             // Start phases
             playerState = GetComponent<PlayerState>();
             playerState.StartAfterPlayerNetwork();
@@ -58,13 +68,22 @@ namespace ds
             // TODO : Even if there is only one player ?
             // Update the number of serums in game
             if (PhotonNetwork.PlayerList.Length == 1)
-                PlayerMaster.serumCount = 2;
+                PlayerMaster.serumCount = 1;
             else
                 PlayerMaster.serumCount = PhotonNetwork.PlayerList.Length - 1;
 
             // TODO : Begin game...
             if (isLocal)
                 playerState.BeginFirstPhase();
+        }
+
+        // Whether the priority is higher for this player
+        public bool HasPriority(PlayerNetwork player)
+        {
+            Debug.Log(id.ToString() + player.id.ToString());
+
+            // < because we want that the master has always the priority
+            return id < player.id;
         }
 
         private PlayerState playerState;
@@ -88,7 +107,7 @@ namespace ds
             if (players.Count == PhotonNetwork.PlayerList.Length)
                 OnAllPlayersInGame();
         }
-        
+
         // All phases are elapsed
         public static void OnGameEnd()
         {
@@ -104,6 +123,20 @@ namespace ds
                 player.GetComponent<PlayerNetwork>().PrepareGame();
 
             localPlayer.OnGameBegin();
+        }
+    }
+
+    // Network events part
+    public partial class PlayerNetwork : MonoBehaviour
+    {
+        // Sets the id of playerId
+        // The id is PlayerNetwork.id
+        public static void SendPlayerStatusSet(int playerId, PlayerState.PlayerStatus status)
+        {
+            Debug.Log("PlayerNetwork : Sending player status set");
+
+            // TODO : STEVE : Send event
+            // This event sets PlayerState.Status
         }
     }
 }
