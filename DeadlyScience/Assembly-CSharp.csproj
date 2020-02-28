@@ -86,9 +86,12 @@
     <Compile Include="Assets\Scripts\Player\LookToCam.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCam.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMaster.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerName.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerNetwork.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerSlave.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStamina.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\Serum.cs" />
     <Compile Include="Assets\Scripts\Reseau\Game\CreatePlayer.cs" />

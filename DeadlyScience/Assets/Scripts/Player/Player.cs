@@ -8,18 +8,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
+using Photon.Pun;
 
 namespace ds
 {
     public class Player : MonoBehaviour
     {
-        public enum PlayerStatus
-        {
-            INFECTED,
-            HEALED,
-            // TODO : GHOST for dead players (No collisions with others)
-        }
-
+        
         public float gravity;
         [Range(0, 100)]
         public float acceleration;
@@ -37,36 +32,11 @@ namespace ds
         public Transform groundSensor;
         public LayerMask groundMask;
 
+        // TODO : Move these fields in another class
         public PlayerName nameUi;
         public PlayerStamina staminaUi;
 
-        private PlayerStatus status = PlayerStatus.INFECTED;
-        public PlayerStatus Status
-        {
-            set
-            {
-                // Update status
-                status = value;
-                nameUi.SetStatus(status);
-
-                // Update material
-                // TODO : Update also anim / sound...
-                switch (status)
-                {
-                    case PlayerStatus.HEALED:
-                        Debug.Log("Player has status HEALED");
-                        //stateIndicator.material = healedMaterial;
-                        break;
-                    case PlayerStatus.INFECTED:
-                        Debug.Log("Player has status INFECTED");
-                        //stateIndicator.material = infectedMaterial;
-                        break;
-                }
-            }
-
-            get => status;
-        }
-
+        // TODO : Move in PlayerState
         // Between 0 and 1
         private float stamina = 1;
         public float Stamina
@@ -74,6 +44,7 @@ namespace ds
             get => stamina;
             set
             {
+                // TODO : Update stamina by network
                 if (value <= 0)
                 {
                     value = 0;
@@ -106,27 +77,44 @@ namespace ds
         public float stunnedSpeedFactor;
 
         InputManager inputManager;
+        
+        [HideInInspector]
+        public PlayerNetwork net;
 
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
             inputManager = FindObjectOfType<InputManager>();
-            
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
+            playerState = GetComponentInChildren<PlayerState>();
 
             Stamina = stamina;
 
             // Disable render only if this is the current player
             GetComponentInChildren<Renderer>().enabled = false;
+
+            // TODO
+            //if (PhotonNetwork.IsMasterClient)
+            //    Debug.Log("MASTER");
+            //// TODO : Wait when all players are connected
+            //// Begin game
+            //    if (net.isMaster)
+            //    StartPhases();
+            
+            // Update player network
+            PlayerNetwork.localPlayer = this;
+        }
+
+        // Called by PlayerMaster when all players are in game
+        // (Phases have begun)
+        public void OnGameBegin()
+        {
+            Debug.Log("Player : OnGameBegin");
         }
 
         void Update()
         {
-            // TODO : test
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-                Hit();
-
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;
 
@@ -217,6 +205,14 @@ namespace ds
             // TODO : Else if infected...
         }
 
+        public void OnSerumCollect()
+        {
+            // TODO : Call OnSerum for each clients (net) and remove remotely the serum
+
+            playerState.OnSerum();
+        }
+
+        private PlayerState playerState;
         private CharacterController controller;
         private Animator animator;
         private Vector3 velocity = new Vector3();
