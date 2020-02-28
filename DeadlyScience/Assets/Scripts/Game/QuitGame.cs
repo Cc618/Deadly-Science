@@ -13,6 +13,8 @@ namespace ds
 
         public void Quitgame()
         {
+            Debug.Log("OK");
+
             PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
             PhotonNetwork.LeaveRoom();
             SceneManager.LoadScene("MainMenu");
