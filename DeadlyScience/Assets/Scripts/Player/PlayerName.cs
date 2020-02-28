@@ -13,18 +13,18 @@ namespace ds
         {
             text = GetComponent<Text>();
 
-            SetStatus(Player.PlayerStatus.INFECTED);
+            SetStatus(PlayerState.PlayerStatus.INFECTED);
         }
 
         // Changes the color
-        public void SetStatus(Player.PlayerStatus status)
+        public void SetStatus(PlayerState.PlayerStatus status)
         {
             switch (status)
             {
-                case Player.PlayerStatus.HEALED:
+                case PlayerState.PlayerStatus.HEALED:
                     text.color = Game.colors.healed;
                     break;
-                case Player.PlayerStatus.INFECTED:
+                case PlayerState.PlayerStatus.INFECTED:
                     text.color = Game.colors.infected;
                     break;
             }

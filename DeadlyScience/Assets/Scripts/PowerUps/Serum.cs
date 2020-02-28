@@ -8,12 +8,12 @@ namespace ds
     {
         protected override bool OnCollect(GameObject player)
         {
-            var p = player.GetComponent<Player>();
+            var p = player.GetComponent<PlayerState>();
 
-            if (p.Status == Player.PlayerStatus.INFECTED)
+            if (p.Status == PlayerState.PlayerStatus.INFECTED)
             {
                 // Heal player
-                p.Status = Player.PlayerStatus.HEALED;
+                p.Status = PlayerState.PlayerStatus.HEALED;
                 return true;
             }
 

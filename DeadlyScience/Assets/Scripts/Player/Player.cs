@@ -12,16 +12,9 @@ using Photon.Pun;
 
 namespace ds
 {
-    public partial class Player : MonoBehaviour
+    public class Player : MonoBehaviour
     {
-        public enum PlayerStatus
-        {
-            INFECTED,
-            HEALED,
-            // TODO : GHOST for dead players (No collisions with others)
-            // TODO : Revenge
-        }
-
+        
         public float gravity;
         [Range(0, 100)]
         public float acceleration;
@@ -39,36 +32,11 @@ namespace ds
         public Transform groundSensor;
         public LayerMask groundMask;
 
+        // TODO : Move these fields in another class
         public PlayerName nameUi;
         public PlayerStamina staminaUi;
 
-        private PlayerStatus status = PlayerStatus.INFECTED;
-        public PlayerStatus Status
-        {
-            set
-            {
-                // Update status
-                status = value;
-                nameUi.SetStatus(status);
-
-                // Update material
-                // TODO : Update also anim / sound...
-                switch (status)
-                {
-                    case PlayerStatus.HEALED:
-                        Debug.Log("Player has status HEALED");
-                        //stateIndicator.material = healedMaterial;
-                        break;
-                    case PlayerStatus.INFECTED:
-                        Debug.Log("Player has status INFECTED");
-                        //stateIndicator.material = infectedMaterial;
-                        break;
-                }
-            }
-
-            get => status;
-        }
-
+        // TODO : Move in PlayerState
         // Between 0 and 1
         private float stamina = 1;
         public float Stamina
@@ -76,6 +44,7 @@ namespace ds
             get => stamina;
             set
             {
+                // TODO : Update stamina by network
                 if (value <= 0)
                 {
                     value = 0;
@@ -132,11 +101,15 @@ namespace ds
             //// Begin game
             //    if (net.isMaster)
             //    StartPhases();
+            
+            // Update player network
+            PlayerNetwork.localPlayer = this;
 
-            PlayerMaster.localPlayer = this;
+            
         }
 
         // Called by PlayerMaster when all players are in game
+        // (Phases have begun)
         public void OnGameBegin()
         {
             Debug.Log("Player : OnGameBegin");
@@ -144,10 +117,6 @@ namespace ds
 
         void Update()
         {
-            // TODO : test
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-                Hit();
-
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;
 
@@ -244,51 +213,5 @@ namespace ds
         private bool grounded = false;
         // When stamina = 0, can't move
         private bool stunned = false;
-    }
-
-    // Phases part (available only if net.isMaster)
-    public partial class Player : MonoBehaviour
-    {
-        // In minutes
-        [Range(0, 5)]
-        public float searchTime;
-        [Range(0, 5)]
-        public float revengeTime;
-
-        // Launches timer coroutines
-        void StartPhases()
-        {
-            StartCoroutine(SearchPhase());
-        }
-
-        // TODO : Useless ?
-        // When all phases are elapsed
-        void OnGameEnd()
-        {
-            Debug.Log("Player : Game end");
-        }
-
-        IEnumerator SearchPhase()
-        {
-            Debug.Log("Player : Search phase has begun");
-
-            yield return new WaitForSeconds(searchTime * 60);
-
-            Debug.Log("Player : Search phase ended");
-
-            // TODO : Update status ...
-
-            // Change phase
-            StartCoroutine(RevengePhase());
-        }
-
-        IEnumerator RevengePhase()
-        {
-            Debug.Log("Player : Revenge phase has begun");
-
-            yield return new WaitForSeconds(revengeTime * 60);
-
-            Debug.Log("Player : Revenge phase ended");
-        }
     }
 }

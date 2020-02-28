@@ -4,38 +4,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 namespace ds
 {
     // Static part
     public partial class PlayerMaster : MonoBehaviour
     {
-        // The player controlled by the client
-        public static Player localPlayer;
-
-        // List of all players
-        private static List<GameObject> players = new List<GameObject>();
-        
-        // Registers a new player in the players list
-        public static void RegisterPlayer(GameObject p)
-        {
-            players.Add(p);
-
-            if (players.Count == PhotonNetwork.PlayerList.Length)
-                OnAllPlayersInGame();
-        }
-
-        // When all players are in game
-        static void OnAllPlayersInGame()
-        {
-            Debug.Log("PlayerMaster : All players in game");
-
-            foreach (var player in players)
-                player.GetComponent<PlayerNetwork>().PrepareGame();
-
-            localPlayer.OnGameBegin();
-        }
+        // TODO
     }
 
     // Instance part
