@@ -49,7 +49,7 @@ namespace ds
                 {
                     value = 0;
                     stunned = true;
-                    staminaUi.ChangeStunned(stunned);
+                    // TODO : staminaUi.ChangeStunned(stunned);
 
                     // TODO: rm
                     Debug.Log("Player -> Stunned");
@@ -58,11 +58,11 @@ namespace ds
                 {
                     value = 1;
                     stunned = false;
-                    staminaUi.ChangeStunned(stunned);
+                    // TODO : staminaUi.ChangeStunned(stunned);
                 }
 
                 stamina = value;
-                staminaUi.Value = value;
+                // TODO : staminaUi.Value = value;
             }
         }
 
@@ -84,6 +84,8 @@ namespace ds
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
+            networkInit = true;
+
             inputManager = FindObjectOfType<InputManager>();
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
@@ -107,6 +109,10 @@ namespace ds
 
         void Update()
         {
+            // Don't update if the network is not set up
+            if (!networkInit)
+                return;
+
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;
 
@@ -127,12 +133,13 @@ namespace ds
             else
                 velocity.y += gravity * Time.deltaTime;
 
-            // Rotation
-            transform.rotation = Quaternion.Euler(
-                transform.rotation.eulerAngles.x,
-                transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime,
-                transform.rotation.eulerAngles.z
-            );
+            // Cam virtual rotation
+            if (!Game.EscapeMenuOpen)
+                transform.rotation = Quaternion.Euler(
+                    transform.rotation.eulerAngles.x,
+                    transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime,
+                    transform.rotation.eulerAngles.z
+                );
 
             float x = 0;
             float z = 0;
@@ -236,5 +243,7 @@ namespace ds
         private bool grounded = false;
         // When stamina = 0, can't move
         private bool stunned = false;
+        // Whether we've called StartAfterPlayerNetwork()
+        private bool networkInit = false;
     }
 }

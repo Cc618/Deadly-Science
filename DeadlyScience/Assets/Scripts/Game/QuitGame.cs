@@ -13,9 +13,10 @@ namespace ds
 
         public void Quitgame()
         {
-            Debug.Log("OK");
-
             PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
+            // Avoid pause when returning to game
+            Game.EscapeMenuOpen = false;
+
             PhotonNetwork.LeaveRoom();
             SceneManager.LoadScene("MainMenu");
         }

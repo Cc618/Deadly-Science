@@ -9,11 +9,11 @@ namespace ds
 {
     public class Game : MonoBehaviour
     {
+        public static bool EscapeMenuOpen = false;
         public static Settings settings;
         public static Inputs inputs;
         public static Colors colors;
         public Canvas escape;
-        public bool EscapeMenuOpen = false;
 
         private void Awake()
         {

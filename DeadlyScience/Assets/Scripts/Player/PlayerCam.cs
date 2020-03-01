@@ -8,20 +8,23 @@ namespace ds
     {
         void Update()
         {
-            // The new rotation
-            float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Time.deltaTime;
+            if (!Game.EscapeMenuOpen)
+            {
+                // The new rotation
+                float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Time.deltaTime;
 
-            // Clip rot
-            if (rot > 90 && rot < 180)
-                rot = 90;
-            else if (rot < 360 - 90 && rot > 180)
-                rot = -90;
+                // Clip rot
+                if (rot > 90 && rot < 180)
+                    rot = 90;
+                else if (rot < 360 - 90 && rot > 180)
+                    rot = -90;
 
-            transform.rotation = Quaternion.Euler(
-                rot,
-                transform.rotation.eulerAngles.y,
-                transform.rotation.eulerAngles.z
-            );
+                transform.rotation = Quaternion.Euler(
+                    rot,
+                    transform.rotation.eulerAngles.y,
+                    transform.rotation.eulerAngles.z
+                );
+            }
         }
     }
 }

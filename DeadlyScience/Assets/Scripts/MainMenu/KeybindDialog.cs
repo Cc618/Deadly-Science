@@ -4,76 +4,79 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class KeybindDialog : MonoBehaviour
+namespace ds
 {
-
-    InputManager inputManager;
-    public GameObject keyItemPrefab;
-    public GameObject keyList;
-
-    string ButtonToRebind;
-    Dictionary<string, Text> buttonToLabel;
-
-    // Start is called before the first frame update
-    void Start()
+    public class KeybindDialog : MonoBehaviour
     {
-        inputManager = GameObject.FindObjectOfType<InputManager>();
 
-        // Create one "KeyListItem" per button in inputManager
-        string[] buttonNames = inputManager.GetButtonNames();
+        InputManager inputManager;
+        public GameObject keyItemPrefab;
+        public GameObject keyList;
 
-        buttonToLabel = new Dictionary<string, Text>();
+        string ButtonToRebind;
+        Dictionary<string, Text> buttonToLabel;
 
-        for (int i = 0; i<buttonNames.Length; i++)
+        // Start is called before the first frame update
+        void Start()
         {
-            string bn = buttonNames[i];
+            inputManager = GameObject.FindObjectOfType<InputManager>();
 
-            GameObject go = (GameObject)Instantiate(keyItemPrefab);
-            go.transform.SetParent(keyList.transform);
-            go.transform.localScale = Vector3.one;
+            // Create one "KeyListItem" per button in inputManager
+            string[] buttonNames = inputManager.GetButtonNames();
 
-            Text buttonNameText = go.transform.Find("ButtonName").GetComponent<Text>();
-            buttonNameText.text = bn;
+            buttonToLabel = new Dictionary<string, Text>();
 
-            Text keyNameText = go.transform.Find("Button/KeyName").GetComponent<Text>();
-            keyNameText.text = inputManager.GetKeyNameForButton(bn);
-            buttonToLabel[bn] = keyNameText;
-
-            Button keyBindButton = go.transform.Find("Button").GetComponent<Button>();
-            keyBindButton.onClick.AddListener( () => StartRebindFor(bn) );
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(ButtonToRebind != null)
-        {
-            if(Input.anyKeyDown)
+            for (int i = 0; i < buttonNames.Length; i++)
             {
-                //Wich key was pressed down?
-                //Loop through all keys to test
+                string bn = buttonNames[i];
 
-                foreach(KeyCode kc in Enum.GetValues(typeof(KeyCode)))
+                GameObject go = (GameObject)Instantiate(keyItemPrefab);
+                go.transform.SetParent(keyList.transform);
+                go.transform.localScale = Vector3.one;
+
+                Text buttonNameText = go.transform.Find("ButtonName").GetComponent<Text>();
+                buttonNameText.text = bn;
+
+                Text keyNameText = go.transform.Find("Button/KeyName").GetComponent<Text>();
+                keyNameText.text = inputManager.GetKeyNameForButton(bn);
+                buttonToLabel[bn] = keyNameText;
+
+                Button keyBindButton = go.transform.Find("Button").GetComponent<Button>();
+                keyBindButton.onClick.AddListener(() => StartRebindFor(bn));
+            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (ButtonToRebind != null)
+            {
+                if (Input.anyKeyDown)
                 {
-                    if(Input.GetKeyDown(kc)) //is this key down ?
+                    //Wich key was pressed down?
+                    //Loop through all keys to test
+
+                    foreach (KeyCode kc in Enum.GetValues(typeof(KeyCode)))
                     {
-                        inputManager.SetButtonForKey(ButtonToRebind, kc);
-                        buttonToLabel[ButtonToRebind].text = kc.ToString();
-                        PlayerPrefs.SetInt(ButtonToRebind, (int)kc);
-                        PlayerPrefs.Save();
-                        ButtonToRebind = null;
-                        break;
+                        if (Input.GetKeyDown(kc)) //is this key down ?
+                        {
+                            inputManager.SetButtonForKey(ButtonToRebind, kc);
+                            buttonToLabel[ButtonToRebind].text = kc.ToString();
+                            PlayerPrefs.SetInt(ButtonToRebind, (int)kc);
+                            PlayerPrefs.Save();
+                            ButtonToRebind = null;
+                            break;
+                        }
                     }
                 }
             }
         }
-    }
 
-    void StartRebindFor( string buttonName )
-    {
-        Debug.Log("StartRebindFor" + buttonName);
+        void StartRebindFor(string buttonName)
+        {
+            Debug.Log("StartRebindFor" + buttonName);
 
-        ButtonToRebind = buttonName;
+            ButtonToRebind = buttonName;
+        }
     }
 }
