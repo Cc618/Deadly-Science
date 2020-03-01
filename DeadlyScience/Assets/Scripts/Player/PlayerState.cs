@@ -88,6 +88,8 @@ namespace ds
             Debug.Log("PlayerState : 1st phase has begun");
         }
 
+
+
         public void EndFirstPhase()
         {
             Debug.Log("PlayerState : 1st phase ended");
@@ -100,12 +102,24 @@ namespace ds
 
         IEnumerator SecondPhase()
         {
+            PlayerStatus startSecondPhase = Status;
             Debug.Log("PlayerState : 2nd phase has begun");
 
-            yield return new WaitForSeconds(revengeTime * 60);
+            yield return new WaitForSeconds(5);//revengeTime * 60);
 
             Debug.Log("PlayerState : 2nd phase ended");
 
+            
+            if (startSecondPhase != Status)
+            {
+                EndGame.EndOfGame(false);
+            }
+            else
+            {
+                EndGame.EndOfGame(true);
+            }
+
+      
             PlayerNetwork.OnGameEnd();
         }
     }
