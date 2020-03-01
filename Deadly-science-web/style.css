@@ -1,11 +1,15 @@
+body
+{
+	background-image: url("images/logo.png");
+	background-repeat: no-repeat;
+	background-size: 5%;
+	background-position: 3% 3%;
+}
+
 header
 {
 	text-align: center;
 	font-size: 150%;
-	background-image: url("images/logo.png");
-	background-repeat: no-repeat;
-	background-size: 5%;
-	background-position: 25%;
 }
 
 nav
