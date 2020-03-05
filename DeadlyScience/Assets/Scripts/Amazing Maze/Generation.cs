@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro.Examples;
 using UnityEngine;
 
 public class Generation : MonoBehaviour
 {
-    [Range(0, 4)]
+    [Range(0, 4)] 
+    public PhotonView PV;
     public float serumHeight;
     public int xm;
     public int zm;
@@ -294,7 +296,7 @@ public class Generation : MonoBehaviour
             z = 0;
             while (z < zm)
             {
-                if (version)
+                if (version && PV.IsMine)
                 {
                     Transform newCube = (Transform) Instantiate(_prefab,
                         new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 2.5)),
@@ -469,11 +471,5 @@ public class Generation : MonoBehaviour
             g += 1;
         }
         //Et voila, c'est fini !
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
