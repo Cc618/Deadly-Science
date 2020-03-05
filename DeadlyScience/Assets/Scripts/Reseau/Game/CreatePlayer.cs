@@ -13,7 +13,7 @@ namespace ds
         {
             PV = GetComponent<PhotonView>();
 
-            var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), transform.position, Quaternion.identity, 0);
+            var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5,5,6), Quaternion.identity, 0);
             player.GetComponent<PlayerNetwork>().isLocal = true;
             //player.GetComponentInChildren<Camera>().gameObject.SetActive(true);
 

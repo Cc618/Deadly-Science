@@ -356,8 +356,10 @@
           </e>
           <e p="Game" t="Include">
             <e p="Colors.cs" t="Include" />
+            <e p="EndGame.cs" t="Include" />
             <e p="Game.cs" t="Include" />
             <e p="Inputs.cs" t="Include" />
+            <e p="QuitGame.cs" t="Include" />
             <e p="Settings.cs" t="Include" />
           </e>
           <e p="MainMenu" t="Include">
@@ -369,9 +371,12 @@
             <e p="LookToCam.cs" t="Include" />
             <e p="Player.cs" t="Include" />
             <e p="PlayerCam.cs" t="Include" />
+            <e p="PlayerMaster.cs" t="Include" />
             <e p="PlayerName.cs" t="Include" />
             <e p="PlayerNetwork.cs" t="Include" />
+            <e p="PlayerSlave.cs" t="Include" />
             <e p="PlayerStamina.cs" t="Include" />
+            <e p="PlayerState.cs" t="Include" />
           </e>
           <e p="PowerUps" t="Include">
             <e p="PowerUp.cs" t="Include" />
