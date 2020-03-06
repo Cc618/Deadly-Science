@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%% Props %%%%%%%%%%%%%%%%%%%%%%
 \documentclass{article}
 
-\usepackage[francais]{babel}
-\usepackage[UTF8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
@@ -10,6 +10,8 @@
 \usepackage{color}
 \usepackage{soul}
 \usepackage{listings}
+\usepackage{enumitem}
+\usepackage{enumerate}
 
 \pagestyle{fancy}
 \lhead{Cahier des charges}
@@ -51,7 +53,7 @@
 	\includegraphics[width=0.5\textwidth]{logo.png}\par\vspace{1cm}
 	{\Large\itshape Léandre Perrot\par}
 	{\Large\itshape Yann Boudry\par}
-	{\Large\itshape Steve Suissa\par}0
+	{\Large\itshape Steve Suissa\par}
 	{\Large\itshape Célian Raimbault\par}
 	\vfill
 	Un projet EPITA
@@ -67,6 +69,94 @@
 
 %%%%%%%%%%%%%%%%%%%%%% Intro %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Yann Boudry}
+
+\subsubsection{Menu Principal}
+
+Le menu est la première image qu'aperçoit le joueur du jeu. Il est important d'avoir un menu bien réalisé et qui donne envie de jouer à l'utilisateur.
+
+\par\vspace{0.5cm}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{MainMenu.png}
+    \caption{Main Menu}
+    \label{Main Menu}
+\end{figure}{}
+
+\paragraph{Menu}
+
+J'ai choisi de faire un menu simple qui comporte les fonctionalité essentielles que l'on attend de cette partie du jeu. Il comporte donc trois boutons:
+
+\begin{itemize}
+    \item Jouer, qui comme il l'indique permet de lancer une partie.
+    \item Paramètres, qui là encore ouvre une fenêtre de paramètres.
+    \item Quitter, comme son nom l'indique, il arrête l'application.
+\end{itemize}
+
+\subsubsection{Jouer}
+
+\paragraph{}
+Ce premier bouton vous approche d'un pas de plus vers l'épreuve de survie où tous les coups sont permis: Deadly Science. Après vous être lancé dans l'aventure apparaît un deuxième menu qui regroupe les différents laboratoires abandonnés de Deadly Science. Vous pouvez rejoindre un groupe partant pour une destination connue, ou bien-sûr en chercher un nouveau et l'explorer avec votre équipe. Mais gare aux maladies qui peuvent être... Mortelles!
+\paragraph{} Si l'aventure vous effraie trop, vous pouvez toujours revenir en arrière pour parfaire la maîtrise de votre personnage au sein des paramètres ou tout simplement quitter le jeu.
+
+\subsubsection{Paramètres}
+Cette partie concerne les paramètres du jeu, pour l'instant ne comprenant qu'un gestionnaire de touches pour les différents mouvements (avant, arrière, gauche, droite, sauter).
+
+\paragraph{Principe}
+Unity propose un gestionnaire de touches mais il faut pour cela avoir le projet et l'éxecuter dans Unity.
+Il est impossible de changer les touches une fois que le jeu est lancé. J'ai donc cherché des manières de remédier à ce problème.
+
+\paragraph{Implémentation}
+
+\subparagraph{Rebind}
+Rien de plus énervant que de lancer son jeu favori mais de devoir réassigner les touches de son clavier à chaque fois. Afin d'empêcher toute destruction inopinée de materiel informatique j'ai écrit un script pour cela: InputManager. Il rassemble les touches utilisées et enregistrées, une fonction retournant la/les touches enfoncées, une autre retournant la touche associée à l'action demandée pour l'affichage et le changement de touches.
+\newline Pour gérer et enregistrer les touches, j'ai utilisé un dictionaire de string/Keycode auquel j'attribue des valeurs par défaut dès que le script est appelé:
+
+\begin{itemize}
+    \item Jump => Espace
+    \item Forward => W
+    \item Backward => S
+    \item Left => A
+    \item Right => D
+\end{itemize}
+
+J'ai opté pour l'utilisation des PlayerPrefs pour la sauvegarde des touches car c'est une classe très facile à manipuler. Elle ne permet de stocker que des string, float ou int mais la conversion est très simple puisqu'il est possible de convertir les Keycodes en un int unique à l'aide d'un simple cast.
+\newline Le script va ensuite tester l'existence de PlayerPrefs sur l'ordinateur de l'utilisateur auquel cas les touches prendront ces valeurs.
+
+\par\vspace{0.2cm}
+\begin{lstlisting}
+    for (int i = 0; i < buttonKeys.Count; i++)
+        {
+            if (PlayerPrefs.HasKey(keys[i]))
+                buttonKeys[keys[i]] = 
+                    (KeyCode) PlayerPrefs.GetInt(keys[i]);
+        }
+\end{lstlisting}
+
+Finalement, on sauvegarde les touches. (Utile seulement lors d'un premier lancement du jeu)
+
+\subparagraph{En jeu}
+J'ai également du refaire une fonction qui teste quand les touches sont enfoncées. Pour éviter de devoir changer les touches dans tout le code à chaque modification, elle prend le nom de l'action en argument et retourne l'état de la touche correspondante grâce au dictionnaire.
+
+\subparagraph{Affichage}
+Le panneau de paramètres utilise un script KeybindDialog qui récupère les noms des touches à partir de l'InputManager. Il va ensuite instancier un préfab pour chaque touche, constitué du nom de l'action et d'un bouton avec la touche correspondante. Lorsque ce bouton est appuyé il va écouter tout le clavier et réassigner la première touche enfoncée à l'action demandée. Le changement est sauvegardé sur l'ordinateur avec les PlayerPrefs en simultané pour la prochaine utilisation.
+
+\subsubsection{Pause}
+
+\par\vspace{0.5cm}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{Pause.PNG}
+    \caption{"Pause"}
+    \label{Pause}
+\end{figure}{}
+
+Un jeu n'existe pas sans son menu pause. Enfin... la pause dans un jeu en ligne est discutable.
+On y retrouve les paramètres pour changer les touches enrichies d'un bouton quitter pour abandonner ses frères d'armes à leur sort et revenir au chaud du menu principal.
+
+\subsubsection{Écran de fin}
 %%%%%%%%%%%%%%%%%%%%%% Leandre %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%
 % \section{TODO :}
