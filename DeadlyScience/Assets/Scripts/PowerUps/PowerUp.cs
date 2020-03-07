@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public abstract class PowerUp : MonoBehaviour
@@ -14,7 +15,7 @@ public abstract class PowerUp : MonoBehaviour
     {
         if ((other.gameObject.layer & playerLayer) != 0)
             if (OnCollect(other.gameObject))
-                Destroy(gameObject);
+                PhotonNetwork.Destroy(gameObject);
     }
 
     // When a player hits the power up
