@@ -86,8 +86,8 @@ Le menu est la première image qu'aperçoit le joueur du jeu. Il est important d
 \par\vspace{0.5cm}
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{MainMenu.png}
-    \caption{Main Menu}
+    \includegraphics[width=0.8\textwidth]{MainMenu.png}
+    \caption{Menu Principal}
     \label{Main Menu}
 \end{figure}{}
 
@@ -162,7 +162,28 @@ Le panneau de paramètres utilise un script KeybindDialog qui récupère les nom
 Un jeu n'existe pas sans son menu pause. Enfin... la pause dans un jeu en ligne est discutable.
 On y retrouve les paramètres pour changer les touches enrichies d'un bouton quitter pour abandonner ses frères d'armes à leur sort et revenir au chaud du menu principal.
 
+\newpage
 \subsubsection{Écran de fin}
+
+L'écran de fin permet de conclure la partie et dire au joueur s'il a gagné ou perdu.
+
+\paragraph{Victoire ou Défaite}
+\subparagraph{}
+J'ai utilisé deux panneaux, un pour la victoire, écrit en vert, et l'autre pour la défaite, en rouge.
+Les deux sont munis d'un bouton "quitter" centré qui permet de revenir au menu principal.
+La caméra n'est pas bloquée, le joueur peut donc continuer à regarder autour de lui, cependant les mouvements eux sont désactivé.
+
+\par\vspace{0.5cm}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{Victoire.PNG}
+    \includegraphics[width=0.45\textwidth]{Defaite.PNG}
+    \caption{Victoire et Défaite}
+    \label{Ecran de fin}
+\end{figure}{}
+
+\subparagraph{}
+Les deux panneau sont activé de base afin de pouvoir les sauvegarder pour afficher le bon à la fin de la partie. Ils sont ensuite immédiatement désactivé avant le début du jeu.Pour déterminer si chaque joueur à gagné ou perdu je compare l'état du joueur au début et à la fin de la phase 2 (ou les infectés cherchent à se venger des sains). La comparaison est simple puisqu'il n'y a plus de sérum, les infectés ne peuvent plus changer d'état, seul les sains peuvent devenir infectés. Ainsi si l'état a changé, c'est que le joueur sain a perdu, sinon il a survécu.
 %%%%%%%%%%%%%%%%%%%%%% Leandre %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%
 
@@ -351,7 +372,7 @@ Afin de faciliter les tests de réseau et de gameplay, j'ai créé deux variable
 
 
 \par\vspace{0.5cm}
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{Blocs.PNG}
     \caption{Blocs}
@@ -359,7 +380,7 @@ Afin de faciliter les tests de réseau et de gameplay, j'ai créé deux variable
 \end{figure}{}
 
 \par\vspace{0.5cm}
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\textwidth]{Salles.PNG}
     \caption{Salles}
@@ -374,6 +395,8 @@ Voici les tâches à travailler avant la prochaine soutenance :
 \begin{itemize}
 \item Gameplay du joueur : Le joueur peut se déplacer correctement mais la plupart des événements ne sont pas synchronisés entre joueurs comme le status.
 \item Gameplay du jeu : Ici aussi, il faudra synchroniser les événements de jeu comme les phases, la partie la plus importante du jeu (sans elle il n'y a aucun gameplay).
+\item Autres paramètres (sensibilité de la souris, ...)
+\item Musique : Elle a un gros impact sur l'émbiance du jeu.
 \item Effets : Cette partie ne me semble pas prioritaire pour le moment mais une fois que les autres tâches auront été avancé, donner un peu plus de vie au jeu en rajoutant quelques effets pourrait s'avérer utile.
 \end{itemize}
 
