@@ -301,6 +301,70 @@ Unity dispose d'un système d'animation très pratique, l'Animator. Il est compo
 
 Cette partie est triviale car nous avons seulement à mettre à jour les variables au bon moment. La variable \emph{grounded} se modifie après que nous testons si le joueur touche sol. Quant à la variable \emph{moving}, celle ci est mise à jour une fois que le joueur s'est déplacé et elle est obtenue à l'aide d'une autre variable nommée \emph{tangentSpeed}, c'est la norme de la vélocité projetée sur le plan horizontal, si cette valeur est supérieure à une limite, \emph{moving} est true, sinon false. Il y a une limite car le joueur n'est jamais à la vitesse 0 à cause de la friction (son mouvement peut être infime).
 
+\newpage
+\subsection{Léandre Perrot}
+Dans ce projet, je suis principalement responsable de la génération aléatoire du terrain de jeu, des effets sonores et visuels, de la gestion du réseau et du gameplay global. Dans le cadre de cette soutenance, je me suis principalement concentré sur le terrain de jeu, étant donné qu'il s'agit du socle sur lequel reposent l'implémentation du réseau et les possibilités d'action des joueurs.
+
+\subsubsection{Aleatoire}
+Etant donné que la majorité des taches qui m'ont été dévolues nécessitent l'utilisation de variables aléatoires qui doivent être distinctes, j'ai dans un premier temps mis au point une fonction Aléatoire qui prend comme paramètre n, le nombre de valeurs souhaitées, et m, la valeur maximale. Par exemple, pour obtenir quatre valeurs aléatoires distinctes entre 0 et 10, il faudra rentre comme paramètres 4 et 11. Dans un premier temps, je crée deux listes : une de longueur n, remplie de -1, et une de longueur m, remplie de valeurs allant de 0 à m-1. Ensuite, pour chaque terme de la liste de longueur n, on prend une valeur aléatoire entre 0 et m-1, et on regarde dans la liste de longueur m si la valeur n'est pas -1. Si c'est -1, on effectue un parcours de la liste jusqu'à trouver une valeur différente de -1. On place ensuite la valeur dans la liste de longueur n, et on met à la place -1 dans la liste de longueur m. A la fin, la fonction retourne donc une liste de n éléments compris entre 0 et m (non inclus) qui sont tous distincts.
+
+\subsubsection{Generation de la Carte}
+J'aimerais évoquer l'algorithme que j'ai utilisé pour la génération du labyrinthe. L'objectif était de faire un dédale fermé, et avec à chaque fois plusieurs options pour passer d'un point A à un point B.
+
+\paragraph{Organisation des données}
+Dans un premier lieu, j'ai réfléchi à un moyen simple d'implémenter la variable du labyrinthe. Au final, j'ai opté pour l'utilisation d'une liste contenant autant d'éléments que le labyrinthe possède de salles. A la fin du traitement, on peut ainsi aisément déterminer les quatres murs du labyrinthes de cette manière :
+\begin{itemize}
+\item Nord : Il y a un mur au nord si la case est dans la rangée la plus au nord. Sinon, il y a un mur si la case directement au nord a une valeur impaire.
+\item Ouest : Il y a un mur à l'ouest si la case est dans la rangée la plus à l'ouest. Sinon, il y a un mur si la case directement à l'ouest a une valeur strictement supérieure à 1.
+\item Sud : Il y a un mur au sud si la valeur de la case est impaire.
+\item Est : Il y a un mur à l'est si la valeur de la case est strictement supérieure à 1.
+\end{itemize}
+C'est avec cette implémentation que j'ai pu commencer à travailler sur la génération du dédale.
+
+\paragraph{Implémentation}
+Au début, j'ai comme paramètres xm et zm, qui correspondent aux nombres de salles présentes sur un coté du dédale. On instancie alors une liste Plan de taille xm * zm, et on la remplit de -1.
+Ensuite, on fait un simple parcours de la liste à partir de la case à l'extrême nord-ouest. A chaque fois que l'on tombe sur une case ayant une valeur -1, cela signifie que cette case n'a pas encore été "visitée". Si ce n'est pas la première case, on relie la case actuelle aux cases déjà "visitées". Pour cela, si la case se trouve dans la rangée la plus au nord, on crée un mur vers l'ouest, et sinon, on creuse un mur vers le nord. Ensuite, on creuse un "chemin", c'est-à-dire que l'on va connecter des salles à la case actuelle. Pour ce faire, à chaque case, je crée une liste de quatre éléments (0 à 3) ordonnés aléatoirement. Ces éléments correspondent à l'ordre de priorité des directions à prendre. Pour chaque direction, je vérifie que la case ciblée n'est pas hors du labyrinthe, et qu'elle ne fait pas partie du "chemin" actuel. La première case correspondant à ces deux critères devient la nouvelle case actuelle : on creuse un mur entre elle et la salle précédente, et on continue. Si la case est déjà visitée, on arrete le chemin ici et on continue le parcours de la liste. Et si aucune direction ne permet d'obtenir une case valable, alors on arrete net le chemin sans creuser de mur (c'est ce qui forme les impasses). On peut ainsi obtenir un labyrinthe convenable, correspondant aux deux critères énoncés précedemment.
+En réalité, cet algorithme à base de "chemin" existait déjà sous le nom d'algorithme de Prim, mais je n'étais pas du tout au courant de son existence lorsque j'ai élaboré celui-ci.
+
+Mais cet algorithme que je viens de vous décrire présente un léger soucis : on peut voir apparaître des "piliers", c'est à dire qu'on a un ensemble de quatres salles en carré qui sont toutes connectées les unes aux autres (excepté par les diagonales). Ce type de configuration n'est pas problématique en soit, mais cela faisait que l'on pouvait très bien se retrouver avec un dédale uniquement constitué de piliers, ce qui ne correspond pas aux attentes du jeu. J'ai donc, à l'issu de l'élaboration du premier dédale, relancé un second parcours de la liste afin de traquer les piliers. Dès que je dédecte un pilier, je demande une variable aléatoire entre 0 et 3, qui correspond à l'un des quatre passages du pilier. Je place alors un mur à cet emplacement, et je continue le parcours. Avec ce simple second parcours, on peut donc à coup sur obtenir des dedales propres et avec des murs à coup sûr.
+
+\subsubsection{Generation du Terrain}
+En ce qui concerne la génération du dédale en tant qu'objet en trois dimensions où évolueront les joueurs, j'effectue une simple lecture de la liste obtenue par la Génération de la Carte. Actuellement, il y a deux versions d'implémentations : l'une très basique constituée de blocs, la seconde évoquant plus un laboratoire avec des salles et des couloirs.
+
+\paragraph{Première Version : Blocs}
+Au début de l'implémentation, je déforme un cube nommé Base pour permettre de couvrir le sol du labyrinthe en fonction de ses dimensions. Je crée également les murs extérieurs nord et ouest en entier. Ensuite, j'effectue le parcours de la liste : a chaque case, je place un cube dans l'angle sud-est de l'emplacement de la case sur le terrain. Ensuite, si la valeur de la case est impaire, je rajoute un mur au sud, et si la valeur de la case est strictement supérieure à 1, je rajoute un mur à l'est. On obtient donc un labyrinthe sommaire en blocs, mais qui correspond parfaitement à la carte attendue. Le problème de cette implémentation est qu'elle ne permet pas vraiment la modification de l'aspect du dédale, ce qui pourrait poser problème par la suite. Néanmoins, elle peut être efficace à partir du moment où l'on ne se concentre que sur le réseau ou sur la vérification de la validité du dédale.
+
+\paragraph{Seconde Version : Salles et Couloirs}
+A chaque case, j'évalue combien de passages permettent l'accès à la salle, et leurs dispositions. A partir de là, je crée à l'emplacement lié à la position de la case un objet vide correspondant à un préfabriqué. Cette méthode, à l'inverse de la première version, permet de modifier l'apparence globale de l'intérieur du dédale grâce aux préfabriqués.
+
+\paragraph{Les préfabriqués}
+Il existe six préfabriqués en tout. L'Impasse, une salle avec un seul accès, les deux couloirs, l'un où les passages sont l'un en face de l'autre et le second où ils sont adjacents, les deux bifurcations, l'un sous la forme de salle, l'autre sous la forme d'un couloir en T, et le Carrefour, une salle avec quatre accès. Je peux aisément, à partir du nombre de passages et de leur disposition, déterminer quel préfabriqué employer et son orientation. De plus, pour éviter d'avoir un nombre trop important de salles, j'ai décidé de créer un booléen qui, en alternant, permet d'avoir en cas de bifurcation soit une salle, soit un couloir, ce qui réduit considérablement le taux de salles dans les souterrains du laboratoire. Actuellement, les préfabriqués sont dans des couleurs primaires, à savoir mauve pour les murs, vert pour les meubles (pour les salles) et rouge pour le sol. De plus, je n'ai pas encore mis de plafond aux préfabriqués, ce qui permet d'avoir une vue d'ensemble du dédale du dessus.
+
+\paragraph{Joueurs et Sérums}
+Il y a également un autre point important dans la génération du terrain : les sérums et les joueurs.
+Lorsque le dédale est intégralement construit, je demande à la fonction Aléatoire une liste de 7 termes aléatoires distincts compris entre 0 et le nombre de cases dans le dédale.
+Les trois premiers termes correspondent aux sérums, les quatre autres aux joueurs. Il me suffit alors de créer un objet vide correspondant au préfabriqué du sérum dans la case correspondant à la valeur donnée. Actuellement, les sérums flottent en l'air et sont ainsi directement visibles par le joueur, mais plus tard, lorsque j'aurai terminé de construire les salles et les couloirs, leur emplacement variera en fonction de l'environnement où ils se trouvent. Par exemple, si au centre d'une salle, il y a une grosse armoire, les joueurs ne pourront pas y accéder puisque le sérum sera coincé dans le mobilier. A l'inverse, si l'on instancie le sérum dans un angle de la pièce, dès qu'il y en aura un dans un couloir, il sera derrière le mur, et donc inaccessible.
+Concernant l'implémentation des joueurs, Steve et moi y travaillons encore. Actuellement, nous tentons de faire apparaître les joueurs sur quatre socles distincts, à l'extérieur du dédale, afin d'éviter que les joueurs ne se retrouvent tous en même temps au même point, ce qui pourrait être une source considérable de bugs. Quand nous y parviendrons, il nous suffira d'affecter aux joueurs les quatres dernières valeurs de la liste aléatoire que nous utilisons déjà pour les sérums.
+
+\subsubsection{Variables expérimentales}
+Afin de faciliter les tests de réseau et de gameplay, j'ai créé deux variables à part, l'une pour un dédale prédéfini et l'autre pour des emplacements de sérums déjà déterminés. A partir du dédale formé, il sera donc possible de simuler des parties de tests pour vérifier que tout fonctionne, sans être freiné par le côté aléatoire du terrain. Vous pouvez voir ci-dessous deux images du labyrinthe, en fonction de la version d'implémentation du terrain :
+
+
+\par\vspace{0.5cm}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Blocs.PNG}
+    \caption{Blocs}
+    \label{Blocs}
+\end{figure}{}
+
+\par\vspace{0.5cm}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Salles.PNG}
+    \caption{Salles}
+    \label{Salles}
+\end{figure}{}
 
 \newpage
 \subsection{A faire}

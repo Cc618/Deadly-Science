@@ -296,7 +296,8 @@ public class Generation : MonoBehaviour
             z = 0;
             while (z < zm)
             {
-                if (version && PV.IsMine)
+                //if (version && PV.IsMine)
+                if (version)
                 {
                     Transform newCube = (Transform) Instantiate(_prefab,
                         new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 2.5)),
