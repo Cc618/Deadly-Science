@@ -486,7 +486,8 @@ MonoBehaviour:
     type: 3}
   Impasse: {fileID: 2803092704595056643, guid: 35d07eb1f13650941aeabb0990a90078, type: 3}
   Serum: {fileID: 4234809757560890487, guid: 0da34a1777221d94ab45d965c4627483, type: 3}
-  version: 1
+  version: 0
+  testencours: 0
 --- !u!1 &148919675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3285,7 +3286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014956517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.587}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3316,6 +3317,7 @@ MonoBehaviour:
   Impasse: {fileID: 0}
   Serum: {fileID: 0}
   version: 1
+  testencours: 0
 --- !u!1 &2027045272
 GameObject:
   m_ObjectHideFlags: 0

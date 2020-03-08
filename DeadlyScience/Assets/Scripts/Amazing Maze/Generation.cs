@@ -20,6 +20,7 @@ public class Generation : MonoBehaviour
     public Transform Impasse;
     public Transform Serum;
     public bool version;
+    public bool testencours;
 
     public static int[]
         Aleatoire(int n,
@@ -290,174 +291,177 @@ public class Generation : MonoBehaviour
             }
         }
         //Ensuite, pour chaque case, on va créer les deux murs opposés aux murs que l'on vient de construire.
+        print("Affichage");
         bool room = false;
         while (x < xm)
         {
             z = 0;
             while (z < zm)
             {
-                //if (version && PV.IsMine)
-                if (version)
+                if (testencours || PV.IsMine)
                 {
-                    Transform newCube = (Transform) Instantiate(_prefab,
-                        new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 2.5)),
-                        new Quaternion(0, 0, 0, 0));
-                    if (Plan[x * zm + z] > 1)
+                    if (version)
                     {
-                        Transform newCube6 = (Transform) Instantiate(_prefab,
-                            new Vector3((float) (2 * x + 1.5), (float) 0.7, (float) (2 * z + 2.5)),
+                        Transform newCube = (Transform) Instantiate(_prefab,
+                            new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 2.5)),
                             new Quaternion(0, 0, 0, 0));
-                    }
-
-                    if (Plan[x * zm + z] % 2 == 1)
-                    {
-                        Transform newCube7 = (Transform) Instantiate(_prefab,
-                            new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 1.5)),
-                            new Quaternion(0, 0, 0, 0));
-                    }
-                }
-                else
-                {
-                    bool[] passages = {false,false,false,false};
-                    if (Plan[x * zm + z] > 1)
-                    {
-                        passages[1] = true;
-                    }
-
-                    if (Plan[x * zm + z] % 2 == 1)
-                    {
-                        passages[2] = true;
-                    }
-
-                    if (x == 0)
-                    {
-                        passages[0] = true;
-                    }
-                    else
-                    {
-                        if (Plan[(x - 1) * zm + z] %2 == 1)
+                        if (Plan[x * zm + z] > 1)
                         {
-                            passages[0] = true;
-                        }
-                    }
-                    if (z == 0)
-                    {
-                        passages[3] = true;
-                    }
-                    else
-                    {
-                        if (Plan[x * zm + z-1] > 1)
-                        {
-                            passages[3] = true;
-                        }
-                    }
-                    int p = 0;
-                    int q = 0;
-                    while (q < 4)
-                    {
-                        if (passages[q])
-                        {
-                            p += 1;
-                        }
-                        q += 1;
-                    }
-                    int rotate = 0;
-                    if (p == 2)
-                    {
-                        if (passages[0] == passages[2])
-                        {
-                            if (passages[0])
-                            {
-                                rotate = 90;
-                            }
-                            Transform newCube = (Transform) Instantiate(Tout_droit,
-                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                new Quaternion(0, rotate, 0, rotate));
-                        }
-                        else
-                        {
-                            if (passages[0])
-                            {
-                                if (passages[1])
-                                {
-                                    Transform newCube = (Transform) Instantiate(Tourner,
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, -90, 0, 90));
-                                }
-                                else
-                                {
-                                    Transform newCube = (Transform) Instantiate(Tourner,
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, 180, 0, 0));
-                                }
-                            }
-                            else
-                            {
-                                if (passages[1])
-                                {
-                                    Transform newCube = (Transform) Instantiate(Tourner,
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, 0, 0, 0));
-                                }
-                                else
-                                {
-                                    Transform newCube = (Transform) Instantiate(Tourner,
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, 90, 0, 90));
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (p == 3)
-                        {
-                            int a = 0;
-                            Transform newCube = (Transform) Instantiate(Impasse,
-                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                new Quaternion(0, 90, 0, 90));
-                            newCube.transform.Rotate(0, 90, 0);
-                            while (passages[a])
-                            {
-                                a += 1;
-                                newCube.transform.Rotate(0, 90, 0);
-                            }
+                            Transform newCube6 = (Transform) Instantiate(_prefab,
+                                new Vector3((float) (2 * x + 1.5), (float) 0.7, (float) (2 * z + 2.5)),
+                                new Quaternion(0, 0, 0, 0));
                         }
 
-                        if (p == 1)
+                        if (Plan[x * zm + z] % 2 == 1)
                         {
-                            int a = 0;
-                            Transform newCube;
-                            if (room)
-                            {
-                                newCube = (Transform) Instantiate(Bifurc,
-                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                    new Quaternion(0, 90, 0, 90));
-                            }
-                            else
-                            {
-                                newCube = (Transform) Instantiate(Bifurcc,
-                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                    new Quaternion(0, 90, 0, 90));
-                            }
-                            newCube.transform.Rotate(0, -90, 0);
-                            while (!passages[a])
-                            {
-                                a += 1;
-                                newCube.transform.Rotate(0, 90, 0);
-                            }
-                            room = !room;
-                        }
-
-                        if (p == 0)
-                        {
-                            Transform newCube = (Transform) Instantiate(Carrefour,
-                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                            Transform newCube7 = (Transform) Instantiate(_prefab,
+                                new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 1.5)),
                                 new Quaternion(0, 0, 0, 0));
                         }
                     }
+                    else
+                    {
+                        bool[] passages = {false,false,false,false};
+                        if (Plan[x * zm + z] > 1)
+                        {
+                            passages[1] = true;
+                        }
+
+                        if (Plan[x * zm + z] % 2 == 1)
+                        {
+                            passages[2] = true;
+                        }
+
+                        if (x == 0)
+                        {
+                            passages[0] = true;
+                        }
+                        else
+                        {
+                            if (Plan[(x - 1) * zm + z] %2 == 1)
+                            {
+                                passages[0] = true;
+                            }
+                        }
+                        if (z == 0)
+                        {
+                            passages[3] = true;
+                        }
+                        else
+                        {
+                            if (Plan[x * zm + z-1] > 1)
+                            {
+                                passages[3] = true;
+                            }
+                        }
+                        int p = 0;
+                        int q = 0;
+                        while (q < 4)
+                        {
+                            if (passages[q])
+                            {
+                                p += 1;
+                            }
+                            q += 1;
+                        }
+                        int rotate = 0;
+                        if (p == 2)
+                        {
+                            if (passages[0] == passages[2])
+                            {
+                                if (passages[0])
+                                {
+                                    rotate = 90;
+                                }
+                                Transform newCube = (Transform) Instantiate(Tout_droit,
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, rotate, 0, rotate));
+                            }
+                            else
+                            {
+                                if (passages[0])
+                                {
+                                    if (passages[1])
+                                    {
+                                        Transform newCube = (Transform) Instantiate(Tourner,
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, -90, 0, 90));
+                                    }
+                                    else
+                                    {
+                                        Transform newCube = (Transform) Instantiate(Tourner,
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, 180, 0, 0));
+                                    }
+                                }
+                                else
+                                {
+                                    if (passages[1])
+                                    {
+                                        Transform newCube = (Transform) Instantiate(Tourner,
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, 0, 0, 0));
+                                    }
+                                    else
+                                    {
+                                        Transform newCube = (Transform) Instantiate(Tourner,
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, 90, 0, 90));
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (p == 3)
+                            {
+                                int a = 0;
+                                Transform newCube = (Transform) Instantiate(Impasse,
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, 90, 0, 90));
+                                newCube.transform.Rotate(0, 90, 0);
+                                while (passages[a])
+                                {
+                                    a += 1;
+                                    newCube.transform.Rotate(0, 90, 0);
+                                }
+                            }
+
+                            if (p == 1)
+                            {
+                                int a = 0;
+                                Transform newCube;
+                                if (room)
+                                {
+                                    newCube = (Transform) Instantiate(Bifurc,
+                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                        new Quaternion(0, 90, 0, 90));
+                                }
+                                else
+                                {
+                                    newCube = (Transform) Instantiate(Bifurcc,
+                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                        new Quaternion(0, 90, 0, 90));
+                                }
+                                newCube.transform.Rotate(0, -90, 0);
+                                while (!passages[a])
+                                {
+                                    a += 1;
+                                    newCube.transform.Rotate(0, 90, 0);
+                                }
+                                room = !room;
+                            }
+
+                            if (p == 0)
+                            {
+                                Transform newCube = (Transform) Instantiate(Carrefour,
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, 0, 0, 0));
+                            }
+                        }
+                    }
+                    z += 1;
                 }
-                z += 1;
             }
             x += 1;
         }
