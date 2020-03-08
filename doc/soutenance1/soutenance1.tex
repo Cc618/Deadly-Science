@@ -72,6 +72,29 @@
 
 \section{Introduction}
 
+\begin{table}
+\centering
+\caption{Avancement}
+\begin{tabular}{|l|l|l|}
+\hline
+
+Tâches $\backslash$Soutenances & Attendu & Réalité \\ \hline
+Camera & 50\% & 75\% \\ \hline
+G Joueur & 30\% & 50\% \\ \hline
+G Jeu & 30\% & 30\% \\ \hline
+Reseau & 50\% & 75\% \\ \hline
+Map Const & 30\% & 30\% \\ \hline
+Menu & 15\% & 70\% \\ \hline
+Chrono/GUI & 30\% & 30\% \\ \hline
+Site TXT & 0\% & 30\% \\ \hline
+Site E & 0\% & 0\% \\ \hline
+Map Gen & 0\% & 50\% \\ \hline
+Musique & 0\% & 25\% \\ \hline
+Sons & 0\% & 10\% \\ \hline
+
+\end{tabular}
+\end{table}
+ 
 \newpage
 \section{Réalisations}
 
@@ -411,7 +434,139 @@ Pour la prochaîne soutenance, le premier but sera d'avoir un gameplay en évita
 %%%%%%%%%%%%%%%%%%%%%% Steve %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% Conclu %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% Annexes %%%%%%%%%%%%%%%%%%%%%
+
+
  
+\newpage
+\subsection{Steve Suissa}
+
+
+\subsubsection{Introduction}
+
+L’une des forces de ce jeu est son réseau. A la différence de la majorité des autres projets qui se contente de créer une salle et de la rejoindre directement, nous avons décidé d’opter pour une solution plus complète permettant plus de contrôle sur le multijoueur. Nous avons implémenté plusieurs menus pour modifier les salles.
+
+\subsubsection{Les Menus}
+
+Le premier menu montre la liste des salles ouvertes avec leurs propriétés (nombre de joueurs max, et par la suite le nombre de joueurs dans la salle) auxquelles nous pouvons rejoindre en simplement cliquant dessus, et un bouton permettant d’en créer une.
+Après cela, on est redirigé vers un autre menu ou l’on peut voir la liste des joueurs présents dans la salle. Il y’a aussi un bouton Ready (symbolisé par un R) qui permet de montrer qu’on est prêt à commencer la partie. A noter que l’hôte de jeu (celui qui a créée la salle) ne peut commencer la partie que si tout le monde est prêt. Il peut quand même cliquer sur le bouton “Commencer la partie” mais cela ne fonctionnera pas. En prenant en compte les nombreuses fonctionnalités du code, il serait impossible de tout le montrer mais voici coment nous créons les salles : 
+
+\subsubsection{Les RPC fonctions}
+
+Ce système utilise des RPC fonctions. Ce sont des fonctions propres au multijoueur (dans notre cas Photon, le plugin que l’on utilise pour le multijoueur sur Unity) qui peuvent être représentées comme des messages qui sont véhiculés entre les différents joueurs. Chacune de ces fonctions est identifiée grâce à une clef, dans notre cas ce sera une chaine de caractere. Nous avons utilisé cette mécanique pour savoir si tous les joueurs étaient prêts ou non.
+
+\newpage
+\begin{lstlisting}
+        public void OnClick_ReadyUp()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                SetReadyUp(!_ready);
+                base.photonView.RPC("RPC_ChangeReadyState", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer, _ready);
+            }
+        }
+        
+        [PunRPC]
+        private void RPC_ChangeReadyState(Photon.Realtime.Player player, bool ready)
+        {
+            int index = _listings.FindIndex(x => x.Player == player);
+            if (index != -1)
+            {
+                _listings[index].Ready = ready;
+            }
+        }
+\end{lstlisting}
+
+\subsubsection{Les CustomProprieties}
+
+Nous avons aussi créés un prototype de propriétés personnalisables à chacun des joueurs. Ce système permet de montrer certaines propriétés (que l’on appelle CustomProprieties) propres à l'utilisateur (actuellement un identifiant, mais par la suite un avatar). Nous pouvons utiliser ce système dès le premier menu en cliquant sur le nombre pour lui affecter une valeur aléatoire de 0 à 99 et qui sera visible par les autres joueurs dans la salle.
+
+Notre réseau permet aussi de détecter les états de connection des joueurs et savoir exactement s’ils sont connectés ou non, prêts ou pas, connecté à Internet etc...
+\newpage
+\begin{lstlisting}
+public class RandomCustomPropertyGenerator : MonoBehaviour
+{
+    [SerializeField] 
+    private Text _text;
+    
+    private ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
+
+    private void SetCustomNumber()
+    {
+        System.Random rnd = new System.Random();
+        int result = rnd.Next(0, 99);
+
+        _text.text = result.ToString();
+
+        _myCustomProperties["RandomNumber"] = result;
+        PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
+    }
+    public void OnClick_Button()
+    {
+        SetCustomNumber();
+    }
+}
+\end{lstlisting}
+
+Dans ce cas précis, lorsque l'on clique sur le bouton le nombre aléatoire est crée et rajouté dans le texte
+
+\subsubsection{Les ScriptableObjects}
+
+Pour simplifier les scripts nous avons décidé de créer des ScriptableObjects qui permettent d’assigner un script à un GameObject de Unity plus facilement. Nous avons créé deux assets : GameSettings et MasterManager, le premier sert à stocker les propriétés du jeu (la version du jeu, la manière dont les noms des joueurs sont stockés etc…), et le second permet d’instancier les options du GameSettings. 4 scripts sont utilisés pour les ScriptableObjects : GameSettings, MasterManager, ScriptableObjectSingleton et SingletonReferences. Les deux premiers viennent d’être expliqués et les deux seconds permettent de détecter s’il y’a une erreur dans l’objet et sinon de l'instancier et de l'exécuter.
+\newpage
+\begin{lstlisting}
+public class GameSettings : ScriptableObject
+    {
+        [SerializeField]
+        private string _gameVersion = "0.0.0";
+
+        public string GameVersion => _gameVersion;
+        [SerializeField]
+        private string _nickname = "Joueur";
+
+        public string Nickname
+        {
+            get
+            {
+                int value = Random.Range(0, 9999);
+                return _nickname + value.ToString();
+            }
+        }
+\end{lstlisting}
+
+\begin{lstlisting}
+ public static T Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    T[] results = Resources.FindObjectsOfTypeAll<T>();
+                    if (results.Length == 0)
+                    {
+                        Debug.LogError("SingletonScriptableObject -> Instance -> results length is 0 for type " + typeof(T).ToString() + ".");
+                        return null;
+                    }
+                    if (results.Length > 1)
+                    {
+                        Debug.LogError("SingletonScriptableObject -> Instance -> results length is greather than 1 for type " + typeof(T).ToString() + ".");
+                        return null;
+                    }
+
+                    _instance = results[0];
+                }
+                return _instance;
+            }
+        }
+\end{lstlisting}
+
+
+
+\subsubsection{Les Photon Views}
+
+Les Photons Views sont des composants de Photon qui permettent d’observer le réseau. Ils permettent de synchroniser la taille, la rotation et la position de l’objet dans le réseau. Il faut veiller à ce que la Photon View soit propre à la scène (contrôlé par l’hôte de jeu) ou par un joueur spécifique pour ne pas avoir de doublons ou des objets invisibles.
+Ils sont sous plusieurs formes : Transform pour les objets simples, RigidBody (2D ou pas) qui permet de gérer directement la physique de l’objet etc… Nous utiliserons le Photon View Animator permettant en plus de synchroniser l’animation des personnages en temps réel.
+
+
 \newpage
 \section{Annexes}
 
