@@ -324,6 +324,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4507089813994650690, guid: bf74f2f49f7e83d4ea1d87bc0fc9a1a5,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507089813994650690, guid: bf74f2f49f7e83d4ea1d87bc0fc9a1a5,
+        type: 3}
+      propertyPath: viewIdField
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5422389947474325749, guid: bf74f2f49f7e83d4ea1d87bc0fc9a1a5,
         type: 3}
       propertyPath: m_Layer
@@ -487,7 +497,7 @@ MonoBehaviour:
   Impasse: {fileID: 2803092704595056643, guid: 35d07eb1f13650941aeabb0990a90078, type: 3}
   Serum: {fileID: 4234809757560890487, guid: 0da34a1777221d94ab45d965c4627483, type: 3}
   version: 0
-  testencours: 0
+  testencours: 1
 --- !u!1 &148919675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2089,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 146060410}
     m_Modifications:
+    - target: {fileID: -691128642626442049, guid: b95eb927751b6a148ada6e653df91328,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -691128642626442049, guid: b95eb927751b6a148ada6e653df91328,
+        type: 3}
+      propertyPath: viewIdField
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 749069446302257474, guid: b95eb927751b6a148ada6e653df91328,
         type: 3}
       propertyPath: m_Layer
@@ -2214,6 +2234,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 146060410}
     m_Modifications:
+    - target: {fileID: -4995327841050288423, guid: 42a9005cd7f8ece4d99c06bce30b006a,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4995327841050288423, guid: 42a9005cd7f8ece4d99c06bce30b006a,
+        type: 3}
+      propertyPath: viewIdField
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 627188080004659962, guid: 42a9005cd7f8ece4d99c06bce30b006a,
         type: 3}
       propertyPath: m_Layer
@@ -3944,6 +3974,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 837286134137806592, guid: f39592cf01d0a894c8396963708ccd4a,
+        type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5112061744354806712, guid: f39592cf01d0a894c8396963708ccd4a,
         type: 3}
       propertyPath: m_Name
