@@ -15,7 +15,8 @@ public abstract class PowerUp : MonoBehaviour
     {
         if ((other.gameObject.layer & playerLayer) != 0)
             if (OnCollect(other.gameObject))
-                PhotonNetwork.Destroy(gameObject);
+                Destroy(gameObject);
+                // TODO : PhotonNetwork.Destroy(gameObject);
     }
 
     // When a player hits the power up
