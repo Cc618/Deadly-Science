@@ -293,7 +293,7 @@ namespace ds
                 z = 0;
                 while (z < zm)
                 {
-                    if (testencours||true||PhotonNetwork.IsMasterClient)
+                    if (testencours||PhotonNetwork.IsMasterClient)
                     {
                         if (version)
                         {
