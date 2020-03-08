@@ -110,7 +110,7 @@ namespace ds
                 {
                     if (_listings[i].Player != PhotonNetwork.LocalPlayer)
                     {
-                        if (_listings[i].Ready)
+                        if (!_listings[i].Ready)
                             return;
                     }
                 }

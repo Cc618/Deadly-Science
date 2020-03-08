@@ -1,11 +1,3 @@
-body
-{
-	background-image: url("images/logo.png");
-	background-repeat: no-repeat;
-	background-size: 5%;
-	background-position: 3% 3%;
-}
-
 header
 {
 	text-align: center;
@@ -26,19 +18,19 @@ table
 	border-left: 50px;
 }
 
-tr
+td
 {
-	
-}
 
-.nav_menu
-{
-	/*padding: 0 50% 0 0;*/
 }
 
 body
 {
+	background-image: url("images/logo.png");
+	background-repeat: no-repeat;
+	background-size: 5%;
+	background-position: 50px 30px;
 	background-color: #555;
+	padding: 0 8% 0 8%;
 }
 
 .photo_groupe
@@ -49,7 +41,39 @@ body
 
 }
 
+a,a:visited
+{
+	/*color: rgb(255,255,255);*/
+	color: #E38A2AFF;
+	text-decoration: none;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.bio
+{
+	height: 130px;
+}
+
+.textbio
+{
+	margin-left: 9%;
+}
+
 p
 {
-	display: flex;
+	text-align: justify;
+}
+
+.lienDocs,.lienDocs:visited
+{
+
+}
+
+#Docs
+{
+	text-align: center;
+	margin-top: 15%;
+	font-size: 130%;
+	/*margin: 25% 0 0 40%;*/
 }
