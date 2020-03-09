@@ -10,7 +10,8 @@ namespace ds
 {
     public class Generation : MonoBehaviour
     {
-        [Range(0, 4)] public PhotonView PV;
+        [Range(0, 4)] 
+        public PhotonView PV;
         public float serumHeight;
         public int xm;
         public int zm;
@@ -264,22 +265,22 @@ namespace ds
                 //On prend le dédale créé par la fonction Générateur. Au début, on crée deux murs extérieurs.
                 while (x < xm)
                 {
-                    var newCube1 = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
                         new Vector3((float) (2 * x + 1.5), (float) 0.7, (float) (0.5)), new Quaternion(0, 0, 0, 0), 0);
-                    var newCube2 = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
                         new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (0.5)), new Quaternion(0, 0, 0, 0), 0);
                     x += 1;
                 }
 
-                var newCube3 = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
                     new Vector3((float) (0.5), (float) 0.7, (float) (0.5)), new Quaternion(0, 0, 0, 0), 0);
                 x = 0;
                 z = 0;
                 while (z < zm)
                 {
-                    var newCube4 = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
                         new Vector3((float) (0.5), (float) 0.7, (float) (2 * z + 1.5)), new Quaternion(0, 0, 0, 0), 0);
-                    var newCube5 = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
                         new Vector3((float) (0.5), (float) 0.7, (float) (2 * z + 2.5)), new Quaternion(0, 0, 0, 0), 0);
                     z += 1;
                 }
@@ -293,25 +294,23 @@ namespace ds
                 z = 0;
                 while (z < zm)
                 {
-                    if (testencours||PhotonNetwork.IsMasterClient)
+                    if (testencours || PhotonNetwork.IsMasterClient)
                     {
                         if (version)
                         {
-                            var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                                new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 2.5)),
-                                new Quaternion(0, 0, 0, 0));
+                            Quaternion nul = new Quaternion(0,0,0,0); 
+                            PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                                new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 2.5)), nul);
                             if (Plan[x * zm + z] > 1)
                             {
-                                var newCube6 = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                                    new Vector3((float) (2 * x + 1.5), (float) 0.7, (float) (2 * z + 2.5)),
-                                    new Quaternion(0, 0, 0, 0));
+                                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                                    new Vector3((float) (2 * x + 1.5), (float) 0.7, (float) (2 * z + 2.5)), nul);
                             }
 
                             if (Plan[x * zm + z] % 2 == 1)
                             {
-                                var newCube7 = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                                    new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 1.5)),
-                                    new Quaternion(0, 0, 0, 0));
+                                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
+                                    new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 1.5)), nul);
                             }
                         }
                         else
@@ -461,9 +460,8 @@ namespace ds
                                 }
                             }
                         }
-
-                        z += 1;
                     }
+                    z += 1;
                 }
 
                 x += 1;

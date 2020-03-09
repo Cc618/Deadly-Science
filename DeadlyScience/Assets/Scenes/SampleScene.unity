@@ -486,18 +486,8 @@ MonoBehaviour:
   serumHeight: 2
   xm: 5
   zm: 5
-  _prefab: {fileID: 5112061744354806716, guid: f39592cf01d0a894c8396963708ccd4a, type: 3}
-  Tourner: {fileID: 8703250048501435159, guid: 42a9005cd7f8ece4d99c06bce30b006a, type: 3}
-  Tout_droit: {fileID: 8041723698764774356, guid: b95eb927751b6a148ada6e653df91328,
-    type: 3}
-  Bifurc: {fileID: 7409147162386761351, guid: bf74f2f49f7e83d4ea1d87bc0fc9a1a5, type: 3}
-  Bifurcc: {fileID: 3842777214050132404, guid: 7e11386b4320c6b4bb01ce670bc2fcfa, type: 3}
-  Carrefour: {fileID: 4302754883694021590, guid: 2b51418fb28d7264b879e1f6d1b68fcc,
-    type: 3}
-  Impasse: {fileID: 2803092704595056643, guid: 35d07eb1f13650941aeabb0990a90078, type: 3}
-  Serum: {fileID: 4234809757560890487, guid: 0da34a1777221d94ab45d965c4627483, type: 3}
   version: 0
-  testencours: 1
+  testencours: 0
 --- !u!1 &148919675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,14 +3328,6 @@ MonoBehaviour:
   serumHeight: 0
   xm: 5
   zm: 5
-  _prefab: {fileID: 2082573245}
-  Tourner: {fileID: 0}
-  Tout_droit: {fileID: 0}
-  Bifurc: {fileID: 0}
-  Bifurcc: {fileID: 0}
-  Carrefour: {fileID: 0}
-  Impasse: {fileID: 0}
-  Serum: {fileID: 0}
   version: 1
   testencours: 0
 --- !u!1 &2027045272
@@ -3677,12 +3659,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0da34a1777221d94ab45d965c4627483, type: 3}
---- !u!4 &2082573245 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5112061744354806716, guid: f39592cf01d0a894c8396963708ccd4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5112061743614410753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2086918855
 GameObject:
   m_ObjectHideFlags: 0
