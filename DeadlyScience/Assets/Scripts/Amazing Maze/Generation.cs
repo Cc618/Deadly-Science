@@ -254,6 +254,13 @@ namespace ds
         // Start is called before the first frame update
         void Start()
         {
+            // Only the master generates the maze
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                Destroy(this);
+                return;
+            }
+
             //On redéfinit la taille et la position du sol.
             int[] Plan = Generateur(xm, zm);
             int x = 0;
