@@ -11,8 +11,11 @@ namespace ds
             if (!Game.EscapeMenuOpen)
             {
                 // The new rotation
-                float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Time.deltaTime;
-
+#if UNITY_EDITOR
+                float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width / 2;
+#else
+                float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width;
+#endif
                 // Clip rot
                 if (rot > 90 && rot < 180)
                     rot = 90;

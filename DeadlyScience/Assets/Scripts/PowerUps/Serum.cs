@@ -11,9 +11,13 @@ namespace ds
         {
             var client = player.GetComponent<Player>();
 
+            Debug.Log("Serum : Collected");
+
             // If the player is not controlled by 
             if (!client)
                 return false;
+
+            Debug.Log("Serum : Collected by client");
 
             var p = player.GetComponent<PlayerState>();
 

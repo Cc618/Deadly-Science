@@ -79,7 +79,8 @@ namespace ds
         // When a player takes a serum
         public void OnSerum()
         {
-            if (PhotonNetwork.IsMasterClient)
+            // TODO : Remote
+            // if (PhotonNetwork.IsMasterClient)
                 ++PlayerMaster.CollectedSerums;
         }
 
@@ -87,8 +88,6 @@ namespace ds
         {
             Debug.Log("PlayerState : 1st phase has begun");
         }
-
-
 
         public void EndFirstPhase()
         {

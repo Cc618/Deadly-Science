@@ -80,8 +80,6 @@ namespace ds
         // Whether the priority is higher for this player
         public bool HasPriority(PlayerNetwork player)
         {
-            Debug.Log(id.ToString() + player.id.ToString());
-
             // < because we want that the master has always the priority
             return id < player.id;
         }

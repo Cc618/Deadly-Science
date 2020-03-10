@@ -24,6 +24,8 @@ namespace ds
             {
                 collectedSerums = value;
 
+                Debug.Log(collectedSerums.ToString() + " / " + serumCount.ToString() + " collected serums");
+
                 // Change phase for all players
                 if (collectedSerums == serumCount)
                 {

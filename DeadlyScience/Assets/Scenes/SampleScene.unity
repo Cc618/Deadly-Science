@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 148919678}
   - component: {fileID: 148919677}
   - component: {fileID: 148919676}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Socle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 529101526}
   - component: {fileID: 529101525}
   - component: {fileID: 529101524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Socle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2688,7 +2688,7 @@ GameObject:
   - component: {fileID: 1658744963}
   - component: {fileID: 1658744962}
   - component: {fileID: 1658744961}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Socle 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2780,7 +2780,7 @@ GameObject:
   - component: {fileID: 1695862312}
   - component: {fileID: 1695862311}
   - component: {fileID: 1695862310}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Socle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3129,7 +3129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832ce88cf192f084291cfb4d456dafb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensivity: 200
+  mouseSensivity: 0.4
 --- !u!114 &1822125232
 MonoBehaviour:
   m_ObjectHideFlags: 0

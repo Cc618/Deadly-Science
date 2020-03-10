@@ -137,7 +137,11 @@ namespace ds
             if (!Game.EscapeMenuOpen)
                 transform.rotation = Quaternion.Euler(
                     transform.rotation.eulerAngles.x,
-                    transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime,
+#if UNITY_EDITOR
+                    transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width / 2,
+#else
+                    transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width,
+#endif
                     transform.rotation.eulerAngles.z
                 );
 
