@@ -76,6 +76,9 @@ namespace ds
         [Range(0, 1)]
         public float stunnedSpeedFactor;
 
+        [Range(0, 5)]
+        public float attackRange;
+
         InputManager inputManager;
         
         [HideInInspector]
@@ -192,6 +195,11 @@ namespace ds
             // Update position
             controller.Move(velocity * Time.deltaTime);
             animator.SetBool("moving", tangentSpeed > 1.6f);
+
+            // Attack
+            // TODO : Key binding
+            if (Input.GetKey(KeyCode.Mouse1))
+                Attack();
         }
 
         // Player to player hit
@@ -238,6 +246,16 @@ namespace ds
             // TODO : Call OnSerum for each clients (net) and remove remotely the serum
 
             state.OnSerum();
+        }
+
+        void Attack()
+        {
+            int layerMask = ~LayerMask.NameToLayer("Walls");
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.TransformDirection(Vector3.forward), out hit, attackRange, layerMask))
+                // TODO : Attack player
+                Debug.Log("Player : Hit");
         }
 
         private PlayerState state;
