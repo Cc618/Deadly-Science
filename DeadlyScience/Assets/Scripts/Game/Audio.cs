@@ -9,6 +9,7 @@ namespace ds
 {
     public class Audio : MonoBehaviour
     {
+        [Serializable]
         public class Sound
         {
             public string id;

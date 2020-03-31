@@ -29,6 +29,9 @@ namespace ds
 
             // TODO : Mode confined in menu / pause
             Cursor.lockState = CursorLockMode.Locked;
+
+            // Play music
+            Audio.SetMusic("theme");
         }
 
         private void Update()
