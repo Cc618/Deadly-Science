@@ -22,6 +22,10 @@ namespace ds
         // Singleton
         public static Audio instance;
 
+        // TODO : Yann settings
+        public static float musicVolume = .5F;
+        public static float sfxVolume = .5F;
+
         public Sound[] musics;
 
         public void Awake()
@@ -32,6 +36,7 @@ namespace ds
             {
                 musics[i].source = gameObject.AddComponent<AudioSource>();
                 musics[i].source.clip = musics[i].clip;
+                musics[i].source.volume = musicVolume;
             }
         }
 
