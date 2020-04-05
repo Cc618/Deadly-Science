@@ -7,6 +7,11 @@ namespace ds
 {
     public class MainMenu : MonoBehaviour
     {
+        private void Start()
+        {
+            Audio.SetMusic("menu");
+        }
+
         public void PlayGame()
         {
             SceneManager.LoadScene("Rooms");

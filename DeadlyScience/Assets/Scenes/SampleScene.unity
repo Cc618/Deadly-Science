@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2068,7 +2068,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.8985e-41, y: 1.02e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5034,7 +5034,6 @@ GameObject:
   - component: {fileID: 1822125230}
   - component: {fileID: 1822125231}
   - component: {fileID: 1822125232}
-  - component: {fileID: 1822125233}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -5127,22 +5126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b554683f637d094a8d928d7a9499148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1822125233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1822125226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33b9aaaeccb13cd48b1bd6ac1b090c0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musics:
-  - id: theme
-    clip: {fileID: 8300000, guid: 699654f69cf103143a3c941bcc0fbdde, type: 3}
-    source: {fileID: 0}
 --- !u!1 &1962951756
 GameObject:
   m_ObjectHideFlags: 0

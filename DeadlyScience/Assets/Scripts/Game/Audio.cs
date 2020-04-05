@@ -30,6 +30,8 @@ namespace ds
 
         public void Awake()
         {
+            DontDestroyOnLoad(this);
+
             instance = this;
 
             for (int i = 0; i < musics.Length; ++i)
@@ -48,7 +50,14 @@ namespace ds
             if (snd == null)
                 Debug.LogError("Music with id '" + id + "' not found");
             else
+            {
+                if (currentMusic != null)
+                    currentMusic.source.Stop();
+
                 snd.source.Play();
+
+                currentMusic = snd;
+            }
         }
 
         // Play SFX
@@ -57,5 +66,7 @@ namespace ds
             // TODO : Implement
             // TODO : Remote
         }
+
+        static Sound currentMusic;
     }
 }
