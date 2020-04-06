@@ -9,17 +9,20 @@ namespace ds
     {
         private void Start()
         {
-            // TODO :
             Audio.SetMusic("menu");
         }
 
         public void PlayGame()
         {
             SceneManager.LoadScene("Rooms");
+
+            Audio.Play("click");
         }
 
         public void QuitGame()
         {
+            Audio.Play("click");
+
             Debug.Log("QUIT!");
             Application.Quit();
         }

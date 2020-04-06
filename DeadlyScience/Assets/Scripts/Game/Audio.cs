@@ -27,6 +27,7 @@ namespace ds
         public static float sfxVolume = .5F;
 
         public Sound[] musics;
+        public Sound[] sfx;
 
         public GameObject audioSample;
 
@@ -44,6 +45,14 @@ namespace ds
                 // TODO : Volume
                 musics[i].source.volume = musicVolume;
             }
+
+            for (int i = 0; i < sfx.Length; ++i)
+            {
+                sfx[i].source = gameObject.AddComponent<AudioSource>();
+                sfx[i].source.clip = sfx[i].clip;
+
+                sfx[i].source.volume = sfxVolume;
+            }
         }
 
         // Change music (wrapper)
@@ -55,13 +64,19 @@ namespace ds
         // Play SFX
         public static void Play(string id)
         {
-            // TODO : Implement
+            Sound snd = Array.Find(instance.sfx, s => s.id == id);
+
+            if (snd == null)
+                Debug.LogError("SFX with id '" + id + "' not found");
+            else
+                snd.source.Play();
+
             // TODO : Remote
         }
 
         private void setMusic(string id)
         {
-            Sound snd = Array.Find(instance.musics, s => s.id == id);
+            Sound snd = Array.Find(musics, s => s.id == id);
 
             if (snd == null)
                 Debug.LogError("Music with id '" + id + "' not found");
