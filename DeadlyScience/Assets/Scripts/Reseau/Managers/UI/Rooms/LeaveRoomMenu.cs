@@ -14,6 +14,8 @@ public class LeaveRoomMenu : MonoBehaviour
     
     public void OnClic_LeaveRoom()
     {
+        Audio.Play("click");
+
         PhotonNetwork.LeaveRoom(true);
         _roomCanvases.CurrentRoomCanvas.Hide();
     }

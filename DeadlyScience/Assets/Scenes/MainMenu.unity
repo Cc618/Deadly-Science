@@ -967,6 +967,13 @@ MonoBehaviour:
   - id: menu
     clip: {fileID: 8300000, guid: fadbcfc2a0733b941a09d35c286fedd0, type: 3}
     source: {fileID: 0}
+  sfx:
+  - id: serum
+    clip: {fileID: 8300000, guid: e13bbac74eff7514eb031efe94602748, type: 3}
+    source: {fileID: 0}
+  - id: click
+    clip: {fileID: 8300000, guid: 62a0620eb029ed94c9045be7f797341e, type: 3}
+    source: {fileID: 0}
   audioSample: {fileID: 6932569464456803123, guid: 2644d3975a0e7cc40af7c5c360b3685a,
     type: 3}
 --- !u!1 &1006494272

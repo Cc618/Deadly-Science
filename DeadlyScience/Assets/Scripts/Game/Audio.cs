@@ -33,6 +33,13 @@ namespace ds
 
         public void Awake()
         {
+            // Forbid duplicates
+            if (instance != null)
+            {
+                Destroy(this);
+                return;
+            }
+
             DontDestroyOnLoad(this);
 
             instance = this;
@@ -70,7 +77,7 @@ namespace ds
                 Debug.LogError("SFX with id '" + id + "' not found");
             else
                 snd.source.Play();
-
+            
             // TODO : Remote
         }
 

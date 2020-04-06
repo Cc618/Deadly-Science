@@ -7,9 +7,16 @@ namespace ds
 {
     public class MainMenu : MonoBehaviour
     {
+        // Menu opened for the first time ?
+        static bool firstTime = true;
+
         private void Start()
         {
-            Audio.SetMusic("menu");
+            if (firstTime)
+            {
+                Audio.SetMusic("menu");
+                firstTime = false;
+            }
         }
 
         public void PlayGame()

@@ -20,6 +20,8 @@ namespace ds
 
         public void OnClick_CreateRoom()
         {
+            Audio.Play("click");
+
             if (!PhotonNetwork.IsConnected)
                 return;
 
