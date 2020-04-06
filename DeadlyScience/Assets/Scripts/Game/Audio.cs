@@ -28,6 +28,8 @@ namespace ds
 
         public Sound[] musics;
 
+        public GameObject audioSample;
+
         public void Awake()
         {
             DontDestroyOnLoad(this);
@@ -38,26 +40,16 @@ namespace ds
             {
                 musics[i].source = gameObject.AddComponent<AudioSource>();
                 musics[i].source.clip = musics[i].clip;
+
+                // TODO : Volume
                 musics[i].source.volume = musicVolume;
             }
         }
 
-        // Change music
+        // Change music (wrapper)
         public static void SetMusic(string id)
         {
-            Sound snd = Array.Find(instance.musics, s => s.id == id);
-
-            if (snd == null)
-                Debug.LogError("Music with id '" + id + "' not found");
-            else
-            {
-                if (currentMusic != null)
-                    currentMusic.source.Stop();
-
-                snd.source.Play();
-
-                currentMusic = snd;
-            }
+            instance.setMusic(id);
         }
 
         // Play SFX
@@ -67,6 +59,30 @@ namespace ds
             // TODO : Remote
         }
 
-        static Sound currentMusic;
+        private void setMusic(string id)
+        {
+            Sound snd = Array.Find(instance.musics, s => s.id == id);
+
+            if (snd == null)
+                Debug.LogError("Music with id '" + id + "' not found");
+            else
+            {
+                // Stop old music
+                if (currentMusic != null)
+                    currentMusic.GetComponent<Animator>().SetTrigger("Fade");
+
+                // Create new music
+                currentMusic = Instantiate(audioSample);
+                DontDestroyOnLoad(currentMusic);
+
+                // Change source and play
+                var src = currentMusic.GetComponent<AudioSource>();
+                src.clip = snd.source.clip;
+                src.volume = 0;
+                src.Play();
+            }
+        }
+
+        static GameObject currentMusic;
     }
 }

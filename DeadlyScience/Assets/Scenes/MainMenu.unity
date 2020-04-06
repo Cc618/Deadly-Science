@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 731869686}
   - component: {fileID: 731869687}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: Audio Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -967,6 +967,8 @@ MonoBehaviour:
   - id: menu
     clip: {fileID: 8300000, guid: fadbcfc2a0733b941a09d35c286fedd0, type: 3}
     source: {fileID: 0}
+  audioSample: {fileID: 6932569464456803123, guid: 2644d3975a0e7cc40af7c5c360b3685a,
+    type: 3}
 --- !u!1 &1006494272
 GameObject:
   m_ObjectHideFlags: 0
