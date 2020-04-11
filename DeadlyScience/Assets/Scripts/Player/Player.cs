@@ -152,6 +152,8 @@ namespace ds
             else
                 velocity.y += gravity * Time.deltaTime;
 
+            Debug.Log("PLAYER");
+
             // Cam virtual rotation
             if (!Game.EscapeMenuOpen)
                 transform.rotation = Quaternion.Euler(
