@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\MainMenu\InputManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\KeybindDialog.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\PlaySound.cs" />
     <Compile Include="Assets\Scripts\Player\Corrupted.cs" />
     <Compile Include="Assets\Scripts\Player\LookToCam.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
