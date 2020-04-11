@@ -116,6 +116,10 @@ namespace ds
             if (!networkInit)
                 return;
 
+            // TMP
+            if (Input.GetKey(KeyCode.N))
+                net.SendTestEvent("N pressed");
+
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;
 
@@ -243,7 +247,8 @@ namespace ds
 
         public void OnSerumCollect()
         {
-            // TODO : Call OnSerum for each clients (net) and remove remotely the serum
+            // Remote call
+            net.SendOnSerum();
 
             state.OnSerum();
         }

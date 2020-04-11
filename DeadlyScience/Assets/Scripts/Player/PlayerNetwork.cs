@@ -6,7 +6,7 @@ using Photon.Pun;
 namespace ds
 {
     // Instance part
-    public partial class PlayerNetwork : MonoBehaviour
+    public partial class PlayerNetwork : MonoBehaviour, IPunInstantiateMagicCallback
     {
         // To recognize the player with network
         // Also used to decide which player send callbacks (priority)
@@ -18,6 +18,9 @@ namespace ds
         // Whether this player is handle by the client
         public bool isLocal;
 
+        // This is the id of the player controlled by the client
+        public static int localId;
+        
         // The 'constructor' of the player
         // Call 'constructors' in other components
         void Start()
@@ -50,16 +53,16 @@ namespace ds
                 p.StartAfterPlayerNetwork();
             }
 
-            // TODO : Set master to -1
-            // TODO : Verify same ids on each pc
-            id = players.Count;
-
             // Start phases
             playerState = GetComponent<PlayerState>();
             playerState.StartAfterPlayerNetwork();
 
             // Append this player to the players in game list
             RegisterPlayer(gameObject);
+        }
+        public void OnPhotonInstantiate(PhotonMessageInfo info)
+        {
+            id = info.Sender.ActorNumber;
         }
 
         // Called when all players are in game before OnGameBegin
@@ -97,6 +100,7 @@ namespace ds
         private static List<GameObject> players = new List<GameObject>();
         public static List<GameObject> Players { get => players; }
 
+        // TODO : rm
         // Registers a new player in the players list
         public static void RegisterPlayer(GameObject p)
         {
@@ -122,17 +126,6 @@ namespace ds
 
             localPlayer.OnGameBegin();
         }
-
-        // A serum has been collected
-        // TODO : Destroy the serum with this id
-        void OnSerum(int serumId)
-        {
-            Debug.Log("PlayerNetwork : OnSerum");
-
-            // TODO : Update
-            ++PlayerMaster.CollectedSerums;
-        }
-
     }
 
     // Network events part
@@ -148,13 +141,39 @@ namespace ds
             // This event sets PlayerState.Status
         }
 
+        // A serum has been collected
+        [PunRPC]
+        public void OnSerum(int from)
+        {
+            // TODO : Update
+            Debug.Log($"NET : Player {from} has taken a serum");
+
+            // TODO : Only master
+            ++PlayerMaster.CollectedSerums;
+        }
+
         // Send to each player OnSerum events
         // Serum id serves to destroy the serum
         // TODO : serumId
-        public static void SendOnSerum(int serumId=-1)
+        public void SendOnSerum()
         {
-            // TODO : STEVE : Send event
+            // TODO : Destroy here
+
             // This event triggers PlayerNetwork.OnSerum
+            PhotonView.Get(this).RPC("OnSerum", RpcTarget.All, id);
+        }
+
+        [PunRPC]
+        public void TestEvent(int from, string msg)
+        {
+            Debug.Log($"NET : Player {from} says : '{msg}'");
+        }
+
+        // TODO : Remove
+        public void SendTestEvent(string msg)
+        {
+            // TODO : Keep view
+            PhotonView.Get(this).RPC("TestEvent", RpcTarget.All, id, msg);
         }
     }
 }
