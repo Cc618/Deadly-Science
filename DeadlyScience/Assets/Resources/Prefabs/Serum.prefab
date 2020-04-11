@@ -33,7 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
-  - {fileID: 8803696047318096296}
+  - {fileID: 4564317029128892543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -152,11 +152,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4234809757560890487}
     m_Modifications:
-    - target: {fileID: -7521214134985992077, guid: 73d3a3c75a99cc24f89810ae528035f4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 73d3a3c75a99cc24f89810ae528035f4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -212,29 +207,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 73d3a3c75a99cc24f89810ae528035f4,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 73d3a3c75a99cc24f89810ae528035f4,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 73d3a3c75a99cc24f89810ae528035f4,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 73d3a3c75a99cc24f89810ae528035f4,
         type: 3}
       propertyPath: m_Name
       value: serum
       objectReference: {fileID: 0}
+    - target: {fileID: 4224801822505238522, guid: 73d3a3c75a99cc24f89810ae528035f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73d3a3c75a99cc24f89810ae528035f4, type: 3}
---- !u!4 &8803696047318096296 stripped
+--- !u!4 &4564317029128892543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 73d3a3c75a99cc24f89810ae528035f4,
     type: 3}
