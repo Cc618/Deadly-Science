@@ -110,11 +110,27 @@ namespace ds
             Debug.Log("Player : OnGameBegin");
         }
 
+
+
+
+        // TODO : rm
+        [PunRPC]
+        public void TestCallback(int from, string msg)
+        {
+            Debug.Log($"Net Log : Callback from player {from} -> {msg}");
+        }
+
+
+
         void Update()
         {
             // Don't update if the network is not set up
             if (!networkInit)
                 return;
+
+            // TMP
+            if (Input.GetKey(KeyCode.N))
+                PhotonView.Get(this).RPC("TestCallback", RpcTarget.All, net.id, "N pressed");
 
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;

@@ -35,5 +35,10 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - RPC_ChangeReadyState
+  - TestNet
+  - tst
+  - NetLog
+  - InstantiatePlayer
+  - TestCallback
   DisableAutoOpenWizard: 1
   ShowSettings: 1

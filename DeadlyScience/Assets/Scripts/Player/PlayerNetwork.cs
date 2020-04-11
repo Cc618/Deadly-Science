@@ -6,7 +6,7 @@ using Photon.Pun;
 namespace ds
 {
     // Instance part
-    public partial class PlayerNetwork : MonoBehaviour
+    public partial class PlayerNetwork : MonoBehaviour, IPunInstantiateMagicCallback
     {
         // To recognize the player with network
         // Also used to decide which player send callbacks (priority)
@@ -18,10 +18,24 @@ namespace ds
         // Whether this player is handle by the client
         public bool isLocal;
 
+        // This is the id of the player controlled by the client
+        public static int localId;
+        
+        // TODO : Remove when no debug
+        [PunRPC]
+        public void NetLog(object o)
+        {
+            Debug.Log($"Net Log : {o}");
+        }
+        
         // The 'constructor' of the player
         // Call 'constructors' in other components
         void Start()
         {
+            // TMP
+            PhotonView.Get(this).RPC("NetLog", RpcTarget.All, $"Message from {id}");
+
+
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -50,16 +64,16 @@ namespace ds
                 p.StartAfterPlayerNetwork();
             }
 
-            // TODO : Set master to -1
-            // TODO : Verify same ids on each pc
-            id = players.Count;
-
             // Start phases
             playerState = GetComponent<PlayerState>();
             playerState.StartAfterPlayerNetwork();
 
             // Append this player to the players in game list
             RegisterPlayer(gameObject);
+        }
+        public void OnPhotonInstantiate(PhotonMessageInfo info)
+        {
+            id = info.Sender.ActorNumber;
         }
 
         // Called when all players are in game before OnGameBegin
@@ -97,6 +111,7 @@ namespace ds
         private static List<GameObject> players = new List<GameObject>();
         public static List<GameObject> Players { get => players; }
 
+        // TODO : rm
         // Registers a new player in the players list
         public static void RegisterPlayer(GameObject p)
         {
