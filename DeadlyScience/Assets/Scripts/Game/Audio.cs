@@ -51,6 +51,7 @@ namespace ds
 
                 // TODO : Volume
                 musics[i].source.volume = musicVolume;
+                musics[i].source.loop = true;
             }
 
             for (int i = 0; i < sfx.Length; ++i)
