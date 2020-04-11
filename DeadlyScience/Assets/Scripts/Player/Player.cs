@@ -110,18 +110,6 @@ namespace ds
             Debug.Log("Player : OnGameBegin");
         }
 
-
-
-
-        // TODO : rm
-        [PunRPC]
-        public void TestCallback(int from, string msg)
-        {
-            Debug.Log($"Net Log : Callback from player {from} -> {msg}");
-        }
-
-
-
         void Update()
         {
             // Don't update if the network is not set up
@@ -130,7 +118,7 @@ namespace ds
 
             // TMP
             if (Input.GetKey(KeyCode.N))
-                PhotonView.Get(this).RPC("TestCallback", RpcTarget.All, net.id, "N pressed");
+                net.SendTestEvent("N pressed");
 
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;
@@ -151,8 +139,6 @@ namespace ds
             // Gravity
             else
                 velocity.y += gravity * Time.deltaTime;
-
-            Debug.Log("PLAYER");
 
             // Cam virtual rotation
             if (!Game.EscapeMenuOpen)
@@ -261,7 +247,8 @@ namespace ds
 
         public void OnSerumCollect()
         {
-            // TODO : Call OnSerum for each clients (net) and remove remotely the serum
+            // Remote call
+            net.SendOnSerum();
 
             state.OnSerum();
         }

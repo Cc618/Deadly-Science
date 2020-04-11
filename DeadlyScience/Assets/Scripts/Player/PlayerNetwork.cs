@@ -21,21 +21,10 @@ namespace ds
         // This is the id of the player controlled by the client
         public static int localId;
         
-        // TODO : Remove when no debug
-        [PunRPC]
-        public void NetLog(object o)
-        {
-            Debug.Log($"Net Log : {o}");
-        }
-        
         // The 'constructor' of the player
         // Call 'constructors' in other components
         void Start()
         {
-            // TMP
-            PhotonView.Get(this).RPC("NetLog", RpcTarget.All, $"Message from {id}");
-
-
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -137,17 +126,6 @@ namespace ds
 
             localPlayer.OnGameBegin();
         }
-
-        // A serum has been collected
-        // TODO : Destroy the serum with this id
-        void OnSerum(int serumId)
-        {
-            Debug.Log("PlayerNetwork : OnSerum");
-
-            // TODO : Update
-            ++PlayerMaster.CollectedSerums;
-        }
-
     }
 
     // Network events part
@@ -163,13 +141,39 @@ namespace ds
             // This event sets PlayerState.Status
         }
 
+        // A serum has been collected
+        [PunRPC]
+        public void OnSerum(int from)
+        {
+            // TODO : Update
+            Debug.Log($"NET : Player {from} has taken a serum");
+
+            // TODO : Only master
+            ++PlayerMaster.CollectedSerums;
+        }
+
         // Send to each player OnSerum events
         // Serum id serves to destroy the serum
         // TODO : serumId
-        public static void SendOnSerum(int serumId=-1)
+        public void SendOnSerum()
         {
-            // TODO : STEVE : Send event
+            // TODO : Destroy here
+
             // This event triggers PlayerNetwork.OnSerum
+            PhotonView.Get(this).RPC("OnSerum", RpcTarget.All, id);
+        }
+
+        [PunRPC]
+        public void TestEvent(int from, string msg)
+        {
+            Debug.Log($"NET : Player {from} says : '{msg}'");
+        }
+
+        // TODO : Remove
+        public void SendTestEvent(string msg)
+        {
+            // TODO : Keep view
+            PhotonView.Get(this).RPC("TestEvent", RpcTarget.All, id, msg);
         }
     }
 }
