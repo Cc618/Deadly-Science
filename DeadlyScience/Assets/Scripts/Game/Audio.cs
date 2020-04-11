@@ -102,6 +102,7 @@ namespace ds
                 var src = currentMusic.GetComponent<AudioSource>();
                 src.clip = snd.source.clip;
                 src.volume = 0;
+                src.loop = true;
                 src.Play();
             }
         }
