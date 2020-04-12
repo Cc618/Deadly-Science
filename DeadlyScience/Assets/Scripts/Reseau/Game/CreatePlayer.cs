@@ -20,25 +20,25 @@ namespace ds
             //Determine which position to spawn each player
             foreach (var roomPlayer in PhotonNetwork.CurrentRoom.Players)
             {
-                tableau[i] = roomPlayer.Value.UserId;
+                tableau[i] = roomPlayer.Value.NickName;
                 i++;
             }
-            print(_player.UserId);
+            print(_player.NickName);
             print("BLANK");
             print(tableau[0]);
             print(tableau[1]);
 
-            if (tableau[0] == _player.UserId)
+            if (tableau[0] == _player.NickName)
             {
                 var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 6), Quaternion.identity, 0);
                 player.GetComponent<PlayerNetwork>().isLocal = true;
             }
-            else if (tableau[1] == _player.UserId)
+            else if (tableau[1] == _player.NickName)
             {
                 var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 4), Quaternion.identity, 0);
                 player.GetComponent<PlayerNetwork>().isLocal = true;
             }
-            else if (tableau[2] == _player.UserId)
+            else if (tableau[2] == _player.NickName)
             {
                 var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 2), Quaternion.identity, 0);
                 player.GetComponent<PlayerNetwork>().isLocal = true;
