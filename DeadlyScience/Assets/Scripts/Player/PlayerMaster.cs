@@ -4,13 +4,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace ds
 {
     // Instance part
     public partial class PlayerMaster : MonoBehaviour
     {
-        // TODO
+        public static PlayerMaster instance;
     }
 
     // Static part

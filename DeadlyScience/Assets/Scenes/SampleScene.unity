@@ -4885,6 +4885,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Serum
       objectReference: {fileID: 0}
+    - target: {fileID: 4234809757560890475, guid: 0da34a1777221d94ab45d965c4627483,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4234809757560890484, guid: 0da34a1777221d94ab45d965c4627483,
         type: 3}
       propertyPath: viewIdField

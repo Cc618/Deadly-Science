@@ -45,7 +45,10 @@ namespace ds
 
                 // Remove the master / slave if necessary
                 if (PhotonNetwork.IsMasterClient)
+                {
+                    PlayerMaster.instance = GetComponent<PlayerMaster>();
                     Destroy(GetComponent<PlayerSlave>());
+                }
                 else
                     Destroy(GetComponent<PlayerMaster>());
 
@@ -146,24 +149,29 @@ namespace ds
 
         // A serum has been collected
         [PunRPC]
-        public void OnSerum(int from)
+        public void OnSerum(int from, int serumId)
         {
             // TODO : Update
             Debug.Log($"NET : Player {from} has taken a serum");
 
-            // TODO : Only master
-            ++PlayerMaster.CollectedSerums;
+            // Find and destroy the serum
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Serum serum = Serum.instances.Find((Serum s) => s.id == serumId);
+
+                PhotonNetwork.Destroy(serum.GetComponent<PhotonView>());
+
+                ++PlayerMaster.CollectedSerums;
+            }
         }
 
         // Send to each player OnSerum events
         // Serum id serves to destroy the serum
         // TODO : serumId
-        public void SendOnSerum()
+        public void SendOnSerum(int serumId)
         {
-            // TODO : Destroy here
-
             // This event triggers PlayerNetwork.OnSerum
-            view.RPC("OnSerum", RpcTarget.All, id);
+            view.RPC("OnSerum", RpcTarget.All, id, serumId);
         }
 
         [PunRPC]

@@ -42,5 +42,6 @@ MonoBehaviour:
   - TestCallback
   - TestEvent
   - OnSerum
+  - DestroySerum
   DisableAutoOpenWizard: 1
   ShowSettings: 1
