@@ -22,8 +22,12 @@ namespace ds
                 // Heal player
                 p.Status = PlayerState.PlayerStatus.HEALED;
 
-                // Update client
+                // Update client / other players
                 client.OnSerumCollect();
+
+                // Destroy serum
+                // TODO : BY MASTER
+                PhotonNetwork.Destroy(gameObject);
 
                 return true;
             }

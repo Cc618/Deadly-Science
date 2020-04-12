@@ -25,6 +25,8 @@ namespace ds
         // Call 'constructors' in other components
         void Start()
         {
+            view = PhotonView.Get(this);
+
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -88,6 +90,7 @@ namespace ds
         }
 
         private PlayerState playerState;
+        private PhotonView view;
     }
 
     // Static part
@@ -137,7 +140,7 @@ namespace ds
         {
             Debug.Log("PlayerNetwork : Sending player status set");
 
-            // TODO : STEVE : Send event
+
             // This event sets PlayerState.Status
         }
 
@@ -160,7 +163,7 @@ namespace ds
             // TODO : Destroy here
 
             // This event triggers PlayerNetwork.OnSerum
-            PhotonView.Get(this).RPC("OnSerum", RpcTarget.All, id);
+            view.RPC("OnSerum", RpcTarget.All, id);
         }
 
         [PunRPC]
@@ -173,7 +176,7 @@ namespace ds
         public void SendTestEvent(string msg)
         {
             // TODO : Keep view
-            PhotonView.Get(this).RPC("TestEvent", RpcTarget.All, id, msg);
+            view.RPC("TestEvent", RpcTarget.All, id, msg);
         }
     }
 }
