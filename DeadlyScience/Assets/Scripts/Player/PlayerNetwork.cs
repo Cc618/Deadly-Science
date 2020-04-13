@@ -8,6 +8,9 @@ namespace ds
     // Instance part
     public partial class PlayerNetwork : MonoBehaviour, IPunInstantiateMagicCallback
     {
+        // This is the id of the player controlled by the client
+        public static int localId;
+
         // To recognize the player with network
         // Also used to decide which player send callbacks (priority)
         // * Unique for each player
@@ -18,9 +21,6 @@ namespace ds
         // Whether this player is handle by the client
         public bool isLocal;
 
-        // This is the id of the player controlled by the client
-        public static int localId;
-        
         // The 'constructor' of the player
         // Call 'constructors' in other components
         void Start()
@@ -174,17 +174,34 @@ namespace ds
             view.RPC("OnSerum", RpcTarget.All, id, serumId);
         }
 
+        // Every 
         [PunRPC]
-        public void TestEvent(int from, string msg)
+        public void SyncNet(int from, float stamina, bool stunned)
         {
-            Debug.Log($"NET : Player {from} says : '{msg}'");
+            if (!isLocal && from == id)
+            {
+                Debug.Log($"> {playerState.staminaUi}");
+
+                playerState.staminaUi.Value = stamina;
+                playerState.staminaUi.ChangeStunned(stunned);
+            }
         }
 
-        // TODO : Remove
-        public void SendTestEvent(string msg)
+        public void SendSyncNet(float stamina, bool stunned)
         {
-            // TODO : Keep view
-            view.RPC("TestEvent", RpcTarget.All, id, msg);
+            view.RPC("SyncNet", RpcTarget.All, id, stamina, stunned);
         }
+
+        //[PunRPC]
+        //public void SetStunned(int from, bool value)
+        //{
+        //    if (!isLocal && from == id)
+        //        playerState.staminaUi.ChangeStunned(value);
+        //}
+
+        //public void SendSetStunned(bool value)
+        //{
+        //    // view.RPC("SetStunned", RpcTarget.All, id, value);
+        //}
     }
 }

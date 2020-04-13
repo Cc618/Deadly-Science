@@ -600,8 +600,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
-  nameUi: {fileID: 1762533296}
-  staminaUi: {fileID: 1516878344}
   strength: 0.4
   regeneration: 0.3
   stunnedSpeedFactor: 0.1
@@ -696,6 +694,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchTime: 0.1
   revengeTime: 0.1
+  nameUi: {fileID: 1762533296}
+  staminaUi: {fileID: 1516878344}
 --- !u!114 &4102238349062653263
 MonoBehaviour:
   m_ObjectHideFlags: 0

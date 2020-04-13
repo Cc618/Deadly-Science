@@ -12,7 +12,7 @@ using Photon.Pun;
 
 namespace ds
 {
-    public class Player : MonoBehaviour
+    public partial class Player : MonoBehaviour
     {
         
         public float gravity;
@@ -32,37 +32,24 @@ namespace ds
         public Transform groundSensor;
         public LayerMask groundMask;
 
-        // TODO : Move these fields in another class
-        public PlayerName nameUi;
-        public PlayerStamina staminaUi;
-
-        // TODO : Move in PlayerState
-        // Between 0 and 1
-        private float stamina = 1;
         public float Stamina
         {
             get => stamina;
             set
             {
-                // TODO : Update stamina by network
+                // Stunned
                 if (value <= 0)
                 {
                     value = 0;
                     stunned = true;
-                    // TODO : staminaUi.ChangeStunned(stunned);
-
-                    // TODO: rm
-                    Debug.Log("Player -> Stunned");
                 }
                 else if (value >= 1)
                 {
                     value = 1;
                     stunned = false;
-                    // TODO : staminaUi.ChangeStunned(stunned);
                 }
 
                 stamina = value;
-                // TODO : staminaUi.Value = value;
             }
         }
 
@@ -93,9 +80,7 @@ namespace ds
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
             state = GetComponentInChildren<PlayerState>();
-
-            Stamina = stamina;
-
+            
             // Disable render only if this is the current player
             GetComponentInChildren<Renderer>().enabled = false;
             
@@ -103,11 +88,14 @@ namespace ds
             PlayerNetwork.localPlayer = this;
         }
 
+        // TODO : The master call this
         // Called by PlayerMaster when all players are in game
         // (Phases have begun)
         public void OnGameBegin()
         {
             Debug.Log("Player : OnGameBegin");
+
+            StartCoroutine(SyncNet());
         }
 
         void Update()
@@ -115,10 +103,6 @@ namespace ds
             // Don't update if the network is not set up
             if (!networkInit)
                 return;
-
-            // TMP
-            if (Input.GetKey(KeyCode.N))
-                net.SendTestEvent("N pressed");
 
             // Health regeneration
             Stamina += Time.deltaTime * regeneration;
@@ -203,7 +187,11 @@ namespace ds
             // Attack
             // TODO : Key binding
             if (Input.GetKey(KeyCode.Mouse1))
+            {
+                // TODO : update
+                Hit();
                 Attack();
+            }
         }
 
         // Player to player hit
@@ -268,9 +256,27 @@ namespace ds
         private Animator animator;
         private Vector3 velocity = new Vector3();
         private bool grounded = false;
-        // When stamina = 0, can't move
-        private bool stunned = false;
         // Whether we've called StartAfterPlayerNetwork()
         private bool networkInit = false;
+    }
+
+    // Net part
+    public partial class Player
+    {
+        static float syncEvery = .3f;
+
+        IEnumerator SyncNet()
+        {
+            for (; ; )
+            {
+                yield return new WaitForSeconds(syncEvery);
+                net.SendSyncNet(stamina, stunned);
+            }
+        }
+
+        // Between 0 and 1
+        private float stamina = 1;
+        // When stamina = 0, can't move
+        private bool stunned = false;
     }
 }

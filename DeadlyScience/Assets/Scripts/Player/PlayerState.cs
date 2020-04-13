@@ -30,8 +30,8 @@ namespace ds
                 status = value;
 
                 // TODO : Change
-                if (player && player.nameUi)
-                    player.nameUi.SetStatus(status);
+                if (player && nameUi)
+                    nameUi.SetStatus(status);
 
                 // Update material
                 // TODO : Update also anim / sound...
@@ -50,6 +50,9 @@ namespace ds
 
             get => status;
         }
+
+        public PlayerName nameUi;
+        public PlayerStamina staminaUi;
 
         public void StartAfterPlayerNetwork()
         {

@@ -43,5 +43,9 @@ MonoBehaviour:
   - TestEvent
   - OnSerum
   - DestroySerum
+  - SetStamina
+  - SetStunned
+  - NetSync
+  - SyncNet
   DisableAutoOpenWizard: 1
   ShowSettings: 1
