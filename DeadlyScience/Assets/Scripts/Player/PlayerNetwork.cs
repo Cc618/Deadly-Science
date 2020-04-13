@@ -25,6 +25,8 @@ namespace ds
         // Call 'constructors' in other components
         void Start()
         {
+            view = PhotonView.Get(this);
+
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -43,7 +45,10 @@ namespace ds
 
                 // Remove the master / slave if necessary
                 if (PhotonNetwork.IsMasterClient)
+                {
+                    PlayerMaster.instance = GetComponent<PlayerMaster>();
                     Destroy(GetComponent<PlayerSlave>());
+                }
                 else
                     Destroy(GetComponent<PlayerMaster>());
 
@@ -88,6 +93,7 @@ namespace ds
         }
 
         private PlayerState playerState;
+        private PhotonView view;
     }
 
     // Static part
@@ -137,30 +143,35 @@ namespace ds
         {
             Debug.Log("PlayerNetwork : Sending player status set");
 
-            // TODO : STEVE : Send event
+
             // This event sets PlayerState.Status
         }
 
         // A serum has been collected
         [PunRPC]
-        public void OnSerum(int from)
+        public void OnSerum(int from, int serumId)
         {
             // TODO : Update
             Debug.Log($"NET : Player {from} has taken a serum");
 
-            // TODO : Only master
-            ++PlayerMaster.CollectedSerums;
+            // Find and destroy the serum
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Serum serum = Serum.instances.Find((Serum s) => s.id == serumId);
+
+                PhotonNetwork.Destroy(serum.GetComponent<PhotonView>());
+
+                ++PlayerMaster.CollectedSerums;
+            }
         }
 
         // Send to each player OnSerum events
         // Serum id serves to destroy the serum
         // TODO : serumId
-        public void SendOnSerum()
+        public void SendOnSerum(int serumId)
         {
-            // TODO : Destroy here
-
             // This event triggers PlayerNetwork.OnSerum
-            PhotonView.Get(this).RPC("OnSerum", RpcTarget.All, id);
+            view.RPC("OnSerum", RpcTarget.All, id, serumId);
         }
 
         [PunRPC]
@@ -173,7 +184,7 @@ namespace ds
         public void SendTestEvent(string msg)
         {
             // TODO : Keep view
-            PhotonView.Get(this).RPC("TestEvent", RpcTarget.All, id, msg);
+            view.RPC("TestEvent", RpcTarget.All, id, msg);
         }
     }
 }

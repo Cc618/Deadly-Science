@@ -81,7 +81,7 @@ namespace ds
         {
             // TODO : Remote
             // if (PhotonNetwork.IsMasterClient)
-                ++PlayerMaster.CollectedSerums;
+                //++PlayerMaster.CollectedSerums;
         }
 
         public void BeginFirstPhase()

@@ -36,10 +36,17 @@ namespace ds
 
         private void SetPlayerText(Photon.Realtime.Player player)
         {
-            int result = -1;
-            if (player.CustomProperties.ContainsKey("RandomNumber"))
-                result = (int)player.CustomProperties["RandomNumber"];
-            _text.text = result.ToString() + ", " + player.NickName;
+            /*bool ready = GetComponent<PlayerListingMenu>()._ready;
+            string is_ready = "";
+            if (ready)
+            {
+                is_ready += "R ";
+            }
+            else
+            {
+                is_ready += "N ";
+            }*/
+                _text.text = player.NickName;
         }
     }
 }

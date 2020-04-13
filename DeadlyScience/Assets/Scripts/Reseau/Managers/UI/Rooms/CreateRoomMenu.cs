@@ -28,6 +28,7 @@ namespace ds
             RoomOptions options = new RoomOptions();
             options.BroadcastPropsChangeToAll = true;
             options.MaxPlayers = 4;
+            options.PublishUserId = true;
             PhotonNetwork.JoinOrCreateRoom(_roomName.text, options, TypedLobby.Default);
         }
 

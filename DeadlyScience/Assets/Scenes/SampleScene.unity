@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1258,7 +1258,7 @@ PrefabInstance:
     - target: {fileID: 4934827371068469204, guid: 8a03d1919dd341c47944283a0802e877,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4934827371068469204, guid: 8a03d1919dd341c47944283a0802e877,
         type: 3}
@@ -2944,11 +2944,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95eb927751b6a148ada6e653df91328, type: 3}
+<<<<<<< HEAD
 --- !u!4 &1101617286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 0}
+=======
+--- !u!4 &1101617286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 1101617285}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767847569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1197171295}
+  m_Father: {fileID: 146060410}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1197171295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 8041723698764774356, guid: b95eb927751b6a148ada6e653df91328,
+    type: 3}
+>>>>>>> d27d5d6616b199d9283cf3f576229d78b499f9dd
+  m_PrefabInstance: {fileID: 1101617285}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326078233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1101617286}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1270198813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3038,6 +3069,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 302ce3ffeba8dad44a78bab7b0904b45, type: 3}
+--- !u!1 &1326078233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1101617285}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197171295}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1371326805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3972,6 +4019,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1767847569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1101617285}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1101617286}
+  m_Layer: 0
+  m_Name: Couloir droit (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1794622643
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,6 +4890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Serum
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234809757560890475, guid: 0da34a1777221d94ab45d965c4627483,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4234809757560890484, guid: 0da34a1777221d94ab45d965c4627483,
         type: 3}

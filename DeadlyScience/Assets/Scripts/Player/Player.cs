@@ -245,10 +245,10 @@ namespace ds
             }
         }
 
-        public void OnSerumCollect()
+        public void OnSerumCollect(int serumId)
         {
             // Remote call
-            net.SendOnSerum();
+            net.SendOnSerum(serumId);
 
             state.OnSerum();
         }

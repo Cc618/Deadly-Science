@@ -13,10 +13,10 @@ public abstract class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // TODO : Change remote
         if ((other.gameObject.layer & playerLayer) != 0)
             if (OnCollect(other.gameObject))
                 Destroy(gameObject);
-                // TODO : PhotonNetwork.Destroy(gameObject);
     }
 
     // When a player hits the power up
