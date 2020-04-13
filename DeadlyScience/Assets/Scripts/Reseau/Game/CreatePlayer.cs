@@ -13,7 +13,6 @@ namespace ds
         void Start()
         {
             PV = GetComponent<PhotonView>();
-
             // TODO : LEANDRE : Position
             var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 6), Quaternion.identity, 0);
             player.GetComponent<PlayerNetwork>().isLocal = true;
