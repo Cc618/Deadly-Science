@@ -2944,11 +2944,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95eb927751b6a148ada6e653df91328, type: 3}
-<<<<<<< HEAD
---- !u!4 &1101617286 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
-=======
 --- !u!4 &1101617286
 Transform:
   m_ObjectHideFlags: 0
@@ -2969,7 +2964,6 @@ Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 8041723698764774356, guid: b95eb927751b6a148ada6e653df91328,
     type: 3}
->>>>>>> d27d5d6616b199d9283cf3f576229d78b499f9dd
   m_PrefabInstance: {fileID: 1101617285}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326078233}
