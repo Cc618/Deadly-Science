@@ -19,7 +19,7 @@ namespace ds
 
         private List<PlayerListing> _listings = new List<PlayerListing>();
         private RoomCanvases _roomCanvases;
-        private bool _ready = false;
+        public bool _ready = false;
 
         public override void OnEnable()
         {
