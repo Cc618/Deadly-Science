@@ -15,9 +15,7 @@ namespace ds
 
         void Start()
         {
-<<<<<<< HEAD
             PV = GetComponent<PhotonView>();
-=======
             int[] tableau = new int[4];
             int i = 0;
             int id = player.ActorNumber;
@@ -53,10 +51,6 @@ namespace ds
                 var _player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 0), Quaternion.identity, 0);
                 _player.GetComponent<PlayerNetwork>().isLocal = true;
             }
-
-
-
->>>>>>> d27d5d6616b199d9283cf3f576229d78b499f9dd
             // TODO : LEANDRE : Position
 
             print("Le joueur a été instancié");
