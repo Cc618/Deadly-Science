@@ -226,6 +226,7 @@ namespace ds
             var pState = hit.gameObject.GetComponent<PlayerState>();
             var pNet = hit.gameObject.GetComponent<PlayerNetwork>();
             
+            // TODO : Other status
             // This player is infected
             if (state.Status == PlayerState.PlayerStatus.HEALED &&
                 pState.Status == PlayerState.PlayerStatus.REVENGE)

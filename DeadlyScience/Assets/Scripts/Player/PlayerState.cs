@@ -58,6 +58,7 @@ namespace ds
         public void StartAfterPlayerNetwork()
         {
             player = GetComponent<Player>();
+            net = GetComponent<PlayerNetwork>();
         }        
 
         private void Update()
@@ -74,6 +75,7 @@ namespace ds
         }
 
         private Player player;
+        private PlayerNetwork net;
     }
 
     // This part is executed only if this script is owned
@@ -83,9 +85,8 @@ namespace ds
         // When a player takes a serum
         public void OnSerum()
         {
-            // TODO : Remote
-            // if (PhotonNetwork.IsMasterClient)
-                //++PlayerMaster.CollectedSerums;
+            // !!! TODO : Can take serum only when infected
+            net.SendSetStatus(PlayerStatus.HEALED);
         }
 
         public void BeginFirstPhase()
