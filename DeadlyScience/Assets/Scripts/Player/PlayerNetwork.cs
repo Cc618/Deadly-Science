@@ -172,10 +172,9 @@ namespace ds
                 playerState.Status = status;
         }
 
-        // This event takes target unlike other events
-        public void SendSetStatus(int target, PlayerState.PlayerStatus status)
+        public void SendSetStatus(PlayerState.PlayerStatus status)
         {
-            view.RPC("SetStatus", RpcTarget.All, target, status);
+            view.RPC("SetStatus", RpcTarget.All, id, status);
         }
 
         // Called every third of second

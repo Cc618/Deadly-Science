@@ -191,13 +191,13 @@ namespace ds
 
             // TODO : Test
             if (Input.GetKey(KeyCode.H))
-                net.SendSetStatus(net.id, PlayerState.PlayerStatus.HEALED);
+                net.SendSetStatus(PlayerState.PlayerStatus.HEALED);
             if (Input.GetKey(KeyCode.R))
-                net.SendSetStatus(net.id, PlayerState.PlayerStatus.REVENGE);
+                net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
             if (Input.GetKey(KeyCode.G))
-                net.SendSetStatus(net.id, PlayerState.PlayerStatus.GHOST);
+                net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
             if (Input.GetKey(KeyCode.I))
-                net.SendSetStatus(net.id, PlayerState.PlayerStatus.INFECTED);
+                net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
         }
 
         // Player to player hit
@@ -216,28 +216,24 @@ namespace ds
         }
 
         // When the player controlled by the client hits another player
+        // and makes a move
         void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            // Not a player
+            if (hit.gameObject.layer != LayerMask.NameToLayer("Player"))
+                return;
+
             var pState = hit.gameObject.GetComponent<PlayerState>();
             var pNet = hit.gameObject.GetComponent<PlayerNetwork>();
             
-            // Not a player
-            if (!pNet)
-                return;
-
-            // The player collides another player
-            // This player must send the event
-            if (net.HasPriority(pNet))
-            {
-                // This player is infected
-                if (state.Status == PlayerState.PlayerStatus.HEALED &&
-                    pState.Status == PlayerState.PlayerStatus.REVENGE)
-                    net.SendSetStatus(net.id, PlayerState.PlayerStatus.REVENGE);
-                // The other player is infected
-                else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
-                    state.Status == PlayerState.PlayerStatus.REVENGE)
-                    net.SendSetStatus(pNet.id, PlayerState.PlayerStatus.REVENGE);
-            }
+            // This player is infected
+            if (state.Status == PlayerState.PlayerStatus.HEALED &&
+                pState.Status == PlayerState.PlayerStatus.REVENGE)
+                net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
+            // The other player is infected
+            else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
+                state.Status == PlayerState.PlayerStatus.REVENGE)
+                pNet.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
         }
 
         public void OnSerumCollect(int serumId)
