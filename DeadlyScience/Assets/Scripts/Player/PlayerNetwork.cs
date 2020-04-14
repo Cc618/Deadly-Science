@@ -27,6 +27,9 @@ namespace ds
         {
             view = PhotonView.Get(this);
 
+            playerState = GetComponent<PlayerState>();
+            playerState.StartAfterPlayerNetwork();
+            
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -35,11 +38,11 @@ namespace ds
                 Destroy(GetComponent<Player>());
                 Destroy(GetComponent<PlayerMaster>());
                 Destroy(GetComponent<PlayerSlave>());
-
-                // TODO : Set labels' camera (after all players have spawned)
             }
             else
             {
+                print($"TMP : NET : Awake is local");
+
                 // Remove labels
                 Destroy(GetComponentInChildren<LookToCam>().gameObject);
 
@@ -55,16 +58,17 @@ namespace ds
                 // Start player component
                 var p = GetComponent<Player>();
                 p.net = this;
-                p.StartAfterPlayerNetwork();
+                GetComponent<Player>().StartAfterPlayerNetwork();
             }
 
-            // Start phases
-            playerState = GetComponent<PlayerState>();
-            playerState.StartAfterPlayerNetwork();
+            print($"TMP : NET : awake");
 
             // Append this player to the players in game list
             RegisterPlayer(gameObject);
+
+            print($"TMP : NET : start");
         }
+
         public void OnPhotonInstantiate(PhotonMessageInfo info)
         {
             id = info.Sender.ActorNumber;
@@ -81,7 +85,7 @@ namespace ds
                 PlayerMaster.serumCount = PhotonNetwork.PlayerList.Length - 1;
 
             // TODO : Begin game...
-            if (isLocal)
+            if (id == localId)
                 playerState.BeginFirstPhase();
         }
 
@@ -125,24 +129,23 @@ namespace ds
         // When all players are in game
         static void OnAllPlayersInGame()
         {
-            Debug.Log("PlayerNetwork : All players in game");
+            print($"TMP : NET : all players in game");
 
             foreach (var player in players)
                 player.GetComponent<PlayerNetwork>().PrepareGame();
-
-            localPlayer.OnGameBegin();
         }
     }
 
     // Network events part
     public partial class PlayerNetwork : MonoBehaviour
     {
+        // Items //
         // A serum has been collected
         [PunRPC]
         public void OnSerum(int from, int serumId)
         {
-            // TODO : Update
-            Debug.Log($"NET : Player {from} has taken a serum");
+            if (from == id)
+                playerState.OnSerum();
 
             // Find and destroy the serum
             if (PhotonNetwork.IsMasterClient)
@@ -163,6 +166,7 @@ namespace ds
             view.RPC("OnSerum", RpcTarget.All, id, serumId);
         }
 
+        // Game play //
         // A player changes status
         [PunRPC]
         public void SetStatus(int from, PlayerState.PlayerStatus status)
@@ -191,6 +195,62 @@ namespace ds
         public void SendSyncNet(float stamina, bool stunned)
         {
             view.RPC("SyncNet", RpcTarget.All, id, stamina, stunned);
+        }
+
+        // Phases //
+        // To say that a player is ready
+        [PunRPC]
+        public void PlayerReady(int from)
+        {
+            ++PlayerMaster.instance.PlayersReady;
+        }
+
+        public void SendPlayerReady()
+        {
+            view.RPC("PlayerReady", RpcTarget.MasterClient, id);
+        }
+
+        // First phase, after game init
+        [PunRPC]
+        public void FirstPhase()
+        {
+            print("First phase");
+            if (id == localId)
+                GetComponent<Player>().OnGameBegin();
+        }
+
+        public void SendFirstPhase()
+        {
+            view.RPC("FirstPhase", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void SecondPhase()
+        {
+            print("Second phase");
+            if (id == localId)
+            {
+                playerState.EndFirstPhase();
+            }
+        }
+
+        public void SendSecondPhase()
+        {
+            view.RPC("SecondPhase", RpcTarget.All);
+        }
+
+        // First phase, after game init
+        [PunRPC]
+        public void EndOfGame()
+        {
+            print($"END {id}");
+            // TODO : Not only once call ?
+            playerState.EndOfGame();
+        }
+
+        public void SendEndOfGame()
+        {
+            view.RPC("EndOfGame", RpcTarget.All);
         }
     }
 }

@@ -74,6 +74,8 @@ namespace ds
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
+            print($"TMP : PLAYER : start");
+
             networkInit = true;
 
             inputManager = FindObjectOfType<InputManager>();
@@ -86,14 +88,15 @@ namespace ds
             
             // Update player network
             PlayerNetwork.localPlayer = this;
+
+            net.SendPlayerReady();
         }
 
-        // TODO : The master call this
         // Called by PlayerMaster when all players are in game
         // (Phases have begun)
         public void OnGameBegin()
         {
-            Debug.Log("Player : OnGameBegin");
+            Debug.Log("Player : OnGameBegin (all players ready)");
 
             StartCoroutine(SyncNet());
         }
@@ -241,8 +244,6 @@ namespace ds
         {
             // Remote call
             net.SendOnSerum(serumId);
-
-            state.OnSerum();
         }
 
         void Attack()

@@ -59,19 +59,8 @@ namespace ds
         {
             player = GetComponent<Player>();
             net = GetComponent<PlayerNetwork>();
-        }        
 
-        private void Update()
-        {
-            // TODO : test
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-                if (player)
-                    player.Hit();
-
-            // TODO : test
-            // Toggle infected
-            if (Input.GetKeyDown(KeyCode.K) && player)
-                Status = PlayerStatus.INFECTED;
+            print($"TMP : STATE : start");
         }
 
         private Player player;
@@ -91,40 +80,49 @@ namespace ds
 
         public void BeginFirstPhase()
         {
-            Debug.Log("PlayerState : 1st phase has begun");
         }
 
         public void EndFirstPhase()
         {
-            Debug.Log("PlayerState : 1st phase ended");
-
-            // TODO : Update status ...
+            // Revenge mode
+            if (status == PlayerStatus.INFECTED)
+                net.SendSetStatus(PlayerStatus.REVENGE);
 
             // Start next phase
-            StartCoroutine(SecondPhase());
+            if (PhotonNetwork.IsMasterClient)
+                StartCoroutine(SecondPhase());
         }
 
-        IEnumerator SecondPhase()
+        // Status when we end the first phase
+        PlayerStatus firstPhaseStatus;
+
+        public void EndOfGame()
         {
-            PlayerStatus startSecondPhase = Status;
-            Debug.Log("PlayerState : 2nd phase has begun");
-
-            yield return new WaitForSeconds(5);//revengeTime * 60);
-
-            Debug.Log("PlayerState : 2nd phase ended");
-
-            
-            if (startSecondPhase != Status)
-            {
-                EndGame.EndOfGame(false);
-            }
-            else
+            // TODO : Revenge can win ?
+            if (Status == PlayerStatus.HEALED)
             {
                 EndGame.EndOfGame(true);
             }
+            else
+            {
+                EndGame.EndOfGame(false);
+            }
+        }
 
-      
-            PlayerNetwork.OnGameEnd();
+        // Called on master
+        IEnumerator SecondPhase()
+        {
+            // TMP
+
+            print("MASTER : Second phase 1");
+
+            firstPhaseStatus = Status;
+
+            yield return new WaitForSeconds(2);// TODO : revengeTime * 60);
+            
+            print("MASTER : Second phase 2");
+
+            net.SendEndOfGame();
         }
     }
 }
