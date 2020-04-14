@@ -137,16 +137,6 @@ namespace ds
     // Network events part
     public partial class PlayerNetwork : MonoBehaviour
     {
-        // Sets the id of playerId
-        // The id is PlayerNetwork.id
-        public static void SendPlayerStatusSet(int playerId, PlayerState.PlayerStatus status)
-        {
-            Debug.Log("PlayerNetwork : Sending player status set");
-
-
-            // This event sets PlayerState.Status
-        }
-
         // A serum has been collected
         [PunRPC]
         public void OnSerum(int from, int serumId)
@@ -167,21 +157,33 @@ namespace ds
 
         // Send to each player OnSerum events
         // Serum id serves to destroy the serum
-        // TODO : serumId
         public void SendOnSerum(int serumId)
         {
             // This event triggers PlayerNetwork.OnSerum
             view.RPC("OnSerum", RpcTarget.All, id, serumId);
         }
 
-        // Every 
+        // A player changes status
+        [PunRPC]
+        public void SetStatus(int from, PlayerState.PlayerStatus status)
+        {
+            // Change for the target player only
+            if (from == id)
+                playerState.Status = status;
+        }
+
+        // This event takes target unlike other events
+        public void SendSetStatus(int target, PlayerState.PlayerStatus status)
+        {
+            view.RPC("SetStatus", RpcTarget.All, target, status);
+        }
+
+        // Called every third of second
         [PunRPC]
         public void SyncNet(int from, float stamina, bool stunned)
         {
             if (!isLocal && from == id)
             {
-                Debug.Log($"> {playerState.staminaUi}");
-
                 playerState.staminaUi.Value = stamina;
                 playerState.staminaUi.ChangeStunned(stunned);
             }
@@ -191,17 +193,5 @@ namespace ds
         {
             view.RPC("SyncNet", RpcTarget.All, id, stamina, stunned);
         }
-
-        //[PunRPC]
-        //public void SetStunned(int from, bool value)
-        //{
-        //    if (!isLocal && from == id)
-        //        playerState.staminaUi.ChangeStunned(value);
-        //}
-
-        //public void SendSetStunned(bool value)
-        //{
-        //    // view.RPC("SetStunned", RpcTarget.All, id, value);
-        //}
     }
 }

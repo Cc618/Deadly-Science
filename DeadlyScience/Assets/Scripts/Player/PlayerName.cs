@@ -27,6 +27,12 @@ namespace ds
                 case PlayerState.PlayerStatus.INFECTED:
                     text.color = Game.colors.infected;
                     break;
+                case PlayerState.PlayerStatus.REVENGE:
+                    text.color = Game.colors.revenge;
+                    break;
+                case PlayerState.PlayerStatus.GHOST:
+                    text.color = Game.colors.ghost;
+                    break;
             }
         }
 

@@ -47,5 +47,6 @@ MonoBehaviour:
   - SetStunned
   - NetSync
   - SyncNet
+  - SetStatus
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -188,6 +188,16 @@ namespace ds
                 Hit();
                 Attack();
             }
+
+            // TODO : Test
+            if (Input.GetKey(KeyCode.H))
+                net.SendSetStatus(net.id, PlayerState.PlayerStatus.HEALED);
+            if (Input.GetKey(KeyCode.R))
+                net.SendSetStatus(net.id, PlayerState.PlayerStatus.REVENGE);
+            if (Input.GetKey(KeyCode.G))
+                net.SendSetStatus(net.id, PlayerState.PlayerStatus.GHOST);
+            if (Input.GetKey(KeyCode.I))
+                net.SendSetStatus(net.id, PlayerState.PlayerStatus.INFECTED);
         }
 
         // Player to player hit
@@ -202,6 +212,7 @@ namespace ds
                     // TODO : player.strength
                     Stamina -= strength;
             // TODO : Else if infected...
+
         }
 
         // When the player controlled by the client hits another player
@@ -220,12 +231,12 @@ namespace ds
             {
                 // This player is infected
                 if (state.Status == PlayerState.PlayerStatus.HEALED &&
-                    pState.Status == PlayerState.PlayerStatus.INFECTED)
-                    PlayerNetwork.SendPlayerStatusSet(net.id, PlayerState.PlayerStatus.INFECTED);
+                    pState.Status == PlayerState.PlayerStatus.REVENGE)
+                    net.SendSetStatus(net.id, PlayerState.PlayerStatus.REVENGE);
                 // The other player is infected
                 else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
-                    state.Status == PlayerState.PlayerStatus.INFECTED)
-                    PlayerNetwork.SendPlayerStatusSet(pNet.id, PlayerState.PlayerStatus.INFECTED);
+                    state.Status == PlayerState.PlayerStatus.REVENGE)
+                    net.SendSetStatus(pNet.id, PlayerState.PlayerStatus.REVENGE);
             }
         }
 

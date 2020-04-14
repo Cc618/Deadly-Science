@@ -11,8 +11,8 @@ namespace ds
         {
             INFECTED,
             HEALED,
-            // TODO : GHOST for dead players (No collisions with others)
-            // TODO : Revenge
+            REVENGE,
+            GHOST
         }
 
         // In minutes
@@ -29,23 +29,24 @@ namespace ds
                 // Update status
                 status = value;
 
-                // TODO : Change
-                if (player && nameUi)
+                // Change the label's color
+                if (nameUi)
                     nameUi.SetStatus(status);
 
                 // Update material
                 // TODO : Update also anim / sound...
-                switch (status)
-                {
-                    case PlayerStatus.HEALED:
-                        Debug.Log("Player has status HEALED");
-                        //stateIndicator.material = healedMaterial;
-                        break;
-                    case PlayerStatus.INFECTED:
-                        Debug.Log("Player has status INFECTED");
-                        //stateIndicator.material = infectedMaterial;
-                        break;
-                }
+                Debug.Log($"Player : New status -> {value}");
+                //switch (status)
+                //{
+                //    case PlayerStatus.HEALED:
+                //        Debug.Log("Player has status HEALED");
+                //        //stateIndicator.material = healedMaterial;
+                //        break;
+                //    case PlayerStatus.INFECTED:
+                //        Debug.Log("Player has status INFECTED");
+                //        //stateIndicator.material = infectedMaterial;
+                //        break;
+                //}
             }
 
             get => status;
