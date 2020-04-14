@@ -128,11 +128,7 @@ namespace ds
             if (!Game.EscapeMenuOpen)
                 transform.rotation = Quaternion.Euler(
                     transform.rotation.eulerAngles.x,
-#if UNITY_EDITOR
-                    transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width / 2,
-#else
                     transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width,
-#endif
                     transform.rotation.eulerAngles.z
                 );
 
@@ -188,7 +184,7 @@ namespace ds
             // TODO : Key binding
             if (Input.GetKey(KeyCode.Mouse1))
             {
-                // TODO : update
+                // TODO : rm Hit
                 Hit();
                 Attack();
             }
