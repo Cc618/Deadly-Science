@@ -10,6 +10,10 @@ namespace ds
         [Range(0, 1)]
         public float mouseSensivity;
 
+        public Slider volumeSlider;
+        public Slider MouseSlider;
+        Audio Audio;
+
         public void Awake()
         {
             if (PlayerPrefs.HasKey("mouseSensivity"))
@@ -22,6 +26,15 @@ namespace ds
             }
         }
 
+        public void Start()
+        {
+         
+            MouseSlider.normalizedValue = mouseSensivity;
+
+
+            Audio = GetComponent<Audio>();
+        }
+
         public void OnMouseSensitivityValueChange(float value)
         {
             mouseSensivity = value;
@@ -31,7 +44,7 @@ namespace ds
 
         public void OnVolumeValueChange(float value)
         {
-            //FindObjectOfType ?? (Audio)
+            Audio.sfxVolume = value;
         }
     }
 }
