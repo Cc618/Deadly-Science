@@ -89,6 +89,7 @@ namespace ds
                 net.SendSetStatus(PlayerStatus.REVENGE);
 
             // Start next phase
+            print("TMP 2 : EndFirstPhase");
             if (PhotonNetwork.IsMasterClient)
                 StartCoroutine(SecondPhase());
         }

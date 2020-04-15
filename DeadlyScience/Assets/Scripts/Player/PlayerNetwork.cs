@@ -8,8 +8,9 @@ namespace ds
     // Instance part
     public partial class PlayerNetwork : MonoBehaviour, IPunInstantiateMagicCallback
     {
-        // This is the id of the player controlled by the client
-        public static int localId;
+        // The PlayerNetwork of the player controlled by the client
+        [HideInInspector]
+        public static PlayerNetwork local;
 
         // To recognize the player with network
         // Also used to decide which player send callbacks (priority)
@@ -41,6 +42,7 @@ namespace ds
             }
             else
             {
+                local = this;
                 print($"TMP : NET : Awake is local");
 
                 // Remove labels
@@ -85,7 +87,7 @@ namespace ds
                 PlayerMaster.serumCount = PhotonNetwork.PlayerList.Length - 1;
 
             // TODO : Begin game...
-            if (id == localId)
+            if (isLocal)
                 playerState.BeginFirstPhase();
         }
 
@@ -215,7 +217,7 @@ namespace ds
         public void FirstPhase()
         {
             print("First phase");
-            if (id == localId)
+            if (isLocal)
                 GetComponent<Player>().OnGameBegin();
         }
 
@@ -227,8 +229,8 @@ namespace ds
         [PunRPC]
         public void SecondPhase()
         {
-            print("Second phase");
-            if (id == localId)
+            print($"TMP 2 : Second phase for player {id}");
+            if (isLocal)
             {
                 playerState.EndFirstPhase();
             }
@@ -240,12 +242,13 @@ namespace ds
         }
 
         // First phase, after game init
+        // This method is not always called
+        // from the client player net so
+        // we use local instead of this
         [PunRPC]
         public void EndOfGame()
         {
-            print($"END {id}");
-            // TODO : Not only once call ?
-            playerState.EndOfGame();
+            local.playerState.EndOfGame();
         }
 
         public void SendEndOfGame()
