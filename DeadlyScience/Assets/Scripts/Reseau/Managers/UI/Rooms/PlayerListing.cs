@@ -19,9 +19,6 @@ namespace ds
         {
             Player = player;
             SetPlayerText(player);
-
-            // Set the unique id of this player
-            PlayerNetwork.localId = Player.ActorNumber;
         }
 
         public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player target, ExitGames.Client.Photon.Hashtable changedProps)

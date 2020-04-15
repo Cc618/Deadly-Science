@@ -8,17 +8,37 @@ using Photon.Pun;
 
 namespace ds
 {
-    // Instance part
-    public partial class PlayerMaster : MonoBehaviour
+    public class PlayerMaster : MonoBehaviour
     {
+        // TODO : For multiple games, reset values
         public static PlayerMaster instance;
-    }
 
-    // Static part
-    public partial class PlayerMaster : MonoBehaviour
-    {
+        private void Awake()
+        {
+            instance = this;
+            net = GetComponent<PlayerNetwork>();
+        }
+
+        private int playersReady = 0;
+        public int PlayersReady
+        {
+            set
+            {
+                ++playersReady;
+
+                // TMP
+                print($"{playersReady} ready");
+
+                if (playersReady >= PlayerNetwork.Players.Count)
+                {
+                    net.SendFirstPhase();
+                }
+            }
+            get => playersReady;
+        }
+
         private static int collectedSerums = 0;
-        public static int serumCount;
+        public static int serumCount = -1;
         public static int CollectedSerums
         {
             set
@@ -30,19 +50,13 @@ namespace ds
                 // Change phase for all players
                 if (collectedSerums == serumCount)
                 {
-                    // TODO : Change phase remotely
-
-                    PlayerNetwork.localPlayer.GetComponent<PlayerState>().EndFirstPhase();    
+                    // Change phase remotely
+                    instance.net.SendSecondPhase();
                 }
             }
             get => collectedSerums;
         }
 
-        // Send to each player OnPhaseEnd events
-        public static void SendOnPhaseEnd(bool firstPhase)
-        {
-            // TODO : STEVE : Send event
-            // This event triggers PlayerSlave.OnPhaseEnd
-        }
+        private PlayerNetwork net;
     }
 }

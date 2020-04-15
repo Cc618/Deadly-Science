@@ -74,6 +74,8 @@ namespace ds
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
+            print($"TMP : PLAYER : start");
+
             networkInit = true;
 
             inputManager = FindObjectOfType<InputManager>();
@@ -86,14 +88,15 @@ namespace ds
             
             // Update player network
             PlayerNetwork.localPlayer = this;
+
+            net.SendPlayerReady();
         }
 
-        // TODO : The master call this
         // Called by PlayerMaster when all players are in game
         // (Phases have begun)
         public void OnGameBegin()
         {
-            Debug.Log("Player : OnGameBegin");
+            Debug.Log("Player : OnGameBegin (all players ready)");
 
             StartCoroutine(SyncNet());
         }
@@ -128,11 +131,7 @@ namespace ds
             if (!Game.EscapeMenuOpen)
                 transform.rotation = Quaternion.Euler(
                     transform.rotation.eulerAngles.x,
-#if UNITY_EDITOR
-                    transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width / 2,
-#else
                     transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width,
-#endif
                     transform.rotation.eulerAngles.z
                 );
 
@@ -188,10 +187,20 @@ namespace ds
             // TODO : Key binding
             if (Input.GetKey(KeyCode.Mouse1))
             {
-                // TODO : update
+                // TODO : rm Hit
                 Hit();
                 Attack();
             }
+
+            // TODO : Test
+            if (Input.GetKey(KeyCode.H))
+                net.SendSetStatus(PlayerState.PlayerStatus.HEALED);
+            if (Input.GetKey(KeyCode.R))
+                net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
+            if (Input.GetKey(KeyCode.G))
+                net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
+            if (Input.GetKey(KeyCode.I))
+                net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
         }
 
         // Player to player hit
@@ -206,39 +215,35 @@ namespace ds
                     // TODO : player.strength
                     Stamina -= strength;
             // TODO : Else if infected...
+
         }
 
         // When the player controlled by the client hits another player
+        // and makes a move
         void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            // Not a player
+            if (hit.gameObject.layer != LayerMask.NameToLayer("Player"))
+                return;
+
             var pState = hit.gameObject.GetComponent<PlayerState>();
             var pNet = hit.gameObject.GetComponent<PlayerNetwork>();
             
-            // Not a player
-            if (!pNet)
-                return;
-
-            // The player collides another player
-            // This player must send the event
-            if (net.HasPriority(pNet))
-            {
-                // This player is infected
-                if (state.Status == PlayerState.PlayerStatus.HEALED &&
-                    pState.Status == PlayerState.PlayerStatus.INFECTED)
-                    PlayerNetwork.SendPlayerStatusSet(net.id, PlayerState.PlayerStatus.INFECTED);
-                // The other player is infected
-                else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
-                    state.Status == PlayerState.PlayerStatus.INFECTED)
-                    PlayerNetwork.SendPlayerStatusSet(pNet.id, PlayerState.PlayerStatus.INFECTED);
-            }
+            // TODO : Other status
+            // This player is infected
+            if (state.Status == PlayerState.PlayerStatus.HEALED &&
+                pState.Status == PlayerState.PlayerStatus.REVENGE)
+                net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
+            // The other player is infected
+            else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
+                state.Status == PlayerState.PlayerStatus.REVENGE)
+                pNet.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
         }
 
         public void OnSerumCollect(int serumId)
         {
             // Remote call
             net.SendOnSerum(serumId);
-
-            state.OnSerum();
         }
 
         void Attack()

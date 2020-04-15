@@ -47,5 +47,11 @@ MonoBehaviour:
   - SetStunned
   - NetSync
   - SyncNet
+  - SetStatus
+  - FirstPhase
+  - PlayerReady
+  - EndOfGame
+  - SecondPhase
+  - Test
   DisableAutoOpenWizard: 1
   ShowSettings: 1

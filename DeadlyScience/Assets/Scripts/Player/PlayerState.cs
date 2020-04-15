@@ -11,8 +11,8 @@ namespace ds
         {
             INFECTED,
             HEALED,
-            // TODO : GHOST for dead players (No collisions with others)
-            // TODO : Revenge
+            REVENGE,
+            GHOST
         }
 
         // In minutes
@@ -29,23 +29,24 @@ namespace ds
                 // Update status
                 status = value;
 
-                // TODO : Change
-                if (player && nameUi)
+                // Change the label's color
+                if (nameUi)
                     nameUi.SetStatus(status);
 
                 // Update material
                 // TODO : Update also anim / sound...
-                switch (status)
-                {
-                    case PlayerStatus.HEALED:
-                        Debug.Log("Player has status HEALED");
-                        //stateIndicator.material = healedMaterial;
-                        break;
-                    case PlayerStatus.INFECTED:
-                        Debug.Log("Player has status INFECTED");
-                        //stateIndicator.material = infectedMaterial;
-                        break;
-                }
+                Debug.Log($"Player : New status -> {value}");
+                //switch (status)
+                //{
+                //    case PlayerStatus.HEALED:
+                //        Debug.Log("Player has status HEALED");
+                //        //stateIndicator.material = healedMaterial;
+                //        break;
+                //    case PlayerStatus.INFECTED:
+                //        Debug.Log("Player has status INFECTED");
+                //        //stateIndicator.material = infectedMaterial;
+                //        break;
+                //}
             }
 
             get => status;
@@ -57,22 +58,13 @@ namespace ds
         public void StartAfterPlayerNetwork()
         {
             player = GetComponent<Player>();
-        }        
+            net = GetComponent<PlayerNetwork>();
 
-        private void Update()
-        {
-            // TODO : test
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-                if (player)
-                    player.Hit();
-
-            // TODO : test
-            // Toggle infected
-            if (Input.GetKeyDown(KeyCode.K) && player)
-                Status = PlayerStatus.INFECTED;
+            print($"TMP : STATE : start");
         }
 
         private Player player;
+        private PlayerNetwork net;
     }
 
     // This part is executed only if this script is owned
@@ -82,47 +74,56 @@ namespace ds
         // When a player takes a serum
         public void OnSerum()
         {
-            // TODO : Remote
-            // if (PhotonNetwork.IsMasterClient)
-                //++PlayerMaster.CollectedSerums;
+            // !!! TODO : Can take serum only when infected
+            net.SendSetStatus(PlayerStatus.HEALED);
         }
 
         public void BeginFirstPhase()
         {
-            Debug.Log("PlayerState : 1st phase has begun");
         }
 
         public void EndFirstPhase()
         {
-            Debug.Log("PlayerState : 1st phase ended");
-
-            // TODO : Update status ...
+            // Revenge mode
+            if (status == PlayerStatus.INFECTED)
+                net.SendSetStatus(PlayerStatus.REVENGE);
 
             // Start next phase
-            StartCoroutine(SecondPhase());
+            print("TMP 2 : EndFirstPhase");
+            if (PhotonNetwork.IsMasterClient)
+                StartCoroutine(SecondPhase());
         }
 
-        IEnumerator SecondPhase()
+        // Status when we end the first phase
+        PlayerStatus firstPhaseStatus;
+
+        public void EndOfGame()
         {
-            PlayerStatus startSecondPhase = Status;
-            Debug.Log("PlayerState : 2nd phase has begun");
-
-            yield return new WaitForSeconds(5);//revengeTime * 60);
-
-            Debug.Log("PlayerState : 2nd phase ended");
-
-            
-            if (startSecondPhase != Status)
-            {
-                EndGame.EndOfGame(false);
-            }
-            else
+            // TODO : Revenge can win ?
+            if (Status == PlayerStatus.HEALED)
             {
                 EndGame.EndOfGame(true);
             }
+            else
+            {
+                EndGame.EndOfGame(false);
+            }
+        }
 
-      
-            PlayerNetwork.OnGameEnd();
+        // Called on master
+        IEnumerator SecondPhase()
+        {
+            // TMP
+
+            print("MASTER : Second phase 1");
+
+            firstPhaseStatus = Status;
+
+            yield return new WaitForSeconds(2);// TODO : revengeTime * 60);
+            
+            print("MASTER : Second phase 2");
+
+            net.SendEndOfGame();
         }
     }
 }

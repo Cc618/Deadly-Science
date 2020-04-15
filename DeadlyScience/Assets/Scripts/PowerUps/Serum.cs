@@ -7,7 +7,7 @@ namespace ds
 {
     public class Serum : PowerUp
     {
-        public static int lastId = 1;
+        public static int lastId = 0;
         public static List<Serum> instances = new List<Serum>();
 
         // Used to destroy this serum by the master
@@ -24,7 +24,7 @@ namespace ds
         {
             var client = player.GetComponent<Player>();
 
-            // If the player is not controlled by 
+            // If the player is not controlled by the client
             if (!client)
                 return false;
 

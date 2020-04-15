@@ -8,8 +8,9 @@ namespace ds
     // Instance part
     public partial class PlayerNetwork : MonoBehaviour, IPunInstantiateMagicCallback
     {
-        // This is the id of the player controlled by the client
-        public static int localId;
+        // The PlayerNetwork of the player controlled by the client
+        [HideInInspector]
+        public static PlayerNetwork local;
 
         // To recognize the player with network
         // Also used to decide which player send callbacks (priority)
@@ -27,6 +28,9 @@ namespace ds
         {
             view = PhotonView.Get(this);
 
+            playerState = GetComponent<PlayerState>();
+            playerState.StartAfterPlayerNetwork();
+            
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -35,11 +39,12 @@ namespace ds
                 Destroy(GetComponent<Player>());
                 Destroy(GetComponent<PlayerMaster>());
                 Destroy(GetComponent<PlayerSlave>());
-
-                // TODO : Set labels' camera (after all players have spawned)
             }
             else
             {
+                local = this;
+                print($"TMP : NET : Awake is local");
+
                 // Remove labels
                 Destroy(GetComponentInChildren<LookToCam>().gameObject);
 
@@ -55,16 +60,17 @@ namespace ds
                 // Start player component
                 var p = GetComponent<Player>();
                 p.net = this;
-                p.StartAfterPlayerNetwork();
+                GetComponent<Player>().StartAfterPlayerNetwork();
             }
 
-            // Start phases
-            playerState = GetComponent<PlayerState>();
-            playerState.StartAfterPlayerNetwork();
+            print($"TMP : NET : awake");
 
             // Append this player to the players in game list
             RegisterPlayer(gameObject);
+
+            print($"TMP : NET : start");
         }
+
         public void OnPhotonInstantiate(PhotonMessageInfo info)
         {
             id = info.Sender.ActorNumber;
@@ -125,34 +131,23 @@ namespace ds
         // When all players are in game
         static void OnAllPlayersInGame()
         {
-            Debug.Log("PlayerNetwork : All players in game");
+            print($"TMP : NET : all players in game");
 
             foreach (var player in players)
                 player.GetComponent<PlayerNetwork>().PrepareGame();
-
-            localPlayer.OnGameBegin();
         }
     }
 
     // Network events part
     public partial class PlayerNetwork : MonoBehaviour
     {
-        // Sets the id of playerId
-        // The id is PlayerNetwork.id
-        public static void SendPlayerStatusSet(int playerId, PlayerState.PlayerStatus status)
-        {
-            Debug.Log("PlayerNetwork : Sending player status set");
-
-
-            // This event sets PlayerState.Status
-        }
-
+        // Items //
         // A serum has been collected
         [PunRPC]
         public void OnSerum(int from, int serumId)
         {
-            // TODO : Update
-            Debug.Log($"NET : Player {from} has taken a serum");
+            if (from == id)
+                playerState.OnSerum();
 
             // Find and destroy the serum
             if (PhotonNetwork.IsMasterClient)
@@ -167,21 +162,33 @@ namespace ds
 
         // Send to each player OnSerum events
         // Serum id serves to destroy the serum
-        // TODO : serumId
         public void SendOnSerum(int serumId)
         {
             // This event triggers PlayerNetwork.OnSerum
             view.RPC("OnSerum", RpcTarget.All, id, serumId);
         }
 
-        // Every 
+        // Game play //
+        // A player changes status
+        [PunRPC]
+        public void SetStatus(int from, PlayerState.PlayerStatus status)
+        {
+            // Change for the target player only
+            if (from == id)
+                playerState.Status = status;
+        }
+
+        public void SendSetStatus(PlayerState.PlayerStatus status)
+        {
+            view.RPC("SetStatus", RpcTarget.All, id, status);
+        }
+
+        // Called every third of second
         [PunRPC]
         public void SyncNet(int from, float stamina, bool stunned)
         {
             if (!isLocal && from == id)
             {
-                Debug.Log($"> {playerState.staminaUi}");
-
                 playerState.staminaUi.Value = stamina;
                 playerState.staminaUi.ChangeStunned(stunned);
             }
@@ -192,16 +199,61 @@ namespace ds
             view.RPC("SyncNet", RpcTarget.All, id, stamina, stunned);
         }
 
-        //[PunRPC]
-        //public void SetStunned(int from, bool value)
-        //{
-        //    if (!isLocal && from == id)
-        //        playerState.staminaUi.ChangeStunned(value);
-        //}
+        // Phases //
+        // To say that a player is ready
+        [PunRPC]
+        public void PlayerReady(int from)
+        {
+            ++PlayerMaster.instance.PlayersReady;
+        }
 
-        //public void SendSetStunned(bool value)
-        //{
-        //    // view.RPC("SetStunned", RpcTarget.All, id, value);
-        //}
+        public void SendPlayerReady()
+        {
+            view.RPC("PlayerReady", RpcTarget.MasterClient, id);
+        }
+
+        // First phase, after game init
+        [PunRPC]
+        public void FirstPhase()
+        {
+            print("First phase");
+            if (isLocal)
+                GetComponent<Player>().OnGameBegin();
+        }
+
+        public void SendFirstPhase()
+        {
+            view.RPC("FirstPhase", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void SecondPhase()
+        {
+            print($"TMP 2 : Second phase for player {id}");
+            if (isLocal)
+            {
+                playerState.EndFirstPhase();
+            }
+        }
+
+        public void SendSecondPhase()
+        {
+            view.RPC("SecondPhase", RpcTarget.All);
+        }
+
+        // First phase, after game init
+        // This method is not always called
+        // from the client player net so
+        // we use local instead of this
+        [PunRPC]
+        public void EndOfGame()
+        {
+            local.playerState.EndOfGame();
+        }
+
+        public void SendEndOfGame()
+        {
+            view.RPC("EndOfGame", RpcTarget.All);
+        }
     }
 }
