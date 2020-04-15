@@ -23,7 +23,6 @@ namespace ds
         public void OnClick_Button()
         {
             Audio.Play("click");
-
             PhotonNetwork.JoinRoom(RoomInfo.Name);
         }
     }
