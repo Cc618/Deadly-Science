@@ -10,17 +10,15 @@ nav
 	font-size: 175%;
 }
 
-table
+.menu
 {
-	display: flex;
-	justify-content: center;
-	border-right: 50px;
-	border-left: 50px;
+	transition: 1s;
 }
 
-td
+.menu:hover
 {
-
+	transition: 0.5s;
+	font-size: 110%;
 }
 
 body
@@ -33,18 +31,22 @@ body
 	padding: 0 8% 0 8%;
 }
 
+section
+{
+	position: absolute;
+	top: 180px; left: 5%; right: 5%;
+}
+
 .photo_groupe
 {
 	width: 6%;
 	height: 6%;
 	float: left;
-
 }
 
 a,a:visited
 {
-	/*color: rgb(255,255,255);*/
-	color: #E38A2AFF;
+	color: rgb(227, 138, 42); /*hex: #E38A2AFF*/
 	text-decoration: none;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -52,22 +54,18 @@ a,a:visited
 
 .bio
 {
-	height: 130px;
+	height: 2%;
 }
 
 .textbio
 {
-	margin-left: 9%;
+	margin-top: 3%;
+	margin-left: 10%;
 }
 
 p
 {
 	text-align: justify;
-}
-
-.lienDocs,.lienDocs:visited
-{
-
 }
 
 #Docs
