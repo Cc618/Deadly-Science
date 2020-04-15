@@ -113,16 +113,10 @@ namespace ds
         // Called on master
         IEnumerator SecondPhase()
         {
-            // TMP
-
-            print("MASTER : Second phase 1");
-
             firstPhaseStatus = Status;
 
-            yield return new WaitForSeconds(2);// TODO : revengeTime * 60);
+            yield return new WaitForSeconds(revengeTime * 60);
             
-            print("MASTER : Second phase 2");
-
             net.SendEndOfGame();
         }
     }

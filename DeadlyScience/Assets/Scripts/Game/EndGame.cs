@@ -23,6 +23,8 @@ namespace ds
 
         public static void EndOfGame(bool victory)
         {
+            Audio.Play(victory ? "win" : "loose");
+
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
