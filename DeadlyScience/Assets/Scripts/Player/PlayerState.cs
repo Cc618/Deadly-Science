@@ -35,7 +35,6 @@ namespace ds
 
                 // Update material
                 // TODO : Update also anim / sound...
-                Debug.Log($"Player : New status -> {value}");
                 //switch (status)
                 //{
                 //    case PlayerStatus.HEALED:
@@ -59,8 +58,6 @@ namespace ds
         {
             player = GetComponent<Player>();
             net = GetComponent<PlayerNetwork>();
-
-            print($"TMP : STATE : start");
         }
 
         private Player player;
@@ -89,7 +86,6 @@ namespace ds
                 net.SendSetStatus(PlayerStatus.REVENGE);
 
             // Start next phase
-            print("TMP 2 : EndFirstPhase");
             if (PhotonNetwork.IsMasterClient)
                 StartCoroutine(SecondPhase());
         }

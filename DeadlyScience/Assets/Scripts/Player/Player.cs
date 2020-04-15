@@ -74,8 +74,6 @@ namespace ds
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
-            print($"TMP : PLAYER : start");
-
             networkInit = true;
 
             inputManager = FindObjectOfType<InputManager>();
@@ -96,8 +94,6 @@ namespace ds
         // (Phases have begun)
         public void OnGameBegin()
         {
-            Debug.Log("Player : OnGameBegin (all players ready)");
-
             StartCoroutine(SyncNet());
         }
 
@@ -252,8 +248,11 @@ namespace ds
             RaycastHit hit;
 
             if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.TransformDirection(Vector3.forward), out hit, attackRange, layerMask))
+            {
                 // TODO : Attack player
+
                 Debug.Log("Player : Hit");
+            }
         }
 
         private PlayerState state;

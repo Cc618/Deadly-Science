@@ -43,7 +43,6 @@ namespace ds
             else
             {
                 local = this;
-                print($"TMP : NET : Awake is local");
 
                 // Remove labels
                 Destroy(GetComponentInChildren<LookToCam>().gameObject);
@@ -63,12 +62,8 @@ namespace ds
                 GetComponent<Player>().StartAfterPlayerNetwork();
             }
 
-            print($"TMP : NET : awake");
-
             // Append this player to the players in game list
             RegisterPlayer(gameObject);
-
-            print($"TMP : NET : start");
         }
 
         public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -125,14 +120,11 @@ namespace ds
         // All phases are elapsed
         public static void OnGameEnd()
         {
-            Debug.Log("PlayerNetwork : Game end");
         }
 
         // When all players are in game
         static void OnAllPlayersInGame()
         {
-            print($"TMP : NET : all players in game");
-
             foreach (var player in players)
                 player.GetComponent<PlayerNetwork>().PrepareGame();
         }
@@ -216,7 +208,6 @@ namespace ds
         [PunRPC]
         public void FirstPhase()
         {
-            print("First phase");
             if (isLocal)
                 GetComponent<Player>().OnGameBegin();
         }
@@ -229,7 +220,6 @@ namespace ds
         [PunRPC]
         public void SecondPhase()
         {
-            print($"TMP 2 : Second phase for player {id}");
             if (isLocal)
             {
                 playerState.EndFirstPhase();
