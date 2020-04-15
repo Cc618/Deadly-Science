@@ -1664,6 +1664,12 @@ MonoBehaviour:
   - id: click
     clip: {fileID: 8300000, guid: 62a0620eb029ed94c9045be7f797341e, type: 3}
     source: {fileID: 0}
+  - id: win
+    clip: {fileID: 8300000, guid: 61b1041b46d041246a09e9720f2506b9, type: 3}
+    source: {fileID: 0}
+  - id: loose
+    clip: {fileID: 8300000, guid: 7fb73b861f9424941b9850ed27e522a1, type: 3}
+    source: {fileID: 0}
   audioSample: {fileID: 6932569464456803123, guid: 2644d3975a0e7cc40af7c5c360b3685a,
     type: 3}
 --- !u!1 &752587843

@@ -26,9 +26,6 @@ namespace ds
             {
                 ++playersReady;
 
-                // TMP
-                print($"{playersReady} ready");
-
                 if (playersReady >= PlayerNetwork.Players.Count)
                 {
                     net.SendFirstPhase();
@@ -44,8 +41,6 @@ namespace ds
             set
             {
                 collectedSerums = value;
-
-                Debug.Log(collectedSerums.ToString() + " / " + serumCount.ToString() + " collected serums");
 
                 // Change phase for all players
                 if (collectedSerums == serumCount)
