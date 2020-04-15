@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2c45cfd8-4d34-4972-91e6-f4ef8b42ce7a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Audio/SFX/defaite.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Audio/SFX/victoire.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Settings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Settings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tree1/LOD0/LOD1_1  Ambient-Occlusion/tree_afsTREE_xao_xlprl.fbm.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tree1/LOD0/LOD1_1  Ambient-Occlusion/tree_afsTREE_xao_xlprl.fbm.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tree1/LOD0/tree_afsTREE_xao_xlprl.fbm.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tree1/LOD0/tree_afsTREE_xao_xlprl.fbm.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tree1/LOD1/tree_afsTREE_xao_xlprl_LOD1.fbm.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tree1/LOD1/tree_afsTREE_xao_xlprl_LOD1.fbm.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tree1/LOD2/tree_afsTREE_xao_xlprl_LOD2.fbm.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tree1/LOD2/tree_afsTREE_xao_xlprl_LOD2.fbm.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeadlyScience.sln" beforeDir="false" afterPath="$PROJECT_DIR$/DeadlyScience.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonChat.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonChat.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonRealtime.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonRealtime.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonUnityNetworking.Demos.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonUnityNetworking.Demos.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonUnityNetworking.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonUnityNetworking.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonUnityNetworking.Utilities.Culling.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonUnityNetworking.Utilities.Culling.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonUnityNetworking.Utilities.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonUnityNetworking.Utilities.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonUnityNetworking.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonUnityNetworking.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhotonWebSocket.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PhotonWebSocket.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PunDemos.DemoHubEditor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PunDemos.DemoHubEditor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PunDemos.DemoSlotcarEditor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PunDemos.DemoSlotcarEditor.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1aVGOTjYRzQ08WE5Vs0JgcBtuch" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.SolutionExplorerActivator" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TWShift.3" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2c45cfd8-4d34-4972-91e6-f4ef8b42ce7a" name="Default Changelist" comment="" />
+      <created>1586813337826</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586813337826</updated>
+      <workItem from="1586813361494" duration="10000" />
+    </task>
+    <servers />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+</project>

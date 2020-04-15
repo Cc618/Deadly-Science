@@ -20,7 +20,8 @@ namespace ds
 
         public static int[]
             Aleatoire(int n,
-                int m) //Cette fonction génère une liste de quatres termes aléatoires (de 0 à 3) sans répétition. En gros, elle mélange...
+                int m) //Cette fonction génère un tableau de quatres termes aléatoires (de 0 à 3) sans répétition.
+                       //En gros, elle mélange...
         {
             int[] Directions = new int[n];
             int[] Avendre = new int[m];
