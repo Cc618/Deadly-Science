@@ -15,8 +15,15 @@ namespace ds
         public static int Xm;
         public static int Zm;
         public static int[] where;
+        public static CreateRoomMenu instance;
 
         private RoomCanvases _roomCanvases;
+
+        void Awake()
+        {
+            instance = this;
+        }
+
         public void FirstInitialize(RoomCanvases canvases)
         {
             _roomCanvases = canvases;
@@ -58,5 +65,6 @@ namespace ds
         {
             print("La creation de la salle a ratee." + message);
         }
+
     }
 }

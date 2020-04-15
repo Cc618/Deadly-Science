@@ -106,6 +106,8 @@ namespace ds
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                SendVariableUpdate();
+
                 for (int i = 0; i < _listings.Count; i++)
                 {
                     if (_listings[i].Player != PhotonNetwork.LocalPlayer)
@@ -138,6 +140,19 @@ namespace ds
             {
                 _listings[index].Ready = ready;
             }
+        }
+
+
+        [PunRPC]
+        public void VariableUpdate(int xm, int[] where)
+        {
+            CreateRoomMenu.where = where;
+            CreateRoomMenu.Xm = xm;
+        }
+
+        public void SendVariableUpdate()
+        {
+            PhotonView.Get(this).RPC("VariableUpdate", RpcTarget.All, CreateRoomMenu.Xm, CreateRoomMenu.where);
         }
     }
 }

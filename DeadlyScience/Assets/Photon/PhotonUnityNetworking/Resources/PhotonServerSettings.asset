@@ -53,5 +53,7 @@ MonoBehaviour:
   - EndOfGame
   - SecondPhase
   - Test
+  - UpdateVariables
+  - VariableUpdate
   DisableAutoOpenWizard: 1
   ShowSettings: 1
