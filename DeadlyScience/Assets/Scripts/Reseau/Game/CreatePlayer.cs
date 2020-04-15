@@ -11,29 +11,11 @@ namespace ds
     {
         void Start()
         {
-            int countofplayers = PhotonNetwork.CountOfPlayers;
-            if (countofplayers % 4 == 0)
-            {
-                var _player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 6), Quaternion.identity, 0);
-                _player.GetComponent<PlayerNetwork>().isLocal = true;
-            }
-            else if (countofplayers % 4 == 1)
-            {
-                var _player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 4), Quaternion.identity, 0);
-                _player.GetComponent<PlayerNetwork>().isLocal = true;
-            }
-            else if (countofplayers % 4 == 2)
-            {
-                var _player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 2), Quaternion.identity, 0);
-                _player.GetComponent<PlayerNetwork>().isLocal = true;
-            }
-            else
-            {
-                var _player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), new Vector3(-5, 5, 0), Quaternion.identity, 0);
-                _player.GetComponent<PlayerNetwork>().isLocal = true;
-            }
-            // TODO : LEANDRE : Position
-
+            int coorp = CreateRoomMenu.where[((int)PhotonNetwork.CountOfPlayers) % 4];
+            var _player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
+                new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 2, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)),
+                Quaternion.identity, 0);
+            _player.GetComponent<PlayerNetwork>().isLocal = true;
             print("Le joueur a été instancié");
         }
     }

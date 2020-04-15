@@ -12,9 +12,6 @@ namespace ds
     {
         [Range(0, 4)] 
         public PhotonView PV;
-        public float serumHeight;
-        public int xm;
-        public int zm;
         public bool version;
         public bool testencours;
 
@@ -263,7 +260,9 @@ namespace ds
             }
 
             //On redéfinit la taille et la position du sol.
-            int[] Plan = Generateur(xm, zm);
+            int xm = CreateRoomMenu.Xm;
+            int zm = CreateRoomMenu.Zm;
+            int[] Plan = Generateur(zm, xm);
             int x = 0;
             int z = 0;
             if (version)
@@ -473,17 +472,6 @@ namespace ds
                 }
 
                 x += 1;
-            }
-
-            //On rajoute trois sérums.
-            int[] seru = {3, 9, 20}; // Aleatoire(3, xm * zm);
-            int g = 0;
-            while (g < 3)
-            {
-                var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Serum"),
-                    new Vector3((float) (4 * (seru[g] % xm) + 2.5), serumHeight, (float) (4 * (seru[g] / xm) + 2.5)),
-                    new Quaternion(0, 0, 0, 0));
-                g += 1;
             }
 
             //Et voila, c'est fini !
