@@ -41,14 +41,6 @@ namespace ds
             Xm = 3;
             Zm = 10;
             where = Generation.Aleatoire(7, Xm * Zm);
-            int g = 0;
-            while (g < 3)
-            {
-                var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Serum"),
-                    new Vector3((float) (4 * (where[g+4] % Xm) + 2.5), 2, (float) (4 * (where[g+4] / Xm) + 2.5)),
-                    new Quaternion(0, 0, 0, 0));
-                g += 1;
-            }
             options.BroadcastPropsChangeToAll = true;
             options.MaxPlayers = 4;
             options.PublishUserId = true;
