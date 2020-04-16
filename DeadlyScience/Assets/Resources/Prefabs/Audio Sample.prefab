@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6932569464456803132}
   - component: {fileID: 6932569464456803133}
   - component: {fileID: 6932569464456803122}
+  - component: {fileID: 2005562551403159690}
   m_Layer: 0
   m_Name: Audio Sample
   m_TagString: Untagged
@@ -44,7 +45,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -147,3 +148,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2005562551403159690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6932569464456803123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586aa20bf448fea428cacb46106019e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0

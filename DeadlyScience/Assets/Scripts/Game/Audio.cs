@@ -49,7 +49,6 @@ namespace ds
                 musics[i].source = gameObject.AddComponent<AudioSource>();
                 musics[i].source.clip = musics[i].clip;
 
-                // TODO : Volume
                 musics[i].source.volume = musicVolume;
                 musics[i].source.loop = true;
             }
@@ -77,11 +76,28 @@ namespace ds
             if (snd == null)
                 Debug.LogError("SFX with id '" + id + "' not found");
             else
+            {
+                snd.source.volume = sfxVolume;
                 snd.source.Play();
+            }
             
             // TODO : Remote
         }
 
+        public static void SetSFXVolume(float volume)
+        {
+            sfxVolume = volume;
+        }
+
+        public static void SetMusicVolume(float volume)
+        {
+            musicVolume = volume;
+
+            // Update current music
+            if (currentMusic)
+                currentMusic.GetComponent<AudioSample>().Volume = 1;
+        }
+        
         private void setMusic(string id)
         {
             Sound snd = Array.Find(musics, s => s.id == id);

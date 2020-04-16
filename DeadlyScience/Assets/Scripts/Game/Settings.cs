@@ -44,7 +44,7 @@ namespace ds
 
         public void OnVolumeValueChange(float value)
         {
-            Audio.sfxVolume = value;
+            Audio.SetMusicVolume(value);
         }
     }
 }

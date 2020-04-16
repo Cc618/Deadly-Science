@@ -2540,6 +2540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensivity: 0
+  volumeSlider: {fileID: 0}
+  MouseSlider: {fileID: 0}
 --- !u!1 &1716533159
 GameObject:
   m_ObjectHideFlags: 0
