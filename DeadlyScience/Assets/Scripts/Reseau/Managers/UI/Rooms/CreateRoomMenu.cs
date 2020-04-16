@@ -65,6 +65,5 @@ namespace ds
         {
             print("La creation de la salle a ratee." + message);
         }
-
     }
 }

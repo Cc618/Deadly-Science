@@ -179,7 +179,7 @@ namespace ds
         [PunRPC]
         public void SyncNet(int from, float stamina, bool stunned)
         {
-            if (!isLocal && from == id)
+            if (!isLocal && playerState.staminaUi)
             {
                 playerState.staminaUi.Value = stamina;
                 playerState.staminaUi.ChangeStunned(stunned);
@@ -208,12 +208,18 @@ namespace ds
         [PunRPC]
         public void FirstPhase()
         {
-            if (isLocal)
-                GetComponent<Player>().OnGameBegin();
+            local.GetComponent<Player>().OnGameBegin();
         }
 
         public void SendFirstPhase()
         {
+            StartCoroutine(SendFirstPhaseDelay());
+        }
+
+        IEnumerator SendFirstPhaseDelay()
+        {
+            // Wait a bit
+            yield return new WaitForSeconds(1);
             view.RPC("FirstPhase", RpcTarget.All);
         }
 

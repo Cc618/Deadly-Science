@@ -181,11 +181,11 @@ namespace ds
 
             // Attack
             // TODO : Key binding
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (Input.GetKey(KeyCode.Mouse0))
             {
                 // TODO : rm Hit
                 Hit();
-                Attack();
+                // Attack();
             }
 
             // TODO : Test
