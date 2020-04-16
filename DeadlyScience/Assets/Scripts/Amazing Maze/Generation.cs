@@ -322,6 +322,14 @@ namespace ds
                         }
                         else
                         {
+                            if (CreateRoomMenu.where[0] != z * xm + x && CreateRoomMenu.where[1] != z * xm + x &&
+                                CreateRoomMenu.where[2] != z * xm + x && CreateRoomMenu.where[3] != z * xm + x)
+                            {
+                                PhotonNetwork.Instantiate(
+                                    Path.Combine("Prefabs", "Plafond"),
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, 0, 0, 0));
+                            }
                             bool[] passages = {false, false, false, false};
                             if (Plan[x * zm + z] > 1)
                             {
@@ -473,7 +481,6 @@ namespace ds
 
                 x += 1;
             }
-
             //Et voila, c'est fini !
         }
     }
