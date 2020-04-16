@@ -10,29 +10,47 @@ namespace ds
         [Range(0, 1)]
         public float mouseSensivity;
 
-        public Slider volumeSlider;
+        public Slider MusiqueSlider;
+        public Slider SFXSlider;
         public Slider MouseSlider;
         Audio Audio;
 
         public void Awake()
         {
+            Audio = GetComponent<Audio>();
+            
             if (PlayerPrefs.HasKey("mouseSensivity"))
                 mouseSensivity = PlayerPrefs.GetFloat("mouseSensivity");
             else
             {
                 mouseSensivity = (float)0.5;
                 PlayerPrefs.SetFloat("mouseSensivity", mouseSensivity);
-                PlayerPrefs.Save();
             }
+
+            if (PlayerPrefs.HasKey("musiqueVolume"))
+                Audio.musicVolume = PlayerPrefs.GetFloat("musiqueVolume");
+            else
+            {
+                Audio.musicVolume = (float)0.5;
+                PlayerPrefs.SetFloat("musiqueVolume", Audio.musicVolume);
+            }
+
+            if (PlayerPrefs.HasKey("sfxVolume"))
+                Audio.sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
+            else
+            {
+                Audio.sfxVolume = (float)0.5;
+                PlayerPrefs.SetFloat("sfxVolume", Audio.sfxVolume);
+            }
+
+            PlayerPrefs.Save();
         }
 
         public void Start()
         {
-         
             MouseSlider.normalizedValue = mouseSensivity;
-
-
-            Audio = GetComponent<Audio>();
+            MusiqueSlider.normalizedValue = Audio.musicVolume;
+            SFXSlider.normalizedValue = Audio.sfxVolume;
         }
 
         public void OnMouseSensitivityValueChange(float value)
@@ -42,9 +60,18 @@ namespace ds
             PlayerPrefs.Save();
         }
 
-        public void OnVolumeValueChange(float value)
+        public void OnMusiqueValueChange(float value)
         {
-            Audio.SetMusicVolume(value);
+            Audio.musicVolume = value;
+            PlayerPrefs.SetFloat("musiqueVolume", value);
+            PlayerPrefs.Save();
+        }
+
+        public void OnSFXValueChange(float value)
+        {
+            Audio.sfxVolume = value;
+            PlayerPrefs.SetFloat("sfxVolume", value);
+            PlayerPrefs.Save();
         }
     }
 }
