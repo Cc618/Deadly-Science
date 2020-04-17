@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 738d9373e9a153f48b2f65ba438e6d95
+=======
+guid: bb9f3f9d5a24f3f438ea0207dc33f4af
+>>>>>>> 88a0dde40e085c67c4407747970300a69dcab683
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -36,13 +40,22 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
+<<<<<<< HEAD
     addColliders: 1
+=======
+    addColliders: 0
+>>>>>>> 88a0dde40e085c67c4407747970300a69dcab683
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
+<<<<<<< HEAD
     importCameras: 0
     importLights: 0
+=======
+    importCameras: 1
+    importLights: 1
+>>>>>>> 88a0dde40e085c67c4407747970300a69dcab683
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
