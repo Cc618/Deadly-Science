@@ -41,6 +41,12 @@ namespace ds
             Xm = 3;
             Zm = 10;
             where = Generation.Aleatoire(7, Xm * Zm);
+            int a = 0;
+            while (a < 7)
+            {
+                print(where[a]);
+                a += 1;
+            }
             options.BroadcastPropsChangeToAll = true;
             options.MaxPlayers = 4;
             options.PublishUserId = true;
