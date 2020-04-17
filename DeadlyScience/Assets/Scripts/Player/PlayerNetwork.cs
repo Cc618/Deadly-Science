@@ -138,6 +138,8 @@ namespace ds
         [PunRPC]
         public void OnSerum(int from, int serumId)
         {
+            print($"Serum {from} {serumId}");
+
             if (from == id)
                 playerState.OnSerum();
 
@@ -244,12 +246,31 @@ namespace ds
         [PunRPC]
         public void EndOfGame()
         {
+            print("EndOfGame");
             local.playerState.EndOfGame();
         }
 
         public void SendEndOfGame()
         {
+            print("SendEndOfGame");
             view.RPC("EndOfGame", RpcTarget.All);
+        }
+
+
+        // When the stamina has to be decreased
+        [PunRPC]
+        void Hit(float strength)
+        {
+            if (isLocal)
+            {
+                var player = GetComponent<Player>();
+                player.Stamina -= strength;
+            }
+        }
+
+        public void SendHit(float strength)
+        {
+            view.RPC("Hit", RpcTarget.All, strength);
         }
     }
 }

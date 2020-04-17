@@ -181,14 +181,12 @@ namespace ds
 
             // Attack
             // TODO : Key binding
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                // TODO : rm Hit
-                Hit();
-                // Attack();
+                Attack();
             }
 
-            // TODO : Test
+            // TODO : rm Test
             if (Input.GetKey(KeyCode.H))
                 net.SendSetStatus(PlayerState.PlayerStatus.HEALED);
             if (Input.GetKey(KeyCode.R))
@@ -200,9 +198,33 @@ namespace ds
         }
 
         // Player to player hit
-        // TODO : Hit with other player when network
-        public void Hit(/* TODO Player player */)
+        // (This player hurts the other player)
+        public void Hit(GameObject player)
         {
+            // TODO : Updt
+            var pState = player.GetComponent<PlayerState>();
+            var pNet = player.GetComponent<PlayerNetwork>();
+
+            if (!pNet)
+            {
+                Debug.Log(player);
+                Debug.LogError("Can't access PlayerNetwork component when hit");
+                return;
+            }
+
+            if (pState.Status == PlayerState.PlayerStatus.HEALED &&
+                state.Status == PlayerState.PlayerStatus.REVENGE)
+                // Change status
+                pNet.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
+            else
+            {
+                // Change stamina
+                pNet.SendHit(strength);
+            }
+            return;
+
+
+
             // TODO : status == player.status
             bool sameStatus = true;
 
@@ -221,10 +243,10 @@ namespace ds
             // Not a player
             if (hit.gameObject.layer != LayerMask.NameToLayer("Player"))
                 return;
-
+            
             var pState = hit.gameObject.GetComponent<PlayerState>();
             var pNet = hit.gameObject.GetComponent<PlayerNetwork>();
-            
+
             // TODO : Other status
             // This player is infected
             if (state.Status == PlayerState.PlayerStatus.HEALED &&
@@ -244,14 +266,14 @@ namespace ds
 
         void Attack()
         {
-            int layerMask = ~LayerMask.NameToLayer("Walls");
+            int layerMask = ~LayerMask.NameToLayer("Player");
             RaycastHit hit;
 
             if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.TransformDirection(Vector3.forward), out hit, attackRange, layerMask))
             {
-                // TODO : Attack player
-
-                Debug.Log("Player : Hit");
+                print("ATTACK");
+                // TODO : Update stamina if same status
+                Hit(hit.collider.gameObject);
             }
         }
 
