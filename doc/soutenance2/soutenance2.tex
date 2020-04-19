@@ -1,0 +1,217 @@
+%%%%%%%%%%%%%%%%%%%%%% Props %%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{eurosym}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{enumerate}
+
+\pagestyle{fancy}
+\lhead{Cahier des charges}
+\chead{Deadly Science}
+\rhead{Custos Carceris}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  commentstyle=\color{mygreen},
+  keywordstyle=\color{blue},       % keyword style
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  stringstyle=\color{mymauve},     % string literal style
+  language=[Sharp]C,                 % the language of the code
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  showstringspaces=false,
+  numbers=left,
+}
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%% Titre %%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE Custos Carceris\par}
+	\vspace{1cm}
+	{\scshape\Large Seconde soutenance \par}
+	\vspace{1.5cm}
+	{\huge\bfseries Deadly Science\par}
+	\vspace{2cm}
+	\includegraphics[width=0.5\textwidth]{logo.png}\par\vspace{1cm}
+	{\Large\itshape Léandre Perrot\par}
+	{\Large\itshape Yann Boudry\par}
+	{\Large\itshape Steve Suissa\par}
+	{\Large\itshape Célian Raimbault\par}
+	\vfill
+	Un projet EPITA
+	\vfill
+	{\large \today\par}
+\end{titlepage}
+
+
+
+\newpage
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%% Intro %%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section{Introduction}
+
+%%%%%%%%%%%%%%% TODO : Mettre a jour
+Le jeu a grandement avancé depuis le retour du cahier des charges : le réseau est quasiment entièrement fonctionnel, pareil pour la caméra, le site avance petit à petit, la génération est presque fini et certaines musiques ont été composées. Globalement, le jeu est quasiment jouable.
+\begin{table}[!h]
+\centering
+\caption{Avancement}
+\begin{tabular}{|l|l|l|}
+
+\hline
+%%%%%%%%%%%%%%% TODO : Mettre a jour
+Tâches $\backslash$Soutenances & Attendu & Réalité \\ \hline
+Camera & 50\% & 75\% \\ \hline
+G Joueur & 30\% & 50\% \\ \hline
+G Jeu & 30\% & 30\% \\ \hline
+Reseau & 50\% & 75\% \\ \hline
+Map Const & 30\% & 30\% \\ \hline
+Menu & 15\% & 70\% \\ \hline
+Chrono/GUI & 30\% & 30\% \\ \hline
+Site TXT & 0\% & 30\% \\ \hline
+Site E & 0\% & 0\% \\ \hline
+Map Gen & 0\% & 50\% \\ \hline
+Musique & 0\% & 25\% \\ \hline
+Sons & 0\% & 10\% \\ \hline
+
+\end{tabular}
+\end{table}
+ 
+\newpage
+\section{Réalisations}
+
+
+
+%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Célian}
+
+\paragraph{Phases et status}
+
+\subparagraph{Implémentation locale}
+
+Rappel : Le jeu est composé de deux phases, la première où les joueurs doivent trouver les sérums et la seconde où les joueurs qui n'ont pas réussi à trouver des sérums doivent se venger et empécher les joueurs guéris de gagner en les touchant.
+
+Un joueur peut avoir 4 status différents, pour l'instant 3 d'entre eux sont implémentés correctement :
+
+- Infécté : Au début du jeu, il faut trouver un sérum pour passer en guéris et non en mode revanche
+- Guéris : Ce joueur à presque gagné, il doit éviter les joueurs encore infectés - en mode revanche - pour gagner
+- Revanche : Ce joueur à perdu mais peut empêcher les autres de gagner en les touchant
+- Fantôme : Ce status n'est pas vraiment implémenté mais servira au début et à la fin du jeu pour attendre et regardé les autres joueurs.
+
+Ces status font parti de l'énumération \emph{PlayerState.PlayerStatus}, il est plus adapté de faire une énumération plutôt que des constantes car les constantes peuvent être mal renseignées.
+
+Lors de la première soutenance, ces status étaient déjà présents mais seulement en local, il était alors primordiale de les synchronisés en réseau.
+
+\subparagraph{Implémentation à distance}
+
+PlayerNetwork est le module présent sur chaque joueur (controlé ou non par le client) qui se charge d'envoyer et recevoir les évenements liés au réseau, il sert également à initialisés les modules présents sur un joueur.
+
+Chaque évenement réseau de PlayerNetwork est décomposée en deux fonctions : \emph{Send<Evenement>} et \emph{<Evenement>}. La première est utilisée par un seul joueur pour appeler la seconde dans toutes les classes PlayerNetwork des joueurs. La seconde est une fonction RPC comme Steve a décrit. La fonction Send ajoute des arguments pour informer qui vient de lever l'évenement, ceci sert à cibler un joueur. Par exemple, nous pouvons envoyer un changement de status au joueur ayant pour identifiant 2 (l'identifiant est un entier unique pour chaque joueur). Pour revenir au status, une fois l'évenement reçu, nous avons juste à trouver si c'est le bon joueur qui reçoit l'évenement puis changer le status.
+
+Les phases sont implémentées de manière semblable. En effet, nous utilisons des évenements comme \emph{BeginGame} lancé au début de la première phase, \emph{EndFirstPhase} lors de la fin de la première phase et \emph{EndGame} quand nous devons gérer la victoire / la défaite du joueur. La seule différence avec le status est que seulement le maître du jeu envoie ces évenements. Cela évite que deux joueurs soient dans deux phases différentes, si un joueur possède un ralentissement ou un bug, la deuxième phase peut durer plus ou moins longtemps. Pour détecter le début du jeu, nous attendons que tous les joueurs soient prêts, ils envoient un évenement réseau pour avertir le maître du jeu. La fin de la première phase se fait quand chaque sérum est récupéré, là aussi nous avertissons le maître quand un sérum est pris. Après cela, il faut attendre le temps de la seconde phase grâce à une coroutine, c'est une fonction qui s'execute en plusieurs fois, il faut ajouter la ligne si dessous pour attendre quelques secondes :
+%%% TODO :
+% ```C#
+% yield return new WaitForSeconds(seconds);
+% ```
+Ensuite il suffit d'avertir les autres joueurs via les évenements réseau.
+
+La fonction \emph{EndGame} est appelée lors de la victoire / la défaite du joueur. Pour savoir si le joueur gagne, il suffit de comparer son status au status guéris, après nous affichons le menu gagné ou perdu.
+
+\paragraph{Endurance et coups}
+
+\subparagraph{Endurance : Présentation}
+
+Maintenant nous avons un vrai jeu, c'est-à-dire qu'il y a des joueurs qui peuvent gagner ou perdre et tout cela est en plus synchronisé en réseau. Parlons d'un ajout au jeu le rendant bien plus intéressant ainsi que dynamique : La jauge d'endurance.
+
+L'endurance est semblable à une barre de vie dans la plupart des jeux, contrairement à une barre de vie, une fois vide, elle ne tue pas le joueur mais le rend faible. Ainsi, le joueur se déplace très lentement (10\% de sa vitesse normale) et ne peut plus sauter. Cette jauge se remplie petit à petit et une fois le joueur \emph{assomé}, il doit attendre que cette barre d'endurance se remplisse totalement avant de retrouver ses abilités.
+
+A présent, parlons de comment un joueur peut assomer un autre joueur, c'est très simple, à la manière d'un jeu de tir à la première personne, un joueur doit viser une cible puis cliquer avec sa souris. Bien sûr, il y a une portée maximale car le joueur ne tir pas vraiment, c'est juste un coup.
+
+De plus, en seconde phase, si un joueur de status vengeance donne un coup à un autre joueur de status guéris, celui-ci prends le status vengeance. Cette façon permet aux joueurs de plus facilement interragir entre eux.
+
+\subparagraph{Endurance : Implémentation}
+
+Cette fonctionnalité s'implémente en deux temps. Premièrement, il faut détecter les coups entre joueurs ainsi que de gérer le mode assomé. Après cela, il faut tout porter en réseau et ceci comprends également l'affichage de la barre d'endurance au dessus des joueurs.
+
+Pour détecter les coups, j'ai créé la fonction Player.Attack qui est appelée quand l'utilisateur clique. Cette fonction utilise des RayCasts fournis par Unity, ils décrivent une détection de collision par rayon. Il faut spécifier le point de départ du rayon, sa direction, sa distance ainsi qu'un masque qui permet de filtrer les collisions. Ce masque retient seulement la catégorie de joueur.
+Une fois touché, nous allons appelé un évenement réseau qui va mettre à jour l'endurance voir le status du joueur touché.
+Nous avons rencontré un problème lors de l'implémentation de l'endurance, au début, à chaque mise à jour de la valeur nous l'envoyons via le réseau pour la mettre à jour de partout. Le problème est qu'elle peut changer 60 fois par secondes lors de la génération, ce qui à pour effet de faire voler / nager dans le sol les joueurs... J'ai alors fait une fonction qui s'execute tous les tiers de secondes et met à jour l'endurance en réseau.
+
+Un dernier élément que l'on peut ajouter est un affichage de status et d'endurance au dessus de la tête des joueurs. Ces éléments appartiennent aux joueurs non controllés par le client et sont toujours tourné vers la caméra. Il faut alors enlever celui du client au début de la partie et les mettre à jour lors d'un changement de status ou d'endurance.
+
+\paragraph{Gestion de l'audio}
+
+\subparagraph{Musique et effets sonores}
+
+Lors de la dernière soutenance, j'avais évoqué la possibilité d'intégrer des sons au jeu si le jeu avait suffisament avancé. Comme c'est le cas nous avons intégrer quelques sons et musiques. Léandre s'est occupé de composer les musiques et pour ma part je les ai mixées et intégrées au jeu. Pour le moment les musiques sont celles du menu et du jeu et nous avons également composés les effets sonores de victoire ou défaites.
+
+\subparagraph{Intégration de l'audio}
+
+Voici comment j'ai penser à intégrer l'audio au jeu.
+Tout d'abord, les musiques et effets sont des listes regroupant à la fois un identifiant et un fichier audio.
+J'ai créé une classe Audio premièrement qui possède des fonctions statiques ainsi qu'une instance statique, je me suis inspiré du design pattern \emph{Singleton} pour cette classe afin de rendre plus facile d'accès les méthodes. Cette classe doit être alors unique et pour cela j'ai fait appel à la fonction DontDestroyOnLoad de Unity, elle permet comme son nom l'indique de ne pas enlever l'objet ayant ce script lors d'un changement de scène. Maintenant distinguons deux types d'élément audio : les effets sonores ainsi que la musique. Les effets sonores sont des fichiers audio souvent de quelques secondes, ils interviennent lors de la victoire par exemple, ils peuvent être dans l'espace 3D, c'est à dire, plus on s'éloigne, moins le son est fort et en plus il peut être plus fort à gauche qu'à droite. Ces sons doivent se détruire automatiquement une fois terminés. Quant aux musiques, elles ne se terminent \emph{jamais}, elles se jouent en boucle et il n'y en a qu'une seule à la fois. Avec Unity, ce n'est pas compliqué d'implémenter une fonction \emph{Play} et \emph{SetMusic} qui jouent soit un effet audio, soit de la musique, ce qui est moins simple est de faire des transitions entre deux musiques quand on doit en changer.
+
+Voici la fonction Play simplifiée :
+% %%% TODO
+% ```C#
+% public static void Play(string id)
+% {
+%     Sound snd = Array.Find(instance.sfx, s => s.id == id);
+%     snd.source.Play();
+% }
+% ```
+
+SetMusic est semblable, voici une partie du code permettant de faire la transition entre deux musiques :
+% %%% TODO
+% ```C#
+% // Stop old music
+% currentMusic.GetComponent<Animator>().SetTrigger("Fade");
+
+% // Create new music
+% currentMusic = Instantiate(audioSample);
+
+% // Change source and play
+% var src = currentMusic.GetComponent<AudioSource>();
+% src.clip = snd.source.clip;
+% src.Play();
+% ```
+
+Il peut alors y avoir deux musiques qui jouent en même temps. Pour faire cela, j'ai utilisé un Animator, ce composant permet de gérer plusieurs animations sur un objet. Il y a deux animations : celle d'entrée et celle de sortie. Premièrement, j'avais directement animé le volume du composant AudioSource mais nous ne pouvons pas par la suite régler ce volume par les paramètres alors j'ai créé un autre script qui combine deux volumes, celui fournit par l'animation et celui des paramètres, comme leurs valeurs sont entre 0 et 1 il suffit de les multipliés entre eux pour obtenir le bon son. Pour que les transitions se jouent au bon moment nous déclanchons un \emph{trigger} dans l'animator, c'est juste une fonction qui déclanche une nouvelle animation. Ils se déclanchent au lancement de la musique et lors d'une transition. De plus, ces deux animation durent le même temps pour que ça soit plus agréable.
+
+%%% TODO : Animator pour joueur ?
+
+
+
+
+
+
+%%%%%%%%%%%%%%% TODO : Conclusion + Annexes
+
+
+\end{document}
+
+
+
