@@ -203,7 +203,32 @@ Il peut alors y avoir deux musiques qui jouent en même temps. Pour faire cela, 
 
 %%% TODO : Animator pour joueur ?
 
+\subsubsection{Steve}
 
+\subparagraph{Réseau}
+
+
+Comme dans l'ancienne soutenance, j’ai toujours la charge du projet et je me charge particulièrement du réseau. L'un des plus grands obstacles qu'on a rencontré lors du réseau est l'identification des joueurs. En effet, il serait bien plus plaisant à jouer si chacun des joueurs pouvait apparaître dans un endroit différent du labyrinthe pour premièrement ne pas avoir d'informations concernant l'emplacement des autres joueurs, et deuxièmement pour ne pas savoir notre propre position dans le labyrinthe. Au début, on avait pensé à faire apparaître chacun des joueurs dans un coin du labyrinthe mais cela pourrait donner des informations sur notre emplacement et pourrait nous faciliter la recherche des sérums.
+
+ Finalement, on a décidé de les faire apparaître aléatoirement dans le labyrinthe mais de manière que chacun des joueurs apparaissent à un endroit différent. Ils apparaitront dans une cage et lorsque la partie débutera, une trappe en dessous du joueur s'activera et fera tomber les joueurs dans le dédale. Au premier abord, cela semble très simple mais c'est peut-être l'un des plus grands défis de programmation que j'ai dû relever à ce jour. Des dizaines d'heures ont été passés juste pour cette tâche.
+On a dans un premier temps, pensé à prendre la liste des joueurs affiché dans le menu précédant, puis à chaque joueur lui assigné un identifiant, et pouvoir ensuite les faire apparaître à des coordonnées précises grâce à ces identifiants. Malheureusement, on a heurté un problème que l’on n’arrivait pas à distinguer le joueur client du reste des joueurs. Malgré qu'il y'ait une variable Player.LocalPlayer (joueur local en français), lorsque que nous avons fait des différents tests, nous nous sommes rapidement rendu compte que le LocalPlayer portait les mêmes informations avec tous les joueurs, c'est à dire même UserID (Identifiant d'utilisateur), ActorNumber (Nombre permettant de déterminer le joueur dans une salle spécifique), et même son pseudo. 
+
+Dans un second temps, on a pensé a utilisé les RaiseEvent (Emetteur d'événements) pour pouvoir les envoyer au MasterClient (l'hôte de la partie), pour qu'il serve de base et puisse traiter les différents messages. Cette solution posait deux problèmes : le premier est qu'on ne puisse pas déterminer l'émetteur du signal. En effet, les RaiseEvent possèdent peu de paramètres, on peut soit les envoyer à tout le monde, soit uniquement au MasterClient (il aurait aussi fallu régler le problème que le MasterClient ne s'envoie pas des signaux à lui-même), ou enfin soit à tout le monde sauf lui (encore une fois, si on veut déterminer le joueur émetteur il faut une liste de tous les joueurs et voir lequel des joueurs n'apparait pas dans la liste, mais comme précédemment cela semble trop complexe). 
+Mais le second problème et le plus grand, c'est que lorsque qu'on met dans le code d'envoyer le message, tous les joueurs vont envoyer le même message !
+
+Et donc à partir de là, malgré de multiples tentatives de gérer les flux entrants des flux sortants, ce fut bien complexe. On a aussi pensé à utiliser les Photon Views (abrégées PV, moyen de reconnaitre facilement par un identifiant un objet contrôlé soit par la scène, c'est à dire l'hôte, ou bien le client). Le problème c'est que pour mettre une PV, il faut d'abord un objet sur lequel le mettre. Or on souhaite justement à faire apparaître ce dit objet, qui serait notre joueur.   
+On a aussi pensé a utilisé des temps de latence pour envoyer les messages, de manière que s'ils sont envoyés un par un, ils seront bien plus simples à manipuler. Le problème c'est que Photon ne perçoit pas le temps de la même manière que nous le faisons. En effet, même si on essaye de recréer cette latence, Photon va par lui-même gérer cette latence et la partager dans tout le réseau. 
+
+Dans la théorie c'est bien, ça permet à ce qu'un joueur avec une bonne connexion n'ait pas d'avantage comparé à celui qui habite dans la campagne, mais dans la pratique et dans notre cas, ce n'est pas ce que l'on souhaite. Après de très longues recherches sur les bas-fonds d'Internet et l'avis de personnes qui en connaissait bien mieux dans la matière que nous. On a opté pour un système utilisant le compte des joueurs dans la partie, car il semblerait que ce soit l'un des seuls attributs de Photon qui dépend réellement du temps (qui a cliqué en premier, qui a la meilleure connexion etc. ...) Et ça fonctionne bien et c'est le principal !
+
+
+\subparagraph{Menus}
+
+Pour ajouter de la personnification aux jeu, Léandre et moi avons travaillé encore ensemble pour rendre le gameplay et la jouabilité meilleure. L'une des idées qui furent mises sur la table est ce que l'hôte de la partie pourrait choisir les dimensions du labyrinthe à partir d’un menu et pourquoi même pour l'avenir un choix de dimension infini en laissant l'hôte taper ses propres coordonnées pour le labyrinthe. 
+
+Pour cela il a fallu créer un menu avec une Scroll List (un tableau déroulant), permettant de sélectionner la dimension que l'on souhaite parmi une multitude de choix. Lorsqu'on veut sélectionner une dimension qui nous convient, il suffit simplement de cliquer dessus, et le travail est joué ! Un script va interpréter l'action puis l'envoyer à l'autre scène pour que le labyrinthe est connaissance de sa nouvelle dimension. Il a aussi refallu changer l'interface du menu de la salle pour l'hôte de manière qu'il ne puisse pas cliquer ou non sur le bouton "Ready" (prêt en français, vu que ce c'est lui qui détermine quand on commence la partie).
+ 
+En dehors de ça, il a fallu faire les tâches classiques qui sont d'optimiser les scripts, nettoyer les salles des objets de test, repenser les menus pour qu'ils soient plus intuitifs et plus plaisant à regarder...
 
 
 
