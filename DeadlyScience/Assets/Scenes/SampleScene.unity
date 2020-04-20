@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1841,6 +1841,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Impasse
       objectReference: {fileID: 0}
+    - target: {fileID: 9060186003703640770, guid: 28f5c613535a4bf4d80cf0a88aece7a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28f5c613535a4bf4d80cf0a88aece7a3, type: 3}
 --- !u!1 &783315794
@@ -3376,6 +3381,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrefour
       objectReference: {fileID: 0}
+    - target: {fileID: 713849466631343895, guid: 33f2f1a9599e2d84b8020e2acdc8f318,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4333558751105373138, guid: 33f2f1a9599e2d84b8020e2acdc8f318,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3444,6 +3454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Couloir tournant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 88255446596804520, guid: 8a03d1919dd341c47944283a0802e877,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4934827371068469204, guid: 8a03d1919dd341c47944283a0802e877,
         type: 3}
@@ -3694,6 +3709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Couloir tournant (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 88255446596804520, guid: 8a03d1919dd341c47944283a0802e877,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4934827371068469204, guid: 8a03d1919dd341c47944283a0802e877,
         type: 3}
@@ -3953,6 +3973,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Couloir bifurcation
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871393448914816566, guid: 6c324d18199d37842b15fed20064e343,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8515895110525856065, guid: 6c324d18199d37842b15fed20064e343,
         type: 3}
@@ -4332,6 +4357,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Couloir tournant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 88255446596804520, guid: 8a03d1919dd341c47944283a0802e877,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4934827371068469204, guid: 8a03d1919dd341c47944283a0802e877,
         type: 3}
@@ -5048,6 +5078,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Couloir tournant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 88255446596804520, guid: 8a03d1919dd341c47944283a0802e877,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4934827371068469204, guid: 8a03d1919dd341c47944283a0802e877,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5734,6 +5769,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bifurcation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443449452823680016, guid: 9c14db97f228f894dbfff5ac6655de6a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8769269817528637693, guid: 9c14db97f228f894dbfff5ac6655de6a,
         type: 3}
