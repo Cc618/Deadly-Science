@@ -103,10 +103,14 @@ Sons & 0\% & 10\% \\ \hline
 \newpage
 \section{Réalisations}
 
+%%%%%%%%%%%%%%%%%% TODO : Introduction
 
 
 %%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsubsection{Célian}
+
+Les modifications que j'ai apporté pour cette soutenance ont principalement pour but de porter le jeu en réseau, j'entends par cela uniquement la phase de jeu. Je me suis plus précisement occupé de synchroniser certaines variables entre les joueurs comme leur status, j'ai également géré l'envoie de plusieurs évenements comme le début / la fin du jeu et dernièrement j'ai ajouté un peu de son au jeu pour le rendre un peu plus vivant.
 
 \paragraph{Phases et status}
 
@@ -132,14 +136,16 @@ PlayerNetwork est le module présent sur chaque joueur (controlé ou non par le 
 Chaque évenement réseau de PlayerNetwork est décomposée en deux fonctions : \emph{Send<Evenement>} et \emph{<Evenement>}. La première est utilisée par un seul joueur pour appeler la seconde dans toutes les classes PlayerNetwork des joueurs. La seconde est une fonction RPC comme Steve a décrit. La fonction Send ajoute des arguments pour informer qui vient de lever l'évenement, ceci sert à cibler un joueur. Par exemple, nous pouvons envoyer un changement de status au joueur ayant pour identifiant 2 (l'identifiant est un entier unique pour chaque joueur). Pour revenir au status, une fois l'évenement reçu, nous avons juste à trouver si c'est le bon joueur qui reçoit l'évenement puis changer le status.
 
 Les phases sont implémentées de manière semblable. En effet, nous utilisons des évenements comme \emph{BeginGame} lancé au début de la première phase, \emph{EndFirstPhase} lors de la fin de la première phase et \emph{EndGame} quand nous devons gérer la victoire / la défaite du joueur. La seule différence avec le status est que seulement le maître du jeu envoie ces évenements. Cela évite que deux joueurs soient dans deux phases différentes, si un joueur possède un ralentissement ou un bug, la deuxième phase peut durer plus ou moins longtemps. Pour détecter le début du jeu, nous attendons que tous les joueurs soient prêts, ils envoient un évenement réseau pour avertir le maître du jeu. La fin de la première phase se fait quand chaque sérum est récupéré, là aussi nous avertissons le maître quand un sérum est pris. Après cela, il faut attendre le temps de la seconde phase grâce à une coroutine, c'est une fonction qui s'execute en plusieurs fois, il faut ajouter la ligne si dessous pour attendre quelques secondes :
-%%% TODO :
-% ```C#
-% yield return new WaitForSeconds(seconds);
-% ```
+
+\begin{lstlisting}
+yield return new WaitForSeconds(seconds);
+\end{lstlisting}
+
 Ensuite il suffit d'avertir les autres joueurs via les évenements réseau.
 
 La fonction \emph{EndGame} est appelée lors de la victoire / la défaite du joueur. Pour savoir si le joueur gagne, il suffit de comparer son status au status guéris, après nous affichons le menu gagné ou perdu.
 
+\newpage
 \paragraph{Endurance et coups}
 
 \subparagraph{Endurance : Présentation}
@@ -162,6 +168,7 @@ Nous avons rencontré un problème lors de l'implémentation de l'endurance, au 
 
 Un dernier élément que l'on peut ajouter est un affichage de status et d'endurance au dessus de la tête des joueurs. Ces éléments appartiennent aux joueurs non controllés par le client et sont toujours tourné vers la caméra. Il faut alors enlever celui du client au début de la partie et les mettre à jour lors d'un changement de status ou d'endurance.
 
+\newpage
 \paragraph{Gestion de l'audio}
 
 \subparagraph{Musique et effets sonores}
@@ -175,34 +182,41 @@ Tout d'abord, les musiques et effets sont des listes regroupant à la fois un id
 J'ai créé une classe Audio premièrement qui possède des fonctions statiques ainsi qu'une instance statique, je me suis inspiré du design pattern \emph{Singleton} pour cette classe afin de rendre plus facile d'accès les méthodes. Cette classe doit être alors unique et pour cela j'ai fait appel à la fonction DontDestroyOnLoad de Unity, elle permet comme son nom l'indique de ne pas enlever l'objet ayant ce script lors d'un changement de scène. Maintenant distinguons deux types d'élément audio : les effets sonores ainsi que la musique. Les effets sonores sont des fichiers audio souvent de quelques secondes, ils interviennent lors de la victoire par exemple, ils peuvent être dans l'espace 3D, c'est à dire, plus on s'éloigne, moins le son est fort et en plus il peut être plus fort à gauche qu'à droite. Ces sons doivent se détruire automatiquement une fois terminés. Quant aux musiques, elles ne se terminent \emph{jamais}, elles se jouent en boucle et il n'y en a qu'une seule à la fois. Avec Unity, ce n'est pas compliqué d'implémenter une fonction \emph{Play} et \emph{SetMusic} qui jouent soit un effet audio, soit de la musique, ce qui est moins simple est de faire des transitions entre deux musiques quand on doit en changer.
 
 Voici la fonction Play simplifiée :
-% %%% TODO
-% ```C#
-% public static void Play(string id)
-% {
-%     Sound snd = Array.Find(instance.sfx, s => s.id == id);
-%     snd.source.Play();
-% }
-% ```
+\begin{lstlisting}
+public static void Play(string id)
+{
+    Sound snd = Array.Find(instance.sfx, s => s.id == id);
+    snd.source.Play();
+}
+\end{lstlisting}
 
 SetMusic est semblable, voici une partie du code permettant de faire la transition entre deux musiques :
-% %%% TODO
-% ```C#
-% // Stop old music
-% currentMusic.GetComponent<Animator>().SetTrigger("Fade");
+\begin{lstlisting}
+// Stop old music
+currentMusic.GetComponent<Animator>().SetTrigger("Fade");
 
-% // Create new music
-% currentMusic = Instantiate(audioSample);
+// Create new music
+currentMusic = Instantiate(audioSample);
 
-% // Change source and play
-% var src = currentMusic.GetComponent<AudioSource>();
-% src.clip = snd.source.clip;
-% src.Play();
-% ```
+// Change source and play
+var src = currentMusic.GetComponent<AudioSource>();
+src.clip = snd.source.clip;
+src.Play();
+\end{lstlisting}
 
 Il peut alors y avoir deux musiques qui jouent en même temps. Pour faire cela, j'ai utilisé un Animator, ce composant permet de gérer plusieurs animations sur un objet. Il y a deux animations : celle d'entrée et celle de sortie. Premièrement, j'avais directement animé le volume du composant AudioSource mais nous ne pouvons pas par la suite régler ce volume par les paramètres alors j'ai créé un autre script qui combine deux volumes, celui fournit par l'animation et celui des paramètres, comme leurs valeurs sont entre 0 et 1 il suffit de les multipliés entre eux pour obtenir le bon son. Pour que les transitions se jouent au bon moment nous déclanchons un \emph{trigger} dans l'animator, c'est juste une fonction qui déclanche une nouvelle animation. Ils se déclanchent au lancement de la musique et lors d'une transition. De plus, ces deux animation durent le même temps pour que ça soit plus agréable.
 
 %%% TODO : Animator pour joueur ?
 
+\paragraph{Objectifs}
+
+Pour conclure, je trouve que le jeu a particulièrement avancé en terme de jouabilité, nous pouvons à présent y jouer vraiment.
+
+Pour la prochaîne et dernière soutenance, mon but sera de rendre plus comfortable notre jeu, c'est à dire d'ajouter des effets sonores ainsi que des effets visuels. Bien sûr, il est possible que la phase de jeu change aussi pour que le jeu soit plus technique et moins aléatoire. 
+
+
+%%%%%%%%%%%%%%%%%%%%%% Steve %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsubsection{Steve}
 
 \subparagraph{Réseau}
