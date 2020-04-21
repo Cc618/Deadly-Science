@@ -56,7 +56,6 @@ namespace ds
         // When a player takes a serum
         public void OnSerum()
         {
-            // !!! TODO : Can take serum only when infected
             net.SendSetStatus(PlayerStatus.HEALED);
         }
 

@@ -63,7 +63,6 @@ namespace ds
 
             if (revengePlayers == PhotonNetwork.PlayerList.Length)
             {
-                // TODO : Only the first revenge win
                 instance.net.SendRevengeWin(firstRevengePlayer);
             }
         }
