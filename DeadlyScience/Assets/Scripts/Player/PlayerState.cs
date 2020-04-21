@@ -78,17 +78,12 @@ namespace ds
         // Status when we end the first phase
         PlayerStatus firstPhaseStatus;
 
-        public void EndOfGame()
+        public void EndOfGame(bool forceWin=false, bool win=false)
         {
-            // TODO : Revenge can win ?
-            if (Status == PlayerStatus.HEALED)
-            {
-                EndGame.EndOfGame(true);
-            }
+            if (forceWin)
+                EndGame.EndOfGame(win);
             else
-            {
-                EndGame.EndOfGame(false);
-            }
+                EndGame.EndOfGame(Status == PlayerStatus.HEALED);
         }
 
         // Called on master

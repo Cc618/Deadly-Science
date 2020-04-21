@@ -169,7 +169,12 @@ namespace ds
         {
             // Change for the target player only
             if (from == id)
+            {
                 playerState.Status = status;
+
+                if (PhotonNetwork.IsMasterClient && status == PlayerState.PlayerStatus.REVENGE)
+                    PlayerMaster.UpdateRevengePlayers(id);
+            }
         }
 
         public void SendSetStatus(PlayerState.PlayerStatus status)
@@ -239,23 +244,30 @@ namespace ds
             view.RPC("SecondPhase", RpcTarget.All);
         }
 
-        // First phase, after game init
         // This method is not always called
         // from the client player net so
         // we use local instead of this
         [PunRPC]
         public void EndOfGame()
         {
-            print("EndOfGame");
             local.playerState.EndOfGame();
         }
 
         public void SendEndOfGame()
         {
-            print("SendEndOfGame");
             view.RPC("EndOfGame", RpcTarget.All);
         }
 
+        [PunRPC]
+        public void RevengeWin(int winnerId)
+        {
+            local.playerState.EndOfGame(true, localPlayer.net.id == winnerId);
+        }
+
+        public void SendRevengeWin(int winnerId)
+        {
+            view.RPC("RevengeWin", RpcTarget.All, winnerId);
+        }
 
         // When the stamina has to be decreased
         [PunRPC]

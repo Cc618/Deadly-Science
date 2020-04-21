@@ -52,6 +52,22 @@ namespace ds
             get => collectedSerums;
         }
 
+        private static int revengePlayers = 0;
+        private static int firstRevengePlayer = -1;
+        public static void UpdateRevengePlayers(int id)
+        {
+            ++revengePlayers;
+
+            if (revengePlayers == 1)
+                firstRevengePlayer = id;
+
+            if (revengePlayers == PhotonNetwork.PlayerList.Length)
+            {
+                // TODO : Only the first revenge win
+                instance.net.SendRevengeWin(firstRevengePlayer);
+            }
+        }
+
         private PlayerNetwork net;
     }
 }

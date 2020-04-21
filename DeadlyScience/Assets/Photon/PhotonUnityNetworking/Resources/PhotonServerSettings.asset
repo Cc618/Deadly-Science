@@ -56,5 +56,6 @@ MonoBehaviour:
   - UpdateVariables
   - VariableUpdate
   - Hit
+  - RevengeWin
   DisableAutoOpenWizard: 1
   ShowSettings: 1

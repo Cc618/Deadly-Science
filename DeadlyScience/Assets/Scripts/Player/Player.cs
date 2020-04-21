@@ -187,13 +187,13 @@ namespace ds
             }
 
             // TODO : rm Test
-            if (Input.GetKey(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.H))
                 net.SendSetStatus(PlayerState.PlayerStatus.HEALED);
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))
                 net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
-            if (Input.GetKey(KeyCode.G))
+            if (Input.GetKeyDown(KeyCode.G))
                 net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
-            if (Input.GetKey(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I))
                 net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
         }
 
