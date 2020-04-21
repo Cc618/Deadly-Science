@@ -108,7 +108,7 @@ Sons & 0\% & 10\% \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\subsubsection{Célian}
+\subsection{Célian}
 
 Les modifications que j'ai apporté pour cette soutenance ont principalement pour but de porter le jeu en réseau, j'entends par cela uniquement la phase de jeu. Je me suis plus précisement occupé de synchroniser certaines variables entre les joueurs comme leur status, j'ai également géré l'envoie de plusieurs évenements comme le début / la fin du jeu et dernièrement j'ai ajouté un peu de son au jeu pour le rendre un peu plus vivant.
 
@@ -227,9 +227,95 @@ Pour conclure, je trouve que le jeu a particulièrement avancé en terme de joua
 Pour la prochaîne et dernière soutenance, mon but sera de rendre plus comfortable notre jeu, c'est à dire d'ajouter des effets sonores ainsi que des effets visuels. Bien sûr, il est possible que la phase de jeu change aussi pour que le jeu soit plus technique et moins aléatoire. 
 
 
+%%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Yann}
+
+\paragraph{Menu principal}
+
+\subparagraph{Accueil}
+Comme vous pouvez le voir il n'a pas évolué pour l'instant mais des images ou video viendront le garnir dans sa version finale, lorsqu'il n'y aura plus de modification trop importantes.
+\subparagraph{Paramètres}
+Rappel: J'avais développé des paramètres d'attribution de touches pour le jeu lors de la première soutenance. Ils sont sauvegardé sur l'ordinateur du joueur grâce aux PlayerPrefs et les changements se font en cliquant sur le bouton correspondant à une action et la première touche enfoncée est réattribuée.
+Ceux-ci on eu le bonheur d'être rejoint par trois slider pour de nouveaux paramètres:
+
+\begin{itemize}
+    \item contrôle du volume de la musique
+    \item contrôle du volumes des effets sonores
+    \item contrôle de la sensibilité de la souris
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{parametres.png}
+    \caption{paramètres écran principal}
+\end{figure}
+
+Les trois utilisent des float qui sont utilisé comme coefficient pour le calcul des valeurs correspondantes. La musique et les effets sonores vont de 0 à 1 donc 0 à 100\% du volume. En revanche la plage de valeurs pour la sensibilité de la souris est plus réduite: de 0.1 à 0.8. J'ai limité ces valeurs car une sensibilité de 0 revindrait à ne pas bouger la caméra. Perdre du temps pour revenir aux paramètres car on est allé un peu trop vite peut rapidement mener à une défaite dans ce genre de jeux. Et la limite supérieur est tout à fait arbitraire car je me suis rendu compte que au-delà, la caméra devenait ingérable et l'expérience de jeu en souffrait.
+
+\newpage
+
+Voici une des fonctions de ces paramètres, on remarque qu'elle est assez simple:
+
+\par\vspace{0.2cm}
+\begin{lstlisting}
+    public void OnMouseSensitivityValueChange(float value)
+    {
+        mouseSensivity = value;
+        PlayerPrefs.SetFloat("mouseSensivity", mouseSensivity);
+        PlayerPrefs.Save();
+    }
+\end{lstlisting}
+
+Elle prends la valeur du slider directement en argument et change la sensibilité de la souris. On sauvegarde ensuite cette valeur pour les prochaines parties.
+
+\paragraph{Salles}
+Avec Léandre nous nous sommes répartis la création plus concrète des salles (pour éviter le vert et violet) Nous avons donc utilisé le logiciel Blender pour faire les modèles 3D des différentes salles
+Je me suis occupé de faire la salle de croisement, l'impasse et le carrefour.
+
+\subparagraph{La salle de croisement}\hspace{-0.2cm}est assez simple il y a un tableau d'information vide pour l'instant sur le mur libre. Nous y ajouterons sûrement des feuilles. Les trois autres murs ont des portes pour se déplacer dans le labyrinthe.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{salle_croisement.png}
+    \caption{Salle de croisement}
+    \label{salle de croisement}
+\end{figure}
+
+\subparagraph{L'impasse}\hspace{-0.2cm}est une salle de stockage/chambre froide nécessaire à toute installation scientifique. Elle comporte une armoire vitrée avec différent fioles de produits d'origines douteuses et d'effets inconnus ainsi que duex armoires blindées dont les explorateurs n'ont malheureusement pas les clés. Un poster orne le mur du fond, montrant la sobriété des développeurs du jeu...
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{impasse.png}
+    \caption{Impasse}
+    \label{Impasse}
+\end{figure}
+
+\newpage
+\subparagraph{Le carrefour}\hspace{-0.2cm}, bien que rare, apparait sous la forme d'une salle de contrôle avec des écrans (éteints, c'est un laboratoire abandonné quand même), des tableau électriques aux murs et une chaise dans un coin.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{carrefour.png}
+    \caption{Le carrefour du laboratoire}
+    \label{carrefour}
+\end{figure}
+
+\paragraph{Le site internet}
+Je suis responsable de la création du site web de notre groupe. Le header contient notre logo en haut à gauche du site ainsi que le nom du jeu: "Deadly Science". On y retrouve également le menu de navigation du site. Après m'être entretenu avec mes camarades j'ai choisi de faire 5 pages sur le sites:
+
+\begin{itemize}
+    \item L'accueil, qui présente notre projet et explique le déroulement du jeu en deux phases: arrivée dans un laboratoire abandonné et infecté par une maladie les joueurs cherchent des sérums capable de les sauver mais insuffisant en nombre. Puis la vengeance du condamné qui veux se venger de ses ex-compagnons.
+    \item Le groupe, présentation des membres du groupe avec une photo de chacun.
+    \item La galerie contient des photos des différentes salles du laboratoire. J'y ajouterai par la suite des vidéos d'exemples du jeu.
+    \item Le codex plaga, pour l'instant vide, expliquera plus en détails le fonctionnement du jeu terminé
+    \item Les Documents, vous pouvez y retrouver le cahier des charges le rapport de la première soutenance ainsi que le deuxième.
+\end{itemize}{}
+
 %%%%%%%%%%%%%%%%%%%%%% Steve %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\subsubsection{Steve}
+\subsection{Steve}
 
 \subparagraph{Réseau}
 
@@ -257,7 +343,7 @@ Pour cela il a fallu créer un menu avec une Scroll List (un tableau déroulant)
 En dehors de ça, il a fallu faire les tâches classiques qui sont d'optimiser les scripts, nettoyer les salles des objets de test, repenser les menus pour qu'ils soient plus intuitifs et plus plaisant à regarder...
 
 \newpage
-\subsubsection{Leandre}
+\subsection{Leandre}
 
 Dans ce projet, je suis principalement responsable de la génération aléatoire de la partie ainsi que de la direction artistique. Dans le cadre de cette soutenance, je me suis donc concentré sur la génération des joueurs et des sérums, ainsi que sur la musique et les décors, étant donné que la génération du labyrinthe était déjà en partie terminée, et que la plupart de nos test nécessitent la possibilité de simuler une véritable partie, notamment en ce qui concerne le passage de phase, les passations d'infection, ou encore les fins de partie.
 
