@@ -38,7 +38,7 @@ namespace ds
 
             RoomOptions options = new RoomOptions();
             //TODO : Permettre au créateur de modifier Xm et Zm
-            Xm = 3;
+            Xm = 10;
             Zm = 10;
             where = Generation.Aleatoire(7, Xm * Zm);
             int a = 0;

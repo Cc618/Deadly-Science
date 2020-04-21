@@ -16,7 +16,7 @@ namespace ds
         }
 
         // In seconds
-        public static float revengeTime = 60 * 5;
+        public static float revengeTime = 60 * 3;
 
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status
