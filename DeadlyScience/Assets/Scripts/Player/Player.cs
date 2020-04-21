@@ -221,19 +221,6 @@ namespace ds
                 // Change stamina
                 pNet.SendHit(strength);
             }
-            return;
-
-
-
-            // TODO : status == player.status
-            bool sameStatus = true;
-
-            if (sameStatus)
-                if (!stunned)
-                    // TODO : player.strength
-                    Stamina -= strength;
-            // TODO : Else if infected...
-
         }
 
         // When the player controlled by the client hits another player
@@ -266,13 +253,12 @@ namespace ds
 
         void Attack()
         {
-            int layerMask = ~LayerMask.NameToLayer("Player");
+            // Collide only players
+            int layerMask = 1 << LayerMask.NameToLayer("Player");
             RaycastHit hit;
 
             if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.TransformDirection(Vector3.forward), out hit, attackRange, layerMask))
             {
-                print("ATTACK");
-                // TODO : Update stamina if same status
                 Hit(hit.collider.gameObject);
             }
         }
