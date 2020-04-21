@@ -32,9 +32,6 @@ namespace ds
 
             if (p.Status == PlayerState.PlayerStatus.INFECTED)
             {
-                // Heal player
-                p.Status = PlayerState.PlayerStatus.HEALED;
-
                 // Update client / other players
                 client.OnSerumCollect(id);
 

@@ -142,8 +142,6 @@ namespace ds
                 Serum serum = Serum.instances.Find((Serum s) => s.id == serumId);
 
                 PhotonNetwork.Destroy(serum.GetComponent<PhotonView>());
-
-                ++PlayerMaster.CollectedSerums;
             }
         }
 
@@ -160,6 +158,9 @@ namespace ds
         [PunRPC]
         public void SetStatus(int from, PlayerState.PlayerStatus status)
         {
+            if (PhotonNetwork.IsMasterClient && status == PlayerState.PlayerStatus.HEALED)
+                ++PlayerMaster.CollectedSerums;
+
             // Change for the target player only
             if (from == id)
             {
@@ -230,6 +231,9 @@ namespace ds
             {
                 playerState.EndFirstPhase();
             }
+
+            if (PhotonNetwork.IsMasterClient)
+                StartCoroutine(playerState.SecondPhase());
         }
 
         public void SendSecondPhase()

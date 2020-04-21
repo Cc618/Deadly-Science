@@ -15,8 +15,8 @@ namespace ds
             GHOST
         }
 
-        // In seconds
-        public static float revengeTime = 120;
+        // In seconds TODO : 120
+        public static float revengeTime = 1;
 
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status
@@ -69,10 +69,6 @@ namespace ds
             // Revenge mode
             if (status == PlayerStatus.INFECTED)
                 net.SendSetStatus(PlayerStatus.REVENGE);
-
-            // Start next phase
-            if (PhotonNetwork.IsMasterClient)
-                StartCoroutine(SecondPhase());
         }
 
         // Status when we end the first phase
@@ -87,12 +83,12 @@ namespace ds
         }
 
         // Called on master
-        IEnumerator SecondPhase()
+        public IEnumerator SecondPhase()
         {
             firstPhaseStatus = Status;
 
             yield return new WaitForSeconds(revengeTime);
-            
+
             net.SendEndOfGame();
         }
     }
