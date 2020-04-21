@@ -15,8 +15,8 @@ namespace ds
             GHOST
         }
 
-        // In seconds TODO : 120
-        public static float revengeTime = 1;
+        // In seconds
+        public static float revengeTime = 60 * 5;
 
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status

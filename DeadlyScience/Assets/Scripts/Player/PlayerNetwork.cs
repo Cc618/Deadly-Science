@@ -231,7 +231,6 @@ namespace ds
                 playerState.EndFirstPhase();
             }
 
-            // TMP : Verify
             if (PhotonNetwork.IsMasterClient)
                 StartCoroutine(playerState.SecondPhase());
         }
