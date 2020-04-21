@@ -74,13 +74,6 @@ namespace ds
         // Called when all players are in game before OnGameBegin
         public void PrepareGame()
         {
-            // TODO : Even if there is only one player ?
-            // Update the number of serums in game
-            if (PhotonNetwork.PlayerList.Length == 1)
-                PlayerMaster.serumCount = 1;
-            else
-                PlayerMaster.serumCount = PhotonNetwork.PlayerList.Length - 1;
-
             // TODO : Begin game...
             if (isLocal)
                 playerState.BeginFirstPhase();
