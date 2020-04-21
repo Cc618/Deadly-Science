@@ -11,7 +11,7 @@ namespace ds
             if (!Game.EscapeMenuOpen)
             {
                 // The new rotation
-                float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Time.deltaTime * Screen.width;
+                float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Screen.width / 60;
 
                 // Clip rot
                 if (rot > 90 && rot < 180)
