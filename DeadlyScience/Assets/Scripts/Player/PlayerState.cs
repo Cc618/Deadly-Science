@@ -15,11 +15,8 @@ namespace ds
             GHOST
         }
 
-        // In minutes
-        [Range(0, 5)]
-        public float searchTime;
-        [Range(0, 5)]
-        public float revengeTime;
+        // In seconds
+        public static float revengeTime = 120;
 
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status
@@ -33,19 +30,7 @@ namespace ds
                 if (nameUi)
                     nameUi.SetStatus(status);
 
-                // Update material
-                // TODO : Update also anim / sound...
-                //switch (status)
-                //{
-                //    case PlayerStatus.HEALED:
-                //        Debug.Log("Player has status HEALED");
-                //        //stateIndicator.material = healedMaterial;
-                //        break;
-                //    case PlayerStatus.INFECTED:
-                //        Debug.Log("Player has status INFECTED");
-                //        //stateIndicator.material = infectedMaterial;
-                //        break;
-                //}
+                // TODO : Sound
             }
 
             get => status;
@@ -111,7 +96,7 @@ namespace ds
         {
             firstPhaseStatus = Status;
 
-            yield return new WaitForSeconds(revengeTime * 60);
+            yield return new WaitForSeconds(revengeTime);
             
             net.SendEndOfGame();
         }
