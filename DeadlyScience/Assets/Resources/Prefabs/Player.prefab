@@ -692,8 +692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0832b9ec0541ce4fa34601d8b76433f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchTime: 0.1
-  revengeTime: 0.1
   nameUi: {fileID: 1762533296}
   staminaUi: {fileID: 1516878344}
 --- !u!114 &4102238349062653263
