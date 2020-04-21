@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5922445213573393734}
   - component: {fileID: -3350255613120733712}
   m_Layer: 10
-  m_Name: Machina
+  m_Name: Carrefour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
