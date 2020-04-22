@@ -154,7 +154,7 @@ La fonction \emph{EndGame} est appelée lors de la victoire / la défaite du jou
 
 Maintenant nous avons un vrai jeu, c'est-à-dire qu'il y a des joueurs qui peuvent gagner ou perdre et tout cela est en plus synchronisé en réseau. Parlons d'un ajout au jeu le rendant bien plus intéressant ainsi que dynamique : La jauge d'endurance.
 
-L'endurance est semblable à une barre de vie dans la plupart des jeux, contrairement à une barre de vie, une fois vide, elle ne tue pas le joueur mais le rend faible. Ainsi, le joueur se déplace très lentement (10\% de sa vitesse normale) et ne peut plus sauter. Cette jauge se remplie petit à petit et une fois le joueur \emph{assomé}, il doit attendre que cette barre d'endurance se remplisse totalement avant de retrouver ses abilités.
+L'endurance est semblable à une barre de vie dans la plupart des jeux, contrairement à une barre de vie, une fois vide, elle ne tue pas le joueur mais le rend faible. Ainsi, le joueur se déplace très lentement (10\% de sa vitesse normale) et ne peut plus sauter. Cette jauge se remplie petit à petit et une fois le joueur asssomé (\emph{stunned}), il doit attendre que cette barre d'endurance se remplisse totalement avant de retrouver ses abilités.
 
 A présent, parlons de comment un joueur peut assomer un autre joueur, c'est très simple, à la manière d'un jeu de tir à la première personne, un joueur doit viser une cible puis cliquer avec sa souris. Bien sûr, il y a une portée maximale car le joueur ne tir pas vraiment, c'est juste un coup.
 
@@ -317,30 +317,69 @@ Je suis responsable de la création du site web de notre groupe. Le header conti
 \newpage
 \subsection{Steve}
 
-\subparagraph{Réseau}
+\paragraph{Réseau}
+\subparagraph{Apparition des joueurs}
+
+Comme dans la soutenance précédente, j’ai la charge du projet et je me charge aussi particulièrement du réseau. L'un des plus grands obstacles qu'on a rencontré lors du réseau est l'identification des joueurs. En effet, il serait bien plus plaisant de jouer si chacun des joueurs pouvait apparaître dans un endroit différent du labyrinthe pour premièrement ne pas avoir d'informations concernant l'emplacement des autres joueurs, et deuxièmement pour ne pas savoir notre propre position dans le labyrinthe. Au début, on avait pensé à faire apparaître chacun des joueurs dans un coin du labyrinthe mais cela pourrait donner des informations sur notre emplacement et pourrait nous faciliter la recherche des sérums.
+
+Finalement, on a décidé de les faire apparaître aléatoirement dans le labyrinthe mais de manière que chacun des joueurs apparaissent à un endroit différent. Ils apparaitront dans une cage et lorsque la partie débutera, une trappe en dessous du joueur s'activera et fera tomber les joueurs dans le dédale.
+
+\subparagraph{Distinction du client local des autres clients}
+
+Au premier abord, cela semble très simple mais c'est peut-être l'un des plus grands défis de programmation que j'ai dû relever à ce jour. Plus d'une dizaine d'heures ont été passés juste pour cette tâche.
+On a dans un premier temps, pensé à prendre la liste des joueurs affichés dans le menu précédant, puis à chaque joueur lui assigner un identifiant, et pouvoir ensuite les faire apparaître à des coordonnées précises grâce à ces identifiants. Malheureusement, on a été heurté un problème que l’on n’arrivait pas à distinguer le joueur client du reste des joueurs. Malgré qu'il y'ait une variable Player.LocalPlayer (joueur local en français), lorsque que nous avons fait des différents tests, nous nous sommes rapidement rendu compte que le LocalPlayer portait les mêmes informations que tous les joueurs, c'est à dire même UserID (Identifiant d'utilisateur), ActorNumber (Nombre permettant de déterminer le joueur dans une salle spécifique), et même son pseudonyme. 
+
+\newpage
+\subparagraph{Gestion des RaiseEvent}
+
+Dans un second temps, on a pensé a utiliser les RaiseEvent (Emetteur d'événements) pour pouvoir les envoyer au MasterClient (l'hôte de la partie), pour qu'il serve de base et puisse traiter les différents messages. Cette solution posait deux problèmes : le premier est qu'on ne puisse pas déterminer l'émetteur du signal. En effet, les RaiseEvent possèdent peu de paramètres, on peut :
 
 
-Comme dans l'ancienne soutenance, j’ai toujours la charge du projet et je me charge particulièrement du réseau. L'un des plus grands obstacles qu'on a rencontré lors du réseau est l'identification des joueurs. En effet, il serait bien plus plaisant à jouer si chacun des joueurs pouvait apparaître dans un endroit différent du labyrinthe pour premièrement ne pas avoir d'informations concernant l'emplacement des autres joueurs, et deuxièmement pour ne pas savoir notre propre position dans le labyrinthe. Au début, on avait pensé à faire apparaître chacun des joueurs dans un coin du labyrinthe mais cela pourrait donner des informations sur notre emplacement et pourrait nous faciliter la recherche des sérums.
+\begin{itemize}
+\item Soit les envoyer à tout le monde
+\item Soit uniquement au MasterClient (il aurait aussi fallu régler le problème que le MasterClient ne s'envoie pas des signaux à lui-même)
+\item Soit à tous les autres joueurs (encore une fois, si on veut déterminer le joueur émetteur il faut une liste de tous les joueurs et voir lequel des joueurs n'apparait pas dans la liste, mais comme précédemment cela semble trop complexe). 
+\end{itemize}
 
- Finalement, on a décidé de les faire apparaître aléatoirement dans le labyrinthe mais de manière que chacun des joueurs apparaissent à un endroit différent. Ils apparaitront dans une cage et lorsque la partie débutera, une trappe en dessous du joueur s'activera et fera tomber les joueurs dans le dédale. Au premier abord, cela semble très simple mais c'est peut-être l'un des plus grands défis de programmation que j'ai dû relever à ce jour. Des dizaines d'heures ont été passés juste pour cette tâche.
-On a dans un premier temps, pensé à prendre la liste des joueurs affiché dans le menu précédant, puis à chaque joueur lui assigné un identifiant, et pouvoir ensuite les faire apparaître à des coordonnées précises grâce à ces identifiants. Malheureusement, on a heurté un problème que l’on n’arrivait pas à distinguer le joueur client du reste des joueurs. Malgré qu'il y'ait une variable Player.LocalPlayer (joueur local en français), lorsque que nous avons fait des différents tests, nous nous sommes rapidement rendu compte que le LocalPlayer portait les mêmes informations avec tous les joueurs, c'est à dire même UserID (Identifiant d'utilisateur), ActorNumber (Nombre permettant de déterminer le joueur dans une salle spécifique), et même son pseudo. 
-
-Dans un second temps, on a pensé a utilisé les RaiseEvent (Emetteur d'événements) pour pouvoir les envoyer au MasterClient (l'hôte de la partie), pour qu'il serve de base et puisse traiter les différents messages. Cette solution posait deux problèmes : le premier est qu'on ne puisse pas déterminer l'émetteur du signal. En effet, les RaiseEvent possèdent peu de paramètres, on peut soit les envoyer à tout le monde, soit uniquement au MasterClient (il aurait aussi fallu régler le problème que le MasterClient ne s'envoie pas des signaux à lui-même), ou enfin soit à tout le monde sauf lui (encore une fois, si on veut déterminer le joueur émetteur il faut une liste de tous les joueurs et voir lequel des joueurs n'apparait pas dans la liste, mais comme précédemment cela semble trop complexe). 
 Mais le second problème et le plus grand, c'est que lorsque qu'on met dans le code d'envoyer le message, tous les joueurs vont envoyer le même message !
 
-Et donc à partir de là, malgré de multiples tentatives de gérer les flux entrants des flux sortants, ce fut bien complexe. On a aussi pensé à utiliser les Photon Views (abrégées PV, moyen de reconnaitre facilement par un identifiant un objet contrôlé soit par la scène, c'est à dire l'hôte, ou bien le client). Le problème c'est que pour mettre une PV, il faut d'abord un objet sur lequel le mettre. Or on souhaite justement à faire apparaître ce dit objet, qui serait notre joueur.   
+\subparagraph{Utilisation des Photon Views}
+
+Et donc à partir de là, malgré de multiples tentatives de gérer les flux entrants des flux sortants, ce fut bien complexe. On a aussi pensé à utiliser les Photon Views (abrégées PV, moyen de reconnaitre facilement par un identifiant un objet contrôlé soit par la scène, c'est à dire l'hôte, soit par le client). Le problème c'est que pour mettre une PV, il faut d'abord un objet sur lequel la mettre. Or on souhaite justement à faire apparaître ce dit objet, qui serait notre joueur.   
 On a aussi pensé a utilisé des temps de latence pour envoyer les messages, de manière que s'ils sont envoyés un par un, ils seront bien plus simples à manipuler. Le problème c'est que Photon ne perçoit pas le temps de la même manière que nous le faisons. En effet, même si on essaye de recréer cette latence, Photon va par lui-même gérer cette latence et la partager dans tout le réseau. 
 
-Dans la théorie c'est bien, ça permet à ce qu'un joueur avec une bonne connexion n'ait pas d'avantage comparé à celui qui habite dans la campagne, mais dans la pratique et dans notre cas, ce n'est pas ce que l'on souhaite. Après de très longues recherches sur les bas-fonds d'Internet et l'avis de personnes qui en connaissait bien mieux dans la matière que nous. On a opté pour un système utilisant le compte des joueurs dans la partie, car il semblerait que ce soit l'un des seuls attributs de Photon qui dépend réellement du temps (qui a cliqué en premier, qui a la meilleure connexion etc. ...) Et ça fonctionne bien et c'est le principal !
+\subparagraph{Utilisation du compte de joueurs dans la salle}
 
+Dans la théorie c'est bien, ça permet à ce qu'un joueur avec une bonne connexion n'ait pas d'avantage comparé à celui qui habite dans la campagne, mais dans la pratique et dans notre cas, ce n'est pas ce que l'on souhaite. Après de très longues recherches sur les bas-fonds d'Internet, passer de forums en forums jusqu'à aller demander aux créateurs de Photon, et l'avis de personnes qui en connaissait bien mieux dans la matière que nous. On a opté pour un système utilisant le compte des joueurs dans la partie, car il semblerait que ce soit l'un des seuls attributs de Photon qui dépend réellement du temps (qui a cliqué en premier, qui a la meilleure connexion etc. ...) Et ça fonctionne bien et c'est le principal !
+\newpage
+Voici de manière simplifiée comment ça marche:
 
-\subparagraph{Menus}
+On regarde le compte de joueurs et s'il l'égal à un on le fait apparaître à la position 1
+\begin{lstlisting}
+if (PhotonNetwork.CountOfPlayers == 1)
+{
+            PhotonNetwork.Instantiate(Joueur, Position1, sans_rotation)
+}
 
-Pour ajouter de la personnification aux jeu, Léandre et moi avons travaillé encore ensemble pour rendre le gameplay et la jouabilité meilleure. L'une des idées qui furent mises sur la table est ce que l'hôte de la partie pourrait choisir les dimensions du labyrinthe à partir d’un menu et pourquoi même pour l'avenir un choix de dimension infini en laissant l'hôte taper ses propres coordonnées pour le labyrinthe. 
+if (PhotonNetwork.CountOfPlayers == 2)
+{
+            
+}
+\end{lstlisting}
 
-Pour cela il a fallu créer un menu avec une Scroll List (un tableau déroulant), permettant de sélectionner la dimension que l'on souhaite parmi une multitude de choix. Lorsqu'on veut sélectionner une dimension qui nous convient, il suffit simplement de cliquer dessus, et le travail est joué ! Un script va interpréter l'action puis l'envoyer à l'autre scène pour que le labyrinthe est connaissance de sa nouvelle dimension. Il a aussi refallu changer l'interface du menu de la salle pour l'hôte de manière qu'il ne puisse pas cliquer ou non sur le bouton "Ready" (prêt en français, vu que ce c'est lui qui détermine quand on commence la partie).
+Etc... En réalité le code est un peu plus complexe. A la place de faire une succession de conditions imbriquées, on utilise des propriétés du labyrinthe de manière à ce qu'il soit dans une coordonnée aléatoire du labyrinthe mais valide, c'est à dire à la bonne hauteur, pas à l'extérieur, pas dans un mur etc...
+
+\paragraph{Menus}
+
+Pour ajouter de la personnification aux jeu, Léandre et moi avons travaillé encore ensemble pour rendre le gameplay et la jouabilité meilleure. L'une des idées qui furent mises sur la table est que l'hôte de la partie pourrait choisir les dimensions du labyrinthe à partir d’un menu et pourquoi même pour l'avenir un choix de dimension infini en laissant l'hôte taper ses propres coordonnées pour le labyrinthe. 
+
+Pour cela il a fallu créer un menu avec une Scroll List (un tableau déroulant), permettant de sélectionner la dimension que l'on souhaite parmi plusieurs. Lorsqu'on veut sélectionner une dimension qui nous convient, il suffit simplement de cliquer dessus, et le travail est joué ! Un script va interpréter l'action puis l'envoyer à l'autre scène pour que le labyrinthe est connaissance de sa nouvelle dimension. Il a aussi refallu changer l'interface du menu de la salle pour l'hôte de manière qu'il ne puisse pas cliquer ou non sur le bouton "Ready" (prêt en français, vu que ce c'est lui qui détermine quand on commence la partie). Voici un prototype :
+\\
+\\
+
+\includegraphics[width=0.9\textwidth]{menustevetaillelabyrinthe.png}\par\vspace{0.75cm}
  
-En dehors de ça, il a fallu faire les tâches classiques qui sont d'optimiser les scripts, nettoyer les salles des objets de test, repenser les menus pour qu'ils soient plus intuitifs et plus plaisant à regarder...
+Pour l'instant on a décidé de se contenter de ces trois dimensions car les autres n'étaient pas jouables. En dehors de ça, il a fallu faire les tâches classiques qui sont d'optimiser les scripts, nettoyer les salles des objets de test, repenser les menus pour qu'ils soient plus intuitifs et plus plaisant à regarder...
 
 \newpage
 \subsection{Leandre}
@@ -412,7 +451,8 @@ J'ai également modifié l'apparence des sérums avec Blender, afin de les rendr
 
 \subparagraph{Plafonds :}
 
-Actuellement, lorsque les joueurs sont instanciés, ils se retrouvent directement dans la salle du dédale où ils commencent. Mais dans le jeu final, ils seront auparavant dans une salle au rez-de-chaussée, sur une trappe qui s'ouvrira pour les faire descendre dans les souterrains. Pour préparer le terrain, j'ai donc commencé à mettre au point les plafonds, qui sont présents dans chaque salle où ne commence pas un joueur. L'avantage est que cela permet de vérifier que les quatres joueurs sont bient à des coordonnées différentes au début, et aussi de vérifier qu'ils sont bien instanciés à l'emplacement qu'il leur était prévu (en regardant si la salle où ils se trouvent a un plafond). Il me restera à rajouter dans les plafonds actuels des lampes pour éclairer les souterrains du laboratoire, ainsi qu'à m'accorder avec Yann pour produire les "salles d'attente".
+Actuellement, lorsque les joueurs sont instanciés, ils se retrouvent directement dans la salle du dédale où ils commencent. Mais dans le jeu final, ils seront auparavant dans une salle au rez-de-chaussée, sur une trappe qui s'ouvrira pour les faire descendre dans les souterrains. Pour préparer le terrain, j'ai donc commencé à mettre au point les plafonds, qui sont présents dans chaque salle où ne commence pas un joueur. L'avantage est que cela permet de vérifier que les quatres joueurs sont bient à des coordonnées différentes au début, et aussi de vérifier qu'ils sont bien instanciés à l'emplacement qu'il leur était prévu (en regardant si la salle où ils se trouvent a un plafond).
+Il me restera à rajouter dans les plafonds actuels des lampes pour éclairer les souterrains du laboratoire, ainsi qu'à m'accorder avec Yann pour produire les "salles d'attente".
 
 \par\vspace{0.5cm}
 \begin{figure}[!ht]
@@ -422,9 +462,12 @@ Actuellement, lorsque les joueurs sont instanciés, ils se retrouvent directemen
     \label{Fioles}
 \end{figure}{}
 
+\newpage
 \section{Conclusion}
 
 En ce qui concerne la prochaine soutenance, le jeu devrait être à peu de choses près fini. D'ici là, il nous reste encore à paufiner les décors et les musiques, à créer les "salles d'attente" pour la génération des joueurs, améliorer la seconde phase, compléter le site en y incluant également le lien de téléchargement du jeu, rendre les menus plus fluides et ergonomiques, et également mettre au point un système permettant d'installer le jeu et de le désinstaller. Autrement dit, il nous reste encore du pain sur la planche, mais ce devrait être largement faisable dans les délais imposés pour le Projet S2.
+
+\emph{If you knew time as well as I do, you would play Deadly Science.}
 
 %%%%%%%%%%%%%%% TODO : Annexes
 
