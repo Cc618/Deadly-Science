@@ -107,7 +107,6 @@ Sons & 0\% & 10\% \\ \hline
 
 
 %%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \subsection{Célian}
 
 Les modifications que j'ai apporté pour cette soutenance ont principalement pour but de porter le jeu en réseau, j'entends par cela uniquement la phase de jeu. Je me suis plus précisement occupé de synchroniser certaines variables entre les joueurs comme leur status, j'ai également géré l'envoie de plusieurs évenements comme le début / la fin du jeu et dernièrement j'ai ajouté un peu de son au jeu pour le rendre un peu plus vivant.
@@ -148,9 +147,9 @@ Ensuite il suffit d'avertir les autres joueurs via les évenements réseau.
 La fonction \emph{EndGame} est appelée lors de la victoire / la défaite du joueur. Pour savoir si le joueur gagne, il suffit de comparer son status au status guéris, après nous affichons le menu de victoire ou de défaite.
 
 \newpage
-\paragraph{Endurance et coups}
+\subsubsection{Endurance et coups}
 
-\subparagraph{Endurance : Présentation}
+\paragraph{Endurance : Présentation}
 
 Maintenant nous avons un vrai jeu, c'est-à-dire qu'il y a des joueurs qui peuvent gagner ou perdre et tout cela est en plus synchronisé en réseau. Parlons d'un ajout au jeu le rendant bien plus intéressant ainsi que dynamique : La jauge d'endurance.
 
@@ -160,7 +159,7 @@ A présent, parlons de comment un joueur peut assomer un autre joueur, c'est tr�
 
 De plus, en seconde phase, si un joueur de status vengeance donne un coup à un autre joueur de status guéris, celui-ci prends le status vengeance. Cette façon permet aux joueurs de plus facilement interragir entre eux.
 
-\subparagraph{Endurance : Implémentation}
+\paragraph{Endurance : Implémentation}
 
 Cette fonctionnalité s'implémente en deux temps. Premièrement, il faut détecter les coups entre joueurs ainsi que de gérer le mode assomé. Après cela, il faut tout porter en réseau et ceci comprends également l'affichage de la barre d'endurance au dessus des joueurs.
 
@@ -183,13 +182,13 @@ Nous avons rencontré un problème lors de l'implémentation de l'endurance, au 
 Un dernier élément que l'on peut ajouter est un affichage de status et d'endurance au dessus de la tête des joueurs. Ces éléments appartiennent aux joueurs non controllés par le client et sont toujours tourné vers la caméra. Il faut alors enlever celui du client au début de la partie et les mettre à jour lors d'un changement de status ou d'endurance.
 
 \newpage
-\paragraph{Gestion de l'audio}
+\subsubsection{Gestion de l'audio}
 
-\subparagraph{Musique et effets sonores}
+\paragraph{Musique et effets sonores}
 
 Lors de la dernière soutenance, j'avais évoqué la possibilité d'intégrer des sons au jeu si le jeu avait suffisament avancé. Comme c'est le cas, nous avons intégré quelques sons et musiques. Léandre s'est occupé de composer les musiques et pour ma part je les ai mixées et intégrées au jeu. Pour le moment les musiques sont celles du menu et du jeu et nous avons également composés les effets sonores de victoire ou défaite.
 
-\subparagraph{Intégration de l'audio}
+\paragraph{Intégration de l'audio}
 
 Voici comment j'ai pensé à intégrer l'audio au jeu.
 Tout d'abord, les musiques et effets sont des listes regroupant à la fois un identifiant et un fichier audio.
@@ -232,11 +231,11 @@ Pour la prochaîne et dernière soutenance, mon but sera de rendre plus comforta
 \newpage
 \subsection{Yann}
 
-\paragraph{Menu principal}
+\subsubsection{Menu principal}
 
-\subparagraph{Accueil}
+\paragraph{Accueil}
 Comme vous pouvez le voir il n'a pas évolué pour l'instant mais des images ou video viendront le garnir dans sa version finale, lorsqu'il n'y aura plus de modification trop importantes.
-\subparagraph{Paramètres}
+\paragraph{Paramètres}
 Rappel: J'avais développé des paramètres d'attribution de touches pour le jeu lors de la première soutenance. Ils sont sauvegardé sur l'ordinateur du joueur grâce aux PlayerPrefs et les changements se font en cliquant sur le bouton correspondant à une action et la première touche enfoncée est réattribuée.
 Ceux-ci on eu le bonheur d'être rejoint par trois slider pour de nouveaux paramètres:
 
@@ -270,11 +269,11 @@ Voici une des fonctions de ces paramètres, on remarque qu'elle est assez simple
 
 Elle prends la valeur du slider directement en argument et change la sensibilité de la souris. On sauvegarde ensuite cette valeur pour les prochaines parties.
 
-\paragraph{Salles}
+\subsubsection{Salles}
 Avec Léandre nous nous sommes répartis la création plus concrète des salles (pour éviter le vert et violet) Nous avons donc utilisé le logiciel Blender pour faire les modèles 3D des différentes salles
 Je me suis occupé de faire la salle de croisement, l'impasse et le carrefour.
 
-\subparagraph{La salle de croisement}\hspace{-0.2cm}est assez simple il y a un tableau d'information vide pour l'instant sur le mur libre. Nous y ajouterons sûrement des feuilles. Les trois autres murs ont des portes pour se déplacer dans le labyrinthe.
+\paragraph{La salle de croisement}\hspace{-0.2cm}est assez simple il y a un tableau d'information vide pour l'instant sur le mur libre. Nous y ajouterons sûrement des feuilles. Les trois autres murs ont des portes pour se déplacer dans le labyrinthe.
 
 \begin{figure}[!h]
     \centering
@@ -283,7 +282,7 @@ Je me suis occupé de faire la salle de croisement, l'impasse et le carrefour.
     \label{salle de croisement}
 \end{figure}
 
-\subparagraph{L'impasse}\hspace{-0.2cm}est une salle de stockage/chambre froide nécessaire à toute installation scientifique. Elle comporte une armoire vitrée avec différent fioles de produits d'origines douteuses et d'effets inconnus ainsi que duex armoires blindées dont les explorateurs n'ont malheureusement pas les clés. Un poster orne le mur du fond, montrant la sobriété des développeurs du jeu...
+\paragraph{L'impasse}\hspace{-0.2cm}est une salle de stockage/chambre froide nécessaire à toute installation scientifique. Elle comporte une armoire vitrée avec différent fioles de produits d'origines douteuses et d'effets inconnus ainsi que duex armoires blindées dont les explorateurs n'ont malheureusement pas les clés. Un poster orne le mur du fond, montrant la sobriété des développeurs du jeu...
 
 \begin{figure}[!ht]
     \centering
@@ -293,7 +292,7 @@ Je me suis occupé de faire la salle de croisement, l'impasse et le carrefour.
 \end{figure}
 
 \newpage
-\subparagraph{Le carrefour}\hspace{-0.2cm}, bien que rare, apparait sous la forme d'une salle de contrôle avec des écrans (éteints, c'est un laboratoire abandonné quand même), des tableau électriques aux murs et une chaise dans un coin.
+\paragraph{Le carrefour}\hspace{-0.2cm}, bien que rare, apparait sous la forme d'une salle de contrôle avec des écrans (éteints, c'est un laboratoire abandonné quand même), des tableau électriques aux murs et une chaise dans un coin.
 
 \begin{figure}[!ht]
     \centering
@@ -302,7 +301,7 @@ Je me suis occupé de faire la salle de croisement, l'impasse et le carrefour.
     \label{carrefour}
 \end{figure}
 
-\paragraph{Le site internet}
+\subsubsection{Site internet}
 Je suis responsable de la création du site web de notre groupe. Le header contient notre logo en haut à gauche du site ainsi que le nom du jeu: "Deadly Science". On y retrouve également le menu de navigation du site. Après m'être entretenu avec mes camarades j'ai choisi de faire 5 pages sur le sites:
 
 \begin{itemize}
@@ -310,27 +309,27 @@ Je suis responsable de la création du site web de notre groupe. Le header conti
     \item Le groupe, présentation des membres du groupe avec une photo de chacun.
     \item La galerie contient des photos des différentes salles du laboratoire. J'y ajouterai par la suite des vidéos d'exemples du jeu.
     \item Le codex plaga, pour l'instant vide, expliquera plus en détails le fonctionnement du jeu terminé
-    \item Les Documents, vous pouvez y retrouver le cahier des charges le rapport de la première soutenance ainsi que le deuxième.
+    \item Les documents, vous pouvez y retrouver le cahier des charges le rapport de la première soutenance ainsi que le deuxième.
 \end{itemize}{}
 
 %%%%%%%%%%%%%%%%%%%%%% Steve %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \subsection{Steve}
 
-\paragraph{Réseau}
-\subparagraph{Apparition des joueurs}
+\subsubsection{Réseau}
+\paragraph{Apparition des joueurs}
 
 Comme dans la soutenance précédente, j’ai la charge du projet et je me charge aussi particulièrement du réseau. L'un des plus grands obstacles qu'on a rencontré lors du réseau est l'identification des joueurs. En effet, il serait bien plus plaisant de jouer si chacun des joueurs pouvait apparaître dans un endroit différent du labyrinthe pour premièrement ne pas avoir d'informations concernant l'emplacement des autres joueurs, et deuxièmement pour ne pas savoir notre propre position dans le labyrinthe. Au début, on avait pensé à faire apparaître chacun des joueurs dans un coin du labyrinthe mais cela pourrait donner des informations sur notre emplacement et pourrait nous faciliter la recherche des sérums.
 
 Finalement, on a décidé de les faire apparaître aléatoirement dans le labyrinthe mais de manière que chacun des joueurs apparaissent à un endroit différent. Ils apparaitront dans une cage et lorsque la partie débutera, une trappe en dessous du joueur s'activera et fera tomber les joueurs dans le dédale.
 
-\subparagraph{Distinction du client local des autres clients}
+\paragraph{Distinction du client local des autres clients}
 
 Au premier abord, cela semble très simple mais c'est peut-être l'un des plus grands défis de programmation que j'ai dû relever à ce jour. Plus d'une dizaine d'heures ont été passés juste pour cette tâche.
 On a dans un premier temps, pensé à prendre la liste des joueurs affichés dans le menu précédant, puis à chaque joueur lui assigner un identifiant, et pouvoir ensuite les faire apparaître à des coordonnées précises grâce à ces identifiants. Malheureusement, on a été heurté un problème que l’on n’arrivait pas à distinguer le joueur client du reste des joueurs. Malgré qu'il y'ait une variable Player.LocalPlayer (joueur local en français), lorsque que nous avons fait des différents tests, nous nous sommes rapidement rendu compte que le LocalPlayer portait les mêmes informations que tous les joueurs, c'est à dire même UserID (Identifiant d'utilisateur), ActorNumber (Nombre permettant de déterminer le joueur dans une salle spécifique), et même son pseudonyme. 
 
 \newpage
-\subparagraph{Gestion des RaiseEvent}
+\paragraph{Gestion des RaiseEvent}
 
 Dans un second temps, on a pensé a utiliser les RaiseEvent (Emetteur d'événements) pour pouvoir les envoyer au MasterClient (l'hôte de la partie), pour qu'il serve de base et puisse traiter les différents messages. Cette solution posait deux problèmes : le premier est qu'on ne puisse pas déterminer l'émetteur du signal. En effet, les RaiseEvent possèdent peu de paramètres, on peut :
 
@@ -343,12 +342,12 @@ Dans un second temps, on a pensé a utiliser les RaiseEvent (Emetteur d'événem
 
 Mais le second problème et le plus grand, c'est que lorsque qu'on met dans le code d'envoyer le message, tous les joueurs vont envoyer le même message !
 
-\subparagraph{Utilisation des Photon Views}
+\paragraph{Utilisation des Photon Views}
 
 Et donc à partir de là, malgré de multiples tentatives de gérer les flux entrants des flux sortants, ce fut bien complexe. On a aussi pensé à utiliser les Photon Views (abrégées PV, moyen de reconnaitre facilement par un identifiant un objet contrôlé soit par la scène, c'est à dire l'hôte, soit par le client). Le problème c'est que pour mettre une PV, il faut d'abord un objet sur lequel la mettre. Or on souhaite justement à faire apparaître ce dit objet, qui serait notre joueur.   
 On a aussi pensé a utilisé des temps de latence pour envoyer les messages, de manière que s'ils sont envoyés un par un, ils seront bien plus simples à manipuler. Le problème c'est que Photon ne perçoit pas le temps de la même manière que nous le faisons. En effet, même si on essaye de recréer cette latence, Photon va par lui-même gérer cette latence et la partager dans tout le réseau. 
 
-\subparagraph{Utilisation du compte de joueurs dans la salle}
+\paragraph{Utilisation du compte de joueurs dans la salle}
 
 Dans la théorie c'est bien, ça permet à ce qu'un joueur avec une bonne connexion n'ait pas d'avantage comparé à celui qui habite dans la campagne, mais dans la pratique et dans notre cas, ce n'est pas ce que l'on souhaite. Après de très longues recherches sur les bas-fonds d'Internet, passer de forums en forums jusqu'à aller demander aux créateurs de Photon, et l'avis de personnes qui en connaissait bien mieux dans la matière que nous. On a opté pour un système utilisant le compte des joueurs dans la partie, car il semblerait que ce soit l'un des seuls attributs de Photon qui dépend réellement du temps (qui a cliqué en premier, qui a la meilleure connexion etc. ...) Et ça fonctionne bien et c'est le principal !
 \newpage
@@ -369,7 +368,7 @@ if (PhotonNetwork.CountOfPlayers == 2)
 
 Etc... En réalité le code est un peu plus complexe. A la place de faire une succession de conditions imbriquées, on utilise des propriétés du labyrinthe de manière à ce qu'il soit dans une coordonnée aléatoire du labyrinthe mais valide, c'est à dire à la bonne hauteur, pas à l'extérieur, pas dans un mur etc...
 
-\paragraph{Menus}
+\subsubsection{Menus}
 
 Pour ajouter de la personnification aux jeu, Léandre et moi avons travaillé encore ensemble pour rendre le gameplay et la jouabilité meilleure. L'une des idées qui furent mises sur la table est que l'hôte de la partie pourrait choisir les dimensions du labyrinthe à partir d’un menu et pourquoi même pour l'avenir un choix de dimension infini en laissant l'hôte taper ses propres coordonnées pour le labyrinthe. 
 
@@ -386,19 +385,19 @@ Pour l'instant on a décidé de se contenter de ces trois dimensions car les aut
 
 Dans ce projet, je suis principalement responsable de la génération aléatoire de la partie ainsi que de la direction artistique. Dans le cadre de cette soutenance, je me suis donc concentré sur la génération des joueurs et des sérums, ainsi que sur la musique et les décors, étant donné que la génération du labyrinthe était déjà en partie terminée, et que la plupart de nos test nécessitent la possibilité de simuler une véritable partie, notamment en ce qui concerne le passage de phase, les passations d'infection, ou encore les fins de partie.
 
-\subparagraph{Génération Aléatoire des Joueurs et des Sérums :}
+\subsubsection{Génération Aléatoire des Joueurs et des Sérums}
 
 
 Afin de ne pas résumer le jeu à une roulette russe, nous avons décidé de faire en sorte que les joueurs et les sérums soient tous sur des cases distinctes, afin d'éviter qu'un joueur ne se retrouve à l'intérieur d'un autre, ou qu'un joueur soit directement guéri dès le début. Mais pour cela, il fallait s'assurer que les coordonnées soient toutes distinctes. Pour ce faire, j'ai commencé à développer une fonction qui générait sept positions aléatoires et distinctes dans le cadre du labyrinthe à partir de sa taille. Cette fonction est ensuite appelée lors de la création du Salon de jeu par le Master, et la liste, ainsi que la taille du labyrinthe, sont envoyées en réseau en tant que variables accessibles à tous. Ainsi, lorsqu'un joueur est généré d'après le code de Steve, il m'a suffi de lui affecter la coordonnée correspondant à son rang pour pouvoir le générer dans une pièce différente des autres joueurs. Quant aux sérums, il fallait qu'ils ne soient générés que par une seule personne. Ce rôle appartient au Master du Salon de jeu, qui, en même temps que son personnage est instancié dans le labyrinthe, génère également les trois autres sérums. On a donc actuellement la possibilité d'apparaître de manière totalement aléatoire dans le labyrinthe lorsque la partie commence, à un emplacement différent des sérums et des autres joueurs. De plus, j'ai également modifié les variables du jeu pour que la taille du Labyrinthe soit décidée par le Master lors de la création du salon. Il ne manque plus qu'à rajouter un bouton pour lui laisser le libre arbitre sur ce paramètre.
 
 
-\subparagraph{Ambiance sonore :}
+\subsubsection{Ambiance sonore}
 
 Pour travailler sur les musiques du jeu, j'ai utilisé un logiciel de partition nommé MuseScore, qui, en plus d'être gratuit, permet de générer directement une partition complète avec de nombreux instruments, et d'exporter la piste sonore en fichier MIDI. J'ai commencé dans un premier temps à faire plusieurs essais d'ambiance pour le thème de la Recherche de Sérum. Je tenais à rendre l'atmosphère assez stressante. Pour cela, j'ai utilisé un violon qui émet une note à intervalles précis et réguliers, à la manière d'une alarme d'évacuation. J'ai ensuite rajouté une percussion pour renforcer l'ambiance pesante et lourde, tout comme la contrebasse qui se charge du thème. Ensuite, Célian a remixé la piste obtenue, et le résultat est celui que vous pouvez entendre à vos oreilles en lançant une nouvelle partie.
 
 Ensuite, j'ai commencé à faire le thème du Menu Principal. Ici, je tenais à rendre l'atmosphère plutôt pesante et inquiétante. J'ai donc inséré en fond un piano qui répète la même note à la manière d'un tictac d'horloge, accompagné d'un trombone qui se charge de la basse. Enfin, j'ai également composé deux mélodies, l'une pour la victoire, la seconde pour la mort du joueur. Pour la première, j'ai cherché à faire quelque chose d'assez joyeux et léger, tandis que pour l'autre, j'ai utilisé des instruments beaucoup plus graves ainsi que des notes plus longues pour accentuer le sentiment de deuil. Tout comme pour la musique de la recherche de sérums, c'est Célian qui s'est chargé de remixer le tout, en modifiant notamment l'instrumentation. Actuellement, le jeu possède donc quelques musiques originales. Cela dit, ces dernières ne sont encore qu'au stade d'ébauche, et rien ne garantit qu'elles seront encore présentes dans la version finale du jeu.
 
-\subparagraph{Décors :}
+\subsubsection{Décors}
 
 L'un des détails les plus importants du jeu, c'est que les joueurs sont dans les souterrains d'un laboratoire, et non dans un dédale quelconque. Avec Yann, nous nous sommes donc entretenus sur les différents types de décor qu'il pourrait y avoir dans le souterrain d'un laboratoire. Nous avons pensé ainsi à des serres, des salles expérimentales, des couloirs avec des extincteurs et des alarmes d'incendie, des salles d'archives, des salles de stockage ou encore des salles de réflexion. En fonction de la pertinence de ses salles, nous les avons répartis par type de salle : impasse, salle à deux issues opposées, à deux issues adjacentes, à trois issues ou encore à quatre issues. D'après mon algorithme de génération de labyrinthe, les salles les plus fréquentes sont celles à deux et à trois issues, puis les impasses, et enfin les salles à quatre issues.
 
@@ -449,7 +448,7 @@ J'ai également modifié l'apparence des sérums avec Blender, afin de les rendr
     \label{Couloir tournant - 2}
 \end{figure}{}
 
-\subparagraph{Plafonds :}
+\subsubsection{Plafonds}
 
 Actuellement, lorsque les joueurs sont instanciés, ils se retrouvent directement dans la salle du dédale où ils commencent. Mais dans le jeu final, ils seront auparavant dans une salle au rez-de-chaussée, sur une trappe qui s'ouvrira pour les faire descendre dans les souterrains. Pour préparer le terrain, j'ai donc commencé à mettre au point les plafonds, qui sont présents dans chaque salle où ne commence pas un joueur. L'avantage est que cela permet de vérifier que les quatres joueurs sont bient à des coordonnées différentes au début, et aussi de vérifier qu'ils sont bien instanciés à l'emplacement qu'il leur était prévu (en regardant si la salle où ils se trouvent a un plafond).
 Il me restera à rajouter dans les plafonds actuels des lampes pour éclairer les souterrains du laboratoire, ainsi qu'à m'accorder avec Yann pour produire les "salles d'attente".
