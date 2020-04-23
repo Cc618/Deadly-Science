@@ -372,6 +372,7 @@
             <e p="PlaySound.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
+            <e p="Affichage_Joueur.cs" t="Include" />
             <e p="Corrupted.cs" t="Include" />
             <e p="LookToCam.cs" t="Include" />
             <e p="Player.cs" t="Include" />
@@ -487,9 +488,6 @@
           <e p="Sprites" t="Include">
             <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
-        </e>
-        <e p="Tree1" t="Include">
-          <e p="readme.txt" t="Include" />
         </e>
       </e>
       <e p="DeadlyScience.sln" t="IncludeFlat" />

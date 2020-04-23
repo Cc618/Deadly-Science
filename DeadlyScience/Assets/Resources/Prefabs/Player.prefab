@@ -668,6 +668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   isLocal: 0
+  playerState: {fileID: 0}
 --- !u!114 &3451859373643929805
 MonoBehaviour:
   m_ObjectHideFlags: 0

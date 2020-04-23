@@ -86,7 +86,7 @@ namespace ds
             return id < player.id;
         }
 
-        private PlayerState playerState;
+        public PlayerState playerState;
         private PhotonView view;
     }
 
