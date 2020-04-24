@@ -34,7 +34,7 @@ namespace ds
             get => playersReady;
         }
 
-        private static int collectedSerums = 2;
+        private static int collectedSerums = 0;
         public static int serumCount = 3;
         public static int CollectedSerums
         {

@@ -227,10 +227,7 @@ namespace ds
         public void SecondPhase()
         {
             localPlayer.net.playerState.EndFirstPhase();
-            
-
-            if (PhotonNetwork.IsMasterClient)
-                StartCoroutine(playerState.SecondPhase());
+            StartCoroutine(playerState.SecondPhase());
         }
 
         public void SendSecondPhase()

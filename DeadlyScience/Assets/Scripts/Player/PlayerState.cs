@@ -84,6 +84,7 @@ namespace ds
 
         public void EndOfGame(bool forceWin=false, bool win=false)
         {
+            AffichagePhase.phase = 3;
             if (forceWin)
                 EndGame.EndOfGame(win);
             else
@@ -93,7 +94,9 @@ namespace ds
         // Called on master
         public IEnumerator SecondPhase()
         {
-            firstPhaseStatus = Status;
+
+            if (PhotonNetwork.IsMasterClient)
+                firstPhaseStatus = Status;
 
             WaitForSecondsRealtime countTime = new WaitForSecondsRealtime(1);
             int startTime = (int) revengeTime;
@@ -104,7 +107,8 @@ namespace ds
                 yield return countTime;
             }
             AffichagePhase.phase = 3;
-            net.SendEndOfGame();
+            if (PhotonNetwork.IsMasterClient)
+                net.SendEndOfGame();
         }
     }
 }

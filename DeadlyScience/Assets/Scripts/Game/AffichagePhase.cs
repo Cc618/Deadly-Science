@@ -9,7 +9,7 @@ namespace ds
     public class AffichagePhase : MonoBehaviour
     {
         public Text scoreText;
-        public static int phase;
+        public static int phase = 1;
         public static int temps;
         public static string Objectif;
 
