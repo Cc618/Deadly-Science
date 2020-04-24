@@ -68,6 +68,7 @@
      <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
      <Compile Include="Assets\Scripts\Amazing Maze\Generation.cs" />
+     <Compile Include="Assets\Scripts\Game\AffichagePhase.cs" />
      <Compile Include="Assets\Scripts\Game\Audio.cs" />
      <Compile Include="Assets\Scripts\Game\AudioOut.cs" />
      <Compile Include="Assets\Scripts\Game\Colors.cs" />

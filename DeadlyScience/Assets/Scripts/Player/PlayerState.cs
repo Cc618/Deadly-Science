@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 namespace ds
 {
@@ -16,7 +17,7 @@ namespace ds
         }
 
         // In seconds
-        public static float revengeTime = 60 * 3;
+        public static int revengeTime = 60 * 3;
 
         private PlayerStatus status = PlayerStatus.INFECTED;
         public PlayerStatus Status
@@ -61,13 +62,21 @@ namespace ds
 
         public void BeginFirstPhase()
         {
+            AffichagePhase.phase=1;
         }
 
         public void EndFirstPhase()
         {
+            string s = "Echappez au Condamné !\n";
             // Revenge mode
             if (status == PlayerStatus.INFECTED)
+            {
                 net.SendSetStatus(PlayerStatus.REVENGE);
+                s = "Infectez les Joueurs Guéris !\n";
+            }
+            AffichagePhase.Objectif = s;
+            AffichagePhase.phase=2;
+            AffichagePhase.temps = revengeTime;
         }
 
         // Status when we end the first phase
@@ -86,8 +95,15 @@ namespace ds
         {
             firstPhaseStatus = Status;
 
-            yield return new WaitForSeconds(revengeTime);
-
+            WaitForSecondsRealtime countTime = new WaitForSecondsRealtime(1);
+            int startTime = (int) revengeTime;
+            while (startTime > 0)
+            {
+                startTime -= 1;
+                AffichagePhase.temps = startTime;
+                yield return countTime;
+            }
+            AffichagePhase.phase = 3;
             net.SendEndOfGame();
         }
     }

@@ -356,6 +356,7 @@
             <e p="Generation.cs" t="Include" />
           </e>
           <e p="Game" t="Include">
+            <e p="AffichagePhase.cs" t="Include" />
             <e p="Audio.cs" t="Include" />
             <e p="AudioOut.cs" t="Include" />
             <e p="Colors.cs" t="Include" />
