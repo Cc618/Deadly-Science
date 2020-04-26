@@ -35,7 +35,7 @@ namespace ds
         }
 
         private static int collectedSerums = 0;
-        public static int serumCount = 3;
+        public static int serumCount = CreateRoomMenu.PlayerNumber-1;
         public static int CollectedSerums
         {
             set
@@ -47,6 +47,13 @@ namespace ds
                 {
                     // Change phase remotely
                     instance.net.SendSecondPhase();
+                }
+                else
+                {
+                    if (collectedSerums > serumCount)
+                    {
+                        EndGame.EndOfGame(true);
+                    }
                 }
             }
             get => collectedSerums;

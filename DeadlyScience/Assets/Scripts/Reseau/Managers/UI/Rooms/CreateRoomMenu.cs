@@ -14,6 +14,7 @@ namespace ds
         private Text _roomName;
         public static int Xm;
         public static int Zm;
+        public static int PlayerNumber;
         public static int[] where;
         public static CreateRoomMenu instance;
 
@@ -37,6 +38,7 @@ namespace ds
                 return;
 
             RoomOptions options = new RoomOptions();
+            PlayerNumber = 4;
             //TODO : Permettre au créateur de modifier Xm et Zm
             Xm = 10;
             Zm = 10;
@@ -46,6 +48,14 @@ namespace ds
             {
                 print(where[a]);
                 a += 1;
+            }
+            print("Retiré :");
+            a = 4;
+            while (a != PlayerNumber)
+            {
+                a -= 1;
+                print(where[a]);
+                where[a] = where[0];
             }
             options.BroadcastPropsChangeToAll = true;
             options.MaxPlayers = 4;
