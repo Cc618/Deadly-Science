@@ -1650,6 +1650,12 @@ MonoBehaviour:
   - id: loose
     clip: {fileID: 8300000, guid: 7fb73b861f9424941b9850ed27e522a1, type: 3}
     source: {fileID: 0}
+  - id: serum_long
+    clip: {fileID: 8300000, guid: 6c671db535ca6b0499322be8f89eee48, type: 3}
+    source: {fileID: 0}
+  - id: hit
+    clip: {fileID: 8300000, guid: bf8789dc984301a4984a4f7b39ce8331, type: 3}
+    source: {fileID: 0}
   audioSample: {fileID: 6932569464456803123, guid: 2644d3975a0e7cc40af7c5c360b3685a,
     type: 3}
 --- !u!1 &837126774
