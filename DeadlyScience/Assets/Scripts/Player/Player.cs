@@ -213,6 +213,10 @@ namespace ds
                 state.Status == PlayerState.PlayerStatus.REVENGE)
                 // Change status
                 pNet.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
+            else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
+                state.Status == PlayerState.PlayerStatus.INFECTED)
+                // Change status
+                pNet.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
             else
             {
                 // Change stamina
@@ -231,14 +235,22 @@ namespace ds
             var pState = hit.gameObject.GetComponent<PlayerState>();
             var pNet = hit.gameObject.GetComponent<PlayerNetwork>();
 
-            // This player is infected
+            // This player is in revenge mode
             if (state.Status == PlayerState.PlayerStatus.HEALED &&
                 pState.Status == PlayerState.PlayerStatus.REVENGE)
                 net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
-            // The other player is infected
+            // The other player is in revenge mode
             else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
                 state.Status == PlayerState.PlayerStatus.REVENGE)
                 pNet.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
+            // This player is infected
+            else if (state.Status == PlayerState.PlayerStatus.HEALED &&
+                pState.Status == PlayerState.PlayerStatus.INFECTED)
+                net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
+            // The other player is infected
+            else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
+                state.Status == PlayerState.PlayerStatus.INFECTED)
+                pNet.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
         }
 
         public void OnSerumCollect(int serumId)
