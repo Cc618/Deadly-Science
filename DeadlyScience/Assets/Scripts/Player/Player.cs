@@ -180,11 +180,8 @@ namespace ds
             animator.SetBool("moving", tangentSpeed > 1.6f);
 
             // Attack
-            // TODO : Key binding
             if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
                 Attack();
-            }
 
             // TODO : rm Test
             if (Input.GetKeyDown(KeyCode.H))
@@ -234,7 +231,6 @@ namespace ds
             var pState = hit.gameObject.GetComponent<PlayerState>();
             var pNet = hit.gameObject.GetComponent<PlayerNetwork>();
 
-            // TODO : Other status
             // This player is infected
             if (state.Status == PlayerState.PlayerStatus.HEALED &&
                 pState.Status == PlayerState.PlayerStatus.REVENGE)
@@ -260,7 +256,10 @@ namespace ds
             if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.TransformDirection(Vector3.forward), out hit, attackRange, layerMask))
             {
                 Hit(hit.collider.gameObject);
+                Audio.Play("hit");
             }
+            else
+                Audio.Play("hit_failed");
         }
 
         private PlayerState state;
