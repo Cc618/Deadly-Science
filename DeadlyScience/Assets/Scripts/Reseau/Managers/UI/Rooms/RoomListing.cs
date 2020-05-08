@@ -17,7 +17,7 @@ namespace ds
         public void SetRoomInfo(RoomInfo roomInfo)
         {
             RoomInfo = roomInfo;
-            _text.text = roomInfo.MaxPlayers + ", " + roomInfo.Name;
+            _text.text = roomInfo.PlayerCount + ", " + roomInfo.Name;
         }
 
         public void OnClick_Button()

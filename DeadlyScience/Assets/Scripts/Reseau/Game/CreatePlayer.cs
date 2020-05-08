@@ -19,7 +19,7 @@ namespace ds
                 {
                     int coorp = CreateRoomMenu.where[0];
                     PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Attente"), new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity, 0);
-                    var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
+                    GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
                         new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 3, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)),
                         Quaternion.identity, 0);
                     player.GetComponent<PlayerNetwork>().isLocal = true;
@@ -35,7 +35,6 @@ namespace ds
                     while (g > 0)
                     {
                         g -= 1;
-                        print(CreateRoomMenu.where[g + 4]);
                         PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Serum"),
                             new Vector3((float) (4 * (CreateRoomMenu.where[g+4] % CreateRoomMenu.Xm) + 2.5), 2, (float) (4 * (CreateRoomMenu.where[g+4] / CreateRoomMenu.Xm) + 2.5)),
                             new Quaternion(0, 0, 0, 0));
@@ -65,7 +64,7 @@ namespace ds
             }
             int coorp = CreateRoomMenu.where[i];
             PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Attente"), new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity, 0);
-            var player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
+            GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
                 new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 3, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)),
                 Quaternion.identity, 0);
             player.GetComponent<PlayerNetwork>().isLocal = true;
