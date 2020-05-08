@@ -605,6 +605,7 @@ MonoBehaviour:
   stunnedSpeedFactor: 0.1
   attackRange: 5
   net: {fileID: 0}
+  canMove: 0
 --- !u!114 &51949627
 MonoBehaviour:
   m_ObjectHideFlags: 0

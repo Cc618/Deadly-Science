@@ -197,6 +197,8 @@ namespace ds
                 net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
             if (Input.GetKeyDown(KeyCode.I))
                 net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
+            if (Input.GetKeyDown(KeyCode.N))
+                Particles.Spawn("hit", transform.position);
         }
 
         // Player to player hit
