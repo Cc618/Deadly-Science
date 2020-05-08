@@ -71,6 +71,9 @@ namespace ds
         [HideInInspector]
         public PlayerNetwork net;
 
+        [HideInInspector]
+        public bool canMove = false;
+
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
@@ -94,13 +97,15 @@ namespace ds
         // (Phases have begun)
         public void OnGameBegin()
         {
+            canMove = true;
+
             StartCoroutine(SyncNet());
         }
 
         void Update()
         {
             // Don't update if the network is not set up
-            if (!networkInit)
+            if (!(networkInit && canMove))
                 return;
 
             // Health regeneration

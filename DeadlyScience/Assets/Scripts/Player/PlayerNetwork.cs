@@ -252,6 +252,7 @@ namespace ds
         [PunRPC]
         public void RevengeWin(int winnerId)
         {
+            local.GetComponent<Player>().canMove = false;
             local.playerState.EndOfGame(true, localPlayer.net.id == winnerId);
         }
 

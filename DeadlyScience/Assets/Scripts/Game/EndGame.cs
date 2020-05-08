@@ -9,8 +9,8 @@ namespace ds
     {
 
         public static Canvas EndScreen;
-        private static GameObject Victory;
-        private static GameObject Defeat;
+        public static GameObject Victory;
+        public static GameObject Defeat;
 
         void Start()
         {

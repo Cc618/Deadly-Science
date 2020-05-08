@@ -8,7 +8,7 @@ namespace ds
     {
         void Update()
         {
-            if (!Game.EscapeMenuOpen)
+            if (!(Game.EscapeMenuOpen || EndGame.Victory.activeSelf || EndGame.Defeat.activeSelf))
             {
                 // The new rotation
                 float rot = transform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * Game.settings.mouseSensivity * Screen.width / 60;
