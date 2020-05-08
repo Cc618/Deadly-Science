@@ -197,8 +197,6 @@ namespace ds
                 net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
             if (Input.GetKeyDown(KeyCode.I))
                 net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
-            if (Input.GetKeyDown(KeyCode.N))
-                Particles.Spawn("hit", transform.position);
         }
 
         // Player to player hit
@@ -280,6 +278,7 @@ namespace ds
             {
                 Hit(hit.collider.gameObject);
                 Audio.Play("hit");
+                Particles.Spawn("hit", hit.point);
             }
             else
                 Audio.Play("hit_failed");
