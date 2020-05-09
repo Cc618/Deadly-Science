@@ -105,7 +105,7 @@ namespace ds
         void Update()
         {
             // Don't update if the network is not set up
-            if (!(networkInit && canMove))
+            if (!(networkInit && canMove) || Game.EscapeMenuOpen || EndGame.Victory.activeSelf || EndGame.Defeat.activeSelf)
                 return;
 
             // Health regeneration
@@ -278,6 +278,7 @@ namespace ds
             {
                 Hit(hit.collider.gameObject);
                 Audio.Play("hit");
+                Particles.Spawn("hit", hit.point);
             }
             else
                 Audio.Play("hit_failed");
