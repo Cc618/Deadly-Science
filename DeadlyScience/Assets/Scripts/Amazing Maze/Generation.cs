@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.Networking;
 using System.IO;
 using ds;
 
@@ -15,8 +16,25 @@ namespace ds
         public bool version;
         public bool testencours;
 
-        public static int[]
-            Aleatoire(int n,
+        public static Texture2D Bloc(Texture2D i, int x, int y, Color c)
+        {
+            int size = 5;
+            int a = size;
+            while (a > 0)
+            {
+                a -= 1;
+                int b = size;
+                while (b > 0)
+                {
+                    b -= 1;
+                    i.SetPixel(x + a, y + b, c);
+                }
+            }
+            i.Apply();
+            return i;
+        }
+
+        public static int[] Aleatoire(int n,
                 int m) //Cette fonction génère un tableau de quatres termes aléatoires (de 0 à 3) sans répétition.
                        //En gros, elle mélange...
         {
@@ -258,41 +276,30 @@ namespace ds
                 Destroy(this);
                 return;
             }
-
             //On redéfinit la taille et la position du sol.
             int xm = CreateRoomMenu.Xm;
             int zm = CreateRoomMenu.Zm;
+            Texture2D carte = new Texture2D((xm*2+1)*5,(zm*2+1)*5);
+            print("Pic");
             int[] Plan = Generateur(zm, xm);
             int x = 0;
             int z = 0;
-            if (version)
+            //On prend le dédale créé par la fonction Générateur. Au début, on crée deux murs extérieurs.
+            while (x < xm)
             {
-                transform.localScale += new Vector3(2 * xm, 0, 2 * zm);
-                transform.position = transform.position + new Vector3((float) (xm + 0.5), 0, (float) (zm + 0.5));
-                //On prend le dédale créé par la fonction Générateur. Au début, on crée deux murs extérieurs.
-                while (x < xm)
-                {
-                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                        new Vector3((float) (2 * x + 1.5), (float) 0.7, (float) (0.5)), new Quaternion(0, 0, 0, 0), 0);
-                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                        new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (0.5)), new Quaternion(0, 0, 0, 0), 0);
-                    x += 1;
-                }
-
-                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                    new Vector3((float) (0.5), (float) 0.7, (float) (0.5)), new Quaternion(0, 0, 0, 0), 0);
-                x = 0;
-                z = 0;
-                while (z < zm)
-                {
-                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                        new Vector3((float) (0.5), (float) 0.7, (float) (2 * z + 1.5)), new Quaternion(0, 0, 0, 0), 0);
-                    PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                        new Vector3((float) (0.5), (float) 0.7, (float) (2 * z + 2.5)), new Quaternion(0, 0, 0, 0), 0);
-                    z += 1;
-                }
+                carte=Bloc(carte,10*x+5, 0, Color.black);
+                carte=Bloc(carte,10*x+10, 0, Color.black);
+                x += 1;
             }
-
+            carte=Bloc(carte,0, 0, Color.black);
+            x = 0;
+            z = 0;
+            while (z < zm)
+            {
+                carte=Bloc(carte,0, 10*z+5, Color.black);
+                carte=Bloc(carte,0, 10*z+10, Color.black);
+                z += 1;
+            }
             //Ensuite, pour chaque case, on va créer les deux murs opposés aux murs que l'on vient de construire.
             print("Affichage");
             bool room = false;
@@ -303,184 +310,181 @@ namespace ds
                 {
                     if (testencours || PhotonNetwork.IsMasterClient)
                     {
-                        if (version)
+                        Quaternion nul = new Quaternion(0,0,0,0); 
+                        carte=Bloc(carte,10*x+10, z*10+10, Color.black);
+                        carte=Bloc(carte,10*x+5, z*10+5, Color.white);
+                        Color c1 = Color.white;
+                        Color c2 = c1;
+                        if (Plan[x * zm + z] > 1)
                         {
-                            Quaternion nul = new Quaternion(0,0,0,0); 
-                            PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                                new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 2.5)), nul);
-                            if (Plan[x * zm + z] > 1)
+                            c1 = Color.black;
+                        }
+                        if (Plan[x * zm + z] % 2 == 1)
+                        {
+                            c2 = Color.black;
+                        }
+                        carte=Bloc(carte,10*x+5, z*10+10, c1);
+                        carte=Bloc(carte,10*x+10, z*10+5, c2);
+                        if (CreateRoomMenu.where[0] != z * xm + x && CreateRoomMenu.where[1] != z * xm + x &&
+                            CreateRoomMenu.where[2] != z * xm + x && CreateRoomMenu.where[3] != z * xm + x)
+                        {
+                            PhotonNetwork.Instantiate(
+                                Path.Combine("Prefabs", "Plafond"),
+                                new Vector3((float) (4 * x + 2.5), (float) 0.69, (float) (4 * z + 2.5)),
+                                new Quaternion(0, 0, 0, 0));
+                        }
+                        bool[] passages = {false, false, false, false};
+                        if (Plan[x * zm + z] > 1)
+                        {
+                            passages[1] = true;
+                        }
+
+                        if (Plan[x * zm + z] % 2 == 1)
+                        {
+                            passages[2] = true;
+                        }
+
+                        if (x == 0)
+                        {
+                            passages[0] = true;
+                        }
+                        else
+                        {
+                            if (Plan[(x - 1) * zm + z] % 2 == 1)
                             {
-                                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                                    new Vector3((float) (2 * x + 1.5), (float) 0.7, (float) (2 * z + 2.5)), nul);
+                                passages[0] = true;
+                            }
+                        }
+
+                        if (z == 0)
+                        {
+                            passages[3] = true;
+                        }
+                        else
+                        {
+                            if (Plan[x * zm + z - 1] > 1)
+                            {
+                                passages[3] = true;
+                            }
+                        }
+
+                        int p = 0;
+                        int q = 0;
+                        while (q < 4)
+                        {
+                            if (passages[q])
+                            {
+                                p += 1;
                             }
 
-                            if (Plan[x * zm + z] % 2 == 1)
+                            q += 1;
+                        }
+
+                        int rotate = 0;
+                        if (p == 2)
+                        {
+                            if (passages[0] == passages[2])
                             {
-                                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Cube"),
-                                    new Vector3((float) (2 * x + 2.5), (float) 0.7, (float) (2 * z + 1.5)), nul);
+                                if (passages[0])
+                                {
+                                    rotate = 90;
+                                }
+
+                                var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Couloir droit"),
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, rotate, 0, rotate));
+                            }
+                            else
+                            {
+                                if (passages[0])
+                                {
+                                    if (passages[1])
+                                    {
+                                        var newCube = PhotonNetwork.Instantiate(
+                                            Path.Combine("Prefabs", "Couloir tournant"),
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, -90, 0, 90));
+                                    }
+                                    else
+                                    {
+                                        var newCube = PhotonNetwork.Instantiate(
+                                            Path.Combine("Prefabs", "Couloir tournant"),
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, 180, 0, 0));
+                                    }
+                                }
+                                else
+                                {
+                                    if (passages[1])
+                                    {
+                                        var newCube = PhotonNetwork.Instantiate(
+                                            Path.Combine("Prefabs", "Couloir tournant"),
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, 0, 0, 0));
+                                    }
+                                    else
+                                    {
+                                        var newCube = PhotonNetwork.Instantiate(
+                                            Path.Combine("Prefabs", "Couloir tournant"),
+                                            new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                            new Quaternion(0, 90, 0, 90));
+                                    }
+                                }
                             }
                         }
                         else
                         {
-                            if (CreateRoomMenu.where[0] != z * xm + x && CreateRoomMenu.where[1] != z * xm + x &&
-                                CreateRoomMenu.where[2] != z * xm + x && CreateRoomMenu.where[3] != z * xm + x)
+                            if (p == 3)
                             {
-                                PhotonNetwork.Instantiate(
-                                    Path.Combine("Prefabs", "Plafond"),
+                                int a = 0;
+                                var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Impasse"),
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, 90, 0, 90));
+                                newCube.transform.Rotate(0, 90, 0);
+                                while (passages[a])
+                                {
+                                    a += 1;
+                                    newCube.transform.Rotate(0, 90, 0);
+                                }
+                            }
+
+                            if (p == 1)
+                            {
+                                int a = 0;
+                                string name = "Bifurcation";
+                                if (!room)
+                                {
+                                    name = "Couloir bifurcation";
+                                }
+
+                                var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", name),
+                                    new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
+                                    new Quaternion(0, 90, 0, 90));
+                                newCube.transform.Rotate(0, -90, 0);
+                                while (!passages[a])
+                                {
+                                    a += 1;
+                                    newCube.transform.Rotate(0, 90, 0);
+                                }
+
+                                room = !room;
+                            }
+
+                            if (p == 0)
+                            {
+                                var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Carrefour"),
                                     new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
                                     new Quaternion(0, 0, 0, 0));
                             }
-                            bool[] passages = {false, false, false, false};
-                            if (Plan[x * zm + z] > 1)
-                            {
-                                passages[1] = true;
-                            }
-
-                            if (Plan[x * zm + z] % 2 == 1)
-                            {
-                                passages[2] = true;
-                            }
-
-                            if (x == 0)
-                            {
-                                passages[0] = true;
-                            }
-                            else
-                            {
-                                if (Plan[(x - 1) * zm + z] % 2 == 1)
-                                {
-                                    passages[0] = true;
-                                }
-                            }
-
-                            if (z == 0)
-                            {
-                                passages[3] = true;
-                            }
-                            else
-                            {
-                                if (Plan[x * zm + z - 1] > 1)
-                                {
-                                    passages[3] = true;
-                                }
-                            }
-
-                            int p = 0;
-                            int q = 0;
-                            while (q < 4)
-                            {
-                                if (passages[q])
-                                {
-                                    p += 1;
-                                }
-
-                                q += 1;
-                            }
-
-                            int rotate = 0;
-                            if (p == 2)
-                            {
-                                if (passages[0] == passages[2])
-                                {
-                                    if (passages[0])
-                                    {
-                                        rotate = 90;
-                                    }
-
-                                    var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Couloir droit"),
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, rotate, 0, rotate));
-                                }
-                                else
-                                {
-                                    if (passages[0])
-                                    {
-                                        if (passages[1])
-                                        {
-                                            var newCube = PhotonNetwork.Instantiate(
-                                                Path.Combine("Prefabs", "Couloir tournant"),
-                                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                                new Quaternion(0, -90, 0, 90));
-                                        }
-                                        else
-                                        {
-                                            var newCube = PhotonNetwork.Instantiate(
-                                                Path.Combine("Prefabs", "Couloir tournant"),
-                                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                                new Quaternion(0, 180, 0, 0));
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (passages[1])
-                                        {
-                                            var newCube = PhotonNetwork.Instantiate(
-                                                Path.Combine("Prefabs", "Couloir tournant"),
-                                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                                new Quaternion(0, 0, 0, 0));
-                                        }
-                                        else
-                                        {
-                                            var newCube = PhotonNetwork.Instantiate(
-                                                Path.Combine("Prefabs", "Couloir tournant"),
-                                                new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                                new Quaternion(0, 90, 0, 90));
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (p == 3)
-                                {
-                                    int a = 0;
-                                    var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Impasse"),
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, 90, 0, 90));
-                                    newCube.transform.Rotate(0, 90, 0);
-                                    while (passages[a])
-                                    {
-                                        a += 1;
-                                        newCube.transform.Rotate(0, 90, 0);
-                                    }
-                                }
-
-                                if (p == 1)
-                                {
-                                    int a = 0;
-                                    string name = "Bifurcation";
-                                    if (!room)
-                                    {
-                                        name = "Couloir bifurcation";
-                                    }
-
-                                    var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", name),
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, 90, 0, 90));
-                                    newCube.transform.Rotate(0, -90, 0);
-                                    while (!passages[a])
-                                    {
-                                        a += 1;
-                                        newCube.transform.Rotate(0, 90, 0);
-                                    }
-
-                                    room = !room;
-                                }
-
-                                if (p == 0)
-                                {
-                                    var newCube = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Carrefour"),
-                                        new Vector3((float) (4 * x + 2.5), (float) 0.7, (float) (4 * z + 2.5)),
-                                        new Quaternion(0, 0, 0, 0));
-                                }
-                            }
                         }
+                        
                     }
                     z += 1;
                 }
 
                 x += 1;
             }
+            Map.aTexture = carte;
             //Et voila, c'est fini !
         }
     }
