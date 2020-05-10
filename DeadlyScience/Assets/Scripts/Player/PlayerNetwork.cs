@@ -131,16 +131,16 @@ namespace ds
         [PunRPC]
         public void OnSerum(int from, int serumId)
         {
+            Audio.Play(from == localPlayer.net.id ? "serum" : "serum_long");
+
             if (from == id)
                 playerState.OnSerum();
-                
-            Audio.Play(from == localPlayer.net.id ? "serum" : "serum_long");
 
             // Find and destroy the serum
             if (PhotonNetwork.IsMasterClient)
             {
                 Serum serum = Serum.instances.Find((Serum s) => s.id == serumId);
-
+            
                 ++PlayerMaster.CollectedSerums;
 
                 PhotonNetwork.Destroy(serum.GetComponent<PhotonView>());

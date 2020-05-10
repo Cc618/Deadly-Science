@@ -8,6 +8,7 @@ namespace ds
 {
     public partial class PlayerState : MonoBehaviour
     {
+        // !!! Do NOT change the position of each entry
         public enum PlayerStatus
         {
             INFECTED,
@@ -15,6 +16,8 @@ namespace ds
             REVENGE,
             GHOST
         }
+
+        public static readonly string[] STATUS_STR = new[] { "infected", "healed", "revenge", "ghost"};
 
         // In seconds
         public static int revengeTime = 60 * 3;
@@ -31,7 +34,8 @@ namespace ds
                 if (nameUi)
                     nameUi.SetStatus(status);
 
-                // TODO : Sound
+                // FX
+                Particles.Spawn(STATUS_STR[(int)status], transform.position + new Vector3(0, 1.5f, 0));
             }
 
             get => status;
