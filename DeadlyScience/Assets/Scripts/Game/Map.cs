@@ -12,6 +12,19 @@ public class Map : MonoBehaviour
     public static Texture2D aTexture;
     public Image carte;
     private Texture2D curseur;
+    public static Map instance;
+    private static bool afficher = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public void Change(bool affich)
+    {
+        afficher = affich;
+        gameObject.SetActive(afficher);
+    }
 
     private void OnGUI()
     {
@@ -25,12 +38,17 @@ public class Map : MonoBehaviour
         aTexture.Apply();
         carte.rectTransform.sizeDelta = new Vector2(aTexture.width,aTexture.height);
         carte.sprite = Sprite.Create(aTexture, new Rect(0, 0, aTexture.width, aTexture.height), new Vector2(0.5f, 0.5f));
+        gameObject.SetActive(false);
     }
 
     private void Update()
     {
         x = (int) (PlayerNetwork.local.gameObject.transform.position.x-0.5)/4*10;
         y = (int) (PlayerNetwork.local.gameObject.transform.position.z-0.5)/4*10;
-        print("X :" + (x/10) + " et y : " + (y/10));
+        if (!afficher)
+        {
+            x = -5;
+            y = -10;
+        }
     }
 }

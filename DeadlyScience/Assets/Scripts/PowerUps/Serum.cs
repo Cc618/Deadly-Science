@@ -34,11 +34,9 @@ namespace ds
             {
                 // Update client / other players
                 client.OnSerumCollect(id);
-
                 // We return false because this is done remotely
                 return false;
             }
-
             return false;
         }
     }

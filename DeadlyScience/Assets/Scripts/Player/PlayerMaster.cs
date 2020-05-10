@@ -33,7 +33,7 @@ namespace ds
             }
             get => playersReady;
         }
-
+		//TODO : Célian : Faire attention à SerumCount
         private static int collectedSerums = 0;
         public static int serumCount = CreateRoomMenu.PlayerNumber-1;
         public static int CollectedSerums
@@ -43,14 +43,14 @@ namespace ds
                 collectedSerums = value;
 
                 // Change phase for all players
-                if (collectedSerums == serumCount)
+                if (collectedSerums ==  CreateRoomMenu.PlayerNumber-1)
                 {
                     // Change phase remotely
                     instance.net.SendSecondPhase();
                 }
                 else
                 {
-                    if (collectedSerums > serumCount)
+                    if (collectedSerums >  CreateRoomMenu.PlayerNumber-1)
                     {
                         EndGame.EndOfGame(true);
                     }

@@ -194,9 +194,15 @@ namespace ds
             if (Input.GetKeyDown(KeyCode.R))
                 net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
             if (Input.GetKeyDown(KeyCode.G))
+			{
+				Map.instance.Change(true);
                 net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
+			}
             if (Input.GetKeyDown(KeyCode.I))
+			{
+				Map.instance.Change(false);
                 net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
+			}
         }
 
         // Player to player hit
