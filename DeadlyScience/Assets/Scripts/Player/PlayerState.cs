@@ -35,7 +35,7 @@ namespace ds
                     nameUi.SetStatus(status);
 
                 // FX
-                Particles.Spawn(STATUS_STR[(int)status], transform.position);
+                Particles.Spawn(STATUS_STR[(int)status], transform.position + new Vector3(0, 1.5f, 0));
             }
 
             get => status;
