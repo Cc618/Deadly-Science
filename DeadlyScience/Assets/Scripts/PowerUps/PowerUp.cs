@@ -16,7 +16,9 @@ public abstract class PowerUp : MonoBehaviour
         // TODO : Change remote
         if ((other.gameObject.layer & playerLayer) != 0)
             if (OnCollect(other.gameObject))
+            {
                 Destroy(gameObject);
+            }
     }
 
     // When a player hits the power up

@@ -364,6 +364,7 @@
             <e p="Game.cs" t="Include" />
             <e p="Inputs.cs" t="Include" />
             <e p="Map.cs" t="Include" />
+            <e p="Particles.cs" t="Include" />
             <e p="QuitGame.cs" t="Include" />
             <e p="Settings.cs" t="Include" />
           </e>
@@ -389,6 +390,7 @@
           <e p="PowerUps" t="Include">
             <e p="PowerUp.cs" t="Include" />
             <e p="Serum.cs" t="Include" />
+            <e p="Surpraise.cs" t="Include" />
           </e>
           <e p="Reseau" t="Include">
             <e p="Game" t="Include">
