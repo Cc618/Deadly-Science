@@ -2585,6 +2585,12 @@ MonoBehaviour:
   - id: healed
     system: {fileID: 7516507719709694702, guid: 422a7a37884cf9849a252645b2ce9138,
       type: 3}
+  - id: infected
+    system: {fileID: 7516507719709694702, guid: 58567a54fba3872429e38a129479254e,
+      type: 3}
+  - id: revenge
+    system: {fileID: 7516507719709694702, guid: 2a8112750b177d643b29d4b146578261,
+      type: 3}
 --- !u!4 &1411951137
 Transform:
   m_ObjectHideFlags: 0
