@@ -2582,7 +2582,7 @@ MonoBehaviour:
   - id: hit
     system: {fileID: 7516507719709694702, guid: c299b0fa76ece894d992c9d47f085403,
       type: 3}
-  - id: serum
+  - id: healed
     system: {fileID: 7516507719709694702, guid: 422a7a37884cf9849a252645b2ce9138,
       type: 3}
 --- !u!4 &1411951137
