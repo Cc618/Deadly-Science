@@ -160,7 +160,7 @@ namespace ds
         [PunRPC]
         public void OtherPowerUp(int Id)
         {
-            if (!PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
                 int[] a = CreateRoomMenu.where;
                 int[] l = Generation.Aleatoire(a.Length - 3, CreateRoomMenu.Xm * CreateRoomMenu.Zm);
