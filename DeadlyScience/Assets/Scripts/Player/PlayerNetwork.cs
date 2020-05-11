@@ -160,36 +160,41 @@ namespace ds
         [PunRPC]
         public void OtherPowerUp(int Id)
         {
-            int[] a = CreateRoomMenu.where;
-            int[] l = Generation.Aleatoire(a.Length-3, CreateRoomMenu.Xm * CreateRoomMenu.Zm);
-            int b = 4;
-            int s = 4;
-            while (a[s] != Id)
+            if (!PhotonNetwork.IsMasterClient)
             {
-                s += 1;
-            }
-
-            bool v = false;
-            while (b < a.Length && !v)
-            {
-                int z = 4;
-                v = true;
-                while (z < a.Length)
+                int[] a = CreateRoomMenu.where;
+                int[] l = Generation.Aleatoire(a.Length - 3, CreateRoomMenu.Xm * CreateRoomMenu.Zm);
+                int b = 4;
+                int s = 4;
+                while (a[s] != Id)
                 {
-                    v &= a[z] != l[b - 4];
-                    z += 1;
+                    s += 1;
                 }
 
-                if (!v)
+                bool v = false;
+                while (b < a.Length && !v)
                 {
-                    b += 1;
+                    int z = 4;
+                    v = true;
+                    while (z < a.Length)
+                    {
+                        v &= a[z] != l[b - 4];
+                        z += 1;
+                    }
+
+                    if (!v)
+                    {
+                        b += 1;
+                    }
                 }
+
+                CreateRoomMenu.where[s] = l[b - 4];
+                print("Nouveau : " + s + " = " + Id + " devient " + l[b - 4]);
+                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PowerUp"),
+                    new Vector3((float) (4 * (CreateRoomMenu.where[s] % CreateRoomMenu.Xm) + 2.5), 2,
+                        (float) (4 * (CreateRoomMenu.where[s] / CreateRoomMenu.Xm) + 2.5)),
+                    new Quaternion(0, 0, 0, 0));
             }
-            CreateRoomMenu.where[s] = l[b - 4];
-            print("Nouveau : " + s + " = " + Id + " devient " + l[b-4]);
-            PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PowerUp"),
-                new Vector3((float) (4 * (CreateRoomMenu.where[s] % CreateRoomMenu.Xm) + 2.5), 2, (float) (4 * (CreateRoomMenu.where[s] / CreateRoomMenu.Xm) + 2.5)),
-                new Quaternion(0, 0, 0, 0));
         }
 
         // Game play //
