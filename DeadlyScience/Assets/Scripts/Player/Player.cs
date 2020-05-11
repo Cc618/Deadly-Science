@@ -273,6 +273,12 @@ namespace ds
             // Remote call
             net.SendOnSerum(serumId);
         }
+        public void OnPowerUpCollect(int serumId)
+        {
+            print("RAMASSE !");
+            print("Bon, ok, ça ne te fait rien, mais c'est pas grave.");
+            // Remote call
+        }
 
         void Attack()
         {

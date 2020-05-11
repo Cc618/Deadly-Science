@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro.Examples;
+using System.IO;
 
 namespace ds
 {
@@ -122,7 +124,6 @@ namespace ds
                 player.GetComponent<PlayerNetwork>().PrepareGame();
         }
     }
-
     // Network events part
     public partial class PlayerNetwork : MonoBehaviour
     {
@@ -132,7 +133,6 @@ namespace ds
         public void OnSerum(int from, int serumId)
         {
             Audio.Play(from == localPlayer.net.id ? "serum" : "serum_long");
-
             if (from == id)
                 playerState.OnSerum();
 
@@ -140,9 +140,7 @@ namespace ds
             if (PhotonNetwork.IsMasterClient)
             {
                 Serum serum = Serum.instances.Find((Serum s) => s.id == serumId);
-            
                 ++PlayerMaster.CollectedSerums;
-
                 PhotonNetwork.Destroy(serum.GetComponent<PhotonView>());
             }
         }
@@ -153,6 +151,45 @@ namespace ds
         {
             // This event triggers PlayerNetwork.OnSerum
             view.RPC("OnSerum", RpcTarget.All, id, serumId);
+        }
+
+        public void PowerUpPris(int Id)
+        {
+            view.RPC("OtherPowerUp", RpcTarget.All, Id);
+        }
+        [PunRPC]
+        public void OtherPowerUp(int Id)
+        {
+            int[] a = CreateRoomMenu.where;
+            int[] l = Generation.Aleatoire(a.Length-3, CreateRoomMenu.Xm * CreateRoomMenu.Zm);
+            int b = 4;
+            int s = 4;
+            while (a[s] != Id)
+            {
+                s += 1;
+            }
+
+            bool v = false;
+            while (b < a.Length && !v)
+            {
+                int z = 4;
+                v = true;
+                while (z < a.Length)
+                {
+                    v &= a[z] != l[b - 4];
+                    z += 1;
+                }
+
+                if (!v)
+                {
+                    b += 1;
+                }
+            }
+            CreateRoomMenu.where[s] = l[b - 4];
+            print("Nouveau : " + s + " = " + Id + " devient " + l[b-4]);
+            PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PowerUp"),
+                new Vector3((float) (4 * (CreateRoomMenu.where[s] % CreateRoomMenu.Xm) + 2.5), 2, (float) (4 * (CreateRoomMenu.where[s] / CreateRoomMenu.Xm) + 2.5)),
+                new Quaternion(0, 0, 0, 0));
         }
 
         // Game play //
@@ -174,7 +211,6 @@ namespace ds
         {
             view.RPC("SetStatus", RpcTarget.All, id, status);
         }
-
         // Called every third of second
         [PunRPC]
         public void SyncNet(int from, float stamina, bool stunned)
@@ -190,7 +226,6 @@ namespace ds
         {
             view.RPC("SyncNet", RpcTarget.All, id, stamina, stunned);
         }
-
         // Phases //
         // To say that a player is ready
         [PunRPC]
@@ -198,31 +233,26 @@ namespace ds
         {
             ++PlayerMaster.instance.PlayersReady;
         }
-
         public void SendPlayerReady()
         {
             view.RPC("PlayerReady", RpcTarget.MasterClient, id);
         }
-
         // First phase, after game init
         [PunRPC]
         public void FirstPhase()
         {
             local.GetComponent<Player>().OnGameBegin();
         }
-
         public void SendFirstPhase()
         {
             StartCoroutine(SendFirstPhaseDelay());
         }
-
         IEnumerator SendFirstPhaseDelay()
         {
             // Wait a bit
             yield return new WaitForSeconds(1);
             view.RPC("FirstPhase", RpcTarget.All);
         }
-
         [PunRPC]
         public void SecondPhase()
         {

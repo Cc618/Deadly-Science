@@ -25,21 +25,33 @@ namespace ds
                     player.GetComponent<PlayerNetwork>().isLocal = true;
                     print("Le MasterClient a été instancié");
                     
-                    int g = CreateRoomMenu.PlayerNumber -1;
-                    if (g == 0)
+                    int g =0;
+                    int serumn = CreateRoomMenu.PlayerNumber-1;
+                    if (serumn == 0)
                     {
-                        g = 1;
+                        serumn = 1;
                     }
 
+                    print(g + " " + serumn + " " + (CreateRoomMenu.where.Length - 4));
                     print("Génération des sérums :");
-                    while (g > 0)
+                    while (g < serumn)
                     {
-                        g -= 1;
+                        print(CreateRoomMenu.where[g + 4]);
                         PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Serum"),
                             new Vector3((float) (4 * (CreateRoomMenu.where[g+4] % CreateRoomMenu.Xm) + 2.5), 2, (float) (4 * (CreateRoomMenu.where[g+4] / CreateRoomMenu.Xm) + 2.5)),
                             new Quaternion(0, 0, 0, 0));
+                        g += 1;
                     }
                     print("Fin de génération des sérums");
+                    while (g + 4 < (CreateRoomMenu.where.Length))
+                    {
+                        print(CreateRoomMenu.where[g + 4]);
+                        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PowerUp"),
+                            new Vector3((float) (4 * (CreateRoomMenu.where[g+4] % CreateRoomMenu.Xm) + 2.5), 2, (float) (4 * (CreateRoomMenu.where[g+4] / CreateRoomMenu.Xm) + 2.5)),
+                            new Quaternion(0, 0, 0, 0));
+                        g += 1;
+                    }
+                    print("Fin de génération des Poxer-Up");
                     pv.RPC("CreateOtherPlayers", RpcTarget.Others);
                 }
             }

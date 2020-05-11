@@ -58,5 +58,6 @@ MonoBehaviour:
   - Hit
   - RevengeWin
   - CreateOtherPlayers
+  - OtherPowerUp
   DisableAutoOpenWizard: 1
   ShowSettings: 1
