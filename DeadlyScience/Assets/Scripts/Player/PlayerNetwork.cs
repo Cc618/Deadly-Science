@@ -7,6 +7,13 @@ using System.IO;
 
 namespace ds
 {
+    // PIPELINE
+    // OnPhotonInstantiate appelee quand le joueur spawn
+    // Apres Start est appelee et initialise les autres composants
+    // Ensuite ces fonctions principales s'appelent
+    // PrepareGame -> OnGameBegin -> FirstPhase -> SecondPhase -> RevengeWin
+    // Les autres fonctions sont appelees au cours de la partie
+
     // Instance part
     public partial class PlayerNetwork : MonoBehaviour, IPunInstantiateMagicCallback
     {
