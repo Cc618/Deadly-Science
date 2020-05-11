@@ -12,6 +12,10 @@ namespace ds
 
         void Update()
         {
+            if (PlayerNetwork.local == null)
+            {
+                return;
+            }
             string test = PlayerNetwork.local.playerState.Status.ToString();
             scoreText.color = Color.magenta;
             switch (test)

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ds;
+using Photon.Pun.UtilityScripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class Map : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        gameObject.SetActive(false);
     }
 
     public void Change(bool affich)
@@ -43,9 +45,12 @@ public class Map : MonoBehaviour
 
     private void Update()
     {
-        x = (int) (PlayerNetwork.local.gameObject.transform.position.x-0.5)/4*10;
-        y = (int) (PlayerNetwork.local.gameObject.transform.position.z-0.5)/4*10;
-        if (!afficher)
+        if (afficher)
+        {
+            x = (int) (PlayerNetwork.local.gameObject.transform.position.x-0.5)/4*10;
+            y = (int) (PlayerNetwork.local.gameObject.transform.position.z-0.5)/4*10;
+        }
+        else
         {
             x = -5;
             y = -10;

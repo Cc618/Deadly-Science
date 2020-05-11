@@ -51,7 +51,7 @@ namespace ds
                             new Quaternion(0, 0, 0, 0));
                         g += 1;
                     }
-                    print("Fin de génération des Poxer-Up");
+                    print("Fin de génération des Power-Up");
                     pv.RPC("CreateOtherPlayers", RpcTarget.Others);
                 }
             }

@@ -28,7 +28,7 @@ public abstract class PowerUp : MonoBehaviour
                 PlayerNetwork.local.PowerUpPris(s);
                 if (a == 1)
                 {
-                    Destroy(gameObject);
+                    PhotonNetwork.Destroy(gameObject);
                 }
             }
         }
