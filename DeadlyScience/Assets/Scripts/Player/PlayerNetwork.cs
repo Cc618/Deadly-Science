@@ -204,7 +204,7 @@ namespace ds
             }
         }
 
-        // Game play //
+        // Game play //ggPhoyo
         // A player changes status
         [PunRPC]
         public void SetStatus(int from, PlayerState.PlayerStatus status)

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using ds;
 using Photon.Pun;
 using UnityEngine;
+using Player = Photon.Realtime.Player;
 
 public abstract class PowerUp : MonoBehaviour
 {
+    private PhotonView pv;
     private void Start()
     {
+        pv = GetComponent<PhotonView>();
         // TODO : Player sensor collides with this layer
         playerLayer = LayerMask.NameToLayer("Player");
     }
@@ -28,7 +31,9 @@ public abstract class PowerUp : MonoBehaviour
                 PlayerNetwork.local.PowerUpPris(s);
                 if (a == 1)
                 {
+                    pv.TransferOwnership(PhotonNetwork.LocalPlayer);
                     PhotonNetwork.Destroy(gameObject);
+                    pv.TransferOwnership(PhotonNetwork.MasterClient);
                 }
             }
         }
