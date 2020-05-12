@@ -29,6 +29,8 @@ namespace ds
         [Range(0, 10)]
         public float damping;
 
+        public static bool[] alterations = new bool[4];
+
         public Transform groundSensor;
         public LayerMask groundMask;
 
@@ -276,8 +278,11 @@ namespace ds
         
         public void OnPowerUpCollect(int serumId)
         {
-            AffichagePowerUp.Nature = "un Power-Up, et... Bah... Ca fait rien de spécial pour l'instant.";
+            int a = Random.Range(0,4);
+            AffichagePowerUp.Nature = "un Power-Up, de type "+(a+1)+".";
+            alterations[a] = true;
             AffichagePowerUp.affich = true;
+            AffichagePowerUpJoueur.MaJ(alterations);
             StartCoroutine(Attente());
             // Remote call
         }
