@@ -74,6 +74,7 @@ namespace ds
                     i++;
                 }
             }
+            Map.instance.Change(false);
             int coorp = CreateRoomMenu.where[i];
             PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Attente"), new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity, 0);
             GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
