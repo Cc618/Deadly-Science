@@ -33,16 +33,6 @@ namespace ds
 
         public void SetPlayerText(Photon.Realtime.Player player)
         {
-            /*bool ready = GetComponent<PlayerListingMenu>()._ready;
-            string is_ready = "";
-            if (ready)
-            {
-                is_ready += "R ";
-            }
-            else
-            {
-                is_ready += "N ";
-            }*/
             if (player == PhotonNetwork.MasterClient)
             {
                 _text.text = "Hôte " + player.NickName;
