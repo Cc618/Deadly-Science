@@ -6,6 +6,7 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using Random = UnityEngine.Random;
 
 namespace ds
 {
@@ -13,6 +14,8 @@ namespace ds
     {
         [SerializeField]
         private Text _roomName;
+        [SerializeField]
+        private InputField inputfield;
         public static int Xm;
         public static int Zm;
         public static int PlayerNumber;
@@ -28,8 +31,12 @@ namespace ds
 
         private void Update()
         {
-            if (_roomName.text.Length > 0 && Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) && PhotonNetwork.IsConnected)
             {
+                if (_roomName.text.Length == 0)
+                {
+                    inputfield.text = "Test" + Random.Range(0, 9999);
+                }
                 OnClick_CreateRoom();
             }
         }
@@ -45,6 +52,7 @@ namespace ds
             if (!PhotonNetwork.IsConnected)
                 return;
             RoomOptions options = new RoomOptions();
+            
             //Partie Leandre
             PlayerNumber = 4;
             //TODO : Permettre au créateur de modifier Xm et Zm
