@@ -273,13 +273,20 @@ namespace ds
             // Remote call
             net.SendOnSerum(serumId);
         }
+        
         public void OnPowerUpCollect(int serumId)
         {
-            print("RAMASSE !");
-            print("Bon, ok, ça ne te fait rien, mais c'est pas grave.");
+            AffichagePowerUp.Nature = "un Power-Up, et... Bah... Ca fait rien de spécial pour l'instant.";
+            AffichagePowerUp.affich = true;
+            StartCoroutine(Attente());
             // Remote call
         }
 
+        IEnumerator Attente()
+        {
+            yield return new WaitForSeconds(5);
+            AffichagePowerUp.affich = false;
+        }
         void Attack()
         {
             // Collide only players

@@ -27,6 +27,7 @@ namespace ds
             var p = player.GetComponent<PlayerState>();
             //Update client/other players
             client.OnPowerUpCollect(id);
+            print("A");
             // We return false because this is done remotely
             return 1;
         }
