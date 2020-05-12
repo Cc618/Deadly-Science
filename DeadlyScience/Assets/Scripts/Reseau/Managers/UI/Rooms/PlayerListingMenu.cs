@@ -16,6 +16,9 @@ namespace ds
         private PlayerListing _playerListing;
         [SerializeField] 
         private Text _readyUpText;
+        
+        //public GameObject camera;
+        private bool once = true;
 
         private List<PlayerListing> _listings = new List<PlayerListing>();
         private RoomCanvases _roomCanvases;
@@ -75,8 +78,9 @@ namespace ds
 
         public void OnClick_StartGame()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && once)
             {
+                once = false;
                 SendVariableUpdate();
                 for (int i = 0; i < _listings.Count; i++)
                 {
@@ -88,6 +92,7 @@ namespace ds
                 }
                 PhotonNetwork.CurrentRoom.IsOpen = false;
                 PhotonNetwork.CurrentRoom.IsVisible = false;
+                // DontDestroyOnLoad(camera);
                 PhotonNetwork.LoadLevel(2);
             }
         }
