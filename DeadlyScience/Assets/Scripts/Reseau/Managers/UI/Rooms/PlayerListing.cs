@@ -21,7 +21,7 @@ namespace ds
             SetPlayerText(player);
         }
 
-        public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player target, ExitGames.Client.Photon.Hashtable changedProps)
+        public override void OnPlayerPropertiesUpdate(Photon.Realtime.Player target, Hashtable changedProps)
         {
             base.OnPlayerPropertiesUpdate(target, changedProps);
             if (target != null && target == Player)
@@ -31,7 +31,7 @@ namespace ds
             }
         }
 
-        private void SetPlayerText(Photon.Realtime.Player player)
+        public void SetPlayerText(Photon.Realtime.Player player)
         {
             /*bool ready = GetComponent<PlayerListingMenu>()._ready;
             string is_ready = "";
@@ -43,7 +43,21 @@ namespace ds
             {
                 is_ready += "N ";
             }*/
-                _text.text = player.NickName;
+            if (player == PhotonNetwork.MasterClient)
+            {
+                _text.text = "Hôte " + player.NickName;
+            }
+            else
+            {
+                if (Ready)
+                {
+                    _text.text = "R " + player.NickName;
+                }
+                else
+                {
+                    _text.text = "NR " + player.NickName;
+                }
+            }
         }
     }
 }

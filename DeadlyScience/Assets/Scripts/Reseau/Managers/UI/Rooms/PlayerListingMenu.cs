@@ -50,7 +50,48 @@ namespace ds
 
             _listings.Clear();
         }
+        
+        public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
+        {
+            _roomCanvases.CurrentRoomCanvas.LeaveRoomMenu.OnClic_LeaveRoom();
+        }
 
+        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+        {
+            AddPlayerListing(newPlayer);
+            photonView.RPC("RPC_ChangeReadyState", RpcTarget.All,
+                PhotonNetwork.LocalPlayer, _ready);
+        }
+
+        public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+        {
+            int index = _listings.FindIndex(x => x.Player == otherPlayer);
+            if (index != -1)
+            {
+                Destroy(_listings[index].gameObject);
+                _listings.RemoveAt(index);
+            }
+        }
+
+        public void OnClick_StartGame()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                SendVariableUpdate();
+                for (int i = 0; i < _listings.Count; i++)
+                {
+                    if (_listings[i].Player != PhotonNetwork.LocalPlayer)
+                    {
+                        if (!_listings[i].Ready)
+                            return;
+                    }
+                }
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                PhotonNetwork.LoadLevel(2);
+            }
+        }
+        
         private void GetCurrentRoomPlayers()
         {
             if (!PhotonNetwork.IsConnected)
@@ -58,9 +99,9 @@ namespace ds
             if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null)
                 return;
             
-            foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+            foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
             {
-                AddPlayerListing(playerInfo.Value);
+                AddPlayerListing(player);
             }
         }
 
@@ -82,64 +123,22 @@ namespace ds
             }
         }
 
-        public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
-        {
-            _roomCanvases.CurrentRoomCanvas.LeaveRoomMenu.OnClic_LeaveRoom();
-        }
-
-        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-        {
-            AddPlayerListing(newPlayer);
-        }
-
-        public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
-        {
-            int index = _listings.FindIndex(x => x.Player == otherPlayer);
-            if (index != -1)
-            {
-                Destroy((_listings[index].gameObject));
-                _listings.RemoveAt(index);
-            }
-        }
-
-        public void OnClick_StartGame()
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                SendVariableUpdate();
-
-                for (int i = 0; i < _listings.Count; i++)
-                {
-                    if (_listings[i].Player != PhotonNetwork.LocalPlayer)
-                    {
-                        if (!_listings[i].Ready)
-                            return;
-                    }
-                }
-                
-                PhotonNetwork.CurrentRoom.IsOpen = false;
-                PhotonNetwork.CurrentRoom.IsVisible = false;
-                PhotonNetwork.LoadLevel(2);
-            }
-        }
-
         public void OnClick_ReadyUp()
         {
-            if (!PhotonNetwork.IsMasterClient)
-            {
-                SetReadyUp(!_ready);
-                base.photonView.RPC("RPC_ChangeReadyState", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer, _ready);
-            }
+            SetReadyUp(!_ready);
+            photonView.RPC("RPC_ChangeReadyState", RpcTarget.All,
+                PhotonNetwork.LocalPlayer, _ready);
         }
         
         [PunRPC]
         private void RPC_ChangeReadyState(Photon.Realtime.Player player, bool ready)
         {
-            int index = _listings.FindIndex(x => x.Player == player);
+            int index = _listings.FindIndex(x => Equals(x.Player,  player));
             if (index != -1)
             {
                 _listings[index].Ready = ready;
             }
+            AddPlayerListing(player);
         }
 
 
@@ -152,7 +151,8 @@ namespace ds
 
         public void SendVariableUpdate()
         {
-            PhotonView.Get(this).RPC("VariableUpdate", RpcTarget.All, CreateRoomMenu.Xm, CreateRoomMenu.where);
+            PhotonView.Get(this).RPC("VariableUpdate", RpcTarget.All, CreateRoomMenu.Xm,
+                CreateRoomMenu.where);
         }
     }
 }
