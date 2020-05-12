@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using Random = UnityEngine.Random;
 
 namespace ds
 {
@@ -12,6 +14,8 @@ namespace ds
     {
         [SerializeField]
         private Text _roomName;
+        [SerializeField]
+        private InputField inputfield;
         public static int Xm;
         public static int Zm;
         public static int PlayerNumber;
@@ -25,6 +29,18 @@ namespace ds
             instance = this;
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Return) && PhotonNetwork.IsConnected)
+            {
+                if (_roomName.text.Length == 0)
+                {
+                    inputfield.text = "Test" + Random.Range(0, 9999);
+                }
+                OnClick_CreateRoom();
+            }
+        }
+
         public void FirstInitialize(RoomCanvases canvases)
         {
             _roomCanvases = canvases;
@@ -33,11 +49,11 @@ namespace ds
         public void OnClick_CreateRoom()
         {
             Audio.Play("click");
-
             if (!PhotonNetwork.IsConnected)
                 return;
-
             RoomOptions options = new RoomOptions();
+            
+            //Partie Leandre
             PlayerNumber = 4;
             //TODO : Permettre au créateur de modifier Xm et Zm
             Xm = 10;
@@ -70,6 +86,8 @@ namespace ds
                 print(where[a]);
                 where[a] = where[0];
             }
+            //Fin de partie Leandre
+            
             options.BroadcastPropsChangeToAll = true;
             options.MaxPlayers = 4;
             options.PublishUserId = true;
