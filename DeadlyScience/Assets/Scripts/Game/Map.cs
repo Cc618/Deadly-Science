@@ -19,13 +19,13 @@ public class Map : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        gameObject.SetActive(false);
     }
 
     public void Change(bool affich)
     {
+        gameObject.SetActive(affich);
         afficher = affich;
-        gameObject.SetActive(afficher);
+        print("Carte mise à " + affich);
     }
 
     private void OnGUI()

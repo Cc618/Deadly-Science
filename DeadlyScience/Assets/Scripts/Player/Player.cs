@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
 using Photon.Pun;
+using TMPro.Examples;
 
 namespace ds
 {
@@ -196,13 +197,12 @@ namespace ds
             if (Input.GetKeyDown(KeyCode.R))
                 net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
             if (Input.GetKeyDown(KeyCode.G))
-			{
-				Map.instance.Change(true);
+            {
+                OnPowerUpCollect();
                 net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
 			}
             if (Input.GetKeyDown(KeyCode.I))
 			{
-				Map.instance.Change(false);
                 net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
 			}
         }
@@ -276,12 +276,72 @@ namespace ds
             net.SendOnSerum(serumId);
         }
         
-        public void OnPowerUpCollect(int serumId)
+        public void OnPowerUpCollect()
         {
-            int a = Random.Range(0,4);
-            AffichagePowerUp.Nature = "un Power-Up, de type "+(a+1)+".";
-            alterations[a] = true;
+            int x = 0;
+            List<string> contents = new List<string>();
+            if (!alterations[0])
+            {
+                contents.Add("Carte");
+                Map.instance.Change(false);
+            }
+            if (!alterations[1])
+            {
+                contents.Add("Protection");
+            }
+            if (contents.Count != 2)
+            {
+                contents.Add("Décharge");
+            }
+            contents.Add("Tourelle");
+            int a = Random.Range(0,contents.Count);
+            AffichagePowerUp.Nature = "l'Objet "+contents[a]+".";
             AffichagePowerUp.affich = true;
+            switch (contents[a])
+            {
+                case "Carte":
+                {
+                    Map.instance.Change(true);
+                    alterations[0] = true;
+                    Map.instance.Change(true);
+                    break;
+                }
+                case "Protection":
+                {
+                    alterations[1] = true;
+                    break;
+                }
+                case "Décharge":
+                {
+                    if (alterations[1])
+                    {
+                        alterations[1] = false;
+                    }
+                    else
+                    {
+                        a = alterations.Length;
+                        while (a > 0)
+                        {
+                            a -= 1;
+                            alterations[a] = false;
+                        }
+                        Map.instance.Change(false);
+                    }
+                    break;
+                }
+                case "Tourelle":
+                {
+                    if (alterations[1])
+                    {
+                        alterations[1] = false;
+                    }
+                    else
+                    {
+                        Stamina = 0;
+                    }
+                    break;
+                }
+            }
             AffichagePowerUpJoueur.MaJ(alterations);
             StartCoroutine(Attente());
             // Remote call
