@@ -27,7 +27,7 @@ namespace ds
 
         public override void OnDisconnected(DisconnectCause cause)
         {
-            print("Deconnecté du serveur à cause de " + cause.ToString());
+            print("Deconnecté du serveur à cause de " + cause);
         }
     }
 }
