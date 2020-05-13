@@ -1242,6 +1242,7 @@ MonoBehaviour:
   _playerListing: {fileID: 6399178426212021319, guid: caadd8fca5c7bee4f80d14ca5cfaeaed,
     type: 3}
   _readyUpText: {fileID: 996910310}
+  camera: {fileID: 1541126092}
   _ready: 0
 --- !u!114 &479809650
 MonoBehaviour:
@@ -3837,7 +3838,7 @@ GameObject:
   - component: {fileID: 1541126094}
   - component: {fileID: 1541126093}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera a detruire
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

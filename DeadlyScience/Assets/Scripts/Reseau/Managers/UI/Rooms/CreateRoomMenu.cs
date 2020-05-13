@@ -60,7 +60,7 @@ namespace ds
             Zm = 10;
             //TODO : Déterminer le Ratio de Power-Ups
             int max = (Xm * Zm) / 25;
-            print(max);
+            //print(max);
             if (max < PlayerNumber)
             {
                 max = PlayerNumber-1;
@@ -70,15 +70,15 @@ namespace ds
             {
                 max = 1;
             }
-            print(max);
+            //print(max);
             where = Generation.Aleatoire(4+max, Xm * Zm);
             int a = 0;
             while (a < max+4)
             {
-                print(where[a]);
+                //print(where[a]);
                 a += 1;
             }
-            print("Retiré :");
+            //print("Retiré :");
             a = 4;
             while (a != PlayerNumber)
             {

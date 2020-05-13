@@ -51,6 +51,7 @@ namespace ds
             }
             else
             {
+                Destroy(GameObject.Find("Camera a detruire"));
                 local = this;
 
                 // Remove labels

@@ -16,8 +16,8 @@ namespace ds
         private PlayerListing _playerListing;
         [SerializeField] 
         private Text _readyUpText;
-        
-        //public GameObject camera;
+        [SerializeField]
+        private GameObject camera;
         private bool once = true;
 
         private List<PlayerListing> _listings = new List<PlayerListing>();
@@ -92,9 +92,15 @@ namespace ds
                 }
                 PhotonNetwork.CurrentRoom.IsOpen = false;
                 PhotonNetwork.CurrentRoom.IsVisible = false;
-                // DontDestroyOnLoad(camera);
+                photonView.RPC("DDOL", RpcTarget.All);
                 PhotonNetwork.LoadLevel(2);
             }
+        }
+
+        [PunRPC]
+        void DDOL()
+        {
+            DontDestroyOnLoad(camera);
         }
         
         private void GetCurrentRoomPlayers()

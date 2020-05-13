@@ -60,5 +60,6 @@ MonoBehaviour:
   - CreateOtherPlayers
   - OtherPowerUp
   - DestroyPowerUp
+  - DDOL
   DisableAutoOpenWizard: 1
   ShowSettings: 1
