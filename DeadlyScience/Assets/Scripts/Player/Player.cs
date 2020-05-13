@@ -30,7 +30,7 @@ namespace ds
         [Range(0, 10)]
         public float damping;
 
-        public static bool[] alterations = new bool[4];
+        public static bool[] alterations = new bool[5];
 
         public Transform groundSensor;
         public LayerMask groundMask;
@@ -293,11 +293,24 @@ namespace ds
             {
                 contents.Add("Protection");
             }
-            if (contents.Count != 2)
+            if (!alterations[2])
+            {
+                contents.Add("Bottes de Pégase");
+            }
+            if (!alterations[3])
+            {
+                contents.Add("Bottes de Plomb");
+            }
+
+            if (!alterations[4])
+            {
+                contents.Add("Casque de CRS");
+            }
+            if (contents.Count != 5)
             {
                 contents.Add("Décharge");
             }
-            contents.Add("Tourelle");
+            contents.Add("Paralysie");
             int a = Random.Range(0,contents.Count);
             AffichagePowerUp.Nature = "l'Objet "+contents[a]+".";
             AffichagePowerUp.affich = true;
@@ -330,10 +343,12 @@ namespace ds
                             alterations[a] = false;
                         }
                         Map.instance.Change(false);
+                        CasqueCRS.time = 0;
+                        speedRatio = 1f;
                     }
                     break;
                 }
-                case "Tourelle":
+                case "Paralysie":
                 {
                     if (alterations[1])
                     {
@@ -364,6 +379,19 @@ namespace ds
                     alterations[2] = true;
                     alterations[3] = false;
                     speedRatio = 2f;
+                    break;
+                }
+                case "Casque de CRS":
+                {
+                    if (alterations[1])
+                    {
+                        alterations[1] = false;
+                    }
+                    else
+                    {
+                        alterations[4] = true;
+                        CasqueCRS.instance.Change(true);
+                    }
                     break;
                 }
             }
