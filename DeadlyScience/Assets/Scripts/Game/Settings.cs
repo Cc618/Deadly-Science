@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace ds
 {
@@ -13,6 +14,7 @@ namespace ds
         public Slider MusiqueSlider;
         public Slider SFXSlider;
         public Slider MouseSlider;
+        public TMP_InputField Pseudo;
         Audio Audio;
 
         public void Awake()
@@ -43,6 +45,14 @@ namespace ds
                 PlayerPrefs.SetFloat("sfxVolume", Audio.sfxVolume);
             }
 
+            if (PlayerPrefs.HasKey("pseudo"))
+                Pseudo.text = PlayerPrefs.GetString("pseudo");
+            else
+            {
+                Pseudo.text = "Sujet" + Random.Range(0, 9999);
+                PlayerPrefs.SetString("pseudo", Pseudo.text);
+            }
+
             PlayerPrefs.Save();
         }
 
@@ -71,6 +81,13 @@ namespace ds
         {
             Audio.sfxVolume = value;
             PlayerPrefs.SetFloat("sfxVolume", value);
+            PlayerPrefs.Save();
+        }
+
+        public void OnPseudoChange(string pseudo)
+        {
+            Pseudo.text = pseudo;
+            PlayerPrefs.SetString("pseudo", pseudo);
             PlayerPrefs.Save();
         }
     }

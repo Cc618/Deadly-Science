@@ -19,8 +19,9 @@ namespace ds
         {
             get
             {
-                int value = Random.Range(0, 9999);
-                return _nickname + value.ToString();
+                /*int value = Random.Range(0, 9999);
+                return _nickname + value.ToString();*/
+                return PlayerPrefs.GetString("pseudo");
             }
         }
 
