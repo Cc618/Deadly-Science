@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 namespace ds
 {
@@ -15,11 +16,14 @@ namespace ds
         public Slider SFXSlider;
         public Slider MouseSlider;
         public TMP_InputField Pseudo;
+        public TMP_Dropdown language;
+        Localization_SOURCE Localization_SOURCE;
         Audio Audio;
 
         public void Awake()
         {
             Audio = GetComponent<Audio>();
+            Localization_SOURCE = GetComponent<Localization_SOURCE>();
             
             if (PlayerPrefs.HasKey("mouseSensivity"))
                 mouseSensivity = PlayerPrefs.GetFloat("mouseSensivity");
@@ -49,8 +53,18 @@ namespace ds
                 Pseudo.text = PlayerPrefs.GetString("pseudo");
             else
             {
-                Pseudo.text = "Sujet" + Random.Range(0, 9999);
+                Pseudo.text = "Sujet" + UnityEngine.Random.Range(0, 9999);
                 PlayerPrefs.SetString("pseudo", Pseudo.text);
+            }
+
+            if (PlayerPrefs.HasKey("language"))
+            {
+                language.value = PlayerPrefs.GetInt("language");
+                Localization_SOURCE.PUBLIC_LoadLanguage(language.value);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("language", language.value);
             }
 
             PlayerPrefs.Save();
@@ -93,8 +107,15 @@ namespace ds
 
         public void OnRandomPseudo()
         {
-            Pseudo.text = "Sujet" + Random.Range(1000, 9999);
+            Pseudo.text = "Sujet" + UnityEngine.Random.Range(1000, 9999);
             PlayerPrefs.SetString("pseudo", Pseudo.text);
+            PlayerPrefs.Save();
+        }
+
+        public void OnLanguageChange(int val)
+        {
+            Localization_SOURCE.PUBLIC_LoadLanguage(val);
+            PlayerPrefs.SetInt("language", val);
             PlayerPrefs.Save();
         }
     }

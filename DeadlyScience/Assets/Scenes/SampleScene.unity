@@ -868,7 +868,7 @@ RectTransform:
   m_Children:
   - {fileID: 1016013442}
   m_Father: {fileID: 529228616}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1711,10 +1711,10 @@ RectTransform:
   m_Children:
   - {fileID: 1601665849}
   - {fileID: 347897787}
-  - {fileID: 224178033}
   - {fileID: 1019371793}
-  - {fileID: 1025527116}
   - {fileID: 2135243731}
+  - {fileID: 1025527116}
+  - {fileID: 224178033}
   m_Father: {fileID: 2027045273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2884,7 +2884,7 @@ RectTransform:
   - {fileID: 840311271}
   - {fileID: 559605272}
   m_Father: {fileID: 529228616}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4737,6 +4737,7 @@ GameObject:
   - component: {fileID: 1822125230}
   - component: {fileID: 1822125231}
   - component: {fileID: 1822125232}
+  - component: {fileID: 1822125233}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -4823,6 +4824,7 @@ MonoBehaviour:
   SFXSlider: {fileID: 136689817}
   MouseSlider: {fileID: 948014053}
   Pseudo: {fileID: 0}
+  language: {fileID: 0}
 --- !u!114 &1822125232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4835,6 +4837,144 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b554683f637d094a8d928d7a9499148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1822125233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822125226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ada2622d5512f94599af1efea587a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LanguageFiles:
+  - {fileID: 4900000, guid: 27401482759f7ed4c95522eb6377f162, type: 3}
+  - {fileID: 4900000, guid: fea125f425afba14e8777785b35dc52d, type: 3}
+  SelectedLanguage: 0
+  LoadLanguageOnStart: 1
+  Categories:
+  - Default
+  LocalizationSelector:
+  - AssignationType: 2
+    Key: settings
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1601665850}
+  - AssignationType: 2
+    Key: music
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 559605273}
+  - AssignationType: 2
+    Key: sfx
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1595056217}
+  - AssignationType: 2
+    Key: mouse sensitivity
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 245678046}
+  - AssignationType: 2
+    Key: quit
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1016013443}
+  - AssignationType: 2
+    Key: victory
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1424904005}
+  - AssignationType: 2
+    Key: defeat
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 17378859}
+  - AssignationType: 2
+    Key: quit
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1615603845}
+  - AssignationType: 2
+    Key: quit
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1393149163}
+  AT_GameObjectChildsRoot: {fileID: 0}
 --- !u!1 &1845695812
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,7 +5547,7 @@ RectTransform:
   - {fileID: 136689816}
   - {fileID: 1595056216}
   m_Father: {fileID: 529228616}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
