@@ -606,6 +606,7 @@ MonoBehaviour:
   attackRange: 5
   net: {fileID: 0}
   canMove: 0
+  speedRatio: 1
 --- !u!114 &51949627
 MonoBehaviour:
   m_ObjectHideFlags: 0

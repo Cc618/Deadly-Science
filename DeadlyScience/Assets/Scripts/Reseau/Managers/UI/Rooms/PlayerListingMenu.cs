@@ -18,6 +18,10 @@ namespace ds
         private Text _readyUpText;
         [SerializeField]
         private GameObject camera;
+        [SerializeField]
+        private GameObject commencer;
+        [SerializeField]
+        private GameObject readybutton;
         private bool once = true;
 
         private List<PlayerListing> _listings = new List<PlayerListing>();
@@ -27,6 +31,10 @@ namespace ds
         public override void OnEnable()
         {
             base.OnEnable();
+            if (PhotonNetwork.IsMasterClient)
+                readybutton.SetActive(false);
+            else 
+                commencer.SetActive(false);
             SetReadyUp(false);
             GetCurrentRoomPlayers();
         }
