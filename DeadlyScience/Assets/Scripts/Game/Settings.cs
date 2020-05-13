@@ -90,5 +90,12 @@ namespace ds
             PlayerPrefs.SetString("pseudo", pseudo);
             PlayerPrefs.Save();
         }
+
+        public void OnRandomPseudo()
+        {
+            Pseudo.text = "Sujet" + Random.Range(1000, 9999);
+            PlayerPrefs.SetString("pseudo", Pseudo.text);
+            PlayerPrefs.Save();
+        }
     }
 }

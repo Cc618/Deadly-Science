@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System;
 
 namespace ds
@@ -34,7 +35,7 @@ namespace ds
                 go.transform.SetParent(keyList.transform);
                 go.transform.localScale = Vector3.one;
 
-                Text buttonNameText = go.transform.Find("ButtonName").GetComponent<Text>();
+                TMP_Text buttonNameText = go.transform.Find("ButtonName").GetComponent<TMP_Text>();
                 buttonNameText.text = bn;
 
                 Text keyNameText = go.transform.Find("Button/KeyName").GetComponent<Text>();
