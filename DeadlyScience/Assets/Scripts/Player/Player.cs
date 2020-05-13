@@ -77,6 +77,10 @@ namespace ds
         [HideInInspector]
         public bool canMove = false;
 
+        // Speed modifier
+        [HideInInspector]
+        public float speedRatio = 1f;
+
         // Called after the script PlayerNetwork
         public void StartAfterPlayerNetwork()
         {
@@ -162,7 +166,7 @@ namespace ds
             float tangentSpeed = velocity.x * velocity.x + velocity.z * velocity.z;
 
             // The speed ratio
-            float speedFactor = stunned ? stunnedSpeedFactor : 1;
+            float speedFactor = stunned ? stunnedSpeedFactor : speedRatio;
 
             // Update movements if they serve to brake or they are within speed bounds
             if (movements.sqrMagnitude > .1 && (tangentSpeed < maxSpeed * maxSpeed * speedFactor * speedFactor || velocity.x * movements.x + velocity.z * movements.z < 0))
