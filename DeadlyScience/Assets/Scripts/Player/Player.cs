@@ -188,7 +188,7 @@ namespace ds
             animator.SetBool("moving", tangentSpeed > 1.6f);
 
             // Attack
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (!stunned && Input.GetKeyDown(KeyCode.Mouse0))
                 Attack();
 
             // TODO : rm Test

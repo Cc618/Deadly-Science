@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using Wilberforce.FinalVignette;
 
 namespace ds
 {
@@ -27,6 +28,16 @@ namespace ds
         {
             set
             {
+                // Post processing
+                // TODO : Verify
+                if (player)
+                {
+                    if (status != PlayerStatus.REVENGE && value == PlayerStatus.REVENGE)
+                        GetComponentInChildren<FinalVignette>().enabled = true;
+                    else if (status == PlayerStatus.REVENGE && value != PlayerStatus.REVENGE)
+                        GetComponentInChildren<FinalVignette>().enabled = false;
+                }
+
                 // Update status
                 status = value;
 
