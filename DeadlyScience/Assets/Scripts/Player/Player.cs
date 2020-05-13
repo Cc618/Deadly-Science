@@ -345,6 +345,27 @@ namespace ds
                     }
                     break;
                 }
+                case "Bottes de Plomb":
+                {
+                    if (alterations[1])
+                    {
+                        alterations[1] = false;
+                    }
+                    else
+                    {
+                        alterations[2] = false;
+                        alterations[3] = true;
+                        speedRatio = 0.5f;
+                    }
+                    break;
+                }
+                case "Bottes de Pégase":
+                {
+                    alterations[2] = true;
+                    alterations[3] = false;
+                    speedRatio = 2f;
+                    break;
+                }
             }
             AffichagePowerUpJoueur.MaJ(alterations);
             StartCoroutine(Attente());
