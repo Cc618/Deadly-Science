@@ -58,3 +58,7 @@ sysinfo.txt
 crashlytics-build.properties
 
 bin
+
+# Perso en plus
+*LanguageLocalization_Docs*
+*_Examples*
