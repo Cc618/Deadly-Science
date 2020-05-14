@@ -54,8 +54,13 @@ namespace ds
             RoomOptions options = new RoomOptions();
             
             //Partie Leandre
-            PlayerNumber = 4;
+            PlayerNumber = 2;
             //TODO : Permettre au créateur de modifier Xm et Zm
+<<<<<<< HEAD
+=======
+            Xm = 5;
+            Zm = 10;
+>>>>>>> 3d79733be3e7e7e99ee5fa766d0cf55efd8c5599
             //TODO : Déterminer le Ratio de Power-Ups
             int max = (Xm * Zm) / 25;
             //print(max);

@@ -212,6 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 83624396}
+  - component: {fileID: 83624397}
   m_Layer: 0
   m_Name: OverlayCanvases
   m_TagString: Untagged
@@ -236,12 +237,140 @@ Transform:
   m_Father: {fileID: 2090793192}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!224 &94957475 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9081929559638007030, guid: 7369eecf51363b04eb2c4003a668ac5f,
     type: 3}
   m_PrefabInstance: {fileID: 1703123729}
   m_PrefabAsset: {fileID: 0}
+=======
+--- !u!114 &83624397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83624395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ada2622d5512f94599af1efea587a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LanguageFiles:
+  - {fileID: 4900000, guid: 27401482759f7ed4c95522eb6377f162, type: 3}
+  - {fileID: 4900000, guid: fea125f425afba14e8777785b35dc52d, type: 3}
+  SelectedLanguage: 0
+  LoadLanguageOnStart: 1
+  Categories:
+  - Default
+  LocalizationSelector:
+  - AssignationType: 1
+    Key: room name
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 1206155186}
+    AT_TextMeshbject: {fileID: 0}
+  - AssignationType: 1
+    Key: create room
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 56790788}
+    AT_TextMeshbject: {fileID: 0}
+  - AssignationType: 1
+    Key: back
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 1936504703}
+    AT_TextMeshbject: {fileID: 0}
+  - AssignationType: 1
+    Key: start
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 1690683608}
+    AT_TextMeshbject: {fileID: 0}
+  - AssignationType: 1
+    Key: ready
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 996910310}
+    AT_TextMeshbject: {fileID: 0}
+  - AssignationType: 1
+    Key: disconnect
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 1002739344}
+    AT_TextMeshbject: {fileID: 0}
+  - AssignationType: 1
+    Key: lab settings
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 1022909940}
+    AT_TextMeshbject: {fileID: 0}
+  - AssignationType: 1
+    Key: back
+    Text: 
+    Category: 0
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 1785492829}
+    AT_TextMeshbject: {fileID: 0}
+  AT_GameObjectChildsRoot: {fileID: 0}
+>>>>>>> 3d79733be3e7e7e99ee5fa766d0cf55efd8c5599
 --- !u!1 &133214947
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +683,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.90699977}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1682,7 +1811,11 @@ MonoBehaviour:
   m_HandleRect: {fileID: 228810429}
   m_Direction: 2
   m_Value: 0
+<<<<<<< HEAD
   m_Size: 1
+=======
+  m_Size: 0.90699977
+>>>>>>> 3d79733be3e7e7e99ee5fa766d0cf55efd8c5599
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2693,7 +2826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000006137745}
+  m_AnchoredPosition: {x: 0, y: 23.388575}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1094665981
@@ -4559,7 +4692,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 85
+    m_FontSize: 82
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

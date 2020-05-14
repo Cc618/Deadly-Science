@@ -11,6 +11,13 @@
             <e p="SBS_Mana.shader" t="Include" />
           </e>
         </e>
+        <e p="LocalizationPackage" t="Include">
+          <e p="_Source" t="Include">
+            <e p="Localization_SOURCE.cs" t="Include" />
+            <e p="Localization_SOURCE_Editor.cs" t="Include" />
+            <e p="Localization_SOURCE_Window.cs" t="Include" />
+          </e>
+        </e>
         <e p="packages" t="Include">
           <e p="FinalVignette" t="Include">
             <e p="Assets" t="Include">
@@ -371,6 +378,13 @@
             </e>
           </e>
         </e>
+        <e p="Resources" t="Include">
+          <e p="Languages" t="Include">
+            <e p="English.xml" t="Include" />
+            <e p="French.xml" t="Include" />
+            <e p="LocalizationManager.txt" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="Amazing Maze" t="Include">
             <e p="Generation.cs" t="Include" />
@@ -412,6 +426,7 @@
           <e p="PowerUps" t="Include">
             <e p="AffichagePowerUp.cs" t="Include" />
             <e p="CasqueCRS.cs" t="Include" />
+            <e p="Disparition.cs" t="Include" />
             <e p="Other.cs" t="Include" />
             <e p="PowerUp.cs" t="Include" />
             <e p="Serum.cs" t="Include" />

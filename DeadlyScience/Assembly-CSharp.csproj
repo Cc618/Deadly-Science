@@ -56,6 +56,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LocalizationPackage\_Source\Localization_SOURCE.cs" />
+     <Compile Include="Assets\LocalizationPackage\_Source\Localization_SOURCE_Editor.cs" />
+     <Compile Include="Assets\LocalizationPackage\_Source\Localization_SOURCE_Window.cs" />
      <Compile Include="Assets\Packages\FinalVignette\Assets\Scripts\FinalVignette.cs" />
      <Compile Include="Assets\Packages\FinalVignette\Assets\Scripts\FinalVignetteCommandBuffer.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
@@ -100,6 +103,7 @@
      <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
      <Compile Include="Assets\Scripts\PowerUps\AffichagePowerUp.cs" />
      <Compile Include="Assets\Scripts\PowerUps\CasqueCRS.cs" />
+     <Compile Include="Assets\Scripts\PowerUps\Disparition.cs" />
      <Compile Include="Assets\Scripts\PowerUps\Other.cs" />
      <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
      <Compile Include="Assets\Scripts\PowerUps\Serum.cs" />
@@ -160,11 +164,14 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
      <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
+     <None Include="Assets\Resources\Languages\English.xml" />
      <None Include="Assets\Packages\FinalVignette\Assets\Shaders\FinalVignette.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
+     <None Include="Assets\Resources\Languages\French.xml" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\Packages\FinalVignette\Documentation\ReadMe.txt" />
+     <None Include="Assets\Resources\Languages\LocalizationManager.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
