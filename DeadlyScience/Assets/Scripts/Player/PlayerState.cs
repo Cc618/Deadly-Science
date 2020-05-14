@@ -37,6 +37,23 @@ namespace ds
                     else if (status == PlayerStatus.REVENGE && value != PlayerStatus.REVENGE)
                         GetComponentInChildren<FinalVignette>().enabled = false;
                 }
+                else
+                {
+                    bool wasGhost = status == PlayerStatus.GHOST;
+                    bool isGhost = value == PlayerStatus.GHOST;
+
+                    // Disable / enable render for ghost
+                    if (wasGhost && !isGhost)
+                    {
+                        GetComponentInChildren<Renderer>().enabled = true;
+                        labels.SetActive(true);
+                    }
+                    else if (isGhost && !wasGhost)
+                    {
+                        GetComponentInChildren<Renderer>().enabled = false;
+                        labels.SetActive(false);
+                    }
+                }
 
                 // Update status
                 status = value;
@@ -55,6 +72,13 @@ namespace ds
         public PlayerName nameUi;
         public PlayerStamina staminaUi;
 
+        private void Start()
+        {
+            // Get parent
+            labels = nameUi.transform.parent.gameObject;
+            print(labels);
+        }
+
         public void StartAfterPlayerNetwork()
         {
             player = GetComponent<Player>();
@@ -63,6 +87,7 @@ namespace ds
 
         private Player player;
         private PlayerNetwork net;
+        private GameObject labels;
     }
 
     // This part is executed only if this script is owned
