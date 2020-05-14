@@ -52,6 +52,7 @@ namespace ds
                         g += 1;
                     }
                     print("Fin de génération des Power-Up");
+                    CasqueCRS.instance.Change(false);
                     pv.RPC("CreateOtherPlayers", RpcTarget.Others);
                 }
             }
@@ -75,11 +76,13 @@ namespace ds
                 }
             }
             Map.instance.Change(false);
+            CasqueCRS.instance.Change(true);
             int coorp = CreateRoomMenu.where[i];
             PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Attente"), new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity, 0);
             GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
                 new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 3, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)),
                 Quaternion.identity, 0);
+            CasqueCRS.instance.Change(false);
             player.GetComponent<PlayerNetwork>().isLocal = true;
             print("Le joueur a été instancié");
         }
