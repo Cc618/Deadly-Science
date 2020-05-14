@@ -30,7 +30,7 @@ namespace ds
         [Range(0, 10)]
         public float damping;
 
-        public static bool[] alterations = new bool[5];
+        public static bool[] alterations = new bool[6];
 
         public Transform groundSensor;
         public LayerMask groundMask;
@@ -202,9 +202,12 @@ namespace ds
                 net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
             if (Input.GetKeyDown(KeyCode.G))
             {
-                OnPowerUpCollect();
                 net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
 			}
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                OnPowerUpCollect();
+            }
             if (Input.GetKeyDown(KeyCode.I))
 			{
                 net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
@@ -306,7 +309,12 @@ namespace ds
             {
                 contents.Add("Casque de CRS");
             }
-            if (contents.Count != 5)
+
+            if (!alterations[5] && AffichagePhase.phase==2)
+            {
+                contents.Add("Disparition");
+            }
+            if (contents.Count != 6)
             {
                 contents.Add("Décharge");
             }
@@ -344,6 +352,7 @@ namespace ds
                         }
                         Map.instance.Change(false);
                         CasqueCRS.time = 0;
+                        Disparition.time = 0;
                         speedRatio = 1f;
                     }
                     break;
@@ -392,6 +401,12 @@ namespace ds
                         alterations[4] = true;
                         CasqueCRS.instance.Change(true);
                     }
+                    break;
+                }
+                case "Disparition":
+                {
+                    alterations[5] = true;
+                    Disparition.Change(true);
                     break;
                 }
             }

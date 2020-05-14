@@ -16,9 +16,9 @@ public class AffichagePowerUpJoueur : MonoBehaviour
     public static void MaJ(bool[] modif)
     {
         content = "";
-        string[] contents = new string[] {"Carte", "Protection", "Bottes de Pégase", "Bottes de Plomb","Casque de CRS"};
+        string[] contents = new string[] {"Carte", "Protection", "Bottes de Pégase", "Bottes de Plomb","Casque de CRS","Disparition"};
         int a = 0;
-        while (a < 5)
+        while (a < 6)
         {
             if (modif[a])
             {

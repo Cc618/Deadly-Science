@@ -20,20 +20,23 @@ public abstract class PowerUp : MonoBehaviour
         // TODO : Change remote
         if ((other.gameObject.layer & playerLayer) != 0)
         {
-            int a = OnCollect(other.gameObject);
-            if (a>0)
+            if (PlayerNetwork.local.playerState.Status != PlayerState.PlayerStatus.GHOST)
             {
-                int x = (int) (PlayerNetwork.local.gameObject.transform.position.x-0.5)/4;
-                int y = (int) (PlayerNetwork.local.gameObject.transform.position.z-0.5)/4;
-                print("Pris : "+x + " " + y);
-                int s = y * CreateRoomMenu.Xm + x;
-                print(s);
-                PlayerNetwork.local.PowerUpPris(s);
-                if (a == 1)
+                int a = OnCollect(other.gameObject);
+                if (a>0)
                 {
-                    pv.TransferOwnership(PhotonNetwork.LocalPlayer);
-                    PhotonNetwork.Destroy(gameObject);
-                    pv.TransferOwnership(PhotonNetwork.MasterClient);
+                    int x = (int) (PlayerNetwork.local.gameObject.transform.position.x-0.5)/4;
+                    int y = (int) (PlayerNetwork.local.gameObject.transform.position.z-0.5)/4;
+                    print("Pris : "+x + " " + y);
+                    int s = y * CreateRoomMenu.Xm + x;
+                    print(s);
+                    PlayerNetwork.local.PowerUpPris(s);
+                    if (a == 1)
+                    {
+                        pv.TransferOwnership(PhotonNetwork.LocalPlayer);
+                        PhotonNetwork.Destroy(gameObject);
+                        pv.TransferOwnership(PhotonNetwork.MasterClient);
+                    }
                 }
             }
         }

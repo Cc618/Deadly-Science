@@ -48,6 +48,8 @@ public class CasqueCRS : MonoBehaviour
             {
                 print("STOP");
                 Change(false);
+                Player.alterations[4] = false;
+                AffichagePowerUpJoueur.MaJ(Player.alterations);
             }
         }
     }
