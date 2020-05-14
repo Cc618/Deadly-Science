@@ -16,8 +16,8 @@ namespace ds
         private Text _roomName;
         [SerializeField]
         private InputField inputfield;
-        public static int Xm;
-        public static int Zm;
+        public static int Xm = 5;
+        public static int Zm = 5;
         public static int PlayerNumber;
         public static int[] where;
         public static CreateRoomMenu instance;
@@ -56,8 +56,6 @@ namespace ds
             //Partie Leandre
             PlayerNumber = 4;
             //TODO : Permettre au créateur de modifier Xm et Zm
-            Xm = 10;
-            Zm = 10;
             //TODO : Déterminer le Ratio de Power-Ups
             int max = (Xm * Zm) / 25;
             //print(max);

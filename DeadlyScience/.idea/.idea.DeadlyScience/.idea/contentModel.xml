@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\leand\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\leand\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_DeadlyScience.852361738.00" t="ExcludeRecursive" />
-    <e p="C:\Users\leand\Desktop\Projet S2\Deadly-Science\DeadlyScience" t="IncludeRecursive">
+    <e p="C:\Users\Steve\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Steve\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_DeadlyScience.-673411416.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Steve\Documents\Travail 2\EPITA\S2\Prog\Projet S2\Deadly-Science\DeadlyScience" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="FreeLabAssets" t="Include">
@@ -437,7 +437,9 @@
                   <e p="RoomCanvases.cs" t="Include" />
                   <e p="RoomListing.cs" t="Include" />
                   <e p="RoomListingMenu.cs" t="Include" />
+                  <e p="ShowSettings.cs" t="Include" />
                   <e p="SizeSettings.cs" t="Include" />
+                  <e p="UnShowSettings.cs" t="Include" />
                 </e>
               </e>
             </e>
