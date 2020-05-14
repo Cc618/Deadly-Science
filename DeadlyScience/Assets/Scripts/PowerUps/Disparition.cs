@@ -25,14 +25,14 @@ public class Disparition : MonoBehaviour
             if (PlayerNetwork.local.playerState.Status !=PlayerState.PlayerStatus.GHOST)
             {
                 s = PlayerNetwork.local.playerState.Status;
-                PlayerNetwork.local.playerState.Status = PlayerState.PlayerStatus.GHOST;
+                PlayerNetwork.local.SendSetStatus(PlayerState.PlayerStatus.GHOST);
             }
             time = 30;
             chrono = false;
         }
         else
         {
-            PlayerNetwork.local.playerState.Status = s;
+            PlayerNetwork.local.SendSetStatus(s);
             s = PlayerState.PlayerStatus.GHOST;
             Player.alterations[4] = false;
             AffichagePowerUpJoueur.MaJ(Player.alterations);

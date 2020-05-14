@@ -310,11 +310,11 @@ namespace ds
                 contents.Add("Casque de CRS");
             }
 
-            if (!alterations[5] && AffichagePhase.phase==2)
+            if (!alterations[5] && AffichagePhase.phase==2 && PlayerNetwork.local.playerState.Status!=PlayerState.PlayerStatus.REVENGE)
             {
                 contents.Add("Disparition");
             }
-            if (contents.Count != 6)
+            if (contents.Count <5)
             {
                 contents.Add("Décharge");
             }
@@ -458,7 +458,6 @@ namespace ds
                 net.SendSyncNet(stamina, stunned);
             }
         }
-
         // Between 0 and 1
         private float stamina = 1;
         // When stamina = 0, can't move
