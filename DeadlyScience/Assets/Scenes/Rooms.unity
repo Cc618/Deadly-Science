@@ -237,14 +237,6 @@ Transform:
   m_Father: {fileID: 2090793192}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!224 &94957475 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9081929559638007030, guid: 7369eecf51363b04eb2c4003a668ac5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1703123729}
-  m_PrefabAsset: {fileID: 0}
-=======
 --- !u!114 &83624397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,10 +346,10 @@ MonoBehaviour:
     AT_UITextComponentAllowed: 1
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 1022909940}
+    AT_UITextObject: {fileID: 672753314}
     AT_TextMeshbject: {fileID: 0}
   - AssignationType: 1
-    Key: back
+    Key: lab settings
     Text: 
     Category: 0
     AT_FindChildByKeyName: 1
@@ -367,10 +359,9 @@ MonoBehaviour:
     AT_UITextComponentAllowed: 1
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 1785492829}
+    AT_UITextObject: {fileID: 1022909940}
     AT_TextMeshbject: {fileID: 0}
   AT_GameObjectChildsRoot: {fileID: 0}
->>>>>>> 3d79733be3e7e7e99ee5fa766d0cf55efd8c5599
 --- !u!1 &133214947
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,7 +908,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 401513191}
   m_HandleRect: {fileID: 401513190}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1811,11 +1802,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 228810429}
   m_Direction: 2
   m_Value: 0
-<<<<<<< HEAD
-  m_Size: 1
-=======
   m_Size: 0.90699977
->>>>>>> 3d79733be3e7e7e99ee5fa766d0cf55efd8c5599
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2269,10 +2256,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 62
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 71
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3677,8 +3664,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.1, y: 309}
-  m_SizeDelta: {x: 376.3, y: 125.8}
+  m_AnchoredPosition: {x: 26.1, y: 251.5}
+  m_SizeDelta: {x: 376.3, y: 240.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1407181525
 MonoBehaviour:
@@ -4586,7 +4573,7 @@ RectTransform:
   m_Children:
   - {fileID: 713183247}
   - {fileID: 68832017}
-  - {fileID: 94957475}
+  - {fileID: 1703123730}
   - {fileID: 823701911}
   m_Father: {fileID: 1387731798}
   m_RootOrder: 0
@@ -5030,6 +5017,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7369eecf51363b04eb2c4003a668ac5f, type: 3}
+--- !u!224 &1703123730 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9081929559638007030, guid: 7369eecf51363b04eb2c4003a668ac5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1703123729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1727708454
 GameObject:
   m_ObjectHideFlags: 0
@@ -5717,6 +5710,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000045776, y: 259.15}
-  m_SizeDelta: {x: 495.1, y: 181.7}
+  m_AnchoredPosition: {x: -0.000045776, y: 202.5}
+  m_SizeDelta: {x: 548.1, y: 295}
   m_Pivot: {x: 0.5, y: 0.5}
