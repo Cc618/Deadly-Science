@@ -9,7 +9,7 @@ namespace ds
 {
     public class Settings : MonoBehaviour
     {
-        [Range(0, 1)]
+        [Range(0, 0.7f)]
         public float mouseSensivity;
 
         public Slider MusiqueSlider;
@@ -24,12 +24,12 @@ namespace ds
         {
             Audio = GetComponent<Audio>();
             Localization_SOURCE = GetComponent<Localization_SOURCE>();
-            
+
             if (PlayerPrefs.HasKey("mouseSensivity"))
                 mouseSensivity = PlayerPrefs.GetFloat("mouseSensivity");
             else
             {
-                mouseSensivity = (float)0.5;
+                mouseSensivity = 0.5f;
                 PlayerPrefs.SetFloat("mouseSensivity", mouseSensivity);
             }
 
@@ -37,7 +37,7 @@ namespace ds
                 Audio.musicVolume = PlayerPrefs.GetFloat("musiqueVolume");
             else
             {
-                Audio.musicVolume = (float)0.5;
+                Audio.musicVolume = 0.2f;
                 PlayerPrefs.SetFloat("musiqueVolume", Audio.musicVolume);
             }
 
@@ -45,24 +45,24 @@ namespace ds
                 Audio.sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
             else
             {
-                Audio.sfxVolume = (float)0.5;
+                Audio.sfxVolume = 0.8f;
                 PlayerPrefs.SetFloat("sfxVolume", Audio.sfxVolume);
             }
 
-            if (PlayerPrefs.HasKey("pseudo"))
+            if (Pseudo && PlayerPrefs.HasKey("pseudo"))
                 Pseudo.text = PlayerPrefs.GetString("pseudo");
-            else
+            else if (Pseudo)
             {
                 Pseudo.text = "Sujet" + UnityEngine.Random.Range(0, 9999);
                 PlayerPrefs.SetString("pseudo", Pseudo.text);
             }
 
-            if (PlayerPrefs.HasKey("language"))
+            if (language && PlayerPrefs.HasKey("language"))
             {
                 language.value = PlayerPrefs.GetInt("language");
                 Localization_SOURCE.PUBLIC_LoadLanguage(language.value);
             }
-            else
+            else if (language)
             {
                 PlayerPrefs.SetInt("language", language.value);
             }
@@ -72,7 +72,7 @@ namespace ds
 
         public void Start()
         {
-            MouseSlider.normalizedValue = mouseSensivity;
+            MouseSlider.value = mouseSensivity;
             MusiqueSlider.normalizedValue = Audio.musicVolume;
             SFXSlider.normalizedValue = Audio.sfxVolume;
         }
@@ -80,7 +80,7 @@ namespace ds
         public void OnMouseSensitivityValueChange(float value)
         {
             mouseSensivity = value;
-            PlayerPrefs.SetFloat("mouseSensivity", mouseSensivity);
+            PlayerPrefs.SetFloat("mouseSensivity", value);
             PlayerPrefs.Save();
         }
 
