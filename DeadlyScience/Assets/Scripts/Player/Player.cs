@@ -329,15 +329,18 @@ namespace ds
                     Map.instance.Change(true);
                     alterations[0] = true;
                     Map.instance.Change(true);
+                    EndGame.AddRecap("Carte", true);
                     break;
                 }
                 case "Protection":
                 {
                     alterations[1] = true;
+                    EndGame.AddRecap("Protection", true);
                     break;
                 }
                 case "Décharge":
                 {
+                    EndGame.AddRecap("Décharge", true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -359,6 +362,7 @@ namespace ds
                 }
                 case "Paralysie":
                 {
+                    EndGame.AddRecap("Paralysie", true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -371,6 +375,7 @@ namespace ds
                 }
                 case "Bottes de Plomb":
                 {
+                    EndGame.AddRecap("Bottes de plomb", true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -385,6 +390,7 @@ namespace ds
                 }
                 case "Bottes de Pégase":
                 {
+                    EndGame.AddRecap("Bottes de Pégase", true);
                     alterations[2] = true;
                     alterations[3] = false;
                     speedRatio = 2f;
@@ -392,6 +398,7 @@ namespace ds
                 }
                 case "Casque de CRS":
                 {
+                    EndGame.AddRecap("Casque de CRS", true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -405,6 +412,7 @@ namespace ds
                 }
                 case "Disparition":
                 {
+                    EndGame.AddRecap("Disparition", true);
                     alterations[5] = true;
                     Disparition.Change(true);
                     break;
