@@ -6,6 +6,8 @@ namespace ds
 {
     public class PlayerCam : MonoBehaviour
     {
+        public Material postFx;
+
         void Update()
         {
             if (!(Game.EscapeMenuOpen || EndGame.Victory.activeSelf || EndGame.Defeat.activeSelf))
@@ -23,6 +25,11 @@ namespace ds
                     transform.rotation.eulerAngles.z
                 );
             }
+        }
+
+        private void OnRenderImage(RenderTexture source, RenderTexture destination)
+        {
+            Graphics.Blit(source, destination, postFx);
         }
     }
 }
