@@ -31,7 +31,8 @@ nav
 
 body
 {
-	color: rgb(227, 138, 42); 
+	/*color: rgb(200, 115, 36);*/
+	color: #e69900;
 	background-image: url("images/carrefour.png");
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -57,6 +58,13 @@ section
 	border-image: linear-gradient(#4dd2ff, #ccf2ff) 30;
 }
 
+#groupe
+{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
 .photo_groupe
 {
 	width: 6%;
@@ -64,31 +72,45 @@ section
 	float: left;
 }
 
-figure
+.gal
 {
+	display: flex;
+	flex-direction: column;
 	text-align: center;
-	margin-bottom: 3%;
+}
+
+figcaption
+{
+	background-color: rgba(128, 128, 128, .25);
+	border-radius: 5px;
+	align-self: center;
+	display: inline-block;
+	padding: 4px 8px 4px 8px;
+	border-radius: 10px;
+	text-shadow: 1px 1px rgba(0, 0, 0, .75);
 }
 
 .galerie
 {
 	width: 49%;
-	background-color: rgb(128, 128, 128);
 	background-size: 110%;
 	border-style: solid;
-	border-image: linear-gradient(#4dd2ff, #ccf2ff) 30;
+	border-color: #ccf2ff;
+	border-radius: 5px;
+	align-self: center;
 }
 
 #photos
 {
 	display: flex;
 	flex-wrap: wrap;
-	border-image: linear-gradient(#4dd2ff, #ccf2ff) 20;
+
 }
 
 #serre
 {
 	display: flex;
+	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
 }
@@ -109,14 +131,23 @@ a,a:visited
 
 .textbio
 {
-	margin-top: 5%;
+	/*margin-top: 5%;*/
 	margin-left: 10%;
 }
 
 p
 {
 	text-align: justify;
-	background-color: rgba(128, 128, 128, .25);
+	background-color: rgba(128, 128, 128, .5);
+	padding: 4px 8px 4px 8px;
+	border-radius: 10px;
+	text-shadow: 1px 1px rgba(0, 0, 0, .75);
+}
+
+#telechargement
+{
+	display: flex;
+	justify-content: center;
 }
 
 #Docs
@@ -124,5 +155,5 @@ p
 	text-align: center;
 	margin-top: 15%;
 	font-size: 130%;
-	/*margin: 25% 0 0 40%;*/
+	display: inline-block;
 }
