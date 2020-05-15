@@ -853,6 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postFx: {fileID: 2100000, guid: bcccbbc4f607a0d4c975298f9b8f87f0, type: 2}
+  heartSpeed: 5
 --- !u!114 &6792667585017530212
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ namespace ds
     public class PlayerCam : MonoBehaviour
     {
         public Material postFx;
+        [Range(0, 15)]
+        public float heartSpeed;
 
         void Update()
         {
@@ -27,9 +29,17 @@ namespace ds
             }
         }
 
+        private void LateUpdate()
+        {
+            time += Time.deltaTime * heartSpeed;
+            postFx.SetFloat("_AnimRatio", .5f + Mathf.Sin(time) * .5f);
+        }
+
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
             Graphics.Blit(source, destination, postFx);
         }
+
+        float time = 0f;
     }
 }

@@ -39,11 +39,13 @@
 
             sampler2D _MainTex;
 
-            float animRatio = 0;
+            float _AnimRatio = 0;
 
 #define strength .65f
 #define minDist .6f
 #define maxDist 1.f
+#define HEART_POS .05f
+#define HEART_STRENGTH .075f
 
             float map(float dist)
             {
@@ -62,10 +64,10 @@
                 // Normalized position to center
                 float2 position = (i.uv - .5) * 2;
                 // Normalized distance to center
-                float dist = sqrt(position.x * position.x + position.y * position.y) / 1.41f;
+                float dist = (sqrt(position.x * position.x + position.y * position.y) / 1.41f - _AnimRatio * HEART_POS) * (1.f - _AnimRatio * HEART_STRENGTH);
              
                 // Map to color
-                col.r += map(dist) * strength + animRatio;
+                col.r += map(dist) * strength;
 
                 return col;
             }
