@@ -28,6 +28,13 @@ public class Map : MonoBehaviour
         print("Carte mise à " + affich);
     }
 
+    public void Chargement(Texture2D m)
+    {
+        aTexture = m;
+        aTexture.Apply();
+        carte.rectTransform.sizeDelta = new Vector2(aTexture.width,aTexture.height);
+        carte.sprite = Sprite.Create(aTexture, new Rect(0, 0, aTexture.width, aTexture.height), new Vector2(0.5f, 0.5f));
+    }
     private void OnGUI()
     {
         GUI.DrawTexture(new Rect(x+5, Screen.height-y-10, 5, 5), curseur, ScaleMode.StretchToFill);
@@ -37,9 +44,6 @@ public class Map : MonoBehaviour
     {
         curseur = new Texture2D(5,5);
         curseur = Generation.Bloc(curseur,0,0,Color.red);
-        aTexture.Apply();
-        carte.rectTransform.sizeDelta = new Vector2(aTexture.width,aTexture.height);
-        carte.sprite = Sprite.Create(aTexture, new Rect(0, 0, aTexture.width, aTexture.height), new Vector2(0.5f, 0.5f));
         gameObject.SetActive(false);
     }
 

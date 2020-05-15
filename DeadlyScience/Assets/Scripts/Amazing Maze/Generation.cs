@@ -484,7 +484,7 @@ namespace ds
 
                 x += 1;
             }
-            Map.aTexture = carte;
+            Map.instance.Chargement(carte);
             //Et voila, c'est fini !
         }
     }

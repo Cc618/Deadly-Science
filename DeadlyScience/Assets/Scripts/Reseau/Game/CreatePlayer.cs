@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Photon.Chat;
 using Photon.Pun;
+using TMPro.Examples;
 using UnityEngine;
 
 namespace ds
@@ -10,7 +11,7 @@ namespace ds
     public class CreatePlayer : MonoBehaviourPunCallbacks
     {
         private PhotonView pv;
-        private Texture2D map = Map.aTexture;
+        private Texture2D map;
         void Start()
         {
             pv = GetComponent<PhotonView>();
@@ -18,6 +19,7 @@ namespace ds
             {
                 if (PhotonNetwork.IsMasterClient)
                 {
+                    map = Map.aTexture;
                     int coorp = CreateRoomMenu.where[0];
                     PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Attente"), new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), (float) 3.8, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity, 0);
                     GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
@@ -67,7 +69,7 @@ namespace ds
         {
             Texture2D map = new Texture2D(width, height);
             map.LoadRawTextureData(bytes);
-            Map.aTexture = map;
+            Map.instance.Chargement(map);
             Photon.Realtime.Player localplayer = PhotonNetwork.LocalPlayer;
             bool not_found = true;
             int i = 1;
