@@ -31,7 +31,7 @@ nav
 
 body
 {
-	color: rgb(227, 138, 42);
+	color: rgb(227, 138, 42); 
 	background-image: url("images/carrefour.png");
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -53,6 +53,8 @@ section
 	margin-right: auto;
 	margin-top: 2%;
 	max-width: 50%;
+	border-style: solid;
+	border-image: linear-gradient(#4dd2ff, #ccf2ff) 30;
 }
 
 .photo_groupe
@@ -71,12 +73,17 @@ figure
 .galerie
 {
 	width: 49%;
+	background-color: rgb(128, 128, 128);
+	background-size: 110%;
+	border-style: solid;
+	border-image: linear-gradient(#4dd2ff, #ccf2ff) 30;
 }
 
 #photos
 {
 	display: flex;
 	flex-wrap: wrap;
+	border-image: linear-gradient(#4dd2ff, #ccf2ff) 20;
 }
 
 #serre
@@ -109,6 +116,7 @@ a,a:visited
 p
 {
 	text-align: justify;
+	background-color: rgba(128, 128, 128, .25);
 }
 
 #Docs
