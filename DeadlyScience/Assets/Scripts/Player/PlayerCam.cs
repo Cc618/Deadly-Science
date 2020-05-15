@@ -6,6 +6,13 @@ namespace ds
 {
     public class PlayerCam : MonoBehaviour
     {
+        public Material postFx;
+        [Range(0, 15)]
+        public float heartSpeed;
+
+        [HideInInspector]
+        public bool revengeFxEnabled = false;
+
         void Update()
         {
             if (!(Game.EscapeMenuOpen || EndGame.Victory.activeSelf || EndGame.Defeat.activeSelf))
@@ -24,5 +31,21 @@ namespace ds
                 );
             }
         }
+
+        private void LateUpdate()
+        {
+            time += Time.deltaTime * heartSpeed;
+            postFx.SetFloat("_AnimRatio", .5f + Mathf.Sin(time) * .5f);
+        }
+
+        private void OnRenderImage(RenderTexture source, RenderTexture destination)
+        {
+            if (revengeFxEnabled)
+                Graphics.Blit(source, destination, postFx);
+            else
+                Graphics.Blit(source, destination);
+        }
+
+        float time = 0f;
     }
 }
