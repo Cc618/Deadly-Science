@@ -92,7 +92,7 @@ namespace ds
             state = GetComponentInChildren<PlayerState>();
             
             // Disable render only if this is the current player
-            GetComponentInChildren<Renderer>().enabled = false;
+             GetComponentInChildren<Renderer>().enabled = false;
             
             // Update player network
             PlayerNetwork.localPlayer = this;
