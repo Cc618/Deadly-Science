@@ -10,6 +10,7 @@ namespace ds
     public class CreatePlayer : MonoBehaviourPunCallbacks
     {
         private PhotonView pv;
+        private Texture2D map = Map.aTexture;
         void Start()
         {
             pv = GetComponent<PhotonView>();
@@ -53,14 +54,20 @@ namespace ds
                     }
                     print("Fin de génération des Power-Up");
                     CasqueCRS.instance.Change(false);
-                    pv.RPC("CreateOtherPlayers", RpcTarget.Others);
+                    byte[] bytes = map.GetRawTextureData();
+                    int width = map.width;
+                    int height = map.height;
+                    pv.RPC("CreateOtherPlayers", RpcTarget.Others, bytes, width, height);
                 }
             }
         }
 
         [PunRPC]
-        void CreateOtherPlayers()
+        void CreateOtherPlayers(byte[] bytes, int width, int height)
         {
+            Texture2D map = new Texture2D(width, height);
+            map.LoadRawTextureData(bytes);
+            Map.aTexture = map;
             Photon.Realtime.Player localplayer = PhotonNetwork.LocalPlayer;
             bool not_found = true;
             int i = 1;

@@ -18,22 +18,6 @@
             <e p="Localization_SOURCE_Window.cs" t="Include" />
           </e>
         </e>
-        <e p="packages" t="Include">
-          <e p="FinalVignette" t="Include">
-            <e p="Assets" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="FinalVignette.cs" t="Include" />
-                <e p="FinalVignetteCommandBuffer.cs" t="Include" />
-              </e>
-              <e p="Shaders" t="Include">
-                <e p="FinalVignette.shader" t="Include" />
-              </e>
-            </e>
-            <e p="Documentation" t="Include">
-              <e p="readme.txt" t="Include" />
-            </e>
-          </e>
-        </e>
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
             <e p="Code" t="Include">
@@ -383,6 +367,9 @@
             <e p="English.xml" t="Include" />
             <e p="French.xml" t="Include" />
             <e p="LocalizationManager.txt" t="Include" />
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="RevengeCam.shader" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">
