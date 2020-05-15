@@ -1,7 +1,15 @@
 header
 {
 	text-align: center;
-	font-size: 150%;
+	background-image: url("images/logo.png");
+	background-size: 5%;
+	background-repeat: no-repeat;
+}
+
+h1
+{
+	font-size: 350%;
+	color: rgb(227, 138, 42);
 }
 
 nav
@@ -23,10 +31,11 @@ nav
 
 body
 {
-	background-image: url("images/logo.png");
+	color: rgb(227, 138, 42);
+	background-image: url("images/carrefour.png");
 	background-repeat: no-repeat;
-	background-size: 5%;
-	background-position: 50px 30px;
+	background-size: 100%;
+	background-attachment: fixed;
 	background-color: #555;
 	padding: 0 8% 0 8%;
 }
