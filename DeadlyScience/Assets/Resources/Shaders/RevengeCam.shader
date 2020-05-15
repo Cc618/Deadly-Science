@@ -1,17 +1,6 @@
-﻿// Fx strength
-#define STRENGTH .65f
-// Minimum distance to center (between 0 and 1) to have a red overlay
-#define MIN_DIST .6f
-// Maximum distance to center (between 0 and 1) to have a red overlay
-#define MAX_DIST 1.f
-// Offset of the heart anim effect
-#define HEART_POS .05f
-// Strength of the animation
-#define HEART_STRENGTH .075f
-
-Shader "DeadlyScience/RevengeCam"
+﻿Shader "DeadlyScience/RevengeCam"
 {
-    Properties
+        Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
     }
@@ -47,6 +36,17 @@ Shader "DeadlyScience/RevengeCam"
                 o.uv = v.uv;
                 return o;
             }
+
+// Fx strength
+#define STRENGTH .65f
+// Minimum distance to center (between 0 and 1) to have a red overlay
+#define MIN_DIST .6f
+// Maximum distance to center (between 0 and 1) to have a red overlay
+#define MAX_DIST 1.f
+// Offset of the heart anim effect
+#define HEART_POS .05f
+// Strength of the animation
+#define HEART_STRENGTH .075f
 
             sampler2D _MainTex;
 

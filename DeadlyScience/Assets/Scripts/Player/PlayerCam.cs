@@ -10,6 +10,9 @@ namespace ds
         [Range(0, 15)]
         public float heartSpeed;
 
+        [HideInInspector]
+        public bool revengeFxEnabled = false;
+
         void Update()
         {
             if (!(Game.EscapeMenuOpen || EndGame.Victory.activeSelf || EndGame.Defeat.activeSelf))
@@ -37,7 +40,10 @@ namespace ds
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            Graphics.Blit(source, destination, postFx);
+            if (revengeFxEnabled)
+                Graphics.Blit(source, destination, postFx);
+            else
+                Graphics.Blit(source, destination);
         }
 
         float time = 0f;
