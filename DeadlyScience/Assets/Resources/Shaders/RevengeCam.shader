@@ -1,4 +1,15 @@
-﻿Shader "DeadlyScience/RevengeCam"
+﻿// Fx strength
+#define STRENGTH .65f
+// Minimum distance to center (between 0 and 1) to have a red overlay
+#define MIN_DIST .6f
+// Maximum distance to center (between 0 and 1) to have a red overlay
+#define MAX_DIST 1.f
+// Offset of the heart anim effect
+#define HEART_POS .05f
+// Strength of the animation
+#define HEART_STRENGTH .075f
+
+Shader "DeadlyScience/RevengeCam"
 {
     Properties
     {
@@ -39,19 +50,14 @@
 
             sampler2D _MainTex;
 
+            // Ratio between 0 and 1 animated in PlayerCam
             float _AnimRatio = 0;
-
-#define strength .65f
-#define minDist .6f
-#define maxDist 1.f
-#define HEART_POS .05f
-#define HEART_STRENGTH .075f
 
             float map(float dist)
             {
-                float range = maxDist - minDist;
+                float range = MAX_DIST - MIN_DIST;
 
-                dist -= minDist;
+                dist -= MIN_DIST;
                 dist /= range;
 
                 return clamp(dist, 0, 1);
@@ -67,7 +73,7 @@
                 float dist = (sqrt(position.x * position.x + position.y * position.y) / 1.41f - _AnimRatio * HEART_POS) * (1.f - _AnimRatio * HEART_STRENGTH);
              
                 // Map to color
-                col.r += map(dist) * strength;
+                col.r += map(dist) * STRENGTH;
 
                 return col;
             }
