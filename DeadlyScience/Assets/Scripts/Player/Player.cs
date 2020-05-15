@@ -92,8 +92,7 @@ namespace ds
             state = GetComponentInChildren<PlayerState>();
             
             // Disable render only if this is the current player
-            // TODO: Célian needs to change something here, I don't know what
-            // GetComponentInChildren<Renderer>().enabled = false;
+             GetComponentInChildren<Renderer>().enabled = false;
             
             // Update player network
             PlayerNetwork.localPlayer = this;
