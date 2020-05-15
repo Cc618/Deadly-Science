@@ -25,7 +25,7 @@ namespace ds
                     player.GetComponent<PlayerNetwork>().isLocal = true;
                     print("Le MasterClient a été instancié");
                     
-                    int g =0;
+                    int g = 0;
                     int serumn = CreateRoomMenu.PlayerNumber-1;
                     if (serumn == 0)
                     {
