@@ -27,7 +27,7 @@ public class CasqueCRS : MonoBehaviour
         afficher = affich;
         if (affich)
         {
-            time = 30;
+            time = 10;
             chrono = false;
         }
     }

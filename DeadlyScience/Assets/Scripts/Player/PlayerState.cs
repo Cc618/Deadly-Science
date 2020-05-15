@@ -98,6 +98,7 @@ namespace ds
         public void OnSerum()
         {
             net.SendSetStatus(PlayerStatus.HEALED);
+            EndGame.AddRecap("Soigné");
         }
 
         public void BeginFirstPhase()
@@ -113,6 +114,7 @@ namespace ds
             {
                 net.SendSetStatus(PlayerStatus.REVENGE);
                 s = "Infectez les Joueurs Guéris !\n";
+                EndGame.AddRecap("Corrompu");
             }
             AffichagePhase.Objectif = s;
             AffichagePhase.phase=2;

@@ -17,7 +17,9 @@ namespace ds
         public static GameObject Panel;
         public static TMP_Text Text;
         public static GameObject content;
-        private static double timeStart;
+        private static int time = 0;
+        private static string Time = "";
+        private static bool chrono;
 
         void Start()
         {
@@ -30,8 +32,13 @@ namespace ds
             Panel.SetActive(false);
             Victory.SetActive(false);
             Defeat.SetActive(false);
-            timeStart = PhotonNetwork.Time;
             Text.text = "Entrée dans le laboratoire";
+        }
+
+        private void Update()
+        {
+            if (!chrono)
+                StartCoroutine(Attente());
         }
 
         public static void EndOfGame(bool victory)
@@ -51,20 +58,44 @@ namespace ds
 
         public static void AddRecap(string Event, bool objet=false)
         {
-            int time = (int) (PhotonNetwork.Time - timeStart);
-
             TMP_Text go = (TMP_Text) Instantiate(Text);
             go.transform.SetParent(content.transform);
             go.transform.localScale = Vector3.one;
 
             if (objet)
             {
-                go.text = $"{Event} rammasé à {time}\n";
+                switch(Event)
+                {
+                    case "Carte":
+                    case "Protection":
+                    case "Décharge":
+                    case "Paralysie":
+                    case "Disparition":
+                        go.text = $"{Event} rammassée à {Time}\n";
+                        break;
+                    case "Bottes de Plomb":
+                    case "Bottes de Pégase":
+                    case "Casque de CRS":
+                        go.text = $"{Event} rammassé à {Time}\n";
+                        break;
+                }
             }
             else
             {
-                go.text = $"{Event} à {time}\n";
+                go.text = $"{Event} à {time}s\n";
             }
+        }
+
+        IEnumerator Attente()
+        {
+            chrono = true;
+            yield return new WaitForSeconds(1);
+            time += 1;
+            if (time < 60)
+                Time = time.ToString() + "s";
+            else
+                Time = (time / 60).ToString() + "m" + (time % 60).ToString() + "s";
+            chrono = false;
         }
     }
 }

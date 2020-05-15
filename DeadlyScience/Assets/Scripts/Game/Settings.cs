@@ -29,7 +29,7 @@ namespace ds
                 mouseSensivity = PlayerPrefs.GetFloat("mouseSensivity");
             else
             {
-                mouseSensivity = 0.5f;
+                mouseSensivity = 0.4f;
                 PlayerPrefs.SetFloat("mouseSensivity", mouseSensivity);
             }
 
@@ -37,7 +37,7 @@ namespace ds
                 Audio.musicVolume = PlayerPrefs.GetFloat("musiqueVolume");
             else
             {
-                Audio.musicVolume = 0.2f;
+                Audio.musicVolume = 0.5f;
                 PlayerPrefs.SetFloat("musiqueVolume", Audio.musicVolume);
             }
 
@@ -45,7 +45,7 @@ namespace ds
                 Audio.sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
             else
             {
-                Audio.sfxVolume = 0.8f;
+                Audio.sfxVolume = 0.5f;
                 PlayerPrefs.SetFloat("sfxVolume", Audio.sfxVolume);
             }
 

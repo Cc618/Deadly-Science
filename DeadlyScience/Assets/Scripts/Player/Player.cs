@@ -325,22 +325,17 @@ namespace ds
             switch (contents[a])
             {
                 case "Carte":
-                {
                     Map.instance.Change(true);
                     alterations[0] = true;
                     Map.instance.Change(true);
-                    EndGame.AddRecap("Carte", true);
+                    EndGame.AddRecap(contents[a], true);
                     break;
-                }
                 case "Protection":
-                {
                     alterations[1] = true;
-                    EndGame.AddRecap("Protection", true);
-                    break;
-                }
+                        EndGame.AddRecap(contents[a], true);
+                        break;
                 case "Décharge":
-                {
-                    EndGame.AddRecap("Décharge", true);
+                    EndGame.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -359,10 +354,8 @@ namespace ds
                         speedRatio = 1f;
                     }
                     break;
-                }
                 case "Paralysie":
-                {
-                    EndGame.AddRecap("Paralysie", true);
+                    EndGame.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -372,10 +365,8 @@ namespace ds
                         Stamina = 0;
                     }
                     break;
-                }
                 case "Bottes de Plomb":
-                {
-                    EndGame.AddRecap("Bottes de plomb", true);
+                    EndGame.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -387,18 +378,14 @@ namespace ds
                         speedRatio = 0.5f;
                     }
                     break;
-                }
                 case "Bottes de Pégase":
-                {
-                    EndGame.AddRecap("Bottes de Pégase", true);
+                    EndGame.AddRecap(contents[a], true);
                     alterations[2] = true;
                     alterations[3] = false;
                     speedRatio = 2f;
                     break;
-                }
                 case "Casque de CRS":
-                {
-                    EndGame.AddRecap("Casque de CRS", true);
+                    EndGame.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -409,14 +396,12 @@ namespace ds
                         CasqueCRS.instance.Change(true);
                     }
                     break;
-                }
                 case "Disparition":
-                {
-                    EndGame.AddRecap("Disparition", true);
+                    EndGame.AddRecap(contents[a], true);
+                    EndGame.AddRecap("Invisible");
                     alterations[5] = true;
                     Disparition.Change(true);
                     break;
-                }
             }
             AffichagePowerUpJoueur.MaJ(alterations);
             StartCoroutine(Attente());
