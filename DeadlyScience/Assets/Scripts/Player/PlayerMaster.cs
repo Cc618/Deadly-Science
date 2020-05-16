@@ -45,7 +45,11 @@ namespace ds
                 // Change phase for all players
                 if (collectedSerums ==  CreateRoomMenu.PlayerNumber-1)
                 {
-                    // Change phase remotely
+                    /* Change phase remotely
+                    foreach (GameObject light in Generation.lights)
+                    {
+                        PhotonNetwork.Destroy(light);
+                    }*/
                     instance.net.SendSecondPhase();
                 }
                 else

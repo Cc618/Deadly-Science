@@ -71,12 +71,12 @@ namespace ds
                     case "Décharge":
                     case "Paralysie":
                     case "Disparition":
-                        go.text = $"{Event} rammassée à {Time}\n";
+                        go.text = $"{Event} ramassée à {Time}\n";
                         break;
                     case "Bottes de Plomb":
                     case "Bottes de Pégase":
                     case "Casque de CRS":
-                        go.text = $"{Event} rammassé à {Time}\n";
+                        go.text = $"{Event} ramassé à {Time}\n";
                         break;
                 }
             }

@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\Game\EndGame.cs" />
      <Compile Include="Assets\Scripts\Game\Game.cs" />
      <Compile Include="Assets\Scripts\Game\Inputs.cs" />
+     <Compile Include="Assets\Scripts\Game\Luminosite.cs" />
      <Compile Include="Assets\Scripts\Game\Map.cs" />
      <Compile Include="Assets\Scripts\Game\Particles.cs" />
      <Compile Include="Assets\Scripts\Game\QuitGame.cs" />

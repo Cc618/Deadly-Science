@@ -128,13 +128,12 @@ namespace ds
             if (forceWin)
                 EndGame.EndOfGame(win);
             else
-                EndGame.EndOfGame(Status == PlayerStatus.HEALED);
+                EndGame.EndOfGame(Status != PlayerStatus.REVENGE);
         }
 
         // Called on master
         public IEnumerator SecondPhase()
         {
-
             if (PhotonNetwork.IsMasterClient)
                 firstPhaseStatus = Status;
 

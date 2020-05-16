@@ -32,10 +32,10 @@ public class Disparition : MonoBehaviour
         }
         else
         {
-            PlayerNetwork.local.SendSetStatus(s);
-            s = PlayerState.PlayerStatus.GHOST;
             Player.alterations[4] = false;
             AffichagePowerUpJoueur.MaJ(Player.alterations);
+            PlayerNetwork.local.SendSetStatus(s);
+            s = PlayerState.PlayerStatus.GHOST;
         }
     }
     // Update is called once per frame
