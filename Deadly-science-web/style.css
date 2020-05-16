@@ -1,9 +1,13 @@
+@import url("sources/font.css");
+
 header
 {
 	text-align: center;
 	background-image: url("images/logo.png");
 	background-size: 5%;
 	background-repeat: no-repeat;
+	text-shadow: 2px 2px black;
+	font-family: 'acefuturism'; 
 }
 
 h1
@@ -39,6 +43,7 @@ body
 	background-attachment: fixed;
 	background-color: #555;
 	padding: 0 8% 0 8%;
+	font-family: 'roboto';
 }
 
 section
@@ -157,3 +162,4 @@ p
 	font-size: 130%;
 	display: inline-block;
 }
+
