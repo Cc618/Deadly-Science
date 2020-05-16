@@ -401,6 +401,7 @@
             <e p="Affichage_Joueur.cs" t="Include" />
             <e p="AffichagePowerUpJoueur.cs" t="Include" />
             <e p="Corrupted.cs" t="Include" />
+            <e p="Lampe.cs" t="Include" />
             <e p="LookToCam.cs" t="Include" />
             <e p="Player.cs" t="Include" />
             <e p="PlayerCam.cs" t="Include" />
@@ -430,12 +431,14 @@
               <e p="SingletonReferences.cs" t="Include" />
               <e p="UI" t="Include">
                 <e p="Rooms" t="Include">
+                  <e p="ChooseMode.cs" t="Include" />
                   <e p="CreateOrJoinRoomCanvas.cs" t="Include" />
                   <e p="CreateRoomMenu.cs" t="Include" />
                   <e p="CurrentRoomCanvas.cs" t="Include" />
                   <e p="LeaveRoomMenu.cs" t="Include" />
                   <e p="PlayerListing.cs" t="Include" />
                   <e p="PlayerListingMenu.cs" t="Include" />
+                  <e p="PlayerNumber.cs" t="Include" />
                   <e p="RandomCustomPropertyGenerator.cs" t="Include" />
                   <e p="RoomCanvases.cs" t="Include" />
                   <e p="RoomListing.cs" t="Include" />

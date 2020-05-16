@@ -18,8 +18,9 @@ namespace ds
         private InputField inputfield;
         public static int Xm = 10;
         public static int Zm = 10;
-        public static int PlayerNumber;
+        public static int PlayerNumber = 4;
         public static int[] where;
+        public static int Mode = 0;
         public static CreateRoomMenu instance;
 
         private RoomCanvases _roomCanvases;
@@ -54,8 +55,6 @@ namespace ds
             RoomOptions options = new RoomOptions();
             
             //Partie Leandre
-            PlayerNumber = 2;
-            //TODO : Permettre au créateur de modifier Xm et Zm
             //TODO : Déterminer le Ratio de Power-Ups
             int max = (Xm * Zm) / 25;
             //print(max);

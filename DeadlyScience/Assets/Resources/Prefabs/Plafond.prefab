@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156451344321249837}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 3.05, z: 0}
   m_LocalScale: {x: 0.3, y: 0.01, z: 0.3}
   m_Children: []
   m_Father: {fileID: 4705262714163603834}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!33 &4370578327781691270
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 4.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -140,7 +140,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   l: {fileID: 9126429808530121733}
   alarme: {r: 0.9056604, g: 0.21111996, b: 0.18369527, a: 1}
-  nuit: {r: 0.18867922, g: 0.18422924, b: 0.18422924, a: 1}
+  nuit: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &4540216995302220447
 GameObject:
   m_ObjectHideFlags: 0

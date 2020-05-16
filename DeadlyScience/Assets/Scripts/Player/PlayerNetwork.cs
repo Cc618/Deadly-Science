@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro.Examples;
 using System.IO;
+using Photon.Realtime;
 
 namespace ds
 {
@@ -143,10 +144,6 @@ namespace ds
             Audio.Play(from == localPlayer.net.id ? "serum" : "serum_long");
             if (from == id)
                 playerState.OnSerum();
-            foreach (Luminosite l in Luminosite.instance)
-            {
-                l.Change(true);
-            }
             // Find and destroy the serum
             if (PhotonNetwork.IsMasterClient)
             {
@@ -257,6 +254,13 @@ namespace ds
         [PunRPC]
         public void FirstPhase()
         {
+            if (CreateRoomMenu.Mode==1)
+            {
+                foreach (Luminosite l in Luminosite.instance)
+                {
+                    l.Change(false);
+                }
+            }
             local.GetComponent<Player>().OnGameBegin();
         }
         public void SendFirstPhase()
@@ -272,6 +276,10 @@ namespace ds
         [PunRPC]
         public void SecondPhase()
         {
+            foreach (Luminosite l in Luminosite.instance)
+            {
+                l.Change(CreateRoomMenu.Mode == 0);
+            }
             localPlayer.net.playerState.EndFirstPhase();
             StartCoroutine(playerState.SecondPhase());
         }

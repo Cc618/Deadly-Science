@@ -59,14 +59,15 @@ namespace ds
                     byte[] bytes = map.GetRawTextureData();
                     int width = map.width;
                     int height = map.height;
-                    pv.RPC("CreateOtherPlayers", RpcTarget.Others, bytes, width, height);
+                    pv.RPC("CreateOtherPlayers", RpcTarget.Others, bytes, width, height,CreateRoomMenu.Mode);
                 }
             }
         }
 
         [PunRPC]
-        void CreateOtherPlayers(byte[] bytes, int width, int height)
+        void CreateOtherPlayers(byte[] bytes, int width, int height,int Mode)
         {
+            CreateRoomMenu.Mode = Mode;
             Texture2D map = new Texture2D(width, height);
             map.LoadRawTextureData(bytes);
             Map.instance.Chargement(map);

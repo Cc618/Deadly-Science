@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\Player\Affichage_Joueur.cs" />
      <Compile Include="Assets\Scripts\Player\AffichagePowerUpJoueur.cs" />
      <Compile Include="Assets\Scripts\Player\Corrupted.cs" />
+     <Compile Include="Assets\Scripts\Player\Lampe.cs" />
      <Compile Include="Assets\Scripts\Player\LookToCam.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCam.cs" />
@@ -110,12 +111,14 @@
      <Compile Include="Assets\Scripts\Reseau\Managers\MasterManager.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\ScriptableObjectSingleton.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\SingletonReferences.cs" />
+     <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\ChooseMode.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\CreateOrJoinRoomCanvas.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\CreateRoomMenu.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\CurrentRoomCanvas.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\LeaveRoomMenu.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\PlayerListing.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\PlayerListingMenu.cs" />
+     <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\PlayerNumber.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\RandomCustomPropertyGenerator.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\RoomCanvases.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\UI\Rooms\RoomListing.cs" />
