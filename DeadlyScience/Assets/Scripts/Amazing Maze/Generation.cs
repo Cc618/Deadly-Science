@@ -15,6 +15,7 @@ namespace ds
         public PhotonView PV;
         public bool version;
         public bool testencours;
+        private static string name = "Plafond";
 
         public static Texture2D Bloc(Texture2D i, int x, int y, Color c)
         {
@@ -279,6 +280,10 @@ namespace ds
             //On redéfinit la taille et la position du sol.
             int xm = CreateRoomMenu.Xm;
             int zm = CreateRoomMenu.Zm;
+            if (CreateRoomMenu.Mode == 1)
+            {
+                name = "PlafondSombre";
+            }
             Texture2D carte = new Texture2D((xm*2+1)*5,(zm*2+1)*5);
             print("Pic");
             int[] Plan = Generateur(zm, xm);
@@ -329,13 +334,8 @@ namespace ds
                             CreateRoomMenu.where[2] != z * xm + x && CreateRoomMenu.where[3] != z * xm + x)
                         {
                             PhotonNetwork.Instantiate(
-                                Path.Combine("Prefabs", "Plafond"),
+                                Path.Combine("Prefabs", name),
                                 new Vector3((float) (4 * x + 2.5), (float) 0.69, (float) (4 * z + 2.5)),
-                                new Quaternion(0, 0, 0, 0));
-                            if (CreateRoomMenu.Mode==0)
-                                PhotonNetwork.Instantiate(
-                                Path.Combine("Prefabs", "Cylinder"),
-                                new Vector3((float) (4 * x + 2.5), (float) 3.745, (float) (4 * z + 2.5)),
                                 new Quaternion(0, 0, 0, 0));
                         }
                         bool[] passages = {false, false, false, false};
