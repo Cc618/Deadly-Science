@@ -258,7 +258,7 @@ namespace ds
             {
                 foreach (Luminosite l in Luminosite.instance)
                 {
-                    l.Change(false);
+                    l.Change();
                 }
             }
             local.GetComponent<Player>().OnGameBegin();
@@ -276,9 +276,12 @@ namespace ds
         [PunRPC]
         public void SecondPhase()
         {
-            foreach (Luminosite l in Luminosite.instance)
+            if (CreateRoomMenu.Mode == 0)
             {
-                l.Change(CreateRoomMenu.Mode == 0);
+                foreach (Luminosite l in Luminosite.instance)
+                {
+                    l.Change();
+                }
             }
             localPlayer.net.playerState.EndFirstPhase();
             StartCoroutine(playerState.SecondPhase());

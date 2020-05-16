@@ -332,6 +332,11 @@ namespace ds
                                 Path.Combine("Prefabs", "Plafond"),
                                 new Vector3((float) (4 * x + 2.5), (float) 0.69, (float) (4 * z + 2.5)),
                                 new Quaternion(0, 0, 0, 0));
+                            if (CreateRoomMenu.Mode==0)
+                                PhotonNetwork.Instantiate(
+                                Path.Combine("Prefabs", "Cylinder"),
+                                new Vector3((float) (4 * x + 2.5), (float) 3.745, (float) (4 * z + 2.5)),
+                                new Quaternion(0, 0, 0, 0));
                         }
                         bool[] passages = {false, false, false, false};
                         if (Plan[x * zm + z] > 1)

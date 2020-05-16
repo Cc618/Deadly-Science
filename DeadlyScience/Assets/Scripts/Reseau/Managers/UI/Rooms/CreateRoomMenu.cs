@@ -53,7 +53,6 @@ namespace ds
             if (!PhotonNetwork.IsConnected)
                 return;
             RoomOptions options = new RoomOptions();
-            
             //Partie Leandre
             //TODO : Déterminer le Ratio de Power-Ups
             int max = (Xm * Zm) / 25;
