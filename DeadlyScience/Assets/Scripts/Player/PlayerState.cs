@@ -96,7 +96,7 @@ namespace ds
         public void OnSerum()
         {
             net.SendSetStatus(PlayerStatus.HEALED);
-            EndGame.AddRecap("Soigné");
+            
         }
 
         public void BeginFirstPhase()
@@ -111,11 +111,22 @@ namespace ds
             if (status == PlayerStatus.INFECTED)
             {
                 net.SendSetStatus(PlayerStatus.REVENGE);
-                s = "Infectez les Joueurs Guéris !\n";
-                EndGame.AddRecap("Corrompu");
+                
+                switch(PlayerPrefs.GetInt("language"))
+                {
+                    case 0:
+                        s = "Infect healed players !\n";
+                        EndGame.AddRecap("Corrupted");
+                        break;
+                    case 1:
+                        s = "Infectez les Joueurs Guéris !\n";
+                        EndGame.AddRecap("Corrompu");
+                        break;
+                }
+                
             }
             AffichagePhase.Objectif = s;
-            AffichagePhase.phase=2;
+            AffichagePhase.phase = 2;
             AffichagePhase.temps = revengeTime;
         }
 
