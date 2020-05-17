@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,15 +11,23 @@ namespace ds
     {
 
         [SerializeField]
-        private Text _text;
+        private TMP_Text _text;
+        [SerializeField] 
+        private TMP_InputField _inputField;
 
         public void OnClick_Button()
         {
             Audio.Play("click");
-            CreateRoomMenu.Xm = Convert.ToInt32(_text.text.Remove(2));
-            CreateRoomMenu.Zm = Convert.ToInt32(_text.text.Remove(0, 3));
-            print(CreateRoomMenu.Xm);
-            print(CreateRoomMenu.Zm);
+            if (_text != null)
+            {
+                CreateRoomMenu.Xm = Convert.ToInt32(_text.text.Remove(2));
+                CreateRoomMenu.Zm = Convert.ToInt32(_text.text.Remove(0, 3));
+            }
+            else
+            {
+                CreateRoomMenu.Xm = Convert.ToInt32(_inputField.text.Remove(2));
+                CreateRoomMenu.Zm = Convert.ToInt32(_inputField.text.Remove(0, 3));
+            }
         }
     }
 }

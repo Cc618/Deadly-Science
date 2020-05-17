@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ namespace ds
     public class RoomListing : MonoBehaviour
     {
         [SerializeField]
-        private Text _text;
+        private TMP_Text _text;
 
         public RoomInfo RoomInfo { get; private set; }
 

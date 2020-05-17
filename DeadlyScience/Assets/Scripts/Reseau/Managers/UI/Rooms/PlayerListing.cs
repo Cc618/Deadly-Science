@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -11,7 +12,7 @@ namespace ds
     public class PlayerListing : MonoBehaviourPunCallbacks
     {
         [SerializeField]
-        private Text _text;
+        private TMP_Text _text;
 
         public Photon.Realtime.Player Player { get; private set; }
         public bool Ready = false;

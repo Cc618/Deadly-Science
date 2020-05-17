@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ namespace ds
         [SerializeField]
         private PlayerListing _playerListing;
         [SerializeField] 
-        private Text _readyUpText;
+        private TMP_Text _readyUpText;
         [SerializeField]
         private GameObject camera;
         [SerializeField]

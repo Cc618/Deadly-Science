@@ -6,6 +6,7 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using TMPro;
 using Random = UnityEngine.Random;
 
 namespace ds
@@ -13,9 +14,9 @@ namespace ds
     public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
         [SerializeField]
-        private Text _roomName;
+        private TMP_Text _roomName;
         [SerializeField]
-        private InputField inputfield;
+        private TMP_InputField inputfield;
         public static int Xm = 10;
         public static int Zm = 10;
         public static int PlayerNumber = 4;
