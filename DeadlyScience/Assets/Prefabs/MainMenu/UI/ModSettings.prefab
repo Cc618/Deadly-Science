@@ -167,9 +167,9 @@ GameObject:
   - component: {fileID: 5608232381283009815}
   - component: {fileID: 4369293305643505025}
   - component: {fileID: 4965412106986035895}
-  - component: {fileID: 8946798419590648047}
+  - component: {fileID: 9075280862130979762}
   m_Layer: 0
-  m_Name: SizeSettings
+  m_Name: ModSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8946798419590648047}
+      - m_Target: {fileID: 9075280862130979762}
         m_MethodName: OnClick_Button
         m_Mode: 1
         m_Arguments:
@@ -285,7 +285,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8946798419590648047
+--- !u!114 &9075280862130979762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7911900234885391173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30dacd17e750113408edfe1fac645a26, type: 3}
+  m_Script: {fileID: 11500000, guid: 3848c1e0f12b96846b5265e1a94fa17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 8351396915881131733}

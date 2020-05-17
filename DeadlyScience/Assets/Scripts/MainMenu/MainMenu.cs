@@ -22,7 +22,6 @@ namespace ds
         public void PlayGame()
         {
             SceneManager.LoadScene("Rooms");
-
             Audio.Play("click");
         }
 
