@@ -127,8 +127,7 @@ namespace ds
 
         // All phases are elapsed
         public static void OnGameEnd()
-        {
-        }
+        {}
 
         // When all players are in game
         static void OnAllPlayersInGame()
@@ -179,10 +178,7 @@ namespace ds
                 int b = 4;
                 int s = 4;
                 while (a[s] != Id)
-                {
-                    s += 1;
-                }
-
+                    s++;
                 bool v = false;
                 while (b < a.Length && !v)
                 {
@@ -191,21 +187,16 @@ namespace ds
                     while (z < a.Length)
                     {
                         v &= a[z] != l[b - 4];
-                        z += 1;
+                        z++;
                     }
-
                     if (!v)
-                    {
-                        b += 1;
-                    }
+                        b++;
                 }
-
                 CreateRoomMenu.where[s] = l[b - 4];
                 print("Nouveau : " + s + " = " + Id + " devient " + l[b - 4]);
                 PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PowerUp"),
                     new Vector3((float) (4 * (CreateRoomMenu.where[s] % CreateRoomMenu.Xm) + 2.5), 2,
-                        (float) (4 * (CreateRoomMenu.where[s] / CreateRoomMenu.Xm) + 2.5)),
-                    new Quaternion(0, 0, 0, 0));
+                        (float) (4 * (CreateRoomMenu.where[s] / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
             }
         }
 
@@ -258,7 +249,7 @@ namespace ds
         [PunRPC]
         public void FirstPhase()
         {
-            if (CreateRoomMenu.Mode==1)
+            if (CreateRoomMenu.Mode == 1)
             {
                 foreach (Luminosite l in Luminosite.instance)
                 {

@@ -418,6 +418,7 @@
             <e p="Disparition.cs" t="Include" />
             <e p="Other.cs" t="Include" />
             <e p="PowerUp.cs" t="Include" />
+            <e p="Ressort.cs" t="Include" />
             <e p="Serum.cs" t="Include" />
           </e>
           <e p="Reseau" t="Include">
