@@ -49,9 +49,9 @@ namespace ds
         {
             _ready = state;
             if (_ready)
-                _readyUpText.text = "R";
+                _readyUpText.text = "Prêt";
             else
-                _readyUpText.text = "N";
+                _readyUpText.text = "Non Prêt";
         }
 
         public override void OnDisable()
@@ -87,7 +87,8 @@ namespace ds
 
         public void OnClick_StartGame()
         {
-            if (PhotonNetwork.IsMasterClient && once)
+            if (PhotonNetwork.IsMasterClient && once && 
+                PhotonNetwork.CurrentRoom.MaxPlayers == PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 once = false;
                 SendVariableUpdate();
