@@ -264,6 +264,7 @@ namespace ds
                     l.Change();
                 }
             }
+
             local.GetComponent<Player>().OnGameBegin();
         }
         public void SendFirstPhase()

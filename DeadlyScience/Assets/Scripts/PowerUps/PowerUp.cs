@@ -11,13 +11,11 @@ public abstract class PowerUp : MonoBehaviour
     private void Start()
     {
         pv = GetComponent<PhotonView>();
-        // TODO : Player sensor collides with this layer
         playerLayer = LayerMask.NameToLayer("Player");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO : Change remote
         if ((other.gameObject.layer & playerLayer) != 0)
         {
             if (PlayerNetwork.local.playerState.Status != PlayerState.PlayerStatus.GHOST)
