@@ -216,14 +216,21 @@ namespace ds
                     PlayerMaster.UpdateRevengePlayers(id);
             }
         }
+        
+        public IEnumerator SerumUrgence()
+        {
+            yield return new WaitForSeconds(5);
+            SendSetStatus(PlayerState.PlayerStatus.HEALED);
+        }
 
         public void SendSetStatus(PlayerState.PlayerStatus status)
         {
             if (status == PlayerState.PlayerStatus.REVENGE && Player.alterations[8])
             {
-                Player.alterations[9] = false;
+                Player.alterations[8] = false;
                 AffichagePowerUpJoueur.MaJ(Player.alterations);
                 SendSetStatus(PlayerState.PlayerStatus.GHOST);
+                StartCoroutine(SerumUrgence());
             }
             else
             {
