@@ -13,7 +13,7 @@ public class AffichagePowerUp : MonoBehaviour
     {
         if (affich)
         {
-            scoreText.text = "Vous avez obtenu "+Nature;
+            scoreText.text = Nature;
         }
         else
         {

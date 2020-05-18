@@ -62,5 +62,6 @@ MonoBehaviour:
   - DestroyPowerUp
   - DDOL
   - SetName
+  - HerbeBleue
   DisableAutoOpenWizard: 1
   ShowSettings: 1

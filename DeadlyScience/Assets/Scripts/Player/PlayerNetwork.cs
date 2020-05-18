@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -313,6 +314,23 @@ namespace ds
             view.RPC("EndOfGame", RpcTarget.All);
         }
 
+        public void SendHerbeBleue()
+        {
+            view.RPC("HerbeBleue", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public IEnumerator HerbeBleue()
+        {
+            PlayerState.startTime += 30;
+            if (!AffichagePowerUp.affich)
+            {
+                AffichagePowerUp.Nature = "Quelqu'un a obtenu l'Objet Herbe Bleue !";
+                AffichagePowerUp.affich = true;
+                yield return new WaitForSeconds(5);
+                AffichagePowerUp.affich = false;
+            }
+        }
         [PunRPC]
         public void RevengeWin(int winnerId)
         {

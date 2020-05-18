@@ -350,8 +350,7 @@ namespace ds
             }
             contents.Add("Paralysie");
             int a = Random.Range(0,contents.Count);
-            contents[a] = "Catalyseur";
-            AffichagePowerUp.Nature = "l'Objet "+contents[a]+".";
+            AffichagePowerUp.Nature = "Vous avez obtenu l'Objet "+contents[a]+".";
             AffichagePowerUp.affich = true;
             switch (contents[a])
             {
@@ -453,6 +452,7 @@ namespace ds
                 case "Herbe Bleue":
                     EndGame.AddRecap(contents[a], true);
                     EndGame.AddRecap("Temps Ralongé");
+                    net.SendHerbeBleue();
                     break;
                 case "Catalyseur":
                     EndGame.AddRecap(contents[a], true);
