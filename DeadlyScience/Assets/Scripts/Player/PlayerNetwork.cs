@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro.Examples;
 using System.IO;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 namespace ds
 {
@@ -40,7 +41,7 @@ namespace ds
 
             playerState = GetComponent<PlayerState>();
             playerState.StartAfterPlayerNetwork();
-            
+
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -80,6 +81,8 @@ namespace ds
         public void OnPhotonInstantiate(PhotonMessageInfo info)
         {
             id = info.Sender.ActorNumber;
+            
+            GetComponentInChildren<PlayerName>().GetComponent<Text>().text = info.Sender.NickName;
         }
 
         // Called when all players are in game before OnGameBegin

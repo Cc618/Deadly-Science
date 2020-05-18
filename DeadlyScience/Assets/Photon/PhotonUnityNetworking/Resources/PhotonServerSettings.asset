@@ -61,5 +61,6 @@ MonoBehaviour:
   - OtherPowerUp
   - DestroyPowerUp
   - DDOL
+  - SetName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
