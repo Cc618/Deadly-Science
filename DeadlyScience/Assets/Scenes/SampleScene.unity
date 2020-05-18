@@ -5460,76 +5460,14 @@ MonoBehaviour:
   LoadLanguageOnStart: 1
   Categories:
   - Default
+  - room
+  - MainMenu
+  - in game
   LocalizationSelector:
-  - AssignationType: 2
-    Key: settings
-    Text: 
-    Category: 0
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 1601665850}
-  - AssignationType: 2
-    Key: music
-    Text: 
-    Category: 0
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 559605273}
-  - AssignationType: 2
-    Key: sfx
-    Text: 
-    Category: 0
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 1595056217}
-  - AssignationType: 2
-    Key: mouse sensitivity
-    Text: 
-    Category: 0
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 245678046}
-  - AssignationType: 2
-    Key: quit
-    Text: 
-    Category: 0
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 1016013443}
   - AssignationType: 2
     Key: victory
     Text: 
-    Category: 0
+    Category: 3
     AT_FindChildByKeyName: 1
     AT_ChildName: 
     AT_UseGeneralChildsRootObject: 1
@@ -5542,7 +5480,7 @@ MonoBehaviour:
   - AssignationType: 2
     Key: defeat
     Text: 
-    Category: 0
+    Category: 3
     AT_FindChildByKeyName: 1
     AT_ChildName: 
     AT_UseGeneralChildsRootObject: 1
@@ -5555,7 +5493,7 @@ MonoBehaviour:
   - AssignationType: 2
     Key: quit
     Text: 
-    Category: 0
+    Category: 2
     AT_FindChildByKeyName: 1
     AT_ChildName: 
     AT_UseGeneralChildsRootObject: 1
@@ -5566,9 +5504,9 @@ MonoBehaviour:
     AT_UITextObject: {fileID: 0}
     AT_TextMeshbject: {fileID: 1615603845}
   - AssignationType: 2
-    Key: quit
+    Key: music
     Text: 
-    Category: 0
+    Category: 2
     AT_FindChildByKeyName: 1
     AT_ChildName: 
     AT_UseGeneralChildsRootObject: 1
@@ -5577,7 +5515,59 @@ MonoBehaviour:
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
     AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 559605273}
+  - AssignationType: 2
+    Key: sfx
+    Text: 
+    Category: 2
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1595056217}
+  - AssignationType: 2
+    Key: mouse sensitivity
+    Text: 
+    Category: 2
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 245678046}
+  - AssignationType: 2
+    Key: quit
+    Text: 
+    Category: 2
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1016013443}
+  - AssignationType: 2
+    Key: settings
+    Text: 
+    Category: 2
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1601665850}
   AT_GameObjectChildsRoot: {fileID: 0}
 --- !u!1 &1845695812
 GameObject:

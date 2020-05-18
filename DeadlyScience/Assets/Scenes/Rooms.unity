@@ -210,60 +210,10 @@ MonoBehaviour:
   Categories:
   - Default
   - room
+  - MainMenu
+  - in game
   LocalizationSelector:
-  - AssignationType: 1
-    Key: start
-    Text: 
-    Category: 1
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
-    Key: ready
-    Text: 
-    Category: 1
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
-    Key: disconnect
-    Text: 
-    Category: 1
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
-    Key: lab settings
-    Text: 
-    Category: 1
-    AT_FindChildByKeyName: 1
-    AT_ChildName: 
-    AT_UseGeneralChildsRootObject: 1
-    AT_CustomChildsRootObject: {fileID: 0}
-    AT_UITextComponentAllowed: 1
-    AT_TextMeshComponentAllowed: 1
-    AT_FoundObject: {fileID: 0}
-    AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
+  - AssignationType: 2
     Key: room name
     Text: 
     Category: 1
@@ -275,8 +225,8 @@ MonoBehaviour:
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
     AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
+    AT_TextMeshbject: {fileID: 375859617}
+  - AssignationType: 2
     Key: create room
     Text: 
     Category: 1
@@ -288,11 +238,24 @@ MonoBehaviour:
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
     AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
+    AT_TextMeshbject: {fileID: 1319905238}
+  - AssignationType: 2
+    Key: lab settings
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1322946335}
+  - AssignationType: 2
     Key: back
     Text: 
-    Category: 0
+    Category: 1
     AT_FindChildByKeyName: 1
     AT_ChildName: 
     AT_UseGeneralChildsRootObject: 1
@@ -301,11 +264,11 @@ MonoBehaviour:
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
     AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
-    Key: settings
+    AT_TextMeshbject: {fileID: 1887499500}
+  - AssignationType: 2
+    Key: start
     Text: 
-    Category: 0
+    Category: 1
     AT_FindChildByKeyName: 1
     AT_ChildName: 
     AT_UseGeneralChildsRootObject: 1
@@ -314,11 +277,115 @@ MonoBehaviour:
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
     AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
-  - AssignationType: 1
+    AT_TextMeshbject: {fileID: 1819496151}
+  - AssignationType: 2
+    Key: disconnect
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1958242734}
+  - AssignationType: 2
+    Key: game mode
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1320254964}
+  - AssignationType: 2
+    Key: classic
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 770745819}
+  - AssignationType: 2
+    Key: nocturnal
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 1662633294}
+  - AssignationType: 2
+    Key: players nb
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 618046156}
+  - AssignationType: 2
+    Key: custom size
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 2085425453}
+  - AssignationType: 2
+    Key: save
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 670276326}
+  - AssignationType: 2
+    Key: labyrinth size
+    Text: 
+    Category: 1
+    AT_FindChildByKeyName: 1
+    AT_ChildName: 
+    AT_UseGeneralChildsRootObject: 1
+    AT_CustomChildsRootObject: {fileID: 0}
+    AT_UITextComponentAllowed: 1
+    AT_TextMeshComponentAllowed: 1
+    AT_FoundObject: {fileID: 0}
+    AT_UITextObject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 2110358059}
+  - AssignationType: 2
     Key: back
     Text: 
-    Category: 0
+    Category: 1
     AT_FindChildByKeyName: 1
     AT_ChildName: 
     AT_UseGeneralChildsRootObject: 1
@@ -327,7 +394,7 @@ MonoBehaviour:
     AT_TextMeshComponentAllowed: 1
     AT_FoundObject: {fileID: 0}
     AT_UITextObject: {fileID: 0}
-    AT_TextMeshbject: {fileID: 0}
+    AT_TextMeshbject: {fileID: 623297813}
   AT_GameObjectChildsRoot: {fileID: 0}
 --- !u!1 &101468944
 GameObject:
@@ -940,7 +1007,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 26.099995, y: 268}
-  m_SizeDelta: {x: 376.3, y: 223.95}
+  m_SizeDelta: {x: 376.3, y: 149.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234650967
 MonoBehaviour:
@@ -963,9 +1030,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 1, g: 0.91838396, b: 0, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1009,7 +1076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1218,9 +1285,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9607844, g: 0.5882353, b: 0.18431373, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.5882353, b: 0.18431373, a: 0.6627451}
+    m_PressedColor: {r: 0.9607843, g: 0.5882353, b: 0.18431373, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.5882353, b: 0.18431373, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1239,8 +1306,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 401513191}
   m_HandleRect: {fileID: 401513190}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.82321435
+  m_Value: 0.9999995
+  m_Size: 0.8232143
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1416,14 +1483,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
+  m_fontSize: 62
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 62
   m_fontStyle: 2
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1691,8 +1758,8 @@ RectTransform:
   m_Father: {fileID: 1636938271}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.17678565}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.17678562}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2874,6 +2941,18 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &770745819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8351396915881131733, guid: e8376d5a8150a2646a0c4cf310dc5afc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1453542610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &810591437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3323,10 +3402,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3370,7 +3449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3410,8 +3489,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -539, y: 306}
-  m_SizeDelta: {x: 600, y: 130}
+  m_AnchoredPosition: {x: -539, y: -106.74998}
+  m_SizeDelta: {x: 600, y: 467.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &993253425
 GameObject:
@@ -3653,8 +3732,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -537, y: -63}
-  m_SizeDelta: {x: 600, y: 540}
+  m_AnchoredPosition: {x: -537, y: 274}
+  m_SizeDelta: {x: 600, y: 224.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &994470231
 MonoBehaviour:
@@ -3688,10 +3767,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3735,7 +3814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3818,7 +3897,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 1387731798}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 334317170}
@@ -3948,7 +4027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000008299603}
+  m_AnchoredPosition: {x: 0, y: 0.000012545696}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1094665981
@@ -4142,9 +4221,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 0.6117647, b: 0.19215687, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.5882353, b: 0.18431373, a: 0.6627451}
+    m_PressedColor: {r: 0.9607843, g: 0.5882353, b: 0.18431373, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.5882353, b: 0.18431373, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4495,10 +4574,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4542,7 +4621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4762,8 +4841,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -539, y: 306}
-  m_SizeDelta: {x: 600, y: 130}
+  m_AnchoredPosition: {x: -539, y: -106.74998}
+  m_SizeDelta: {x: 600, y: 467.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221194475
 MonoBehaviour:
@@ -4785,10 +4864,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4832,7 +4911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5084,10 +5163,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5569,7 +5648,7 @@ MonoBehaviour:
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
   m_enableKerning: 1
-  m_enableExtraPadding: 0
+  m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
@@ -5783,10 +5862,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5830,7 +5909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6911,10 +6990,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.1764706}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.3529412}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6958,7 +7037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7496,6 +7575,18 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &1662633294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8351396915881131733, guid: e8376d5a8150a2646a0c4cf310dc5afc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1155514455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1688611004
 GameObject:
   m_ObjectHideFlags: 0
@@ -8738,12 +8829,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
+  m_fontSize: 90.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 100
   m_fontStyle: 0
   m_textAlignment: 514
   m_characterSpacing: 0
@@ -9254,8 +9345,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
