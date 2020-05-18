@@ -4,3 +4,5 @@
 - Players can't move at start / end (no physics updates)
 - Cam post processing
 - Ghost
+- Shader
+- Player Labels

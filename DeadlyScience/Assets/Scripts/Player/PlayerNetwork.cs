@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro.Examples;
 using System.IO;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 namespace ds
 {
@@ -40,7 +42,7 @@ namespace ds
 
             playerState = GetComponent<PlayerState>();
             playerState.StartAfterPlayerNetwork();
-            
+
             // The player is not controlled by the client
             if (!isLocal)
             {
@@ -80,6 +82,8 @@ namespace ds
         public void OnPhotonInstantiate(PhotonMessageInfo info)
         {
             id = info.Sender.ActorNumber;
+            
+            GetComponentInChildren<PlayerName>().GetComponent<Text>().text = info.Sender.NickName;
         }
 
         // Called when all players are in game before OnGameBegin
@@ -123,8 +127,7 @@ namespace ds
 
         // All phases are elapsed
         public static void OnGameEnd()
-        {
-        }
+        {}
 
         // When all players are in game
         static void OnAllPlayersInGame()
@@ -178,10 +181,7 @@ namespace ds
                 int b = 4;
                 int s = 4;
                 while (a[s] != Id)
-                {
-                    s += 1;
-                }
-
+                    s++;
                 bool v = false;
                 while (b < a.Length && !v)
                 {
@@ -190,21 +190,16 @@ namespace ds
                     while (z < a.Length)
                     {
                         v &= a[z] != l[b - 4];
-                        z += 1;
+                        z++;
                     }
-
                     if (!v)
-                    {
-                        b += 1;
-                    }
+                        b++;
                 }
-
                 CreateRoomMenu.where[s] = l[b - 4];
                 print("Nouveau : " + s + " = " + Id + " devient " + l[b - 4]);
                 PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PowerUp"),
                     new Vector3((float) (4 * (CreateRoomMenu.where[s] % CreateRoomMenu.Xm) + 2.5), 2,
-                        (float) (4 * (CreateRoomMenu.where[s] / CreateRoomMenu.Xm) + 2.5)),
-                    new Quaternion(0, 0, 0, 0));
+                        (float) (4 * (CreateRoomMenu.where[s] / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
             }
         }
 
@@ -257,7 +252,7 @@ namespace ds
         [PunRPC]
         public void FirstPhase()
         {
-            if (CreateRoomMenu.Mode==1)
+            if (CreateRoomMenu.Mode == 1)
             {
                 foreach (Luminosite l in Luminosite.instance)
                 {
@@ -279,6 +274,9 @@ namespace ds
         [PunRPC]
         public void SecondPhase()
         {
+            if (isLocal)
+                Audio.Play("phase_change");
+
             if (CreateRoomMenu.Mode == 0)
             {
                 foreach (Luminosite l in Luminosite.instance)
@@ -309,6 +307,23 @@ namespace ds
             view.RPC("EndOfGame", RpcTarget.All);
         }
 
+        public void SendHerbeBleue()
+        {
+            view.RPC("HerbeBleue", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public IEnumerator HerbeBleue()
+        {
+            PlayerState.startTime += 30;
+            if (!AffichagePowerUp.affich)
+            {
+                AffichagePowerUp.Nature = "Quelqu'un a obtenu l'Objet Herbe Bleue !";
+                AffichagePowerUp.affich = true;
+                yield return new WaitForSeconds(5);
+                AffichagePowerUp.affich = false;
+            }
+        }
         [PunRPC]
         public void RevengeWin(int winnerId)
         {

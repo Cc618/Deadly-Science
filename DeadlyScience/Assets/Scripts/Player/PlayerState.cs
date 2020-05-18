@@ -74,7 +74,6 @@ namespace ds
         {
             // Get parent
             labels = nameUi.transform.parent.gameObject;
-            print(labels);
         }
 
         public void StartAfterPlayerNetwork()
@@ -142,6 +141,8 @@ namespace ds
                 EndGame.EndOfGame(Status != PlayerStatus.REVENGE);
         }
 
+        public static int startTime;
+
         // Called on master
         public IEnumerator SecondPhase()
         {
@@ -149,7 +150,7 @@ namespace ds
                 firstPhaseStatus = Status;
 
             WaitForSecondsRealtime countTime = new WaitForSecondsRealtime(1);
-            int startTime = (int) revengeTime;
+            startTime = (int) revengeTime;
             while (startTime > 0)
             {
                 startTime -= 1;

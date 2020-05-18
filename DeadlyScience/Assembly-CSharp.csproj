@@ -106,6 +106,7 @@
      <Compile Include="Assets\Scripts\PowerUps\Disparition.cs" />
      <Compile Include="Assets\Scripts\PowerUps\Other.cs" />
      <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\PowerUps\Ressort.cs" />
      <Compile Include="Assets\Scripts\PowerUps\Serum.cs" />
      <Compile Include="Assets\Scripts\Reseau\Game\CreatePlayer.cs" />
      <Compile Include="Assets\Scripts\Reseau\Managers\GameSettings.cs" />
