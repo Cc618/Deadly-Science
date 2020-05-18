@@ -2331,6 +2331,9 @@ MonoBehaviour:
   - id: menu
     clip: {fileID: 8300000, guid: fadbcfc2a0733b941a09d35c286fedd0, type: 3}
     source: {fileID: 0}
+  - id: bimbam
+    clip: {fileID: 8300000, guid: 68f78bdd79a085447bae6213701d020a, type: 3}
+    source: {fileID: 0}
   sfx:
   - id: serum
     clip: {fileID: 8300000, guid: e13bbac74eff7514eb031efe94602748, type: 3}

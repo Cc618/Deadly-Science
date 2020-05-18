@@ -209,7 +209,6 @@ namespace ds
             if (from == id)
             {
                 playerState.Status = status;
-
                 if (PhotonNetwork.IsMasterClient && status == PlayerState.PlayerStatus.REVENGE)
                     PlayerMaster.UpdateRevengePlayers(id);
             }
@@ -217,6 +216,12 @@ namespace ds
 
         public void SendSetStatus(PlayerState.PlayerStatus status)
         {
+            if (status == PlayerState.PlayerStatus.REVENGE && Player.alterations[8])
+            {
+                Player.alterations[9] = false;
+                AffichagePowerUpJoueur.MaJ(Player.alterations);
+                SendSetStatus(PlayerState.PlayerStatus.GHOST);
+            }
             view.RPC("SetStatus", RpcTarget.All, id, status);
         }
         // Called every third of second

@@ -48,17 +48,8 @@ namespace ds
                 }
                 else if (value >= 1)
                 {
-                    if (alterations[9])
-                    {
-                        value = 0;
-                        stunned = true;
-                        alterations[9] = false;
-                    }
-                    else
-                    {
-                        value = 1;
-                        stunned = false;
-                    }
+                    value = 1;
+                    stunned = false;
                 }
 
                 stamina = value;
@@ -241,7 +232,9 @@ namespace ds
             if (pState.Status == PlayerState.PlayerStatus.HEALED &&
                 state.Status == PlayerState.PlayerStatus.REVENGE)
                 // Change status
+            {
                 pNet.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
+            }
 #if HARDMODE
             else if (pState.Status == PlayerState.PlayerStatus.HEALED &&
                 state.Status == PlayerState.PlayerStatus.INFECTED)
@@ -254,6 +247,7 @@ namespace ds
                 pNet.SendHit(strength);
             }
         }
+
 
         // When the player controlled by the client hits another player
         // and makes a move
@@ -292,10 +286,14 @@ namespace ds
             net.SendOnSerum(serumId);
         }
         
+        public IEnumerator SerumUrgence()
+        {
+            yield return new WaitForSeconds(5);
+            net.SendSetStatus(PlayerState.PlayerStatus.HEALED);
+        }
         public void OnPowerUpCollect()
         {
             Audio.Play("power_up");
-
             int x = 0;
             List<string> contents = new List<string>();
             if (!alterations[0])
@@ -362,8 +360,8 @@ namespace ds
                     break;
                 case "Protection":
                     alterations[1] = true;
-                        EndGame.AddRecap(contents[a], true);
-                        break;
+                    EndGame.AddRecap(contents[a], true);
+                    break;
                 case "Décharge":
                     EndGame.AddRecap(contents[a], true);
                     if (alterations[1])
@@ -373,10 +371,19 @@ namespace ds
                     else
                     {
                         a = alterations.Length;
+                        bool b = alterations[7];
+                        if (alterations[9])
+                        {
+                            regeneration *= 2;
+                        }
                         while (a > 0)
                         {
                             a -= 1;
                             alterations[a] = false;
+                        }
+                        if (b)
+                        {
+                            alterations[7] = true;
                         }
                         Map.instance.Change(false);
                         CasqueCRS.time = 0;
@@ -441,7 +448,8 @@ namespace ds
                     break;
                 case "Champignon":
                     EndGame.AddRecap(contents[a], true);
-                    EndGame.AddRecap("Hallucinations");
+                    EndGame.AddRecap("Hallucinations Auditives");
+                    Audio.SetMusic("bimbam");
                     alterations[7] = true;
                     break;
                 case "Sérum d'Urgence":
@@ -457,6 +465,7 @@ namespace ds
                 case "Catalyseur":
                     EndGame.AddRecap(contents[a], true);
                     EndGame.AddRecap("Temps de Récupération Augmenté");
+                    regeneration /= 2;
                     alterations[9] = true;
                     break;
             }
