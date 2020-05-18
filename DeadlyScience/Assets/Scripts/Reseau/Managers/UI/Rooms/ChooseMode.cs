@@ -16,7 +16,7 @@ namespace ds
         {
             Audio.Play("click");
             int a = 0;
-            string s = _text.text
+            string s = _text.text;
             s = s.Remove(_text.text.Length - 1);
             while (s != new[] {"CLASSIQUE", "CLASSIC", "NOCTURNE", "NOCTURN"}[a])
                 a++;
