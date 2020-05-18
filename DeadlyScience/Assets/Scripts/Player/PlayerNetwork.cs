@@ -279,6 +279,9 @@ namespace ds
         [PunRPC]
         public void SecondPhase()
         {
+            if (isLocal)
+                Audio.Play("phase_change");
+
             if (CreateRoomMenu.Mode == 0)
             {
                 foreach (Luminosite l in Luminosite.instance)
