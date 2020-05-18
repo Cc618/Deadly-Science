@@ -48,10 +48,16 @@ namespace ds
         private void SetReadyUp(bool state)
         {
             _ready = state;
-            if (_ready)
-                _readyUpText.text = "READY";
+            if (PlayerPrefs.GetInt("language") == 1)
+                if (_ready)
+                    _readyUpText.text = "PRÊT";
+                else
+                    _readyUpText.text = "NON PRÊT";
             else
-                _readyUpText.text = "NOT READY";
+                if (_ready)
+                    _readyUpText.text = "READY";
+                else
+                    _readyUpText.text = "NOT READY";
         }
 
         public override void OnDisable()
@@ -87,7 +93,8 @@ namespace ds
 
         public void OnClick_StartGame()
         {
-            if (PhotonNetwork.IsMasterClient && once)
+            if (PhotonNetwork.IsMasterClient && once && 
+                PhotonNetwork.CurrentRoom.MaxPlayers == PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 once = false;
                 SendVariableUpdate();

@@ -54,20 +54,14 @@ namespace ds
             Audio.Play("click");
             if (!PhotonNetwork.IsConnected)
                 return;
-            RoomOptions options = new RoomOptions();
             //Partie Leandre
             //TODO : Déterminer le Ratio de Power-Ups
-            int max = (Xm * Zm) / 25;
+            int max = Xm * Zm / 25;
             //print(max);
             if (max < PlayerNumber)
-            {
-                max = PlayerNumber-1;
-            }
-
+                max = PlayerNumber - 1;
             if (PlayerNumber == 1)
-            {
                 max = 1;
-            }
             //print(max);
             where = Generation.Aleatoire(4+max, Xm * Zm);
             int a = 0;
@@ -85,9 +79,9 @@ namespace ds
                 where[a] = where[0];
             }
             //Fin de partie Leandre
-            
+            RoomOptions options = new RoomOptions();
             options.BroadcastPropsChangeToAll = true;
-            options.MaxPlayers = 4;
+            options.MaxPlayers = (byte)PlayerNumber;
             options.PublishUserId = true;
             PhotonNetwork.JoinOrCreateRoom(inputfield.text, options, TypedLobby.Default);
         }

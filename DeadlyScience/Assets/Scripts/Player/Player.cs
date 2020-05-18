@@ -285,12 +285,6 @@ namespace ds
             // Remote call
             net.SendOnSerum(serumId);
         }
-        
-        public IEnumerator SerumUrgence()
-        {
-            yield return new WaitForSeconds(5);
-            net.SendSetStatus(PlayerState.PlayerStatus.HEALED);
-        }
         public void OnPowerUpCollect()
         {
             Audio.Play("power_up");

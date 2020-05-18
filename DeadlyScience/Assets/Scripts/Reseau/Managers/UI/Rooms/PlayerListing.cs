@@ -45,11 +45,11 @@ namespace ds
             {
                 if (Ready)
                 {
-                    _text.text = "R " + player.NickName;
+                    _text.text = "Prêt " + player.NickName;
                 }
                 else
                 {
-                    _text.text = "NR " + player.NickName;
+                    _text.text = "Non Prêt " + player.NickName;
                 }
             }
         }
