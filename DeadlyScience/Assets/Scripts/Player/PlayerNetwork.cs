@@ -225,7 +225,10 @@ namespace ds
                 AffichagePowerUpJoueur.MaJ(Player.alterations);
                 SendSetStatus(PlayerState.PlayerStatus.GHOST);
             }
-            view.RPC("SetStatus", RpcTarget.All, id, status);
+            else
+            {
+                view.RPC("SetStatus", RpcTarget.All, id, status);
+            }
         }
         // Called every third of second
         [PunRPC]
