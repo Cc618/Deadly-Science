@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%%%%% Props %%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{eurosym}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{enumerate}
+
+\pagestyle{fancy}
+\lhead{Soutenance 3}
+\chead{Deadly Science}
+\rhead{Custos Carceris}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  commentstyle=\color{mygreen},
+  keywordstyle=\color{blue},       % keyword style
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  stringstyle=\color{mymauve},     % string literal style
+  language=[Sharp]C,                 % the language of the code
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  showstringspaces=false,
+  numbers=left,
+}
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%% Titre %%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE Custos Carceris\par}
+	\vspace{1cm}
+	{\scshape\Large Soutenance 3 \par}
+	\vspace{1.5cm}
+	{\huge\bfseries Deadly Science\par}
+	\vspace{2cm}
+	\includegraphics[width=0.5\textwidth]{logo.png}\par\vspace{1cm}
+	{\Large\itshape Léandre Perrot\par}
+	{\Large\itshape Yann Boudry\par}
+	{\Large\itshape Steve Suissa\par}
+	{\Large\itshape Célian Raimbault\par}
+	\vfill
+	Un projet EPITA
+	\vfill
+	{\large \today\par}
+\end{titlepage}
+
+
+
+\newpage
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%% Intro %%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section{Introduction}
+
+%%%%%%%%%%%%%%% TODO : Mettre a jour
+Le jeu a grandement avancé depuis le retour du cahier des charges : le réseau est quasiment entièrement fonctionnel, pareil pour la caméra, le site avance petit à petit, la génération est presque fini et certaines musiques ont été composées. Globalement, le jeu est quasiment jouable.
+\begin{table}[!h]
+\centering
+\caption{Avancement}
+\begin{tabular}{|l|l|l|}
+
+\hline
+%%%%%%%%%%%%%%% TODO : Mettre a jour
+Tâches $\backslash$Soutenances & Attendu & Réalité \\ \hline
+Camera & 50\% & 75\% \\ \hline
+G Joueur & 30\% & 50\% \\ \hline
+G Jeu & 30\% & 30\% \\ \hline
+Reseau & 50\% & 75\% \\ \hline
+Map Const & 30\% & 30\% \\ \hline
+Menu & 15\% & 70\% \\ \hline
+Chrono/GUI & 30\% & 30\% \\ \hline
+Site TXT & 0\% & 30\% \\ \hline
+Site E & 0\% & 0\% \\ \hline
+Map Gen & 0\% & 50\% \\ \hline
+Musique & 0\% & 25\% \\ \hline
+Sons & 0\% & 10\% \\ \hline
+
+\end{tabular}
+\end{table}
+ 
+\newpage
+\section{Réalisations}
+
+
+%%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Yann}
+
+\subsubsection{Menu principal}
+%%%%%%%%%%%%%%%%%% TODO : Changer
+\paragraph{Accueil}
+Comme vous pouvez le voir il n'a pas évolué pour l'instant mais des images ou video viendront le garnir dans sa version finale, lorsqu'il n'y aura plus de modification trop importantes.
+
+%%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Célian}
+
+
+%%%%%%%%%%%%%%%%%%%%%% Léandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Léandre}
+
+
+%%%%%%%%%%%%%%%%%%%%%% Steve%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Steve}
+
+
+
+
+\newpage
+\section{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO : Mettre a jour
+En ce qui concerne la prochaine soutenance, le jeu devrait être à peu de choses près fini. D'ici là, il nous reste encore à paufiner les décors et les musiques, à créer les "salles d'attente" pour la génération des joueurs, améliorer la seconde phase, compléter le site en y incluant également le lien de téléchargement du jeu, rendre les menus plus fluides et ergonomiques, et également mettre au point un système permettant d'installer le jeu et de le désinstaller. Autrement dit, il nous reste encore du pain sur la planche, mais ce devrait être largement faisable dans les délais imposés pour le Projet S2.
+
+\emph{If you knew time as well as I do, you would play Deadly Science.}
+
+
+\end{document}
+
+
+

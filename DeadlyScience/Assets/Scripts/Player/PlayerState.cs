@@ -74,7 +74,6 @@ namespace ds
         {
             // Get parent
             labels = nameUi.transform.parent.gameObject;
-            print(labels);
         }
 
         public void StartAfterPlayerNetwork()

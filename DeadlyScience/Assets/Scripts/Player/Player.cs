@@ -294,6 +294,8 @@ namespace ds
         
         public void OnPowerUpCollect()
         {
+            Audio.Play("power_up");
+
             int x = 0;
             List<string> contents = new List<string>();
             if (!alterations[0])

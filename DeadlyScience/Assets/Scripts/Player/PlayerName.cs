@@ -9,6 +9,9 @@ namespace ds
 {
     public class PlayerName : MonoBehaviour
     {
+        [HideInInspector]
+        public Text text;
+
         void Start()
         {
             text = GetComponent<Text>();
@@ -35,7 +38,5 @@ namespace ds
                     break;
             }
         }
-
-        private Text text;
     }
 }
