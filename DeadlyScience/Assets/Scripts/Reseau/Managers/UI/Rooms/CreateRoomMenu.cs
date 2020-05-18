@@ -14,9 +14,11 @@ namespace ds
     public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
         [SerializeField]
-        private TMP_Text _roomName;
-        [SerializeField]
         private TMP_InputField inputfield;
+        [SerializeField] 
+        private GameObject labsettings;
+        [SerializeField] 
+        private GameObject roommenu;
         public static int Xm = 10;
         public static int Zm = 10;
         public static int PlayerNumber = 4;
@@ -33,12 +35,11 @@ namespace ds
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Return) && PhotonNetwork.IsConnected)
+            if (Input.GetKeyDown(KeyCode.Return) && PhotonNetwork.IsConnected && !labsettings.activeSelf
+                && !roommenu.activeSelf)
             {
-                if (_roomName.text.Length == 0)
-                {
+                if (inputfield.text.Length == 0)
                     inputfield.text = "Test" + Random.Range(0, 9999);
-                }
                 OnClick_CreateRoom();
             }
         }
@@ -70,17 +71,17 @@ namespace ds
             //print(max);
             where = Generation.Aleatoire(4+max, Xm * Zm);
             int a = 0;
-            while (a < max+4)
+            while (a < max + 4)
             {
                 //print(where[a]);
-                a += 1;
+                a++;
             }
             //print("Retiré :");
             a = 4;
             while (a != PlayerNumber)
             {
-                a -= 1;
-                print(where[a]);
+                a--;
+                //print(where[a]);
                 where[a] = where[0];
             }
             //Fin de partie Leandre
@@ -88,7 +89,7 @@ namespace ds
             options.BroadcastPropsChangeToAll = true;
             options.MaxPlayers = 4;
             options.PublishUserId = true;
-            PhotonNetwork.JoinOrCreateRoom(_roomName.text, options, TypedLobby.Default);
+            PhotonNetwork.JoinOrCreateRoom(inputfield.text, options, TypedLobby.Default);
         }
 
         public override void OnCreatedRoom()

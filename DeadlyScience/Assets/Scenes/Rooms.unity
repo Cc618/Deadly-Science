@@ -1006,7 +1006,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.099995, y: 268}
+  m_AnchoredPosition: {x: 26.099995, y: 297}
   m_SizeDelta: {x: 376.3, y: 149.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234650967
@@ -1398,8 +1398,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52814822fda86e4b9d3cb4daee0c43b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomName: {fileID: 218760439}
   inputfield: {fileID: 399813619}
+  labsettings: {fileID: 1324546513}
+  roommenu: {fileID: 461882202}
 --- !u!1 &375859615
 GameObject:
   m_ObjectHideFlags: 0
