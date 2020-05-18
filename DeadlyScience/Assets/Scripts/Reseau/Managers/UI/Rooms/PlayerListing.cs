@@ -36,7 +36,10 @@ namespace ds
         {
             if (player == PhotonNetwork.MasterClient)
             {
-                _text.text = "Hôte " + player.NickName;
+                if(PlayerPrefs.GetInt("language") == 1)
+                    _text.text = "Hôte " + player.NickName;
+                else
+                    _text.text = "Host " + player.NickName;
             }
             else
             {

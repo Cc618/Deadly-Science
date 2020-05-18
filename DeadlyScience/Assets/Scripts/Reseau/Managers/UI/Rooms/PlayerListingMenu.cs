@@ -49,9 +49,9 @@ namespace ds
         {
             _ready = state;
             if (_ready)
-                _readyUpText.text = "R";
+                _readyUpText.text = "READY";
             else
-                _readyUpText.text = "N";
+                _readyUpText.text = "NOT READY";
         }
 
         public override void OnDisable()
