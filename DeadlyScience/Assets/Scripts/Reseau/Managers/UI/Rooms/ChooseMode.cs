@@ -16,6 +16,7 @@ namespace ds
         {
             Audio.Play("click");
             int a = 0;
+            _text.text = _text.text.Remove(_text.text.Length - 1);
             while (_text.text != new[] {"CLASSIQUE", "CLASSIC", "NOCTURNE", "NOCTURN"}[a])
                 a++;
             CreateRoomMenu.Mode = a / 2;
