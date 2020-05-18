@@ -11,14 +11,15 @@ namespace ds
     {
 
         InputManager inputManager;
-        public GameObject keyItemPrefab;
         public GameObject keyList;
 
         string ButtonToRebind;
-        Dictionary<string, Text> buttonToLabel;
+        Dictionary<string, TMP_Text> buttonToLabel;
 
         // Start is called before the first frame update
-        void Start()
+
+        //ANCIEN START A GARDER AU CAS OU !!!!!!!!!!!!!!!!!!
+        /*void Start()
         {
             inputManager = GameObject.FindObjectOfType<InputManager>();
 
@@ -44,6 +45,34 @@ namespace ds
 
                 Button keyBindButton = go.transform.Find("Button").GetComponent<Button>();
                 keyBindButton.onClick.AddListener(() => StartRebindFor(bn));
+            }
+        }*/
+
+        private void Start()
+        {
+            inputManager = GameObject.FindObjectOfType<InputManager>();
+            buttonToLabel = new Dictionary<string, TMP_Text>();
+
+            string[] buttonNames = inputManager.GetButtonNames();
+
+            Button[] buttons = keyList.GetComponentsInChildren<Button>();
+            TMP_Text[] keys = new TMP_Text[buttons.Length];
+
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                keys[i] = buttons[i].GetComponentInChildren<TMP_Text>();
+
+            }
+
+            for (int i = 0; i < keys.Length; i++)
+            {
+                string bn = buttonNames[i];
+                
+                //TMP_Text key = keys[i].GetComponent<TMP_Text>();
+                keys[i].text = inputManager.GetKeyNameForButton(bn);
+                buttonToLabel[bn] = keys[i];
+
+                buttons[i].onClick.AddListener(() => StartRebindFor(bn));
             }
         }
 

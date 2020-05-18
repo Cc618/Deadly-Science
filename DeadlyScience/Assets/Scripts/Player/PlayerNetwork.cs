@@ -146,7 +146,10 @@ namespace ds
         {
             Audio.Play(from == localPlayer.net.id ? "serum" : "serum_long");
             if (from == id)
+            {
                 playerState.OnSerum();
+                EndGame.AddRecap("Soigné");
+            }
             // Find and destroy the serum
             if (PhotonNetwork.IsMasterClient)
             {
@@ -261,7 +264,6 @@ namespace ds
                     l.Change();
                 }
             }
-
             local.GetComponent<Player>().OnGameBegin();
         }
         public void SendFirstPhase()

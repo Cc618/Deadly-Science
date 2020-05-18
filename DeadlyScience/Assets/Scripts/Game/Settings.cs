@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Text.RegularExpressions;
 
 namespace ds
 {
@@ -17,6 +18,7 @@ namespace ds
         public Slider MouseSlider;
         public TMP_InputField Pseudo;
         public TMP_Dropdown language;
+        private int lang = 0;
         Localization_SOURCE Localization_SOURCE;
         Audio Audio;
 
@@ -49,22 +51,22 @@ namespace ds
                 PlayerPrefs.SetFloat("sfxVolume", Audio.sfxVolume);
             }
 
-            if (Pseudo && PlayerPrefs.HasKey("pseudo"))
-                Pseudo.text = PlayerPrefs.GetString("pseudo");
-            else if (Pseudo)
-            {
-                Pseudo.text = "Sujet" + UnityEngine.Random.Range(0, 9999);
-                PlayerPrefs.SetString("pseudo", Pseudo.text);
-            }
-
             if (language && PlayerPrefs.HasKey("language"))
             {
                 language.value = PlayerPrefs.GetInt("language");
+                lang = PlayerPrefs.GetInt("language");
                 Localization_SOURCE.PUBLIC_LoadLanguage(language.value);
             }
             else if (language)
             {
                 PlayerPrefs.SetInt("language", language.value);
+            }
+
+            if (Pseudo && PlayerPrefs.HasKey("pseudo"))
+                Pseudo.text = PlayerPrefs.GetString("pseudo");
+            else if (Pseudo)
+            {
+                //OnRandomPseudo();
             }
 
             PlayerPrefs.Save();
@@ -107,7 +109,16 @@ namespace ds
 
         public void OnRandomPseudo()
         {
-            Pseudo.text = "Sujet" + UnityEngine.Random.Range(1000, 9999);
+            switch(lang)
+            {
+                case 0:
+                    Pseudo.text = "Subject" + UnityEngine.Random.Range(1000, 9999);
+                    break;
+                case 1:
+                    Pseudo.text = "Sujet" + UnityEngine.Random.Range(1000, 9999);
+                    break;
+            }
+            
             PlayerPrefs.SetString("pseudo", Pseudo.text);
             PlayerPrefs.Save();
         }
@@ -116,6 +127,10 @@ namespace ds
         {
             Localization_SOURCE.PUBLIC_LoadLanguage(val);
             PlayerPrefs.SetInt("language", val);
+            lang = val;
+            
+            if (PlayerPrefs.HasKey("pseudo") && Regex.IsMatch(Pseudo.text, "Su[b]{0,1}je[c]{0,1}t\\d{4}"))
+                OnRandomPseudo();
             PlayerPrefs.Save();
         }
     }
