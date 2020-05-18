@@ -32,7 +32,7 @@ public class Disparition : MonoBehaviour
         }
         else
         {
-            Player.alterations[4] = false;
+            Player.alterations[5] = false;
             AffichagePowerUpJoueur.MaJ(Player.alterations);
             PlayerNetwork.local.SendSetStatus(s);
             s = PlayerState.PlayerStatus.GHOST;

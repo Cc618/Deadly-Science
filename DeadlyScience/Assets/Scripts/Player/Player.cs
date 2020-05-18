@@ -30,7 +30,7 @@ namespace ds
         [Range(0, 10)]
         public float damping;
 
-        public static bool[] alterations = new bool[6];
+        public static bool[] alterations = new bool[10];
 
         public Transform groundSensor;
         public LayerMask groundMask;
@@ -48,8 +48,17 @@ namespace ds
                 }
                 else if (value >= 1)
                 {
-                    value = 1;
-                    stunned = false;
+                    if (alterations[9])
+                    {
+                        value = 0;
+                        stunned = true;
+                        alterations[9] = false;
+                    }
+                    else
+                    {
+                        value = 1;
+                        stunned = false;
+                    }
                 }
 
                 stamina = value;
@@ -125,7 +134,7 @@ namespace ds
             if (grounded)
             {
                 // Jump only if not stunned
-                if (!stunned && inputManager.IsButtonDown("Jump"))
+                if (!stunned && (inputManager.IsButtonDown("Jump")||alterations[6]))
                     velocity.y += jumpForce;
                 else
                     // If grounded and not on jump add a small force
@@ -309,17 +318,37 @@ namespace ds
             {
                 contents.Add("Casque de CRS");
             }
-
             if (!alterations[5] && AffichagePhase.phase==2 && PlayerNetwork.local.playerState.Status!=PlayerState.PlayerStatus.REVENGE)
             {
                 contents.Add("Disparition");
             }
-            if (contents.Count <5)
+            if (!alterations[6])
+            {
+                contents.Add("Ressort");
+            }
+            if (!alterations[7])
+            {
+                contents.Add("Champignon");
+            }
+            if (!alterations[8])
+            {
+                contents.Add("Sérum d'Urgence");
+            }
+            if (AffichagePhase.phase==2 && AffichagePhase.phase==2 && PlayerNetwork.local.playerState.Status!=PlayerState.PlayerStatus.REVENGE)
+            {
+                contents.Add("Herbe Bleue");
+            }
+            if (!alterations[9])
+            {
+                contents.Add("Catalyseur");
+            }
+            if (contents.Count <8)
             {
                 contents.Add("Décharge");
             }
             contents.Add("Paralysie");
             int a = Random.Range(0,contents.Count);
+            contents[a] = "Catalyseur";
             AffichagePowerUp.Nature = "l'Objet "+contents[a]+".";
             AffichagePowerUp.affich = true;
             switch (contents[a])
@@ -350,6 +379,7 @@ namespace ds
                         }
                         Map.instance.Change(false);
                         CasqueCRS.time = 0;
+                        Ressort.time = 0;
                         Disparition.time = 0;
                         speedRatio = 1f;
                     }
@@ -401,6 +431,31 @@ namespace ds
                     EndGame.AddRecap("Invisible");
                     alterations[5] = true;
                     Disparition.Change(true);
+                    break;
+                case "Ressort":
+                    EndGame.AddRecap(contents[a], true);
+                    EndGame.AddRecap("Sauts Forcés");
+                    alterations[6] = true;
+                    Ressort.Change(true);
+                    break;
+                case "Champignon":
+                    EndGame.AddRecap(contents[a], true);
+                    EndGame.AddRecap("Hallucinations");
+                    alterations[7] = true;
+                    break;
+                case "Sérum d'Urgence":
+                    EndGame.AddRecap(contents[a], true);
+                    EndGame.AddRecap("Mini-Sérum");
+                    alterations[8] = true;
+                    break;
+                case "Herbe Bleue":
+                    EndGame.AddRecap(contents[a], true);
+                    EndGame.AddRecap("Temps Ralongé");
+                    break;
+                case "Catalyseur":
+                    EndGame.AddRecap(contents[a], true);
+                    EndGame.AddRecap("Temps de Récupération Augmenté");
+                    alterations[9] = true;
                     break;
             }
             AffichagePowerUpJoueur.MaJ(alterations);
