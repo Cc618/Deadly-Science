@@ -9,6 +9,25 @@
 	}
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    
+    nav
+	{
+		margin-top: 30px;
+	}
+
+	.galerie
+	{
+		width: 65%;
+		height: 100%;
+		background-size: 110%;
+		border-style: solid;
+		border-color: #ccf2ff;
+		border-radius: 5px;
+		align-self: center;
+	}
+}
+
 header
 {
 	text-align: center;
@@ -57,6 +76,7 @@ nav
 {
 	transition: 1s;
 	line-height: 20px;
+	font-size: 100%;
 }
 
 .menu:hover
@@ -96,20 +116,6 @@ section
 	max-width: 65%;
 	border-style: solid;
 	border-image: linear-gradient(#4dd2ff, #ccf2ff) 30;
-}
-
-#groupe
-{
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-}
-
-.photo_groupe
-{
-	width: 6%;
-	height: 6%;
-	float: left;
 }
 
 .gal
@@ -174,17 +180,6 @@ a,a:visited
 	margin-right: 10px;
 }
 
-.bio
-{
-	height: 2%;
-}
-
-.textbio
-{
-	/*margin-top: 5%;*/
-	margin-left: 10%;
-}
-
 p
 {
 	text-align: justify;
@@ -214,3 +209,24 @@ em
 	display: inline-block;
 }
 
+.bio
+{
+	display: flex;
+}
+
+.photo_groupe
+{
+	margin-top: 20px;
+	min-width: 180px;
+	min-height: 100px;
+	max-height: 250px;
+	width: 100%;
+	height: 100%;
+	margin-right: 2%;
+	border-radius: 100%;
+}
+
+.textbio
+{
+	height: 100%;
+}
