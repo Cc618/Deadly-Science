@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5968262486485040825}
   - component: {fileID: 2422828421115914933}
   m_Layer: 0
-  m_Name: ReturnButton (1)
+  m_Name: RoomListing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
