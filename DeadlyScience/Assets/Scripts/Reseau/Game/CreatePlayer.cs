@@ -25,6 +25,18 @@ namespace ds
                     GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
                         new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 3, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)),
                         Quaternion.identity, 0);
+                    if (CreateRoomMenu.Mode == 0)
+                    {
+                        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Plafond"),
+                            new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 
+                                (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
+                    }
+                    else
+                    {
+                        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PlafondSombre"),
+                            new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 
+                                (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
+                    }
                     player.GetComponent<PlayerNetwork>().isLocal = true;
                     print("Le MasterClient a été instancié");
                     
@@ -88,6 +100,18 @@ namespace ds
             GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), 
                 new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 3, 
                     (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
+            if (Mode == 0)
+            {
+                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Plafond"),
+                    new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 
+                        (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
+            }
+            else
+            {
+                PhotonNetwork.Instantiate(Path.Combine("Prefabs", "PlafondSombre"),
+                    new Vector3((float) (4 * (coorp % CreateRoomMenu.Xm) + 2.5), 
+                        (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
+            }
             CasqueCRS.instance.Change(false);
             player.GetComponent<PlayerNetwork>().isLocal = true;
             print("Le joueur a été instancié");
