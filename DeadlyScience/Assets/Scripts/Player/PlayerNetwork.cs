@@ -89,7 +89,6 @@ namespace ds
         // Called when all players are in game before OnGameBegin
         public void PrepareGame()
         {
-            // TODO : Begin game...
             if (isLocal)
                 playerState.BeginFirstPhase();
         }
@@ -115,7 +114,6 @@ namespace ds
         private static List<GameObject> players = new List<GameObject>();
         public static List<GameObject> Players { get => players; }
 
-        // TODO : rm
         // Registers a new player in the players list
         public static void RegisterPlayer(GameObject p)
         {
