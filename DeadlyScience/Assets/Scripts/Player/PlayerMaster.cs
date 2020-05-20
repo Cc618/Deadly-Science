@@ -10,7 +10,6 @@ namespace ds
 {
     public class PlayerMaster : MonoBehaviour
     {
-        // TODO : For multiple games, reset values
         public static PlayerMaster instance;
 
         private void Awake()
@@ -33,7 +32,7 @@ namespace ds
             }
             get => playersReady;
         }
-		//TODO : Célian : Faire attention à SerumCount
+	
         private static int collectedSerums = 0;
         public static int serumCount = CreateRoomMenu.PlayerNumber-1;
         public static int CollectedSerums

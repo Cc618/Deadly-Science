@@ -194,31 +194,12 @@ namespace ds
             // Attack
             if (!stunned && Input.GetKeyDown(KeyCode.Mouse0))
                 Attack();
-
-            // TODO : rm Test
-            if (Input.GetKeyDown(KeyCode.H))
-                net.SendSetStatus(PlayerState.PlayerStatus.HEALED);
-            if (Input.GetKeyDown(KeyCode.R))
-                net.SendSetStatus(PlayerState.PlayerStatus.REVENGE);
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                net.SendSetStatus(PlayerState.PlayerStatus.GHOST);
-			}
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                OnPowerUpCollect();
-            }
-            if (Input.GetKeyDown(KeyCode.I))
-			{
-                net.SendSetStatus(PlayerState.PlayerStatus.INFECTED);
-			}
         }
 
         // Player to player hit
         // (This player hurts the other player)
         public void Hit(GameObject player)
         {
-            // TODO : Updt
             var pState = player.GetComponent<PlayerState>();
             var pNet = player.GetComponent<PlayerNetwork>();
 
