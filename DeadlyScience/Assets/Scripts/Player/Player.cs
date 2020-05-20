@@ -324,7 +324,7 @@ namespace ds
             {
                 contents.Add("Champignon");
             }
-            if (!alterations[8])
+            if (!alterations[8] && PlayerNetwork.local.playerState.Status==PlayerState.PlayerStatus.HEALED)
             {
                 contents.Add("Sérum d'Urgence");
             }
@@ -435,16 +435,30 @@ namespace ds
                     Disparition.Change(true);
                     break;
                 case "Ressort":
-                    EndGame.AddRecap(contents[a], true);
-                    EndGame.AddRecap("Sauts Forcés");
-                    alterations[6] = true;
-                    Ressort.Change(true);
+					if (alterations[1])
+                    {
+                       alterations[1] = false;
+                    }
+					else
+					{
+                    	EndGame.AddRecap(contents[a], true);
+                    	EndGame.AddRecap("Sauts Forcés");
+                    	alterations[6] = true;
+                   		Ressort.Change(true);
+					}
                     break;
                 case "Champignon":
-                    EndGame.AddRecap(contents[a], true);
-                    EndGame.AddRecap("Hallucinations Auditives");
-                    Audio.SetMusic("bimbam");
-                    alterations[7] = true;
+					if (alterations[1])
+                    {
+                       alterations[1] = false;
+                    }
+					else
+					{
+                    	EndGame.AddRecap(contents[a], true);
+                    	EndGame.AddRecap("Hallucinations Auditives");
+                    	Audio.SetMusic("bimbam");
+                    	alterations[7] = true;
+					}
                     break;
                 case "Sérum d'Urgence":
                     EndGame.AddRecap(contents[a], true);
@@ -452,15 +466,29 @@ namespace ds
                     alterations[8] = true;
                     break;
                 case "Herbe Bleue":
-                    EndGame.AddRecap(contents[a], true);
-                    EndGame.AddRecap("Temps Ralongé");
-                    net.SendHerbeBleue();
+					if (alterations[1] && PlayerNetwork.local.playerState.Status==PlayerState.PlayerStatus.HEALED)
+                    {
+                       alterations[1] = false;
+                    }
+					else
+					{
+                    	EndGame.AddRecap(contents[a], true);
+                    	EndGame.AddRecap("Temps Ralongé");
+                    	net.SendHerbeBleue();
+					}
                     break;
                 case "Catalyseur":
-                    EndGame.AddRecap(contents[a], true);
-                    EndGame.AddRecap("Temps de Récupération Augmenté");
-                    regeneration /= 2;
-                    alterations[9] = true;
+					if (alterations[1])
+                    {
+                       alterations[1] = false;
+                    }
+					else
+					{
+                    	EndGame.AddRecap(contents[a], true);
+                    	EndGame.AddRecap("Temps de Récupération Augmenté");
+                    	regeneration /= 2;
+                    	alterations[9] = true;
+					}
                     break;
             }
             AffichagePowerUpJoueur.MaJ(alterations);
