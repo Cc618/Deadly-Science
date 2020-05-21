@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
@@ -18,7 +19,7 @@ namespace ds
             Game.EscapeMenuOpen = false;
 
             PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene("MainMenu");
+            Application.Quit();
         }
     }
 }
