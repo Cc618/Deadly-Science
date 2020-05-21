@@ -102,7 +102,39 @@ Sons & 0\% & 10\% \\ \hline
  
 \newpage
 \section{Reprise du cahier des charges}
-blablabla
+\paragraph{Caméra}
+Chaque joueur doit avoir une caméra, elle doit représenter un angle de vue humain de 180 degrés. Elle doit donc prévenir et arrêter les mouvement de caméra impossible pour un humain comme par exemple pouvoir regarder derrière la tête.
+
+\paragraph{Déplacements}
+Chaque joueur doit pouvoir se déplacer dans toutes les directions. Il faut pouvoir facilement changer les vitesses, frictions en fonction de l'avancement du projet. Il peut aussi donner des coups de poing, qui baissent la barre d'endurance du joueur en face.
+
+\paragraph{Endurance}
+Les joueurs ont au dessus de leur tête leur pseudo, coloré en fonction de leur statut, et une barre d'endurance qui descend en fonction des dommages encaissés. Lorsque celle-ci est vide, le joueur avance plus lentement et la barre devient grise et se recharge progressivement. 
+
+\paragraph{Statuts}
+Lorsqu'un joueur est corrompu, il faut voir si un joueur guéri n'est pas trop près de lui, sinon lui aussi devient corrompu et doit aller contaminer les autres joueurs.
+
+\paragraph{Phases}
+Lorsque tous les joueurs sauf un ont ramassé les sérums, la deuxième phase du jeu doit commencer. Le dernier joueur doit devenir corrompu et il faut aussi s'assurer que tous les joueurs soient soit guéri, soit corrompu, soit invisible. La partie doit se terminer lorsque tous les joueurs sont infectés, et l'on doit afficher un écran de victoire si l'on gagne, et un écran de défaite si ça n'est pas le cas.
+
+\paragraph{Sérums}
+Les joueurs peuvent être pris par les joueurs pour se guérir. Il faut faire attention à ce qu'un joueur corrompu ou guéri ne puisse pas prendre de sérum, et que les sérums sont bien détruits lorsqu'ils sont ramassés. Il faut aussi faire attention pour qu'il y ait exactement le bon nombre de sérums dans le labyrinthe, c'est-à-dire le nombre de joueurs moins 1.
+
+\paragraph{Labyrinthe}
+Le jeu doit contenir un labyrinthe assez grand pour se pouvoir se perdre. Il faut aussi mettre plusieurs salle différentes pour un meilleur gamplay et pour mieux se perdre. Chaque salle doit avoir des meulbles divers spécifiques, avec des modèles diffénrents. Il doit être généré aléatoirement de manière à ce qu'on est un labyrinthe différent quasiment à chaque fois que l'on crée une nouvelle partie. Il faut aussi faire attention que les sérums se génère à l'intérieur du labyrinthe.
+
+\paragraph{Modèles}
+Chaque composants du labyrinthe doit avoir un modèle particulier, que ce soit les joueurs, les sérums, les meubles et différents objets des salles et tous les autres objets aussi.
+
+\paragraph{Menus}
+Il faut un menu principal plus un menu pour créer la salle, la rejoindre, et la quitter. Le menu principal doit contenir un bouton pour quitter le jeu, et un bouton pour la quitter. Dans le second menu, il faut pouvoir accéder aux différents joueurs présents dans la salle puis pouvoir commencer la partie lorsque tous les joueurs sont prêts.
+
+\paragraph{Réseau}
+Le jeu doit être jouable en réseau, les effets des sérums doivent être synchronisés sur tous les joueurs, ainsi que la phase de la partie. Il faut aussi associer une caméra à chaque joueur, et faire attention qu'il y'en assez pour tout le monde, mais pas trop non plus! 
+
+\paragraph{Site Web}
+Il faut un site Web clair et net et esthétiquement plaisant à regarder. Il doit comporter les informations sur notre groupe, les liens pour télécharger les rapports de soutenance, de projet et le jeu. Il faut aussi qu'il contienne les règles et des images du jeu pour avoir une idée du jeu.
+
 \newpage
 \section{Présentation du projet}
 
