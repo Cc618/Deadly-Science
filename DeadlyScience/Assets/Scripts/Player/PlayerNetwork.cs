@@ -255,12 +255,14 @@ namespace ds
         [PunRPC]
         public void PlayerReady(int from)
         {
-            ++PlayerMaster.instance.PlayersReady;
+            PlayerMaster.instance.NewPlayerReady();
         }
+
         public void SendPlayerReady()
         {
             view.RPC("PlayerReady", RpcTarget.MasterClient, id);
         }
+
         // First phase, after game init
         [PunRPC]
         public void FirstPhase()

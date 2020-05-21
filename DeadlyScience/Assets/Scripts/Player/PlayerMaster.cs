@@ -12,27 +12,20 @@ namespace ds
     {
         public static PlayerMaster instance;
 
-        private void Awake()
+        void Awake()
         {
-            instance = this;
             net = GetComponent<PlayerNetwork>();
         }
 
         private int playersReady = 0;
-        public int PlayersReady
+        public void NewPlayerReady()
         {
-            set
-            {
-                ++playersReady;
+            ++playersReady;
 
-                if (playersReady >= PlayerNetwork.Players.Count)
-                {
-                    net.SendFirstPhase();
-                }
-            }
-            get => playersReady;
+            if (playersReady == CreateRoomMenu.PlayerNumber)
+                net.SendFirstPhase();
         }
-	
+
         private static int collectedSerums = 0;
         public static int serumCount = CreateRoomMenu.PlayerNumber-1;
         public static int CollectedSerums

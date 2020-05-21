@@ -97,6 +97,7 @@ namespace ds
             // Update player network
             PlayerNetwork.localPlayer = this;
 
+            print("Player ready");
             net.SendPlayerReady();
         }
 
