@@ -12,6 +12,7 @@
 \usepackage{listings}
 \usepackage{enumitem}
 \usepackage{enumerate}
+\usepackage{float}
 
 \pagestyle{fancy}
 \lhead{Soutenance 3}
@@ -462,17 +463,56 @@ Un système de particule est rattaché à un simple objet pouvant être instanci
 Avant de commencer à coder la classe de ce gestionnaire, j'ai pensé qu'il ressemblait fortement au gestionnaire audio. En effet, il fournira une méthode statique principale qui fera apparaitre un système, tout comme la méthode \emph{Audio.Play} qui fait jouer un son (se qui revient a instancier un objet avec un composant échantillon audio). Alors je me suis beaucoup inspiré de cette classe qui utilise notamment le design pattern du Singleton. Nous avons juste à mettre dans le menu une instance de ce gestionnaire puis lui dire de ne pas s'enlever lors du changement de scène. Ceci est très utile car nous pouvons à partir de n'importe quel fichier instancié des particules, sans avoir besoin de posséder en attribut le gestionnaire.
 Pour pouvoir regrouper les systèmes j'ai utilisé un tableau composé de paires GameObject et String, le premier composant est le système de particules (une Prefab) et le second est l'identifiant de celui ci. Pour remplir le tableau des systèmes je préfère utiliser une nomenclature standardisée (comme pour Audio), tout les identifiants sont les même que ceux des fichiers sans les extensions. Ils sont eux même nommés en snake case, c'est à dire en minuscule avec des underscores à la place des espaces. Je préfère utiliser une casse différente entre les fichiers source et les fichiers de ressource.
 
-%%% TODO : Prototype Spawn / Audio.Play
+
+\begin{lstlisting}
+// Audio.cs
+public static void Audio.Play(string id);
+
+// Particles.cs
+public static void Particles.Spawn(string id, Vector3 loc);
+\end{lstlisting}
 
 La méthode \emph{Particles.Spawn} prends en argument un identifiant qui est celui associé au système de particules ainsi qu'une position qui décrit l'endroit de création des particules. Une fois le tableau des échantillons rempli, nous avons juste à trouver le premier élément ayant cet identifiant. Après cela nous le clonons au bon emplacement et le tour est joué. Vous avez peut être remarqué que nous ne pouvons pas changer la rotation, cela est normal car les systèmes ont toujours la même rotation, orientés à la verticale et comme ils ont une forme de sphère allongée les autres axes de rotation n'influencent pas le système.
 
 \subsubsection{Types de particules}
 
 J'ai brièvement annoncé quels étaient les types de systèmes de particules, je vais un peu approfondir la description de chaque type.
+
+
 Commençons par les particules créées lors d'un changement de status. Elles sont très semblables, seulement leurs couleurs et les conditions de création sont changées. Chaque status a une couleur associée comme le violet pour les joueur infectés, le vert pour les joueurs guéris et rouge pour ceux condamnés. Comme énoncé précedement, c'est en fait un dégradé de couleur que j'associe aux particules et chaque dégradé a pour couleur principale, c'est à dire la plus saturée et la plus présente au cours de la vie de la particule, la couleur d'un status. Ceci est valable aussi pour les traînées de ces particules. Quant à la création de ces systèmes, j'ai voulu que tous les joueurs puissent voir qu'un changement de status à lieu, il a alors fallu mettre l'apparition des particules en réseau. Photon dispose d'une méthode \emph{Instantiate} qui permet de faire apparaitre un objet en réseau, je n'ai pas voulu utilisé cette méthode car il faut après détruire l'objet avec la méthode de Photon \emph{Destroy} or les particules s'enlèvent automatiquement. Alors je suis allé dans le setter PlayerState.Status qui est appelé lors d'un changement de status, peu importe le joueur, et en fonction du status, j'instancie le bon système grâce à son identifiant. Au lieu de faire un switch j'ai préféré utilisé un tableau où j'ai écrit chaque identifiant. Une énumération décrit seulement un type qui peu être considéré comme un entier non signé, j'ai alors pu convertir le status en entier pour qu'il décrive l'indice de l'identifiant. Cette méthode est de complexité constante en temps ce qui est toujours mieux qu'un switch mais je l'ai utilisée surtout pour rendre mon code plus joli et plus lisible car les optimisations sont négligeables vu le faible nombre de status (il y en a seulement 4). Nous n'avons plus qu'à instancier les particules à l'endroit du joueur ayant changé de status.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_healed.JPG}
+    \caption{Particules du status guéris}
+    \label{Particules du status guéris}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_infected.JPG}
+    \caption{Particules du status infécté}
+    \label{Particules du status infécté}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_revenge.JPG}
+    \caption{Particules du status condamné}
+    \label{Particules du status condamné}
+\end{figure}
+
 Les particules associées aux coups sont des points rouges. Au début la couleur était blanche mais nous ne les voyons pas assez donc je les ai passées au rouge. Pour ne pas les confondre avec celles de changement de status en condamné, j'ai désactivé les traînées. C'est plus agréable sans traînées car ces particules sont moins importantes que celles de changement de status et interviennent plus souvent. Pour les instancier, il fallait les placer à l'endroit du coup et les crées seulement lors d'un coup réussi. Heureusement, j'ai pu utiliser le rayon fournie par le moteur physique de Unity, j'ai récupéré le rayon servant à détecter la collision entre les joueurs et pu retrouver la position du coup comme je détecte au maximum un seul obstacle.
 
-%%% TODO : Images de chaque type
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_hit.JPG}
+    \caption{Particules de coups}
+    \label{Particules de coups}
+\end{figure}
+
 
 \subsubsection{Effets visuels supplémentaires}
 
@@ -545,7 +585,6 @@ Un autre aspect modifié est le label au dessus de la tête du joueur. Il y avai
 
 Dernièrement, d'autres modifications mineurs ont été ajoutés comme le changement de taille des boîtes de collisions des joueurs et des sérums et aussi la désactivation des attaques de joueurs quand ils sont assomés.
 
-% TODO : rm ?
 \subsubsection{Résultats}
 
 Pour conclure sur mes modifications apportées depuis la dernière soutenance, je trouve que le cahier des charges a été correctement respecté, aucun élément n'a été oublié ni incorrectement implémenté, au contraire, il y a eu même plusieurs ajouts supplémentaires.
