@@ -112,7 +112,21 @@ blablabla
 blablabla
 %%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Menu principal}
-blablabla
+
+Le menu est la première image qu'aperçoit le joueur du jeu. Il est important d'avoir un menu bien réalisé et qui donne envie de jouer à l'utilisateur. Chose promise, chose due, la couleur de fond a été remplacée par une video de présentation du jeu, et le nom du jeu est présent aussi, c'est tout de même mieux avec.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{MainMenu.png}
+	\caption{Menu principal}
+	\label{Menu principal}
+\end{figure}
+
+J'ai créé la vidéo avec l'asset d'animation d'Unity. Le défi a été d'enregistrer cette video puisque les animations faites de cette manière requièrent l'environnement sur la scène. En effet la caméra bouge ainsi d'elle même selon l'enregistrement effectué et l'utilisateur n'a aucun contrôle dessus. Cependant dans notre jeu le labyrinthe est généré sur une autre scène que le menu et seulement lorsqu'une partie est commencée. Or il est impossible de sauvegarder une animation en mode jeu dans Unity. Il a donc fallu créer toute l'animation en une seule fois et j'ai enregistré l'écran en la jouant. Après un léger recadrage, c'est un composant de lecture video qui affiche l'enregistrement en boucle.
+\newline
+Le menu permet donc de commencer une partie, d'acccéder aux paramètres ou de quitter le jeu. Ce serai bête de quitter maintenant alors qu'il vient d'être lancé, alors continuons.
+
+
 \newpage
 \subsubsection{Menus de connexion}
 %%%%%%%%%%%%%%%%%%%%%% Steve%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
