@@ -287,7 +287,6 @@ Pour travailler sur les musiques du jeu, j'ai utilisé un logiciel de partition 
 Ensuite, j'ai commencé à faire le thème du Menu Principal. Ici, je tenais à rendre l'atmosphère plutôt pesante et inquiétante. J'ai donc inséré en fond un piano qui répète la même note à la manière d'un tictac d'horloge, accompagné d'un trombone qui se charge de la basse. Enfin, j'ai également composé deux mélodies, l'une pour la victoire, la seconde pour la mort du joueur. Pour la première, j'ai cherché à faire quelque chose d'assez joyeux et léger, tandis que pour l'autre, j'ai utilisé des instruments beaucoup plus graves ainsi que des notes plus longues pour accentuer le sentiment de deuil. Tout comme pour la musique de la recherche de sérums, c'est Célian qui s'est chargé de remixer le tout, en modifiant notamment l'instrumentation. Actuellement, le jeu possède donc quelques musiques originales. Le problème, c'est que... Ce n'est pas dit que beaucoup de personnes apprécient. Mais au moins, il n'y aura pas de soucis avec les droits d'auteurs !
 
 %%%%%%%%%%%%%%%%%%%%%% Léandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \section{Réalisations}
@@ -296,6 +295,244 @@ blablabla
 blablabla
 \subsection{Nos peines}
 blablabla
+
+
+\newpage
+\subsection{Célian}
+%%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{Derniers ajouts}
+
+%%% TODO : ??? Globale ?
+
+Parlons à présent des éléments que j'ai apportés depuis la seconde soutenance.
+Etant principalement occupé par le gameplay du joueur lors des deux premières soutenances, j'ai pu me pencher vers les effets visuels et sonores pour finaliser le projet.
+
+\subsubsection{Effets audio}
+
+Lors de la seconde soutenance, j'avais introduit un méchanisme permettant de faire jouer des sons ainsi que des musiques comprenant des transitions. J'avais promis de rajouter quelques effets sonores car il y en avait trop peu - chose promise, chose due - à présent, j'ai ajouté quelques sons tels que le son de victoire ou de défaite, le son de la prise d'un bonus ou même celui qui intervient lors d'un changement de phase. Je ne me suis pas seulement contenté d'ajouté de simples effets sonores, en effet, certains ont été un peu plus complexes à implémenter. Par exemple, le son des coups des joueurs, je voulais qu'on ait toujours une réponse à une action or lors d'un coup nous pouvons rater le joueur, comme le joueur ne se voit pas lui même il ne peut pas voir si son coup a bien été pris en compte. De plus, il est illogique de jouer un son de coup réussi. J'ai alors cherché deux sons, un de coup réussi et un autre de coup raté, le bruit décrit un mouvement d'air. Il ne restait plus qu'à ajouter les conditions pour les lancer, je les ai mise dans la fonction Player.Attack lors du test de collision de joueur par rayons :
+
+% TMP // Autres événements
+\begin{lstlisting}
+si rayon touche joueur alors
+    // Autres evenements
+    jouer son "hit"
+sinon
+    jouer son "hit_failed"
+fin
+\end{lstlisting}
+
+Un autre effet sonore qui demande un peu plus de temps à intégrer est l'effet de prise de sérum. Je voulais que les joueurs sachent quand quelqu'un prenait un sérum pour les présser un peu plus et rajouter du suspens. Il fallait là aussi ajouter deux sons distincts, celui joué au joueur qui prends le sérum et celui joué aux autres joueurs. Pour ce faire, j'ai voulu éviter d'ajouter des événements réseau et j'ai alors repris l'événement \emph{PlayerNetwork.OnSerum} qui est levé et envoyé dès qu'un joueur prends un sérum. Heureusement, j'avais déjà fait en sorte qu'il soit possible d'indentifier quel joueur prends ce sérum, il ne reste plus qu'à tester si ce joueur est le joueur controllé par le client puis nous savons quel son jouer.
+
+\begin{lstlisting}
+si joueur = joueur local alors
+    jouer "serum"
+sinon
+    jouer "serum_long"
+fin
+\end{lstlisting}
+
+\subsubsection{Particules}
+
+Les effets audio sont primordiaux pour un jeu, il y a aussi d'autres effets que nous pouvons ajouter pour améliorer notre jeu tels que les particules.
+Les particules sont un ajout majeur de la dernière soutenance, elles permettent d'envoyer un signal de réponse aux actions du joueur. Elles donnent alors plus envie aux joueurs de s'attaquer entre eux ou de prendre des bonus.
+A présent, les particules ont lieu lors d'un changement de status ou lors d'un coup donné à un autre joueur. Elles sont assez simple, composées d'une image de point un peu flouté et parfois dispose de traînée colorée. Certaines propriétés sont animés comme la vitesse qui diminue plus la particule s'éloigne et aussi la couleur. La couleur est peu saturée au tout début, après 10 % de son temps de vie, une couleur plus saturée mais plus claire que la couleur principale apparait, elle laisse ensuite sa couleur principale qui s'assombrie en changeant un peu de teinte pour s'estomper.
+J'ai la chance d'avoir déjà utilisé les systèmes de particules, c'est pour cela que cet ajout, bien qu'être important, a été simple et rapide à intégrer.
+
+%%%% TODO : Img particules
+
+\subsubsection{Systèmes de particules}
+
+Pour manipuler des particules il faut obligatoirement passer par un système de particules.
+Il est très facile de comprendre pourquoi ceci est obligatoire. En effet, un système de particules est un objet qui va gérer les particules, c'est à dire qu'il va s'occuper de les faire apparaitre ou disparaitre et aussi va changer les propriétés des particules tel que leur couleur, taille, position... La raison pour laquelle un système est obligatoire est que les particules peuvent intéragir entre elles et ont besoin d'un "chef d'orchestre" pour changer leur propriétés.
+Unity dispose d'un moteur de particules très poussé et complet, il n'est pas évident à utiliser au début mais en s'habituant tout cela devient très vite simple. Il y a plusieurs catégories, vu que nos particules sont simples nous allons utiliser seulement les principales catégories.
+
+\emph{Lors de mes explications, je ne vais pas préciser les valeurs des propriétés car il y a plusieurs systèmes de particules donc différentes valeurs}
+
+La catégorie principale permet d'ajuster la durée de vie ainsi que la vitesse de la particule, pour que le système soit plus vivant je préfère utiliser des valeurs aléatoires entre certaines valeurs, cela évite notamment que les particules disparaissent d'un coup.
+La seconde catégorie permet de modifier les propriétés d'émission de particules, nous ne voulons pas ici qu'elles apparaissent en continu mais qu'elles apparaissent d'un coup donc j'utilise le tableau \emph{Bursts} avec une entrée exécutée dès l'apparition du système.
+La prochaîne catégorie sert à modifier la forme d'émission. Les particules vont naîtrent à l'intérieur de cette forme puis vont être expulsés en fonction des normales associées à la forme. J'ai utilisé uniquement des sphères que j'ai étirées pour avoir plus de particules sur l'axe horizontale que verticale car nous ne regardons pas souvent en haut ou en bas donc cela permet de gérer moins de particules (elles peuvent être compliquées à gérer pour les ordinateurs peu puissants).
+Deux autres catégories vont permettre de modifier la vélocitée (c'est à dire la vitesse) ou la couleur en fonction du temps, on fournit des courbes qui vont faire évoluer des valeurs entre 0 et 1, la couleur est représentée par un dégradé, à gauche est la couleur quand la courbe donne une valeur proche de 0 et à droite quand la valeur est 1.
+Dernièrement, je vais parler de la catégorie se chargeant des traînées. J'ai fait en sorte qu'une certaine proportion des particules possède une traînée pour rendre plus joli. J'ai appliqué ici aussi un dégradé de couleur et modifié la largeur de traînée. Une autre option qui permet de rendre plus agréable l'effet est celle qui change le temps de vie en fonction de la durée de vie de la particule liée à cette traînée. Cela permet d'avoir une traînée non statique, la fin de la traînée se rapproche de plus en plus du centre de la particule.
+
+%%% TODO : img inspecteur
+
+\subsubsection{Gestionaire de particules}
+
+Maintenant que les systèmes de particules ont été créés, il va falloir s'intéresser à comment les gérer, c'est à dire comment les instanciés et détruire.
+Un système de particule est rattaché à un simple objet pouvant être instancié, déplacé et même détruit. En pratique, le système de particules se détruit lui même quand toutes les particules ont été instanciées.
+Avant de commencer à coder la classe de ce gestionnaire, j'ai pensé qu'il ressemblait fortement au gestionnaire audio. En effet, il fournira une méthode statique principale qui fera apparaitre un système, tout comme la méthode \emph{Audio.Play} qui fait jouer un son (se qui revient a instancier un objet avec un composant échantillon audio). Alors je me suis beaucoup inspiré de cette classe qui utilise notamment le design pattern du Singleton. Nous avons juste à mettre dans le menu une instance de ce gestionnaire puis lui dire de ne pas s'enlever lors du changement de scène. Ceci est très utile car nous pouvons à partir de n'importe quel fichier instancié des particules, sans avoir besoin de posséder en attribut le gestionnaire.
+Pour pouvoir regrouper les systèmes j'ai utilisé un tableau composé de paires GameObject et String, le premier composant est le système de particules (une Prefab) et le second est l'identifiant de celui ci. Pour remplir le tableau des systèmes je préfère utiliser une nomenclature standardisée (comme pour Audio), tout les identifiants sont les même que ceux des fichiers sans les extensions. Ils sont eux même nommés en snake case, c'est à dire en minuscule avec des underscores à la place des espaces. Je préfère utiliser une casse différente entre les fichiers source et les fichiers de ressource.
+
+%%% TODO : Prototype Spawn / Audio.Play
+
+La méthode \emph{Particles.Spawn} prends en argument un identifiant qui est celui associé au système de particules ainsi qu'une position qui décrit l'endroit de création des particules. Une fois le tableau des échantillons rempli, nous avons juste à trouver le premier élément ayant cet identifiant. Après cela nous le clonons au bon emplacement et le tour est joué. Vous avez peut être remarqué que nous ne pouvons pas changer la rotation, cela est normal car les systèmes ont toujours la même rotation, orientés à la verticale et comme ils ont une forme de sphère allongée les autres axes de rotation n'influencent pas le système.
+
+\subsubsection{Types de particules}
+
+J'ai brièvement annoncé quels étaient les types de systèmes de particules, je vais un peu approfondir la description de chaque type.
+Commençons par les particules créées lors d'un changement de status. Elles sont très semblables, seulement leurs couleurs et les conditions de création sont changées. Chaque status a une couleur associée comme le violet pour les joueur infectés, le vert pour les joueurs guéris et rouge pour ceux condamnés. Comme énoncé précedement, c'est en fait un dégradé de couleur que j'associe aux particules et chaque dégradé a pour couleur principale, c'est à dire la plus saturée et la plus présente au cours de la vie de la particule, la couleur d'un status. Ceci est valable aussi pour les traînées de ces particules. Quant à la création de ces systèmes, j'ai voulu que tous les joueurs puissent voir qu'un changement de status à lieu, il a alors fallu mettre l'apparition des particules en réseau. Photon dispose d'une méthode \emph{Instantiate} qui permet de faire apparaitre un objet en réseau, je n'ai pas voulu utilisé cette méthode car il faut après détruire l'objet avec la méthode de Photon \emph{Destroy} or les particules s'enlèvent automatiquement. Alors je suis allé dans le setter PlayerState.Status qui est appelé lors d'un changement de status, peu importe le joueur, et en fonction du status, j'instancie le bon système grâce à son identifiant. Au lieu de faire un switch j'ai préféré utilisé un tableau où j'ai écrit chaque identifiant. Une énumération décrit seulement un type qui peu être considéré comme un entier non signé, j'ai alors pu convertir le status en entier pour qu'il décrive l'indice de l'identifiant. Cette méthode est de complexité constante en temps ce qui est toujours mieux qu'un switch mais je l'ai utilisée surtout pour rendre mon code plus joli et plus lisible car les optimisations sont négligeables vu le faible nombre de status (il y en a seulement 4). Nous n'avons plus qu'à instancier les particules à l'endroit du joueur ayant changé de status.
+Les particules associées aux coups sont des points rouges. Au début la couleur était blanche mais nous ne les voyons pas assez donc je les ai passées au rouge. Pour ne pas les confondre avec celles de changement de status en condamné, j'ai désactivé les traînées. C'est plus agréable sans traînées car ces particules sont moins importantes que celles de changement de status et interviennent plus souvent. Pour les instancier, il fallait les placer à l'endroit du coup et les crées seulement lors d'un coup réussi. Heureusement, j'ai pu utiliser le rayon fournie par le moteur physique de Unity, j'ai récupéré le rayon servant à détecter la collision entre les joueurs et pu retrouver la position du coup comme je détecte au maximum un seul obstacle.
+
+%%% TODO : Images de chaque type
+
+\subsubsection{Effets visuels supplémentaires}
+
+Je vais à présent parler du contenu qui m'a fait le plus plaisir à implémenter du projet, le post traitement d'image. J'entends par ceci l'effet vignettage rouge animé que nous voyons quand nous sommes condamné. Cet effet immerge le joueur dans la peau du personnage et permet d'augmenter le sentiment de panique que fait face un joueur encore infecté en seconde phase. Cet effet visuel a lieu seulement sur l'image générée par la caméra, les différents éléments d'interface utilisateur ne sont alors pas affectés par celui ci.
+Pour implémenter ceci, j'ai utilisé les shaders de Unity. Cet effet était un peu nouveau pour moi car je n'avais jamais utilisé ces techniques dans Unity même si j'avais déjà utilisé Open GL et ses shaders donc je savais à peu près comment m'y prendre. Le langage des shaders quant à lui est proche du C que j'utilise régulièrement. Un shader est un programme exécuté par le GPU et permet en général de modifier les propriétés de chaque sommet des triangles dessinés ou de modifier les pixels qui les composent. Je ne vais utilisé seulement les fragment shaders ici, c'est à dire les shaders de modification de pixels.
+Avant de coder quoi que ce soit, il faut bien évidement penser à ce que l'on veut avoir comme résultat.
+Nous voulons un dégradé radial partant du centre et s'estompant aux coins de l'écran. La couleur du dégradé est rouge, j'ai pensé à ajouter à la couche d'un pixel déjà présent une certaine dose de rouge au lieu de remplacer cette valeur par une nouvelle. Ce dégradé ne s'étends pas exactement du centre de l'écran à ces coins, j'ai voulu pouvoir régler à partir de quelle proportion de l'écran celui ci commence, et aussi quand il se fini afin de pouvoir ajouter une animation faisant penser à un battement de coeur. Dernièrement, je voulais une valeur de force de l'effet, elle est comprise entre 0 et 1 et permet d'ajuster la transparance du dégradé.
+Après avoir pensé au résultat que nous voulons obtenir, il faut penser à comment implémenter l'effet. J'utilise de simples formules d'algébre ou de géométrie. De plus, chaque pixel envoyé au programme a une position en coordonées UV, donc chaque valeur est entre 0 et 1. Ceci est très pratique pour trouver le centre de l'écran qui est juste à la position (0.5, 0.5).
+Commençons par trouver un vecteur partant du pixel à modifier jusqu'au centre de l'écran.
+
+% TMP // i est le pixel modifié
+\begin{lstlisting}
+// i est le pixel modifie
+float2 position = (i.uv - .5) * 2;
+\end{lstlisting}
+
+Cette variable va servir à trouver la distance au centre du pixel. Seulement, je voudrais une position normalisée, c'est à dire comprise entre 0 (le point est au centre) et 1 (le point est sur un des quatre coins). Comme nous sommes en coordonnées UV, une diagonale possède une longueur de
+%%% TODO : Math symbol + remettre sur ligne
+sqrt(2).
+Nous pouvons mettre à l'echelle le vecteur position en doublant sa longueur pour avoir une distance maximale de
+%%% TODO : Math symbol + remettre sur ligne
+sqrt(2)
+puis diviser par sqrt(2) le résultat.
+
+%%% TODO : Script
+\begin{lstlisting}
+float dist = sqrt(position.x * position.x + position.y * position.y) / 1.41f;
+\end{lstlisting}
+
+Il reste une dernière transformation à appliquer pour prendre en compte l'animation.
+J'ai ajouté alors deux constantes \emph{HEART\_POS} et \emph{HEART\_STRENGTH} et une variable \emph{\_AnimRatio} que nous mettrons par la suite à jour dans notre script.
+On obtient ainsi cette ligne de code :
+
+\begin{lstlisting}
+float dist = (sqrt(position.x * position.x + position.y * position.y) / 1.41f - _AnimRatio * HEART_POS) * (1.f - _AnimRatio * HEART_STRENGTH);
+\end{lstlisting}
+
+Ajoutons maintenant une fonction qui change la valeur entre 0 et 1 en fonction des constantes \emph{MAX\_DIST} et \emph{MIN\_DIST} :
+
+\begin{lstlisting}
+float map(float dist)
+{
+    float range = MAX_DIST - MIN_DIST;
+
+    dist -= MIN_DIST;
+    dist /= range;
+
+    return clamp(dist, 0, 1);
+}
+\end{lstlisting}
+
+Maintenant il ne reste plus qu'à modifier la couleur du pixel :
+
+\begin{lstlisting}
+col.r += map(dist) * STRENGTH;
+\end{lstlisting}
+
+Notre shader est presque opérationnel, il faut l'ajouter sur la caméra en créant un matériau et donnant ce shader à celui ci puis intégrer l'animation. L'animation est très simple, c'est juste une sinusoïde qui est comprise entre 0 et 1, la période de celle ci peut être modifiée à partir de Unity. Pour l'implémenter, nous avons besoin juste d'une variable de temps puis nous calculons la valeur que prends cette sinusoïde en cette abscisse puis l'envoyons au GPU :
+
+% TMP // Dans la méthode LateUpdate de la caméra (appelée après une mise à jour du jeu)
+\begin{lstlisting}
+// Dans la methode LateUpdate de la camera (appelee apres une mise a jour du jeu)
+time += Time.deltaTime * heartSpeed;
+postFx.SetFloat("_AnimRatio", .5f + Mathf.Sin(time) * .5f);
+\end{lstlisting}
+
+En changeant un peu les constantes nous arrivons à un résultat très satisfaisant.
+
+%%% TODO : Schema ?
+
+\subsubsection{Finalisation du jeu}
+
+Après les divers effets ajoutés nous avons pu tester et apprécié notre jeu. Il manquait quelques finitions à apporter.
+Nous avons premièrement remarqué qu'un joueur peut être désavantagé s'il possède une mauvaise connexion ou que son jeu mets du temps à charger. En effet, les joueurs ayant de meilleurs connexions peuvent commencer à chercher les sérums en avance. Pour régler ce problème j'ai désactivé les mises à jour des joueurs dans certaines conditions comme au début de la partie, à la fin et en pause, à noter que les deux derniers sont purement esthétiques. Désactiver la mise à jour du joueur comprends les physiques vu que les joueurs ne répondent pas aux physiques de Unity mais à celles j'avais créées avant la première soutenance et comprends également toutes les actions et mouvements que font les joueurs car les entrées sont ignorées (seulement celles liées au jeu ne le sont pas comme la pause).
+Un autre aspect modifié est le label au dessus de la tête du joueur. Il y avait marqué player or nous avons à présent implémenté des noms personalisés. Pour changé le nom il suffit de récupérer l'identifiant du joueur instanciant l'objet Player puis changer la propriété text du label.
+
+Dernièrement, d'autres modifications mineurs ont été ajoutés comme le changement de taille des boîtes de collisions des joueurs et des sérums et aussi la désactivation des attaques de joueurs quand ils sont assomés.
+
+% TODO : rm ?
+\subsubsection{Conclusion}
+
+Pour conclure sur mes modifications apportées depuis la dernière soutenance, je trouve que le cahier des charges a été correctement respecté, aucun élément n'a été oublié ni incorrectement implémenté, au contraire, il y a eu même plusieurs ajouts supplémentaires.
+
+%%% TODO : ??? Conclu globale ?
+
+\subsection{Sources et remerciements}
+
+Beaucoup d'éléments du jeu ont été conçus par nos soins, certains d'entre eux ont été créés par d'autres personnes que nous remercions car sans elles notre jeu ne serait pas aussi bien.
+
+\begin{itemize}
+    \item Animations : Basic Motion Pack (Assets Store) par Kevin Iglesias
+    %%% TODO : Modele
+    \item Réseau : Photon
+    \item Effets sonores : Tous les sons ont été trouvés sur freesound.org
+\end{itemize}
+    
+%%% TODO : Reformuler
+Nous tenons également à remercier toutes les personnes ayant contribuées aux outils gratuits ou open source que nous avons utilisés.
+Et enfin, un grand merci aux testeurs et examinateurs du jeu.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 \section{Conclusion}
 
