@@ -15,7 +15,7 @@
 \usepackage{float}
 
 \pagestyle{fancy}
-\lhead{Soutenance 3}
+\lhead{Soutenance finale}
 \chead{Deadly Science}
 \rhead{Custos Carceris}
 
@@ -152,10 +152,40 @@ Le menu est la première image qu'aperçoit le joueur du jeu. Il est important d
 	\label{Menu principal}
 \end{figure}
 
-J'ai créé la vidéo avec l'asset d'animation d'Unity. Le défi a été d'enregistrer cette video puisque les animations faites de cette manière requièrent l'environnement sur la scène. En effet la caméra bouge ainsi d'elle même selon l'enregistrement effectué et l'utilisateur n'a aucun contrôle dessus. Cependant dans notre jeu le labyrinthe est généré sur une autre scène que le menu et seulement lorsqu'une partie est commencée. Or il est impossible de sauvegarder une animation en mode jeu dans Unity. Il a donc fallu créer toute l'animation en une seule fois et j'ai enregistré l'écran en la jouant. Après un léger recadrage, c'est un composant de lecture video qui affiche l'enregistrement en boucle.
+\paragraph{Accueil}
+J'ai créé la vidéo avec l'asset d'animation d'Unity. Le défi a été d'enregistrer cette video puisque les animations faites de cette manière requièrent l'environnement sur la scène. En effet la caméra bouge ainsi d'elle même selon l'enregistrement effectué et l'utilisateur n'a aucun contrôle dessus. Cependant dans notre jeu le labyrinthe est généré sur une autre scène que le menu et seulement lorsqu'une partie est commencée. Or il est impossible de sauvegarder une animation en mode jeu dans Unity. Il a donc fallu créer toute l'animation en une seule fois et j'ai enregistré l'écran en la jouant. Après un léger recadrage, c'est un composant de lecture video qui affiche l'enregistrement en boucle dès le lancement du jeu.
 \newline
-Le menu permet donc de commencer une partie, d'acccéder aux paramètres ou de quitter le jeu. Ce serai bête de quitter maintenant alors qu'il vient d'être lancé, alors continuons.
+Le menu permet donc de commencer une partie, d'acccéder aux paramètres ou de quitter le jeu. Il serai triste de quitter maintenant alors qu'il vient d'être lancé, alors continuons.
 
+\paragraph{}
+Vous pouvez dès à présent commencer une partie dans l'univers de Deadly Science, avec vos amis, ou en joignant une salle créée par quelqu'un d'autre. Mais si les paramètres vous intriguent, allez donc y jeter un oeil.
+
+\paragraph{Paramètres}
+(Menu principal)
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Parametres.png}
+	\caption{Paramètres}
+	\label{Paramètres}
+\end{figure}
+
+Seul le canvas change pour accéder aux pramètres, ce qui permet de garder la video en fond sans interruption.
+Vous trouverez centré en bas de paramètres, le langage du jeu, qui permet de choisir entre Français ou Anglais. Le changement est effectif immédiatement et sauvegardé pour les prochaines scènes et arties. Ce paramètre a été réalisé à l'aide d'un asset de l'asset store de Unity nommé Language Localization. Après quelques modifiacations permettant de l'apliquer aux zones de texte Text Mesh Pro, il fontionne parfaitement bien. Il permet de créer des dictionnaires
+\subparagraph{}
+Sur la gauche de ce menu se trouve le gestionnaire de touche du jeu. A côté de chaque action se trouve un bouton contenant la touche associée à cette action. Pour la changer, il suffit de cliquer sur le bouton et la première touche enfoncée sur le clavier est donc attribuée à cette action. Cela se fait simplement en analysant chaque touche du clavier une par une et en trouvant celle qui est enfoncée. Un script permettait auparavant d'instancier chaque action et son bouton associé mais cette utilisation aurai rendu compliqué le changement de langue au chargement du jeu. En effet les touches sont stockées à l'aide d'un dictionnaire, changer les noms des entrées réinitialiserai le dictionnaire, or le joueur n'a pas envie de refaire tous ses paramètres à cause d'un changement de langue.
+
+\subparagraph{}
+A droite, vous pouvez trouver une zone de texte qui correspond à votre pseudo en jeu, transmis aux autre joueurs de la partie. Il est également possible de prende un pseudo aléatoire qui est constitué du mot "sujet" et d'un nombre entre 1000 et 9999. Nous avons opté pour cela car rappelons-le nous sommes dans un laboratoire expérimental. De plus le pseudo aléatoire est adapté au langage puisque "sujet" est remplacé par "subject" en Anglais.
+
+\subparagraph{}
+Finalement dans la partie en bas à droite de trouvent trois slider permettant de régler respectivement le volume de la musique, des effets sonores et la sensibilité de la souris.
+
+\begin{itemize}
+	\item{Le volume de la musique} correspond bien entendu à la musique du jeu qui permet d'approfondir l'expérience du joueur et contribue à l'ambiance lugubre du jeu. Il prend une valeur entre 0 et 1, ce qui correspond donc à couper totalement la musique ou mettre le volume au maximum.
+	\item{Le volume des effets sonores} correspond à tous les autre sons du jeu, instantanés et courts, tels que les bouton ou les coups porté entre les joueurs. Il est également compris entre 0 et 1, correspondant à la même interprétation: aucun son, ou le maximum.
+	\item{La sensibilité de la souris} permet, sans grosse surprise de régler la vitesse de la souris dans le jeu, qui est associé à la rotation du personnage. Elle a une plage de valeur plus petite, entre 0.1 et 0.7. Le minimum est à 0.1 car je ne voulais pas que les joueurs puissent empêcher la rotation du personnage et de la caméra, et le maximum est à 0.7 car au delà, le jeu devenait injouable car la caméra était incontrolable. Le joueur rentrait alors dans tout les murs et ne pouvait qu'à peine changer de salles.
+\end{itemize}
 
 \newpage
 \subsubsection{Menus de connexion}
@@ -231,7 +261,7 @@ Quand tous les sérums ont été consommés, une nouvelle phase commence. Il ne 
 Ce jeu est vue de la première personne, le joueur a alors été pensé pour bouger assez rapidement et fluidement.
 
 Une fois que vous êtes dans le labyrinthe,
-Pour controller le joueur, il suffit d'appuyer sur les touches WASD pour les mouvements horizontaux ou espace pour sauter, concernant la caméra, la souris est utilisée. Nous pouvons également attaquer d'autres joueurs en appuyant sur le bouton gauche de la souris et en ayant un joueur devant nous.
+Pour controller le joueur, il suffit d'appuyer sur les touches que vous avez enregistré (ou WASD par défaut) pour les mouvements horizontaux ou espace pour sauter, concernant la caméra, la souris est utilisée. Nous pouvons également attaquer d'autres joueurs en appuyant sur le bouton gauche de la souris et en ayant un joueur devant nous.
 
 %%% TODO : vvv Reformuler / Déplacer ?
 
@@ -323,7 +353,26 @@ Le rendu est beaucoup plus réaliste que ce que nous avions précédemment. Cela
 \subsection{Réseau}
 blablabla
 \subsection{Site Web}
-blablabla
+Le site web se présente en 5 pages différentes:
+\begin{itemize}
+	\item{} L'accueil ( ou projet) qui présente le jeu.
+	\item{} Le groupe qui constitue la présentation de chacun
+	\item{} La galerie, collection de photos du jeu
+	\item{} Le codex, qui rasssemble les objets du jeu
+	\item{} La page de téléchargement
+\end{itemize}
+L'image de fond est identique sur toute les pages et montre une salle du labyrinthe.
+
+\paragraph{L'accueil}présente Deadly Science, son origine et le déroulement d'une partie. Ce premier paragraphe est suivi de l'évolution du jeu entre les soutenances depuis la naissance du projet à cette dernière présentation.
+
+\paragraph{Le groupe}présente chaque membre du groupe, accompagné de sa magnifique poto du CRI en médaillon.
+
+\paragraph{La galerie}regroupe des photos de chaque salle utilisées dans le labyrinthe et développés par Léandre et moi. Vous trouverez en dessous des photos finales celles des anciennes versions du jeu.
+
+\paragraph{Le codex}présente les objets de Deadly Science connus du public en trois catégories: ceux qui vous aident dans votre mission, ceux qui vous ralentisent dans votre mission et ceux qui... On ne sait pas trop à quoi ils servent en fait. Il seront plus amplement expliqués par la suite (ou vous pouvez allez voir le site).
+
+\paragraph{L'onglet de téléchargement}permet en accord avec toutes les probabilités, de télécharger le jeu, ainsi que les différents documents (cahier des charges et rapports) réalisé pendant la durée du projet.
+
 %%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Sons et musiques}
 blablabla
