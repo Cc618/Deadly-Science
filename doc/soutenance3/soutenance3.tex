@@ -310,17 +310,18 @@ Le jeu est un jeu en réseau, le joueur a été implémenté en considérant qu'
 C'est pourquoi j'ai créé plusieurs modules qui peuvent s'enlever sous diverses conditions.
 Voici les principaux modules :
 
-%%% TODO : Liste
-- PlayerNetwork : Permet de gérer les événements liés au réseau et également
+\begin{itemize}
+	\item  PlayerNetwork : Permet de gérer les événements liés au réseau et également
 mets en place ou retire toutes les autres classes du joueur. Ce script est
 toujours présent sur un joueur.
-- Player : Classe permettant de contrôler le joueur. Utilisée quand le joueur
+	\item  Player : Classe permettant de contrôler le joueur. Utilisée quand le joueur
 est contrôlé par le client.
-- PlayerState : Classe gérant le statut du joueur. La classe est toujours
+	\item  PlayerState : Classe gérant le statut du joueur. La classe est toujours
 présente, ses attributs se font modifier seulement par le réseau.
-- PlayerMaster : Dispose de fonctions gérant le jeu et les phases. Ce module
+	\item PlayerMaster : Dispose de fonctions gérant le jeu et les phases. Ce module
 est présent si le joueur est contrôlé par le client ainsi que le client est le
 maître de jeu.
+\end{itemize}
 
 Il est important que chaque module d'un joueur soit coordonné avec les autres. Par exemple, si le réseau possède un problème et qu'un joueur se connecte en plusieurs secondes, il faut l'attendre, ensuite préparer le jeu (ce qui comprend la génération du labyrinthe) puis enfin lancer la première phase. PlayerNetwork est ainsi le chef d'orchestre qui va enlever certains modules au début du jeu. Il se charge également d'envoyer et de recevoir les évenements liés au réseau.
 
@@ -416,6 +417,8 @@ Pour manipuler des particules il faut obligatoirement passer par un système de 
 Il est très facile de comprendre pourquoi ceci est obligatoire. En effet, un système de particules est un objet qui va gérer les particules, c'est à dire qu'il va s'occuper de les faire apparaitre ou disparaitre et aussi va changer les propriétés des particules tel que leur couleur, taille, position... La raison pour laquelle un système est obligatoire est que les particules peuvent intéragir entre elles et ont besoin d'un "chef d'orchestre" pour changer leur propriétés.
 Unity dispose d'un moteur de particules très poussé et complet, il n'est pas évident à utiliser au début mais en s'habituant tout cela devient très vite simple. Il y a plusieurs catégories, vu que nos particules sont simples nous allons utiliser seulement les principales catégories.
 
+
+%%% TODO : More space
 \emph{Lors de mes explications, je ne vais pas préciser les valeurs des propriétés car il y a plusieurs systèmes de particules donc différentes valeurs}
 
 La catégorie principale permet d'ajuster la durée de vie ainsi que la vitesse de la particule, pour que le système soit plus vivant je préfère utiliser des valeurs aléatoires entre certaines valeurs, cela évite notamment que les particules disparaissent d'un coup.
