@@ -461,6 +461,22 @@ Pour travailler sur les musiques du jeu, j'ai utilisé un logiciel de partition 
 \paragraph{Autres thèmes}
 Ensuite, j'ai commencé à faire le thème du Menu Principal. Ici, je tenais à rendre l'atmosphère plutôt pesante et inquiétante. J'ai donc inséré en fond un piano qui répète la même note à la manière d'un tictac d'horloge, accompagné d'un trombone qui se charge de la basse. Enfin, j'ai également composé deux mélodies, l'une pour la victoire, la seconde pour la mort du joueur. Pour la première, j'ai cherché à faire quelque chose d'assez joyeux et léger, tandis que pour l'autre, j'ai utilisé des instruments beaucoup plus graves ainsi que des notes plus longues pour accentuer le sentiment de deuil. Tout comme pour la musique de la recherche de sérums, c'est Célian qui s'est chargé de remixer le tout, en modifiant notamment l'instrumentation. Actuellement, le jeu possède donc quelques musiques originales. Le problème, c'est que... Ce n'est pas dit que beaucoup de personnes apprécient. Mais au moins, il n'y aura pas de soucis avec les droits d'auteurs !
 
+\subsection{Effets visuels}
+
+En plus d'effets audio, Deadly Science possède des effets visuels supplémentaires, ils accompagnent les actions des joueurs au cours du jeu.
+
+\subsubsection{Particules}
+
+Les particules sont présentes sous plusieurs formes.
+Par exemple, lors d'un changement de status, nous pouvons voir qu'un nuage de particules de la couleur du status jaillit. Il possède plusieurs points colorés, certains ont aussi des traînées de la même couleur.
+Elles sont également présentes lors d'un coup donné à un autre joueur.
+
+\subsubsection{Post traitement}
+
+Le joueur condamné en seconde phase a une lourde responsabilité, c'est pour cela qu'un effet de vignettage rouge fait apparition à l'écran.
+Cet effet oppressant est animé à la façon d'un battement de coeur et dure jusqu'à la fin de la partie.
+
+
 %%%%%%%%%%%%%%%%%%%%%% Léandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
@@ -626,6 +642,7 @@ Les musiques et effets sont des listes regroupant à la fois un identifiant et u
 Pour faire cela, j'ai utilisé un Animator, ce composant permet de gérer plusieurs animations sur un objet. Il y a deux animations : celle d'entrée et celle de sortie. J'ai alors créé un autre script qui combine deux volumes, celui fournit par l'animation et celui des paramètres, comme leurs valeurs sont entre 0 et 1 il suffit de les multipliés entre elles pour obtenir le bon volume. Pour que les transitions se jouent au bon moment nous déclanchons un trigger dans l'animator, c'est juste une fonction qui déclanche une nouvelle animation. Ils se déclanchent au lancement de la musique et lors d'une transition. De plus, ces deux animation durent le même temps pour que ça soit plus agréable.
 
 
+\newpage
 \subsubsection{Derniers ajouts}
 
 Parlons à présent des éléments que j'ai apportés depuis la seconde soutenance.
@@ -655,6 +672,7 @@ sinon
 fin
 \end{lstlisting}
 
+\newpage
 \subsubsection{Particules}
 
 Les effets audio sont primordiaux pour un jeu, il y a aussi d'autres effets que nous pouvons ajouter pour améliorer notre jeu tels que les particules.
@@ -664,7 +682,7 @@ J'ai la chance d'avoir déjà utilisé les systèmes de particules, c'est pour c
 
 %%%% TODO : Img particules
 
-\subsubsection{Systèmes de particules}
+\paragraph{Systèmes de particules}
 
 Pour manipuler des particules il faut obligatoirement passer par un système de particules.
 Il est très facile de comprendre pourquoi ceci est obligatoire. En effet, un système de particules est un objet qui va gérer les particules, c'est à dire qu'il va s'occuper de les faire apparaitre ou disparaitre et aussi va changer les propriétés des particules tel que leur couleur, taille, position... La raison pour laquelle un système est obligatoire est que les particules peuvent intéragir entre elles et ont besoin d'un "chef d'orchestre" pour changer leur propriétés.
@@ -707,9 +725,7 @@ Deux autres catégories vont permettre de modifier la vélocitée (c'est à dire
 
 Dernièrement, je vais parler de la catégorie se chargeant des traînées. J'ai fait en sorte qu'une certaine proportion des particules possède une traînée pour rendre plus joli. J'ai appliqué ici aussi un dégradé de couleur et modifié la largeur de traînée. Une autre option qui permet de rendre plus agréable l'effet est celle qui change le temps de vie en fonction de la durée de vie de la particule liée à cette traînée. Cela permet d'avoir une traînée non statique, la fin de la traînée se rapproche de plus en plus du centre de la particule.
 
-%%% TODO : img inspecteur
-
-\subsubsection{Gestionaire de particules}
+\paragraph{Gestionaire de particules}
 
 Maintenant que les systèmes de particules ont été créés, il va falloir s'intéresser à comment les gérer, c'est à dire comment les instanciés et détruire.
 Un système de particule est rattaché à un simple objet pouvant être instancié, déplacé et même détruit. En pratique, le système de particules se détruit lui même quand toutes les particules ont été instanciées.
@@ -727,7 +743,7 @@ public static void Particles.Spawn(string id, Vector3 loc);
 
 La méthode \emph{Particles.Spawn} prends en argument un identifiant qui est celui associé au système de particules ainsi qu'une position qui décrit l'endroit de création des particules. Une fois le tableau des échantillons rempli, nous avons juste à trouver le premier élément ayant cet identifiant. Après cela nous le clonons au bon emplacement et le tour est joué. Vous avez peut être remarqué que nous ne pouvons pas changer la rotation, cela est normal car les systèmes ont toujours la même rotation, orientés à la verticale et comme ils ont une forme de sphère allongée les autres axes de rotation n'influencent pas le système.
 
-\subsubsection{Types de particules}
+\paragraph{Types de particules}
 
 J'ai brièvement annoncé quels étaient les types de systèmes de particules, je vais un peu approfondir la description de chaque type.
 
