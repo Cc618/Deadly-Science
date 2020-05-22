@@ -202,9 +202,7 @@ blablabla
 
 %%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-\subsubsection{Principe du jeu}
+\subsection{Principe du jeu}
 
 Notre jeu possède deux phases.
 Premièrement, les joueurs sont des personnes ayant été infectées par une maladie. Ils doivent alors récupérer les échantillons de sérum ayant été dissimulés dans les souterrains du laboratoire qui étudie la maladie. Il n'y a malheureusement pas assez de sérum, une personne restera infectée. Pour éviter de le rester, vous devez chercher le plus vite possible un sérum dans le dédale.
@@ -212,7 +210,7 @@ Quand tous les sérums ont été consommés, une nouvelle phase commence. Il ne 
 
 %%% TODO : Parler gen labyrinthe
 
-\subsubsection{Gameplay}
+\subsection{Gameplay}
 
 %%% TODO : vvv Reformuler ?
 Ce jeu est vue de la première personne, le joueur a alors été pensé pour bouger assez rapidement et fluidement.
@@ -225,13 +223,11 @@ Pour controller le joueur, il suffit d'appuyer sur les touches WASD pour les mou
 Chaque joueur possède son nom au dessus de sa tête, il sert d'une part à connaître quel joueur nous avons en face de nous mais aussi sert à indiquer le status du joueur par sa couleur qui est la même que celle de son status.
 Pour connaître son propre status, nous pouvons regarder en haut à gauche de l'écran, notre nom est affiché avec la même couleur que celle de notre status.
 
-%%% TODO : Settings changer keys
-
-\subsubsection{Endurance}
+\subsection{Endurance}
 
 Pour que le jeu soit plus intéressant, j'ai pensé à intégrer une jauge d'endurance.
 
-L'endurance est semblable à une barre de vie dans la plupart des jeux, contrairement à une barre de vie, une fois vide, elle ne tue pas le joueur mais le rend faible. Ainsi, le joueur se déplace très lentement (10% de sa vitesse normale) et ne peut plus sauter. Il ne peut pas non plus attaquer ni reprendre de coup pour éviter qu'un joueur le bloque.
+L'endurance est semblable à une barre de vie dans la plupart des jeux, contrairement à une barre de vie, une fois vide, elle ne tue pas le joueur mais le rend faible. Ainsi, le joueur se déplace très lentement (10\% de sa vitesse normale) et ne peut plus sauter. Il ne peut pas non plus attaquer ni reprendre de coup pour éviter qu'un joueur le bloque.
 
 Cette jauge se remplie petit à petit et une fois le joueur asssomé, il doit attendre que cette barre d'endurance se remplisse totalement avant de retrouver ses abilités.
 
@@ -242,46 +238,7 @@ Pour qu'un joueur puisse savoir si un autre joueur est assomé, une barre d'endu
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsubsection{Objets}
+\subsection{Objets}
 \paragraph{Génération d'Objets}
 Etant donné que nous étions en avance sur nos prévisions de progression dans le projet, nous nous étions dis lors de la seconde soutenance que nous aurions peut-être le temps de rajouter quelques éléments qui ne figuraient pas dans le cahier des charges avant la dernière soutenance. C'est effectivement ce qu'il s'est passé. Nous avons donc décidé d'implémenter un système d'Objets récupérables au sein des laboratoires, afin d'aider les Joueurs ou, au contraire, de les gêner. Pour cela, j'ai tout d'abord réfléchi à l'implémentation des Objets. Un Objet doit remplir plusieurs critères. Premièrement, il ne doit jamais apparaître à l'intérieur d'un Sérum. Ensuite, il ne doit pas y avoir d'Objets à chaque salle du Labyrinthe. Pour ces deux raisons, nous ne pouvions pas mettre au point un système d'apparition d'Objets à intervalle de temps réguliers, car dans le cas où les Joueurs auraient peur des éventuels effets négatifs, le nombre d'Objets ne cesserait d'augmenter jusqu'à dépasser la contenance du labyrinthe, ce qui n'est absolument pas le but recherché. Finalement, nous avons décidé de faire en sorte que dans le Labyrinthe, il y aurait chaque fois un nombre constant d'Objets, Sérums compris. Ainsi, lorsqu'un Objet ou un Sérum est ramassé, il suffit juste d'évaluer une case ou un Sérum ou un autre Objet ne se trouve pas, et d'y générer le nouvel Objet. Ce système permet ainsi d'éviter un surplus d'Objet dans le labyrinthe, et de rendre la recherche des Objets relativement dynamique, puisqu'ils ont la possibilité de se renouveler à l'infini sans pour autant menacer la fluidité du jeu. 
 
@@ -379,7 +336,9 @@ blablabla
 \subsection{Célian}
 %%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% TODO : Introduction
+Dans ce projet, je suis chargé principalement du gameplay du joueur ainsi que des effets visuels et sonores.
+
+%%% TODO : Chronologie
 
 
 \subsubsection{Joueur}
@@ -440,18 +399,7 @@ Les musiques et effets sont des listes regroupant à la fois un identifiant et u
 Pour faire cela, j'ai utilisé un Animator, ce composant permet de gérer plusieurs animations sur un objet. Il y a deux animations : celle d'entrée et celle de sortie. J'ai alors créé un autre script qui combine deux volumes, celui fournit par l'animation et celui des paramètres, comme leurs valeurs sont entre 0 et 1 il suffit de les multipliés entre elles pour obtenir le bon volume. Pour que les transitions se jouent au bon moment nous déclanchons un trigger dans l'animator, c'est juste une fonction qui déclanche une nouvelle animation. Ils se déclanchent au lancement de la musique et lors d'une transition. De plus, ces deux animation durent le même temps pour que ça soit plus agréable.
 
 
-
-
-
-
-
-
-
-
-
 \subsubsection{Derniers ajouts}
-
-%%% TODO : ??? Globale ?
 
 Parlons à présent des éléments que j'ai apportés depuis la seconde soutenance.
 Etant principalement occupé par le gameplay du joueur lors des deux premières soutenances, j'ai pu me pencher vers les effets visuels et sonores pour finaliser le projet.
@@ -598,63 +546,11 @@ Un autre aspect modifié est le label au dessus de la tête du joueur. Il y avai
 Dernièrement, d'autres modifications mineurs ont été ajoutés comme le changement de taille des boîtes de collisions des joueurs et des sérums et aussi la désactivation des attaques de joueurs quand ils sont assomés.
 
 % TODO : rm ?
-\subsubsection{Conclusion}
+\subsubsection{Résultats}
 
 Pour conclure sur mes modifications apportées depuis la dernière soutenance, je trouve que le cahier des charges a été correctement respecté, aucun élément n'a été oublié ni incorrectement implémenté, au contraire, il y a eu même plusieurs ajouts supplémentaires.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+J'ai beaucoup apprécié faire partie de cette équipe ainsi que d'avoir participé à ce projet, j'ai appris à travailler en groupe sur un long projet et également approfondi certaines connaissances ou maîtrises d'outils comme git par exemple que j'utilisais trop peu avant.
 
 
 
