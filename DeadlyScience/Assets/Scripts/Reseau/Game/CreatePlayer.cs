@@ -38,8 +38,9 @@ namespace ds
                                 (float) 3.75, (float) (4 * (coorp / CreateRoomMenu.Xm) + 2.5)), Quaternion.identity);
                     }
                     player.GetComponent<PlayerNetwork>().isLocal = true;
+                    AffichagePowerUp.Nature = "Chargement de la partie en cours...";
+                    AffichagePowerUp.affich = true;
                     print("Le MasterClient a été instancié");
-                    
                     int g = 0;
                     int serumn = CreateRoomMenu.PlayerNumber-1;
                     if (serumn == 0)
@@ -77,11 +78,13 @@ namespace ds
         [PunRPC]
         void CreateOtherPlayers(byte[] bytes, int width, int height, int Mode)
         {
+            Photon.Realtime.Player localplayer = PhotonNetwork.LocalPlayer;
+            AffichagePowerUp.Nature = "Chargement de la partie en cours...";
+            AffichagePowerUp.affich = true;
             CreateRoomMenu.Mode = Mode;
             Texture2D map = new Texture2D(width, height);
             map.LoadRawTextureData(bytes);
             Map.instance.Chargement(map);
-            Photon.Realtime.Player localplayer = PhotonNetwork.LocalPlayer;
             bool not_found = true;
             int i = 1;
             while (not_found && i < PhotonNetwork.PlayerList.Length)

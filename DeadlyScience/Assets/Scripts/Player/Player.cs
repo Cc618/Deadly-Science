@@ -106,8 +106,10 @@ namespace ds
         public void OnGameBegin()
         {
             canMove = true;
-
             StartCoroutine(SyncNet());
+            AffichagePowerUp.Nature = "Que la partie commence !";
+            AffichagePowerUp.affich = true;
+            StartCoroutine(Attente());
         }
 
         void Update()
