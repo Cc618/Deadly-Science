@@ -213,9 +213,6 @@ Quand tous les sérums ont été consommés, une nouvelle phase commence. Il ne 
 
 \subsection{Gameplay}
 
-%%% TODO : vvv Reformuler ?
-Ce jeu est vue de la première personne, le joueur a alors été pensé pour bouger assez rapidement et fluidement.
-
 Une fois que vous êtes dans le labyrinthe,
 Pour controller le joueur, il suffit d'appuyer sur les touches WASD pour les mouvements horizontaux ou espace pour sauter, concernant la caméra, la souris est utilisée. Nous pouvons également attaquer d'autres joueurs en appuyant sur le bouton gauche de la souris et en ayant un joueur devant nous.
 
@@ -238,7 +235,7 @@ Pour qu'un joueur puisse savoir si un autre joueur est assomé, une barre d'endu
 
 
 
-
+\newpage
 \subsection{Objets}
 \paragraph{Génération d'Objets}
 Etant donné que nous étions en avance sur nos prévisions de progression dans le projet, nous nous étions dis lors de la seconde soutenance que nous aurions peut-être le temps de rajouter quelques éléments qui ne figuraient pas dans le cahier des charges avant la dernière soutenance. C'est effectivement ce qu'il s'est passé. Nous avons donc décidé d'implémenter un système d'Objets récupérables au sein des laboratoires, afin d'aider les Joueurs ou, au contraire, de les gêner. Pour cela, j'ai tout d'abord réfléchi à l'implémentation des Objets. Un Objet doit remplir plusieurs critères. Premièrement, il ne doit jamais apparaître à l'intérieur d'un Sérum. Ensuite, il ne doit pas y avoir d'Objets à chaque salle du Labyrinthe. Pour ces deux raisons, nous ne pouvions pas mettre au point un système d'apparition d'Objets à intervalle de temps réguliers, car dans le cas où les Joueurs auraient peur des éventuels effets négatifs, le nombre d'Objets ne cesserait d'augmenter jusqu'à dépasser la contenance du labyrinthe, ce qui n'est absolument pas le but recherché. Finalement, nous avons décidé de faire en sorte que dans le Labyrinthe, il y aurait chaque fois un nombre constant d'Objets, Sérums compris. Ainsi, lorsqu'un Objet ou un Sérum est ramassé, il suffit juste d'évaluer une case ou un Sérum ou un autre Objet ne se trouve pas, et d'y générer le nouvel Objet. Ce système permet ainsi d'éviter un surplus d'Objet dans le labyrinthe, et de rendre la recherche des Objets relativement dynamique, puisqu'ils ont la possibilité de se renouveler à l'infini sans pour autant menacer la fluidité du jeu. 
@@ -337,11 +334,98 @@ blablabla
 \subsection{Célian}
 %%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{Répartition des tâches}
+
 Dans ce projet, je suis chargé principalement du gameplay du joueur ainsi que des effets visuels et sonores.
 
-%%% TODO : Chronologie
+Avant d'entrer dans les détails des implémentations, voici la répartition des ajouts principaux que j'ai apportés au jeu :
+
+\paragraph{Soutenance 1}
+
+\subparagraph{Gameplay : joueur}
+
+\begin{itemize}
+    \item Physiques
+    \item Mouvements du joueur
+    \item Sérums
+    \item Modules du joueur
+\end{itemize}
+
+\subparagraph{Gameplay : jeu}
+
+\begin{itemize}
+    \item Status
+    \item Endurance et régénération
+\end{itemize}
+
+\subparagraph{Modèle et animations}
+
+\begin{itemize}
+    \item Modèle du joueur et animations (par des packages Unity)
+    \item Animator et transitions
+\end{itemize}
+
+\paragraph{Soutenance 2}
+
+\subparagraph{Phases et status}
+
+\begin{itemize}
+    \item Status local (les sérums affectent le joueur)
+    \item Synchronisation du status à distance
+    \item Evénements du joueur en réseau
+\end{itemize}
+
+\subparagraph{Endurance et coups}
+
+\begin{itemize}
+    \item Couches physiques (filtrage de collisions)
+    \item Détection de collision par rayon
+\end{itemize}
+
+\subparagraph{Gestion de l'audio}
+
+\begin{itemize}
+    \item Gestionnaire audio
+    \item Effets sonores (implémentation et ajouts d'une partie des sons)
+    \item Musiques et transitions (ajout de toutes les musiques)
+\end{itemize}
+
+\paragraph{Soutenance 3}
+
+\subparagraph{Effets audio}
+
+\begin{itemize}
+    \item Ajouts d'effets sonores
+    \item Sons en réseau
+\end{itemize}
+
+\subparagraph{Particules}
+
+\begin{itemize}
+    \item Gestionnaire de particules
+    \item Particules de status
+    \item Particules des coups
+\end{itemize}
+
+\subparagraph{Effets visuels}
+
+\begin{itemize}
+    \item Shaders sur la caméra
+    \item Animation du shader
+\end{itemize}
+
+\subparagraph{Finalisation du jeu}
+
+\begin{itemize}
+    \item Désactivation des mouvements du joueur en pause
+    \item Synchronisation du nom des joueurs (leur label)
+    \item Status fantôme
+    \item Changement de la taille des boîtes de collisions
+    \item Désactivation des coups en assomé
+\end{itemize}
 
 
+\newpage
 \subsubsection{Joueur}
 
 Le jeu est un jeu en réseau, le joueur a été implémenté en considérant qu'il doit être très modulable pour s'intégrer au réseau.
