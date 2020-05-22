@@ -301,6 +301,74 @@ blablabla
 \subsection{Célian}
 %%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%% TODO : Introduction
+
+
+\subsubsection{Joueur}
+
+Le jeu est un jeu en réseau, le joueur a été implémenté en considérant qu'il doit être très modulable pour s'intégrer au réseau.
+C'est pourquoi j'ai créé plusieurs modules qui peuvent s'enlever sous diverses conditions.
+Voici les principaux modules :
+
+%%% TODO : Liste
+- PlayerNetwork : Permet de gérer les événements liés au réseau et également
+mets en place ou retire toutes les autres classes du joueur. Ce script est
+toujours présent sur un joueur.
+- Player : Classe permettant de contrôler le joueur. Utilisée quand le joueur
+est contrôlé par le client.
+- PlayerState : Classe gérant le statut du joueur. La classe est toujours
+présente, ses attributs se font modifier seulement par le réseau.
+- PlayerMaster : Dispose de fonctions gérant le jeu et les phases. Ce module
+est présent si le joueur est contrôlé par le client ainsi que le client est le
+maître de jeu.
+
+Il est important que chaque module d'un joueur soit coordonné avec les autres. Par exemple, si le réseau possède un problème et qu'un joueur se connecte en plusieurs secondes, il faut l'attendre, ensuite préparer le jeu (ce qui comprend la génération du labyrinthe) puis enfin lancer la première phase. PlayerNetwork est ainsi le chef d'orchestre qui va enlever certains modules au début du jeu. Il se charge également d'envoyer et de recevoir les évenements liés au réseau.
+
+Notre jeu tourne autours d'un système de status, pour l'implémenter côté joueur j'ai fait appel au module PlayerState.
+Pour décrire un status, créer une énumération suffit. Un évenement \emph{SetStatus} a été alors intégré à PlayerNetwork pour pouvoir le modifier en réseau.
+
+Quand un joueur entre en collision avec un autre joueur, une fonction se charge de tester si les status peuvent se transmettre (dans le cas d'un joueur condamné par exemple) et l'évenement réseau \emph{SetStatus} est lancé.
+
+Vous avez sans doute remarqué que les joueurs possèdent des modèles 3D ainsi que des animations.
+Nous avons préféré utiliser un modèle déjà fait sur l'Asset Store de Unity car il est compliqué et surtout long de modéliser un humanoïde ainsi que de lui associer un squelette. Les animations aussi ont été trouvées sur l'Asset Store, néanmoins, nous avons nous même scripté les animations. En effet, nous utilisons le composant Animator de Unity qui permet de jouer des animations ainsi que de lancer des transitions entre deux animations. Pour ce faire, j'ai juste modifié des variables présentes dans l'animator à partir du script gérant les mouvements du joueur comme par exemple la variable \emph{onGround} qui est booléenne. Steve les a ensuite porté en réseau pour que chaque joueur puisse voir ses adversaires bouger correctement.
+
+\subsubsection{Physiques}
+
+Comme dit précédemment, les mouvements du joueur ont un grand impact sur le gameplay, il est alors indispensable de bien gérer les physiques du joueur.
+Pour ce faire, j'ai utilisé un composant nommé CharacterController. Le CharacterController remplace un RigidBody que peut porté un objet dans Unity. Il permet d'entièrement contrôler le joueur, c'est-à-dire que c'est le rôle du développeur de gérer les physiques comme les forces appliquées sur le corps. Le CharacterController prend juste en charge les collisions entre les autres objets pour ne pas passer au travers. Il est préférable d'utiliser ce composant car nous pouvons par exemple enlever la gravité ou les forces de friction quand nous le voulons. Il est utilisé également pour éviter des bugs causés par le réseau, si deux joueurs sont au même endroit, il ne faut pas les éjecter.
+Pour implémenter ceci, j'ai utilisé des règles simples de physique. C'est à dire que j'ai utilisé des variables comme la vitesse ou si le joueur était sur le sol pour savoir comment modifier la position de celui ci.
+
+\subsubsection{Endurance}
+
+Parlons à présent du méchanisme d'endurance.
+Cette fonctionnalité s'implémente en deux temps. Il faut premièrement détecter les coups entre joueurs puis gérer le mode assomé. Après cela, il faut tout porter en réseau et ceci comprends également l'affichage de la barre d'endurance au dessus des joueurs. Pour détecter les coups, j'ai créé la fonction Player.Attack qui est appelée quand l'utilisateur clique. Cette fonction utilise des RayCasts fournis par Unity, ils décrivent une détection de collision par rayon. Il faut spéciffier le point de départ du rayon, sa direction, sa distance ainsi qu'un masque qui permet de filtrer les collisions. Ce masque retient seulement la catégorie de joueur. Une fois touché, nous allons appeler un évenement réseau qui va mettre à jour l'endurance voir le status du joueur touché.
+Pour le mode assomé, il suffit de mettre des conditions dans la fonction du joueur gérant ses mouvements.
+
+Pour mettre tout cela en réseau, j'appelle une fonction tous les tiers de seconde qui synchronise les attributs comme l'endurance.
+Elle n'est pas appelée plus souvent car elle saturait le réseau ce qui avait pour effet de faire voler ou bien nager dans le sol les joueurs.
+
+Un dernier élément ajouté est l'affichage de status et d'endurance au dessus de la tête des joueurs. Ces éléments appartiennent aux joueurs non controllés par le client et sont toujours tournés vers la caméra. Il faut alors enlever celui du client au début de la partie et les mettre à jour lors d'un changement de status ou d'endurance.
+
+\subsubsection{Sérums}
+
+Les sérums sont composés d'un modèle 3D le représentant, d'une boîte de collision pour être collecté ainsi qu'un script qui se charge d'avertir le jeu lors d'un sérum ramassé.
+Un sérum peut être considéré comme un power up car c'est un objet qui peut se faire collecter par un joueur, pour éviter de changer beaucoup de scripts après l'ajout des power ups, j'ai pensé à utiliser de la programmation orientée objet en créant une classe PowerUp qui est abstraite, elle possède une méthode OnCollect qui est appelée lors d'une collision avec un joueur, elle prend en paramètre le joueur et retourne si le power up doit être détruit. Il ne doit pas toujours se détruire car un joueur ayant déjà collecté un sérum ne peut pas en prendre en autre. Le sérum utilise alors cette fonction dans sa propre classe.
+
+\subsubsection{Audio}
+
+Je me suis occupé d'implémenter les sons et musiques au sein du jeu. Léandre s'est occupé de composer les musiques et pour ma part je les ai mixées et intégrées au jeu. Les éléments sonores composés sont l'intégralité des musiques ainsi que certains effets tel que ceux de victoire ou de défaite.
+Les musiques et effets sont des listes regroupant à la fois un identifiant et un fichier audio. J'ai créé une classe Audio premièrement qui possède des fonctions statiques ainsi qu'une instance statique, je me suis inspiré du design pattern Singleton pour cette classe afin de rendre plus facile d'accès les méthodes. Cette classe doit être alors unique et pour cela j'ai fait appel à la fonction DontDestroyOnLoad de Unity, elle permet comme son nom l'indique de ne pas enlever l'objet ayant ce script lors d'un changement de scène. Les effets sonores et les musiques sont pour moi deux éléments distincts. Les effets sonores sont des fichiers audio souvent de quelques secondes, ils interviennent lors de la victoire par exemple. Ces sons doivent se détruire automatiquement une fois terminés. Quant aux musiques, elles ne se terminent jamais, elles se jouent en boucle et il n'y en a qu'une seule à la fois. Avec Unity, ce n'est pas compliqué d'implémenter une fonction Play et SetMusic qui jouent soit un effet audio, soit de la musique. Le plus long a été de faire des transitions entre deux musiques.
+Pour faire cela, j'ai utilisé un Animator, ce composant permet de gérer plusieurs animations sur un objet. Il y a deux animations : celle d'entrée et celle de sortie. J'ai alors créé un autre script qui combine deux volumes, celui fournit par l'animation et celui des paramètres, comme leurs valeurs sont entre 0 et 1 il suffit de les multipliés entre elles pour obtenir le bon volume. Pour que les transitions se jouent au bon moment nous déclanchons un trigger dans l'animator, c'est juste une fonction qui déclanche une nouvelle animation. Ils se déclanchent au lancement de la musique et lors d'une transition. De plus, ces deux animation durent le même temps pour que ça soit plus agréable.
+
+
+
+
+
+
+
+
+
+
 
 \subsubsection{Derniers ajouts}
 
