@@ -392,15 +392,9 @@ Commençons par trouver un vecteur partant du pixel à modifier jusqu'au centre 
 float2 position = (i.uv - .5) * 2;
 \end{lstlisting}
 
-Cette variable va servir à trouver la distance au centre du pixel. Seulement, je voudrais une position normalisée, c'est à dire comprise entre 0 (le point est au centre) et 1 (le point est sur un des quatre coins). Comme nous sommes en coordonnées UV, une diagonale possède une longueur de
-%%% TODO : Math symbol + remettre sur ligne
-sqrt(2).
-Nous pouvons mettre à l'echelle le vecteur position en doublant sa longueur pour avoir une distance maximale de
-%%% TODO : Math symbol + remettre sur ligne
-sqrt(2)
-puis diviser par sqrt(2) le résultat.
+Cette variable va servir à trouver la distance au centre du pixel. Seulement, je voudrais une position normalisée, c'est à dire comprise entre 0 (le point est au centre) et 1 (le point est sur un des quatre coins). Comme nous sommes en coordonnées UV, une diagonale possède une longueur de $\sqrt{2}$.
+Nous pouvons mettre à l'echelle le vecteur position en doublant sa longueur pour avoir une distance maximale de $\sqrt{2}$ puis diviser par $\sqrt{2}$ le résultat.
 
-%%% TODO : Script
 \begin{lstlisting}
 float dist = sqrt(position.x * position.x + position.y * position.y) / 1.41f;
 \end{lstlisting}
@@ -458,23 +452,6 @@ Dernièrement, d'autres modifications mineurs ont été ajoutés comme le change
 \subsubsection{Conclusion}
 
 Pour conclure sur mes modifications apportées depuis la dernière soutenance, je trouve que le cahier des charges a été correctement respecté, aucun élément n'a été oublié ni incorrectement implémenté, au contraire, il y a eu même plusieurs ajouts supplémentaires.
-
-%%% TODO : ??? Conclu globale ?
-
-\subsection{Sources et remerciements}
-
-Beaucoup d'éléments du jeu ont été conçus par nos soins, certains d'entre eux ont été créés par d'autres personnes que nous remercions car sans elles notre jeu ne serait pas aussi bien.
-
-\begin{itemize}
-    \item Animations : Basic Motion Pack (Assets Store) par Kevin Iglesias
-    %%% TODO : Modele
-    \item Réseau : Photon
-    \item Effets sonores : Tous les sons ont été trouvés sur freesound.org
-\end{itemize}
-    
-%%% TODO : Reformuler
-Nous tenons également à remercier toutes les personnes ayant contribuées aux outils gratuits ou open source que nous avons utilisés.
-Et enfin, un grand merci aux testeurs et examinateurs du jeu.
 
 
 
@@ -536,8 +513,24 @@ Et enfin, un grand merci aux testeurs et examinateurs du jeu.
 \newpage
 \section{Conclusion}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO : Mettre a jour
+\subsection{Sources et remerciements}
 
+Beaucoup d'éléments du jeu ont été conçus par nos soins, certains d'entre eux ont été créés par d'autres personnes que nous remercions car sans elles notre jeu ne serait pas aussi bien.
+
+\begin{itemize}
+    \item Animations : Basic Motion Pack (Assets Store) par Kevin Iglesias
+    %%% TODO : Modele
+    \item Réseau : Photon
+    \item Effets sonores : Tous les sons ont été trouvés sur freesound.org
+\end{itemize}
+    
+%%% TODO : Reformuler
+Nous tenons également à remercier toutes les personnes ayant contribuées aux outils gratuits ou open source que nous avons utilisés.
+Et enfin, un grand merci aux testeurs et examinateurs du jeu.
+
+
+\newpage
+\center
 \emph{If you knew time as well as I do, you would play Deadly Science.}
 
 
