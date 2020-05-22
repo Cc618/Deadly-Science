@@ -433,7 +433,7 @@ fin
 
 Les effets audio sont primordiaux pour un jeu, il y a aussi d'autres effets que nous pouvons ajouter pour améliorer notre jeu tels que les particules.
 Les particules sont un ajout majeur de la dernière soutenance, elles permettent d'envoyer un signal de réponse aux actions du joueur. Elles donnent alors plus envie aux joueurs de s'attaquer entre eux ou de prendre des bonus.
-A présent, les particules ont lieu lors d'un changement de status ou lors d'un coup donné à un autre joueur. Elles sont assez simple, composées d'une image de point un peu flouté et parfois dispose de traînée colorée. Certaines propriétés sont animés comme la vitesse qui diminue plus la particule s'éloigne et aussi la couleur. La couleur est peu saturée au tout début, après 10 % de son temps de vie, une couleur plus saturée mais plus claire que la couleur principale apparait, elle laisse ensuite sa couleur principale qui s'assombrie en changeant un peu de teinte pour s'estomper.
+A présent, les particules ont lieu lors d'un changement de status ou lors d'un coup donné à un autre joueur. Elles sont assez simple, composées d'une image de point un peu flouté et parfois dispose de traînée colorée. Certaines propriétés sont animés comme la vitesse qui diminue plus la particule s'éloigne et aussi la couleur. La couleur est peu saturée au tout début, après 10 \% de son temps de vie, une couleur plus saturée mais plus claire que la couleur principale apparait, elle laisse ensuite sa couleur principale qui s'assombrie en changeant un peu de teinte pour s'estomper.
 J'ai la chance d'avoir déjà utilisé les systèmes de particules, c'est pour cela que cet ajout, bien qu'être important, a été simple et rapide à intégrer.
 
 %%%% TODO : Img particules
@@ -446,12 +446,39 @@ Unity dispose d'un moteur de particules très poussé et complet, il n'est pas �
 
 
 %%% TODO : More space
+\begin{center}
 \emph{Lors de mes explications, je ne vais pas préciser les valeurs des propriétés car il y a plusieurs systèmes de particules donc différentes valeurs}
+\end{center}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_main.png}
+    \caption{Les deux premières catégories}
+    \label{Les deux premières catégories}
+\end{figure}
 
 La catégorie principale permet d'ajuster la durée de vie ainsi que la vitesse de la particule, pour que le système soit plus vivant je préfère utiliser des valeurs aléatoires entre certaines valeurs, cela évite notamment que les particules disparaissent d'un coup.
+
 La seconde catégorie permet de modifier les propriétés d'émission de particules, nous ne voulons pas ici qu'elles apparaissent en continu mais qu'elles apparaissent d'un coup donc j'utilise le tableau \emph{Bursts} avec une entrée exécutée dès l'apparition du système.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_shape.png}
+    \caption{Catégorie forme}
+    \label{Catégorie forme}
+\end{figure}
+
 La prochaîne catégorie sert à modifier la forme d'émission. Les particules vont naîtrent à l'intérieur de cette forme puis vont être expulsés en fonction des normales associées à la forme. J'ai utilisé uniquement des sphères que j'ai étirées pour avoir plus de particules sur l'axe horizontale que verticale car nous ne regardons pas souvent en haut ou en bas donc cela permet de gérer moins de particules (elles peuvent être compliquées à gérer pour les ordinateurs peu puissants).
+
 Deux autres catégories vont permettre de modifier la vélocitée (c'est à dire la vitesse) ou la couleur en fonction du temps, on fournit des courbes qui vont faire évoluer des valeurs entre 0 et 1, la couleur est représentée par un dégradé, à gauche est la couleur quand la courbe donne une valeur proche de 0 et à droite quand la valeur est 1.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_trail.JPG}
+    \caption{Catégorie traînée}
+    \label{Catégorie traînée}
+\end{figure}
+
 Dernièrement, je vais parler de la catégorie se chargeant des traînées. J'ai fait en sorte qu'une certaine proportion des particules possède une traînée pour rendre plus joli. J'ai appliqué ici aussi un dégradé de couleur et modifié la largeur de traînée. Une autre option qui permet de rendre plus agréable l'effet est celle qui change le temps de vie en fonction de la durée de vie de la particule liée à cette traînée. Cela permet d'avoir une traînée non statique, la fin de la traînée se rapproche de plus en plus du centre de la particule.
 
 %%% TODO : img inspecteur
@@ -477,7 +504,6 @@ La méthode \emph{Particles.Spawn} prends en argument un identifiant qui est cel
 \subsubsection{Types de particules}
 
 J'ai brièvement annoncé quels étaient les types de systèmes de particules, je vais un peu approfondir la description de chaque type.
-
 
 Commençons par les particules créées lors d'un changement de status. Elles sont très semblables, seulement leurs couleurs et les conditions de création sont changées. Chaque status a une couleur associée comme le violet pour les joueur infectés, le vert pour les joueurs guéris et rouge pour ceux condamnés. Comme énoncé précedement, c'est en fait un dégradé de couleur que j'associe aux particules et chaque dégradé a pour couleur principale, c'est à dire la plus saturée et la plus présente au cours de la vie de la particule, la couleur d'un status. Ceci est valable aussi pour les traînées de ces particules. Quant à la création de ces systèmes, j'ai voulu que tous les joueurs puissent voir qu'un changement de status à lieu, il a alors fallu mettre l'apparition des particules en réseau. Photon dispose d'une méthode \emph{Instantiate} qui permet de faire apparaitre un objet en réseau, je n'ai pas voulu utilisé cette méthode car il faut après détruire l'objet avec la méthode de Photon \emph{Destroy} or les particules s'enlèvent automatiquement. Alors je suis allé dans le setter PlayerState.Status qui est appelé lors d'un changement de status, peu importe le joueur, et en fonction du status, j'instancie le bon système grâce à son identifiant. Au lieu de faire un switch j'ai préféré utilisé un tableau où j'ai écrit chaque identifiant. Une énumération décrit seulement un type qui peu être considéré comme un entier non signé, j'ai alors pu convertir le status en entier pour qu'il décrive l'indice de l'identifiant. Cette méthode est de complexité constante en temps ce qui est toujours mieux qu'un switch mais je l'ai utilisée surtout pour rendre mon code plus joli et plus lisible car les optimisations sont négligeables vu le faible nombre de status (il y en a seulement 4). Nous n'avons plus qu'à instancier les particules à l'endroit du joueur ayant changé de status.
 
@@ -614,9 +640,9 @@ Et enfin, un grand merci aux testeurs et examinateurs du jeu.
 
 
 \newpage
-\center
+\begin{center}
 \emph{If you knew time as well as I do, you would play Deadly Science.}
-
+\end{center}
 
 \end{document}
 
