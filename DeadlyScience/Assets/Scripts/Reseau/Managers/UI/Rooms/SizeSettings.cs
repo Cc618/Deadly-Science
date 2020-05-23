@@ -14,19 +14,47 @@ namespace ds
         private TMP_Text _text;
         [SerializeField] 
         private TMP_InputField _inputField;
-
+        [SerializeField]
+        private TMP_Text _test;
         public void OnClick_Button()
         {
             Audio.Play("click");
+            string s = "";
             if (_text != null)
             {
-                CreateRoomMenu.Xm = Convert.ToInt32(_text.text.Remove(2));
-                CreateRoomMenu.Zm = Convert.ToInt32(_text.text.Remove(0, 3));
+                print(_text.text);
+                s = _text.text;
+                CreateRoomMenu.Xm = s[0] * 10 + s[1];
+                CreateRoomMenu.Zm =s[3] * 10 + s[4];
             }
             else
             {
-                CreateRoomMenu.Xm = Convert.ToInt32(_inputField.text.Remove(2));
-                CreateRoomMenu.Zm = Convert.ToInt32(_inputField.text.Remove(0, 3));
+                s = _inputField.text;
+                _test.text = s;
+                if (s.Length==5 && s[2] == '*' && s[0] >= '0' && s[0] <= '9' && s[1] >= '0' && s[1] <= '9' && s[3] >= '0' && s[3] <= '9' &&
+                    s[4] >= '0' && s[4] <= '9')
+                {
+                    int x = (s[0]-48) * 10 + s[1]-48;
+                    int z = (s[3]-48) * 10 + s[4]-48;
+                    print(x);
+                    print(z);
+                    if (x * z < 8 || x * z > 400)
+                    {
+                        _test.text= "Le nombre de salle doit être compris entre 8 et 400.";
+                    }
+                    else
+                    {
+                        CreateRoomMenu.Xm = x;
+                        CreateRoomMenu.Zm = z;
+                        _test.text = "";
+                    }
+                }
+                else
+                {
+                    print("Nope");
+                    _test.text= 
+                        "Le format à respecter est {00*00}, en remplaçant les '0' par les valeurs de votre choix.";
+                }
             }
         }
     }
