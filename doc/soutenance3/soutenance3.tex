@@ -873,8 +873,38 @@ Le rendu est beaucoup plus réaliste que ce que nous avions précédemment. Cela
 
 %%%%%%%%%%%%%%%%%%%%%% Steve%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Réseau}
-blablabla
+\subsection{Réseau - Steve}
+En dehors des menus et d'être chef de projet, j'ai été en charge de la gestion du réseau. Cela passe par la génération des joueurs, la synchronisation des objets 
+etc...
+
+\subsubsection{Génération des joueurs}
+
+L'une des plus grandes difficultés du projet et c'est sans doute ce qui nous a pris le plus de temps. Le pire, c'est qu'au premier abord on pourrait croire que ça 
+serait quelque chose de simple, il suffirait de mettre un identifiant à chacun des joueurs et en fonction de l'identifiant de l'instancier à la position que l'on 
+souhaite. Malheuresement ce ne fut pas assez simple.
+
+On a pensé premièrement à utiliser la variable LocalPlayer de Photon avec le dictionnaire des Players. Cela n'a 
+pas fonctionné car tout les joueurs avaient les mêmes propriétés, c'est-à-dire mêmes pseudos, mêmes identifiants etc... On a cru pendant longtemps que c'était le 
+LocalPlayer le problème mais avec nombreux tests, on sait rendu compte que c'était le dictionnaire qui ne marchait pas.
+
+Après on a pensé à utiliser les RaiseEvents, mais c'était inutile pour ce que l'on cherchait à faire. On a après pensé à utilisé les PhotonViews mais le problème c'est 
+que cela permettait de déterminer si on était le joueur mais pas par rapport aux autres. Or on cherchait un moyen de le distinguer des autres joueurs.
+
+On a pensé à utilisé l'hôte de la salle (que l'on appelle aussi le MasterClient) comme base pour envoyer les messages de tous les joueurs, mais ce fut beaucoup très complexe et non 
+performant. A la fin, on a utilisé les PhotonViews, les LocalPlayers et les RPCFonctions pour envoyer les messages en réseau. Cette méthode fut optimisée et parfaite 
+pour ce que l'on cherchait.
+
+\subsubsection{Propritétés des joueurs}
+La génération des joueurs ne concerne que la première partie du réseau, elle ne se lance qu'au début de la partie. Il reste ensuite à synchroniser les mouvements, 
+rotations, animations des joueurs. Pour cela j'ai du utiliser les Photon Transform et Animator Views. Ce fut plus compliqué que attendu, vu que le joueur est consistué 
+de plusieurs parties et il fallait que toutes soient synchronisé pour tout le monde. 
+
+De plus, il fallait aussi cacher les animations au joueur qui les faisait car 
+sinon les animations rencontrer la caméra ce qui n'était pas du tout le résultat souhaiter. Heuresement, avec beaucoup de recherche et de travail, tout est maintenant 
+synchronisé au dixième de seconde, permettant des actions rapides pour dynamiser le jeu.
+
+Sans vouloir rentrer dans les aspects techniques du code, ce fut l'essentiel de mon acitivité en dehors des menus. En dehors de ça, j'ai du me charger de synchroniser tout les travaux de tous mes collègues comme le labyrinthe par exemple, car sinon les joueurs ne sont pas dans le même labyrinthe. 
+
 \subsection{Site Web}
 Le site web se présente en 5 pages différentes:
 \begin{itemize}
