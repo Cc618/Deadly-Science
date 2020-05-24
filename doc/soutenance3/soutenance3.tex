@@ -231,9 +231,81 @@ Avant d'entrer dans les détails des implémentations, voici la répartition des
 \end{itemize}
 
 
+\subsection{Yann}
 
+\paragraph{Soutenance 1}
 
+\subparagraph{Menu principal}
 
+\subparagraph{Paramètres}
+
+\begin{itemize}
+	\item Touches attribuables
+	\item Sauvegarde
+\end{itemize}
+
+\subparagraph{"Pause"}
+
+\begin{itemize}
+	\item "Arrêt" de la partie (ne peut plus bouger)
+	\item Touches attribuables
+	\item Sauvegarde
+	\item Effet immediat
+\end{itemize}
+
+\subparagraph{Début du site}
+
+\paragraph{Soutenance 2}
+
+\subparagraph{Modèles}
+
+\begin{itemize}
+	\item Croisement
+	\item Impasse
+	\item Intersection
+\end{itemize}
+
+\subparagraph{Ajout de paramètres}
+
+\begin{itemize}
+	\item Volume
+	\item Effets sonores
+	\item Sensibilité de la souris
+\end{itemize}
+
+\subparagraph{Rédaction du site}
+
+\begin{itemize}
+	\item Accueil
+	\item Groupe
+	\item Galerie
+\end{itemize}
+
+\paragraph{Soutenance 3}
+
+\subparagraph{Video de fond sur le menu principal}
+
+\subparagraph{Finalisation des paramètres}
+
+\begin{itemize}
+	\item Pseudo
+	\item Langue
+\end{itemize}
+
+\subparagraph{Récapitulatif de la partie}
+
+\subparagraph{Refonte des paramètres du labyrinthe}
+
+Changement des boutons en commutateur pour surligner le paramètre actif
+
+\subparagraph{Fin du site web}
+
+\begin{itemize}
+	\item Description des objets
+	\item Évolution de jeu
+	\item Image de fond
+	\item Police
+\end{itemize}
 
 \newpage
 \section{Présentation du projet}
@@ -937,6 +1009,33 @@ Pour travailler sur les musiques du jeu, j'ai utilisé un logiciel de partition 
 
 \paragraph{Autres thèmes}
 Ensuite, j'ai commencé à faire le thème du Menu Principal. Ici, je tenais à rendre l'atmosphère plutôt pesante et inquiétante. J'ai donc inséré en fond un piano qui répète la même note à la manière d'un tictac d'horloge, accompagné d'un trombone qui se charge de la basse. Enfin, j'ai également composé deux mélodies, l'une pour la victoire, la seconde pour la mort du joueur. Pour la première, j'ai cherché à faire quelque chose d'assez joyeux et léger, tandis que pour l'autre, j'ai utilisé des instruments beaucoup plus graves ainsi que des notes plus longues pour accentuer le sentiment de deuil. Tout comme pour la musique de la recherche de sérums, c'est Célian qui s'est chargé de remixer le tout, en modifiant notamment l'instrumentation. Actuellement, le jeu possède donc quelques musiques originales. Le problème, c'est que... Ce n'est pas dit que beaucoup de personnes apprécient. Mais au moins, il n'y aura pas de soucis avec les droits d'auteurs !
+
+
+\subsection{Écrans de "pause" et de fin}
+\paragraph{"Pause"}
+Un écran de "pause" (c'est un jeu multijoueurs, il n'y a pas vraiment de pause) s'ouvre lorsque le joueur appuie sur la touche "echap". La souris apparait alors et il devient impossible de se déplacer.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Pause.png}
+	\caption{L'écran de "pause"}
+	\label{L'écran de "pause"}
+\end{figure}
+
+
+On y retrouve certains paramètres: les touches pour jouer, le volume de la musique, des effets sonores et la sensibilité de la souris. pour des raisons évidentes d'identification, il est impossible de changer son pseudo en cours de partie. De même, la langue du jeu est seulement modifiable sur le menu principal. Pour quitter la fenêtre, il suffit de réappuyer sur la touche "echap", la souris disparait et le joueur peut de nouveau contrôler son avatar.
+
+\subsection{Écran de fin}
+\paragraph{Deux possibilités:}
+Soit le joueur est le premier condamné et à réussi à infecter tous les autres, ou le joueur à réussi à survivre toute les durée de la partie, il gagne et est notifié par un magnifique "Victoire" vert. Soit il était soigné mais a été réinfecté et meurt donc dans l'indifférence la plus totale du joueur qui s'empresse de relancer une autre partie. Il est alors notifié d'un "Défaite" rouge. Dans les deux cas il est impossible de se déplacer lorsque la partie est terminée. A cela s'ajoute un récapitulatif de la partie au centre de l'écran. Il y est inscrit chaque évênement auquel le joueur à fait face, le soin, la contamination, les différents objets rammassés. A chaque évênement, une nouvelle zone de texte est créée et se rajoute à la liste.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.49\textwidth]{Victoire.png}
+	\includegraphics[width=0.49\textwidth]{Défaite.png}
+	\caption{Écrans de fin}
+	\label{Écrans de fin}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%% Léandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
