@@ -394,28 +394,34 @@ A présent, parlons de comment un joueur peut assomer un autre joueur, c'est tr�
 
 Pour qu'un joueur puisse savoir si un autre joueur est assomé, une barre d'endurance est présente sur la tête de chaque joueur, elle devient grise une fois que le joueur est sonné.
 
+\subsection{Effets visuels}
 
+En plus d'effets audio, Deadly Science possède des effets visuels supplémentaires, ils accompagnent les actions des joueurs au cours du jeu.
 
+\subsubsection{Particules}
 
+Les particules sont présentes sous plusieurs formes.
+Par exemple, lors d'un changement de status, nous pouvons voir qu'un nuage de particules de la couleur du status jaillit. Il possède plusieurs points colorés, certains ont aussi des traînées de la même couleur.
+Elles sont également présentes lors d'un coup donné à un autre joueur.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/particles_example.png}
+    \caption{Des particules lors d'une prise de sérum}
+    \label{cc_c}
+\end{figure}
 
+\subsubsection{Post traitement}
 
+Le joueur condamné en seconde phase a une lourde responsabilité, c'est pour cela qu'un effet de vignettage rouge fait apparition à l'écran.
+Cet effet oppressant est animé à la façon d'un battement de coeur et dure jusqu'à la fin de la partie.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cc/post_proc.png}
+    \caption{Une aura rouge sur la caméra d'un joueur condamné}
+    \label{cc_d}
+\end{figure}
 
 \newpage
 \subsection{Célian}
@@ -901,21 +907,6 @@ Pour travailler sur les musiques du jeu, j'ai utilisé un logiciel de partition 
 
 \paragraph{Autres thèmes}
 Ensuite, j'ai commencé à faire le thème du Menu Principal. Ici, je tenais à rendre l'atmosphère plutôt pesante et inquiétante. J'ai donc inséré en fond un piano qui répète la même note à la manière d'un tictac d'horloge, accompagné d'un trombone qui se charge de la basse. Enfin, j'ai également composé deux mélodies, l'une pour la victoire, la seconde pour la mort du joueur. Pour la première, j'ai cherché à faire quelque chose d'assez joyeux et léger, tandis que pour l'autre, j'ai utilisé des instruments beaucoup plus graves ainsi que des notes plus longues pour accentuer le sentiment de deuil. Tout comme pour la musique de la recherche de sérums, c'est Célian qui s'est chargé de remixer le tout, en modifiant notamment l'instrumentation. Actuellement, le jeu possède donc quelques musiques originales. Le problème, c'est que... Ce n'est pas dit que beaucoup de personnes apprécient. Mais au moins, il n'y aura pas de soucis avec les droits d'auteurs !
-
-\subsection{Effets visuels}
-
-En plus d'effets audio, Deadly Science possède des effets visuels supplémentaires, ils accompagnent les actions des joueurs au cours du jeu.
-
-\subsubsection{Particules}
-
-Les particules sont présentes sous plusieurs formes.
-Par exemple, lors d'un changement de status, nous pouvons voir qu'un nuage de particules de la couleur du status jaillit. Il possède plusieurs points colorés, certains ont aussi des traînées de la même couleur.
-Elles sont également présentes lors d'un coup donné à un autre joueur.
-
-\subsubsection{Post traitement}
-
-Le joueur condamné en seconde phase a une lourde responsabilité, c'est pour cela qu'un effet de vignettage rouge fait apparition à l'écran.
-Cet effet oppressant est animé à la façon d'un battement de coeur et dure jusqu'à la fin de la partie.
 
 
 %%%%%%%%%%%%%%%%%%%%%% Léandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
