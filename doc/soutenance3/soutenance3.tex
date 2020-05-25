@@ -591,10 +591,9 @@ Etant principalement occupé par le gameplay du joueur lors des deux premières 
 
 Lors de la seconde soutenance, j'avais introduit un méchanisme permettant de faire jouer des sons ainsi que des musiques comprenant des transitions. J'avais promis de rajouter quelques effets sonores car il y en avait trop peu - chose promise, chose due - à présent, j'ai ajouté quelques sons tels que le son de victoire ou de défaite, le son de la prise d'un bonus ou même celui qui intervient lors d'un changement de phase. Je ne me suis pas seulement contenté d'ajouté de simples effets sonores, en effet, certains ont été un peu plus complexes à implémenter. Par exemple, le son des coups des joueurs, je voulais qu'on ait toujours une réponse à une action or lors d'un coup nous pouvons rater le joueur, comme le joueur ne se voit pas lui même il ne peut pas voir si son coup a bien été pris en compte. De plus, il est illogique de jouer un son de coup réussi. J'ai alors cherché deux sons, un de coup réussi et un autre de coup raté, le bruit décrit un mouvement d'air. Il ne restait plus qu'à ajouter les conditions pour les lancer, je les ai mise dans la fonction Player.Attack lors du test de collision de joueur par rayons :
 
-% TMP // Autres événements
 \begin{lstlisting}
 si rayon touche joueur alors
-    // Autres evenements
+    // Gestion du status...
     jouer son "hit"
 sinon
     jouer son "hit_failed"
@@ -728,9 +727,8 @@ Nous voulons un dégradé radial partant du centre et s'estompant aux coins de l
 Après avoir pensé au résultat que nous voulons obtenir, il faut penser à comment implémenter l'effet. J'utilise de simples formules d'algébre ou de géométrie. De plus, chaque pixel envoyé au programme a une position en coordonées UV, donc chaque valeur est entre 0 et 1. Ceci est très pratique pour trouver le centre de l'écran qui est juste à la position (0.5, 0.5).
 Commençons par trouver un vecteur partant du pixel à modifier jusqu'au centre de l'écran.
 
-% TMP // i est le pixel modifié
 \begin{lstlisting}
-// i est le pixel modifie
+// i est le pixel
 float2 position = (i.uv - .5) * 2;
 \end{lstlisting}
 
@@ -771,9 +769,8 @@ col.r += map(dist) * STRENGTH;
 
 Notre shader est presque opérationnel, il faut l'ajouter sur la caméra en créant un matériau et donnant ce shader à celui ci puis intégrer l'animation. L'animation est très simple, c'est juste une sinusoïde qui est comprise entre 0 et 1, la période de celle ci peut être modifiée à partir de Unity. Pour l'implémenter, nous avons besoin juste d'une variable de temps puis nous calculons la valeur que prends cette sinusoïde en cette abscisse puis l'envoyons au GPU :
 
-% TMP // Dans la méthode LateUpdate de la caméra (appelée après une mise à jour du jeu)
 \begin{lstlisting}
-// Dans la methode LateUpdate de la camera (appelee apres une mise a jour du jeu)
+// PlayerCam.LateUpdate
 time += Time.deltaTime * heartSpeed;
 postFx.SetFloat("_AnimRatio", .5f + Mathf.Sin(time) * .5f);
 \end{lstlisting}
