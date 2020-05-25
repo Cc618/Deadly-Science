@@ -74,15 +74,15 @@
 
 \newpage
 \section{Introduction}
-Depuis le début de l'année, notre groupe a travaillé sur ce projet, qui est aujourd'hui fini et complet. De plus nous avons pu rajouter bien plus de choses que le cahier des charges demandait, c'est-à-dire :
+Depuis le début de l'année, notre groupe a travaillé sur ce projet, qui est aujourd'hui fini. De plus nous avons pu rajouter bien plus de choses que ce que le cahier des charges demandait, c'est-à-dire :
 
 \begin{itemize}
-\item Un second mode de jeu nommé le mode Nocturne, où toutes les lampes du laboratoire sont éteintes et où le joueur ne peut voir que grâce à sa lampe torche,
+\item Un autre mode de jeu que celui de base nommé le mode Nocturne, où toutes les lampes du laboratoire sont éteintes et où le joueur ne peut voir que grâce à sa lampe torche,
 \item un système de paramètres de la partie permettant de choisir:
 \begin{itemize}
-\item la taille du labytinthe parmis plusieurs tailles prédifinies, où en choisisant une taille personnallisée,
+\item la taille du labytinthe parmis plusieurs tailles prédifinies, où l'on peut choisir une taille personnallisée,
 \item le nombre de joueurs dans la partie
-\item et le mode de jeu.
+\item le mode de jeu.
 \end{itemize}
 \item une cinématique dans le menu principal,
 \item une refonte graphique totale des menus pour mieux coller à l'atmosphère du jeu et pour un meilleur rendu visuel, 
@@ -90,11 +90,11 @@ Depuis le début de l'année, notre groupe a travaillé sur ce projet, qui est a
 \item plus de 13 objets différents et bien plus!
 \end{itemize}
 
-Evidemment tout cela sera expliqué par la suite. On notera que nous n'avons pas été en retard durant toute la durée du projet, car les seules choses sur lesquelles on était légèrement en retard était largement comblé par le reste.
+Evidemment, tout cela sera expliqué par la suite. On notera que nous n'avons pas été en retard durant toute la durée du projet, car les seules tâches sur lesquelles on était légèrement en retard étaient largement comblé par le reste.
 
-Nous sommes très fiers et confiants en notre projet. D'ailleurs nous allons le continuer pendant les vacances d'été tellement que nous y sommes attachés. Ce fut un immense défi, que ce soit parce que il diffère largement d'un jeu de labyrinthe lambda, ou que ce soit pour la programmation car il nous a fallut comprendre et utiliser de nouveaux outils comme Unity ou Photon. Il a aussi fallu tout synchroniser en réseau, en plus que nous avons voulu faire un réseau plus large que nécessaire.
+Nous sommes très fiers et confiants en notre projet. D'ailleurs nous allons le continuer pendant les vacances d'été tellement notre attachement sur le projet est grand. Ce fut un immense défi, que ce soit parce qu'il diffère largement d'un jeu de labyrinthe lambda, ou que ce soit pour la programmation car il nous a fallu comprendre et utiliser de nouveaux outils comme Unity ou Photon. Il a aussi fallu tout synchroniser en réseau, surtout que nous avons voulu faire un réseau plus large que nécessaire.
 
-Le projet fut déjà grandement crée lors des deux premières soutenances, ces derniers mois n'ont servis qu'a peaufinné le tout, résoudre des bugs...
+Le projet a été déjà grandement crée lors des deux premières soutenances, ces derniers mois n'ont servis qu'a peaufiné le tout, résoudre des bugs...
 
 D'ailleurs pour réduire le plus de bugs, on a décidé de regrouper plus de 8 testeurs sur notre jeu en version alpha que l'on a réuni sur un salon dédié.
 
@@ -102,7 +102,7 @@ D'ailleurs pour réduire le plus de bugs, on a décidé de regrouper plus de 8 t
 \section{Reprise du cahier des charges}
 \subsection{Eléments}
 \paragraph{Caméra}
-Chaque joueur doit avoir une caméra, elle doit représenter un angle de vue humain de 180 degrés. Elle doit donc prévenir et arrêter les mouvement de caméra impossible pour un humain comme par exemple pouvoir regarder derrière la tête.
+Chaque joueur doit avoir une caméra, elle doit représenter un angle de vue humain de 180 degrés. Elle doit donc prévenir et arrêter les mouvements de caméra impossible pour un humain comme par exemple pouvoir regarder derrière la tête.
 
 \paragraph{Déplacements}
 Chaque joueur doit pouvoir se déplacer dans toutes les directions. Il faut pouvoir facilement changer les vitesses, frictions en fonction de l'avancement du projet. Il peut aussi donner des coups de poing, qui baissent la barre d'endurance du joueur en face.
@@ -117,16 +117,16 @@ Lorsqu'un joueur est corrompu, il faut voir si un joueur guéri n'est pas trop p
 Lorsque tous les joueurs sauf un ont ramassé les sérums, la deuxième phase du jeu doit commencer. Le dernier joueur doit devenir corrompu et il faut aussi s'assurer que tous les joueurs soient soit guéri, soit corrompu, soit invisible. La partie doit se terminer lorsque tous les joueurs sont infectés, et l'on doit afficher un écran de victoire si l'on gagne, et un écran de défaite si ça n'est pas le cas.
 
 \paragraph{Sérums}
-Les joueurs peuvent être pris par les joueurs pour se guérir. Il faut faire attention à ce qu'un joueur corrompu ou guéri ne puisse pas prendre de sérum, et que les sérums sont bien détruits lorsqu'ils sont ramassés. Il faut aussi faire attention pour qu'il y ait exactement le bon nombre de sérums dans le labyrinthe, c'est-à-dire le nombre de joueurs moins 1.
+Les sérums peuvent être pris par les joueurs pour se guérir. Il faut faire attention à ce qu'un joueur corrompu ou guéri ne puisse pas prendre de sérum, et que les sérums sont bien détruits lorsqu'ils sont ramassés. Il faut aussi faire attention pour qu'il y ait exactement le bon nombre de sérums dans le labyrinthe, c'est-à-dire le nombre de joueurs moins 1.
 
 \paragraph{Labyrinthe}
-Le jeu doit contenir un labyrinthe assez grand pour se pouvoir se perdre. Il faut aussi mettre plusieurs salle différentes pour un meilleur gamplay et pour mieux se perdre. Chaque salle doit avoir des meulbles divers spécifiques, avec des modèles diffénrents. Il doit être généré aléatoirement de manière à ce qu'on est un labyrinthe différent quasiment à chaque fois que l'on crée une nouvelle partie. Il faut aussi faire attention que les sérums se génère à l'intérieur du labyrinthe.
+Le jeu doit contenir un labyrinthe assez grand pour pouvoir se perdre. Il faut aussi mettre plusieurs salles différentes pour un meilleur gameplay et pour mieux se perdre. Chaque salle doit avoir des meubles divers spécifiques, avec des modèles différents. Il doit être généré aléatoirement de manière à ce qu'on ait un labyrinthe différent quasiment à chaque fois que l'on crée une nouvelle partie. Il faut aussi faire attention à ce que les sérums se génèrent à l'intérieur du labyrinthe.
 
 \paragraph{Modèles}
 Chaque composants du labyrinthe doit avoir un modèle particulier, que ce soit les joueurs, les sérums, les meubles et différents objets des salles et tous les autres objets aussi.
 
 \paragraph{Menus}
-Il faut un menu principal plus un menu pour créer la salle, la rejoindre, et la quitter. Le menu principal doit contenir un bouton pour quitter le jeu, et un bouton pour la quitter. Dans le second menu, il faut pouvoir accéder aux différents joueurs présents dans la salle puis pouvoir commencer la partie lorsque tous les joueurs sont prêts.
+Il faut un menu principal, un menu pour créer la salle, la rejoindre, et la quitter. Le menu principal doit contenir un bouton pour commencer le jeu, et un bouton pour le quitter. Dans le second menu, il faut pouvoir accéder aux différents joueurs présents dans la salle puis pouvoir commencer la partie lorsque tous les joueurs sont prêts.
 
 \paragraph{Réseau}
 Le jeu doit être jouable en réseau, les effets des sérums doivent être synchronisés sur tous les joueurs, ainsi que la phase de la partie. Il faut aussi associer une caméra à chaque joueur, et faire attention qu'il y'en assez pour tout le monde, mais pas trop non plus! 
@@ -346,7 +346,7 @@ Changement des boutons en commutateur pour surligner le paramètre actif
 
 
 \subsection{Menus}
-blablabla
+Pour jouer au  jeu, l'utilisateur peut interagir avec plusieurs menus pour son expérience personnelle. Il y'a le menu principal qui est le premier menu du jeu et qui permet de modifier les paramètres client, et les menus de connection qui permettant de le connecter à une salle et de commencer le jeu.
 %%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Menu principal}
 
@@ -362,7 +362,7 @@ Le menu est la première image qu'aperçoit le joueur du jeu. Il est important d
 \paragraph{Accueil}
 J'ai créé la vidéo avec l'asset d'animation d'Unity. Le défi a été d'enregistrer cette video puisque les animations faites de cette manière requièrent l'environnement sur la scène. En effet la caméra bouge ainsi d'elle même selon l'enregistrement effectué et l'utilisateur n'a aucun contrôle dessus. Cependant dans notre jeu le labyrinthe est généré sur une autre scène que le menu et seulement lorsqu'une partie est commencée. Or il est impossible de sauvegarder une animation en mode jeu dans Unity. Il a donc fallu créer toute l'animation en une seule fois et j'ai enregistré l'écran en la jouant. Après un léger recadrage, c'est un composant de lecture video qui affiche l'enregistrement en boucle dès le lancement du jeu.
 \newline
-Le menu permet donc de commencer une partie, d'acccéder aux paramètres ou de quitter le jeu. Il serai triste de quitter maintenant alors qu'il vient d'être lancé, alors continuons.
+Le menu permet donc de commencer une partie, d'acccéder aux paramètres ou de quitter le jeu. Il serait triste de quitter maintenant alors qu'il vient d'être lancé, alors continuons.
 
 \paragraph{}
 Vous pouvez dès à présent commencer une partie dans l'univers de Deadly Science, avec vos amis, ou en joignant une salle créée par quelqu'un d'autre. Mais si les paramètres vous intriguent, allez donc y jeter un oeil.
@@ -414,7 +414,7 @@ Il est composé de deux parties. Celle de gauche on peut écrire dans la barre b
 
 \paragraph{Menu pour les paramètres de la partie}
 
-Dans ce menu on peut changer de mode de jeu entre Classique et Nocturne (ces modes de jeu seront expliqués par la suite). On peut aussi changer le nombre de joueurs de la partie. Enfin on peut choisir la taille du labyrinthe parmis plusieurs dimensions prédéfinies ou bien choisir une taille personnalisée (par exemple un labyrinthe rectangulaire) en l'écrivant sur la barre blanche et confirmer. Pour sélectionner l'option que l'on souhaite, il suffit encore tout simplement de cliquer dessus. Par exemple sur la Figure 2, on peut voir que le mode de jeu choisi est Classique, que la salle peut contenir quatre joueurs et que la taille du labyrinthe est de dix en largeur et 10 en longueur. Lorsque l'on a choisi ses paramètres, il suffit d'appuyer sur le bouton "Retour" qui nous envoie sur le menu précédant et on peut créer la partie avec les paramètres enregistrés. On peut souligner que les modes de jeu et les tailles du labyrinthe sont sur des tableaux défilants, ce qui permet premièrement l'ajout de nouveaux modes ou de nouvelles tailles facile, mais aussi que l'on peut en ajouter autant qu'on veut, il suffit juste d'utiliser la molette de la sourie pour accéder aux options tout en bas.
+Ce menu ne sert que pour l'hôte de la partie, les autres joueurs n'ont pas besoin d'interagir avec celui-ci. Dans ce menu on peut changer de mode de jeu entre Classique et Nocturne (ces modes de jeu seront expliqués par la suite). On peut aussi changer le nombre de joueurs de la partie. Enfin on peut choisir la taille du labyrinthe parmis plusieurs dimensions prédéfinies ou bien choisir une taille personnalisée (par exemple un labyrinthe rectangulaire) en l'écrivant sur la barre blanche et confirmer. Pour sélectionner l'option que l'on souhaite, il suffit encore tout simplement de cliquer dessus. Par exemple sur la Figure 2, on peut voir que le mode de jeu choisi est Classique, que la salle peut contenir quatre joueurs et que la taille du labyrinthe est de dix en largeur et 10 en longueur. Lorsque l'on a choisi ses paramètres, il suffit d'appuyer sur le bouton "Retour" qui nous envoie sur le menu précédant et on peut créer la partie avec les paramètres enregistrés. On peut souligner que les modes de jeu et les tailles du labyrinthe sont sur des tableaux défilants, ce qui permet premièrement l'ajout de nouveaux modes ou de nouvelles tailles facile, mais aussi que l'on peut en ajouter autant qu'on veut, il suffit juste d'utiliser la molette de la sourie pour accéder aux options tout en bas.
 
 
 
