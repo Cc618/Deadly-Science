@@ -471,14 +471,14 @@ Quand tous les sérums ont été consommés, une nouvelle phase commence. Il ne 
 
 
 Une fois que vous êtes dans le labyrinthe,
-Pour contrôler le joueur, il suffit d'appuyer sur les touches que vous avez enregistrées (ou WASD par défaut) pour les mouvements horizontaux ou espaces pour sauter, concernant la caméra, la souris est utilisée. Nous pouvons également attaquer d'autres joueurs en appuyant sur le bouton gauche de la souris et en ayant un joueur devant nous.
+Pour contrôler le joueur, il suffit d'appuyer sur les touches que vous avez enregistrées (ou WASD par défaut) pour les mouvements horizontaux ou sur espace pour sauter, concernant la caméra, la souris est utilisée. Nous pouvons également attaquer d'autres joueurs en appuyant sur le bouton gauche de la souris et en ayant un joueur devant nous.
 
 
 %%% TODO : vvv Reformuler / Déplacer ?
 
 
 Chaque joueur possède son nom au-dessus de sa tête, il sert d'une part à connaître quel joueur nous avons en face de nous, mais aussi sert à indiquer le statut du joueur par sa couleur qui est la même que celle de son statut.
-Pour connaître son propre statut, nous pouvons regarder en haut à gauche de l'écran, notre nom est affiché avec la même couleur que celle de notre statue.
+Pour connaître son propre statut, nous pouvons regarder en haut à gauche de l'écran, notre nom est affiché avec la même couleur que celle de notre statut.
 
 
 \subsection{Endurance}
@@ -545,7 +545,7 @@ Elles sont également présentes lors d'un coup donné à un autre joueur.
 \end{figure}
 
 
-\subsubsection{Post traitement}
+\subsubsection{Post-traitement}
 
 
 Le joueur condamné en seconde phase a une lourde responsabilité, c'est pour cela qu'un effet de vignettage rouge fait apparition à l'écran.
@@ -565,7 +565,7 @@ Cet effet oppressant est animé à la façon d'un battement de coeur et dure jus
 \subsubsection{Joueur}
 
 
-Le jeu est un jeu en réseau, le joueur a été implémenté en considérant qu'il doit être très modulable pour s'intégrer au réseau.
+Le jeu est à jouer en réseau, le joueur a été implémenté en considérant qu'il doit être très modulable pour s'intégrer au réseau.
 C'est pourquoi j'ai créé plusieurs modules qui peuvent s'enlever sous diverses conditions.
 Voici les principaux modules :
 
@@ -631,9 +631,17 @@ Un sérum peut être considéré comme un power up, car c'est un objet qui peut 
 \subsubsection{Audio}
 
 
-Je me suis occupé d'implémenter les sons et musiques au sein du jeu. Léandre s'est occupé de composer les musiques et pour ma part je les ai mixées et intégrées au jeu. Les éléments sonores composés sont l'intégralité des musiques ainsi que certains effets tels que ceux de victoire ou de défaite.
-Les musiques et effets sont des listes regroupant à la fois un identifiant et un fichier audio. J'ai créé une classe Audio premièrement qui possède des fonctions statiques ainsi qu'une instance statique, je me suis inspiré du design pattern Singleton pour cette classe afin de rendre plus facile d'accès les méthodes. Cette classe doit être alors unique et pour cela j'ai fait appel à la fonction DontDestroyOnLoad de Unity, elle permet comme son nom l'indique de ne pas enlever l'objet ayant ce script lors d'un changement de scène. Les effets sonores et les musiques sont pour moi deux éléments distincts. Les effets sonores sont des fichiers audio souvent de quelques secondes, ils interviennent lors de la victoire par exemple. Ces sons doivent se détruire automatiquement une fois terminés. Quant aux musiques, elles ne se terminent jamais, elles se jouent en boucle et il n'y en a qu'une seule à la fois. Avec Unity, ce n'est pas compliqué d'implémenter une fonction Play et SetMusic qui jouent soit un effet audio, soit de la musique. Le plus long a été de faire des transitions entre deux musiques.
-Pour faire cela, j'ai utilisé un Animator, ce composant permet de gérer plusieurs animations sur un objet. Il y a deux animations : celle d'entrée et celle de sortie. J'ai alors créé un autre script qui combine deux volumes, celui fournit par l'animation et celui des paramètres, comme leurs valeurs sont entre 0 et 1 il suffit de les multiplier entre elles pour obtenir le bon volume. Pour que les transitions se jouent au bon moment nous déclenchons un trigger dans l'animator, c'est juste une fonction qui déclenche une nouvelle animation. Ils se déclenchent au lancement de la musique et lors d'une transition. De plus, ces deux animations durent le même temps pour que ça soit plus agréable.
+Je me suis également occupé d'implémenter les sons et musiques au sein du jeu. Léandre s'est occupé de composer les musiques et pour ma part je les ai mixées et intégrées au jeu. Les éléments sonores composés sont l'intégralité des musiques ainsi que certains effets tels que ceux de victoire ou de défaite.
+Les musiques et effets sont des listes regroupant à la fois un identifiant et un fichier audio. J'ai créé une classe Audio premièrement qui possède des fonctions statiques ainsi qu'une instance statique, je me suis inspiré du design pattern Singleton pour cette classe afin de rendre plus facile d'accès les méthodes. Cette classe doit être alors unique et pour cela j'ai fait appel à la fonction DontDestroyOnLoad de Unity, elle permet comme son nom l'indique de ne pas enlever l'objet ayant ce script lors d'un changement de scène. Les effets sonores et les musiques sont pour moi deux éléments distincts.
+
+Les effets sonores sont des fichiers audio souvent de quelques secondes, ils interviennent lors de la victoire par exemple. Ces sons doivent se détruire automatiquement une fois terminés.
+
+Quant aux musiques, elles ne se terminent jamais, elles se jouent en boucle et il n'y en a qu'une seule à la fois.
+
+Avec Unity, ce n'est pas compliqué d'implémenter une fonction Play et SetMusic qui jouent soit un effet audio, soit de la musique. Le plus long a été de faire des transitions entre deux musiques.
+Pour faire cela, j'ai utilisé un Animator, ce composant permet de gérer plusieurs animations sur un objet. Il y a deux animations : celle d'entrée et celle de sortie.
+
+J'ai alors créé un autre script qui combine deux volumes, celui fournit par l'animation et celui des paramètres, comme leurs valeurs sont entre 0 et 1 il suffit de les multiplier entre elles pour obtenir le bon volume. Pour que les transitions se jouent au bon moment nous déclenchons un trigger dans l'animator, c'est juste une fonction qui déclenche une nouvelle animation. Ils se déclenchent au lancement de la musique et lors d'une transition. De plus, ces deux animations durent le même temps pour que ça soit plus agréable.
 
 
 
@@ -654,10 +662,10 @@ Lors de la seconde soutenance, j'avais introduit un mécanisme permettant de fai
 
 \begin{lstlisting}
 si rayon touche joueur alors
-// Gestion du statut...
-jouer son "hit"
+	// Gestion du statut...
+	jouer son "hit"
 sinon
-jouer son "hit_failed"
+	jouer son "hit_failed"
 fin
 \end{lstlisting}
 
@@ -667,9 +675,9 @@ Un autre effet sonore qui demande un peu plus de temps à intégrer est l'effet 
 
 \begin{lstlisting}
 si joueur = joueur local alors
-jouer "serum"
+	jouer "serum"
 sinon
-jouer "serum_long"
+	jouer "serum_long"
 fin
 \end{lstlisting}
 
@@ -855,14 +863,14 @@ Ajoutons maintenant une fonction qui change la valeur entre 0 et 1 en fonction d
 \begin{lstlisting}
 float map(float dist)
 {
-float range = MAX_DIST - MIN_DIST;
+	float range = MAX_DIST - MIN_DIST;
 
 
-dist -= MIN_DIST;
-dist /= range;
+	dist -= MIN_DIST;
+	dist /= range;
 
 
-return clamp(dist, 0, 1);
+	return clamp(dist, 0, 1);
 }
 \end{lstlisting}
 
