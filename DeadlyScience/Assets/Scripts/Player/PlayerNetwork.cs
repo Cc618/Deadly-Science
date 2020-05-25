@@ -146,7 +146,6 @@ namespace ds
             if (from == id)
             {
                 playerState.OnSerum();
-                EndGame.AddRecap("Soigné");
             }
             // Find and destroy the serum
             if (PhotonNetwork.IsMasterClient)
@@ -218,10 +217,10 @@ namespace ds
         public IEnumerator SerumUrgence()
         {
             yield return new WaitForSeconds(5);
-            SendSetStatus(PlayerState.PlayerStatus.HEALED);
+            SendSetStatus(PlayerState.PlayerStatus.HEALED,true);
         }
 
-        public void SendSetStatus(PlayerState.PlayerStatus status)
+        public void SendSetStatus(PlayerState.PlayerStatus status,bool s = false)
         {
             if (status == PlayerState.PlayerStatus.REVENGE && Player.alterations[8])
             {
@@ -232,6 +231,17 @@ namespace ds
             }
             else
             {
+                if (status == PlayerState.PlayerStatus.HEALED)
+                {
+                    if (!s)
+                    {
+                        EndGame.AddRecap("Soigné");
+                    }
+                }
+                if (status == PlayerState.PlayerStatus.REVENGE)
+                {
+                    EndGame.AddRecap("Condamné");
+                }
                 view.RPC("SetStatus", RpcTarget.All, id, status);
             }
         }
