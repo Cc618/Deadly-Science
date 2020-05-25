@@ -820,7 +820,7 @@ Les particules associées aux coups sont des points rouges. Au début la couleur
 
 
 
-
+\newpage
 \subsubsection{Effets visuels supplémentaires}
 
 
@@ -848,7 +848,8 @@ float dist = sqrt(position.x * position.x + position.y * position.y) / 1.41f;
 
 
 Il reste une dernière transformation à appliquer pour prendre en compte l'animation.
-J'ai ajouté alors deux constantes \emph{HEART\_POS} et \emph{HEART\_STRENGTH} et une variable \emph{\_AnimRatio} que nous mettrons par la suite à jour dans notre script.
+J'ai alors ajouté la constante \emph{HEART\_POS} et aussi une autre \emph{HEART\_STRENGTH} ainsi qu'une variable \emph{\_AnimRatio} que nous mettrons par la suite à jour dans notre script.
+
 On obtient ainsi cette ligne de code :
 
 
@@ -896,13 +897,14 @@ postFx.SetFloat("_AnimRatio", .5f + Mathf.Sin(time) * .5f);
 En changeant un peu les constantes, nous arrivons à un résultat très satisfaisant.
 
 
+\newpage
 \subsubsection{Finalisation du jeu}
 
 
 Après les divers effets ajoutés, nous avons pu tester et apprécié notre jeu. Il manquait quelques finitions à apporter.
 Nous avons premièrement remarqué qu'un joueur peut être désavantagé s'il possède une mauvaise connexion ou que son jeu met du temps à charger. En effet, les joueurs ayant de meilleures connexions peuvent commencer à chercher les sérums en avance. Pour régler ce problème, j'ai désactivé les mises à jour des joueurs dans certaines conditions comme au début de la partie, à la fin et en pause, à noter que les deux derniers sont purement esthétiques. Désactiver la mise à jour du joueur comprends les physiques vu que les joueurs ne répondent pas aux physiques de Unity, mais à celles j'avais créées avant la première soutenance et comprends également toutes les actions et mouvements que font les joueurs, car les entrées sont ignorées (seulement celles liées au jeu ne le sont pas comme la pause).
-Un autre aspect modifié est le label au-dessus de la tête du joueur. Il y avait marqué player or nous avons à présent implémenté des noms personnalisés. Pour changer le nom, il suffit de récupérer l'identifiant du joueur instanciant l'objet Player puis changer la propriété text du label.
 
+Un autre aspect modifié est le label au-dessus de la tête du joueur. Il y avait marqué player or nous avons à présent implémenté des noms personnalisés. Pour changer le nom, il suffit de récupérer l'identifiant du joueur instanciant l'objet Player puis changer la propriété text du label.
 
 Dernièrement, d'autres modifications mineures ont été ajoutées comme le changement de taille des boîtes de collisions des joueurs et des sérums et aussi la désactivation des attaques de joueurs quand ils sont assommés.
 
