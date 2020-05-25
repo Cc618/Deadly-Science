@@ -134,6 +134,9 @@ Le jeu doit être jouable en réseau, les effets des sérums doivent être synch
 \paragraph{Site Web}
 Il faut un site Web clair et net et esthétiquement plaisant à regarder. Il doit comporter les informations sur notre groupe, les liens pour télécharger les rapports de soutenance, de projet et le jeu. Il faut aussi qu'il contienne les règles et des images du jeu pour avoir une idée du jeu.
 
+\paragraph{Effets}
+Le jeu doit également être agréable à jouer, pour cela il est important d'ajouter plusieurs effets sonores et visuels tel que des musiques, bruitages, particules et plus...
+
 \newpage
 \subsection{Répartition des tâches}
 
@@ -470,6 +473,10 @@ Pour connaître son propre status, nous pouvons regarder en haut à gauche de l'
 
 Pour que le jeu soit plus intéressant, j'ai pensé à intégrer une jauge d'endurance.
 
+L'endurance est semblable à une barre de vie dans la plupart des jeux, contrairement à une barre de vie, une fois vide, elle ne tue pas le joueur mais le rend faible. Ainsi, le joueur se déplace très lentement (10\% de sa vitesse normale) et ne peut plus sauter. Il ne peut pas non plus attaquer ni reprendre de coup pour éviter qu'un joueur le bloque.
+
+Cette jauge se remplie petit à petit et une fois le joueur asssomé, il doit attendre que cette barre d'endurance se remplisse totalement avant de retrouver ses abilités.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{cc/stamina.png}
@@ -477,7 +484,9 @@ Pour que le jeu soit plus intéressant, j'ai pensé à intégrer une jauge d'end
     \label{cc_a}
 \end{figure}
 
-L'endurance est semblable à une barre de vie dans la plupart des jeux, contrairement à une barre de vie, une fois vide, elle ne tue pas le joueur mais le rend faible. Ainsi, le joueur se déplace très lentement (10\% de sa vitesse normale) et ne peut plus sauter. Il ne peut pas non plus attaquer ni reprendre de coup pour éviter qu'un joueur le bloque.
+A présent, parlons de comment un joueur peut assomer un autre joueur, c'est très simple, à la manière d'un jeu de tir à la première personne, un joueur doit viser une cible puis cliquer avec sa souris. Bien sûr, il y a une portée maximale car le joueur ne tir pas vraiment, c'est juste un coup. De plus, en seconde phase, si un joueur de status condamné donne un coup à un autre joueur de status guéris, celui-ci prends le status condamné. Cette façon permet aux joueurs de plus facilement interragir entre eux.
+
+Pour qu'un joueur puisse savoir si un autre joueur est assomé, une barre d'endurance est présente sur la tête de chaque joueur, elle devient grise une fois que le joueur est sonné.
 
 \begin{figure}[H]
     \centering
@@ -486,11 +495,11 @@ L'endurance est semblable à une barre de vie dans la plupart des jeux, contrair
     \label{cc_b}
 \end{figure}
 
-Cette jauge se remplie petit à petit et une fois le joueur asssomé, il doit attendre que cette barre d'endurance se remplisse totalement avant de retrouver ses abilités.
+\subsection{Effets audio}
 
-A présent, parlons de comment un joueur peut assomer un autre joueur, c'est très simple, à la manière d'un jeu de tir à la première personne, un joueur doit viser une cible puis cliquer avec sa souris. Bien sûr, il y a une portée maximale car le joueur ne tir pas vraiment, c'est juste un coup. De plus, en seconde phase, si un joueur de status condamné donne un coup à un autre joueur de status guéris, celui-ci prends le status condamné. Cette façon permet aux joueurs de plus facilement interragir entre eux.
-
-Pour qu'un joueur puisse savoir si un autre joueur est assomé, une barre d'endurance est présente sur la tête de chaque joueur, elle devient grise une fois que le joueur est sonné.
+Deadly Science dispose de divers effets audio pour renforcer l'ambiance du jeu.
+Il y a des musiques lors du menu ou du jeu ainsi que des effets sonores joués lors d'une action faite par l'utilisateur. 
+De plus, les musiques s'enchaînent avec des transitions et les effets sonores peuvent être joués en réseau.
 
 \subsection{Effets visuels}
 
