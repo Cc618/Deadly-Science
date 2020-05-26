@@ -24,8 +24,8 @@ namespace ds
             {
                 print(_text.text);
                 s = _text.text;
-                CreateRoomMenu.Xm = s[0] * 10 + s[1];
-                CreateRoomMenu.Zm =s[3] * 10 + s[4];
+                CreateRoomMenu.Xm = (s[0]-48) * 10 + (s[1]-48);
+                CreateRoomMenu.Zm =(s[3]-48) * 10 +(s[4]-48);
             }
             else
             {
@@ -56,6 +56,9 @@ namespace ds
                         "Le format à respecter est {00*00}, en remplaçant les '0' par les valeurs de votre choix.";
                 }
             }
+
+            print("X : " + CreateRoomMenu.Xm);
+            print("Z : " + CreateRoomMenu.Zm);
         }
     }
 }
