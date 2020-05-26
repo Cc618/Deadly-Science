@@ -369,13 +369,10 @@ Changement des boutons en commutateur pour surligner le paramètre actif
     \item Génération des Objets
     \item Effets des différents Objets
 \end{itemize}
-
 \newpage
 \section{Présentation du projet}
-
-\subsection{Menus}
-Pour jouer au  jeu, l'utilisateur peut interagir avec plusieurs menus pour son expérience personnelle. Il y'a le menu principal qui est le premier menu du jeu et qui permet de modifier les paramètres client, et les menus de connection qui permettant de le connecter à une salle et de commencer le jeu.
-%%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Yann}
 \subsubsection{Menu principal}
 
 Le menu est la première image qu'aperçoit le joueur du jeu. Il est important d'avoir un menu bien réalisé et qui donne envie de jouer à l'utilisateur. Chose promise, chose due, la couleur de fond a été remplacée par une video de présentation du jeu, et le nom du jeu est présent aussi, c'est tout de même mieux avec.
@@ -422,12 +419,59 @@ Finalement dans la partie en bas à droite de trouvent trois slider permettant d
 	\item{La sensibilité de la souris} permet, sans grosse surprise de régler la vitesse de la souris dans le jeu, qui est associé à la rotation du personnage. Elle a une plage de valeur plus petite, entre 0.1 et 0.7. Le minimum est à 0.1 car je ne voulais pas que les joueurs puissent empêcher la rotation du personnage et de la caméra, et le maximum est à 0.7 car au delà, le jeu devenait injouable car la caméra était incontrolable. Le joueur rentrait alors dans tout les murs et ne pouvait qu'à peine changer de salles.
 \end{itemize}
 
+\subsubsection{Ecran de "pause"}
+Un écran de "pause" (c'est un jeu multijoueurs, il n'y a pas vraiment de pause) s'ouvre lorsque le joueur appuie sur la touche "echap". La souris apparait alors et il devient impossible de se déplacer.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Pause.png}
+	\caption{L'écran de "pause"}
+	\label{L'écran de "pause"}
+\end{figure}
+
+
+On y retrouve certains paramètres: les touches pour jouer, le volume de la musique, des effets sonores et la sensibilité de la souris. pour des raisons évidentes d'identification, il est impossible de changer son pseudo en cours de partie. De même, la langue du jeu est seulement modifiable sur le menu principal. Pour quitter la fenêtre, il suffit de réappuyer sur la touche "echap", la souris disparait et le joueur peut de nouveau contrôler son avatar.
+
+\subsubsection{Écran de fin}
+\paragraph{Deux possibilités:}
+Soit le joueur est le premier condamné et à réussi à infecter tous les autres, ou le joueur à réussi à survivre toute les durée de la partie, il gagne et est notifié par un magnifique "Victoire" vert. Soit il était soigné mais a été réinfecté et meurt donc dans l'indifférence la plus totale du joueur qui s'empresse de relancer une autre partie. Il est alors notifié d'un "Défaite" rouge. Dans les deux cas il est impossible de se déplacer lorsque la partie est terminée. A cela s'ajoute un récapitulatif de la partie au centre de l'écran. Il y est inscrit chaque évênement auquel le joueur à fait face, le soin, la contamination, les différents objets rammassés. A chaque évênement, une nouvelle zone de texte est créée et se rajoute à la liste.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.49\textwidth]{Victoire.png}
+	\includegraphics[width=0.49\textwidth]{Defaite.png}
+	\caption{Écrans de fin}
+	\label{Écrans de fin}
+\end{figure}
+
+\subsubsection{Site Web}
+Le site web se présente en 5 pages différentes:
+\begin{itemize}
+	\item{} L'accueil ( ou projet) qui présente le jeu.
+	\item{} Le groupe qui constitue la présentation de chacun
+	\item{} La galerie, collection de photos du jeu
+	\item{} Le codex, qui rasssemble les objets du jeu
+	\item{} La page de téléchargement
+\end{itemize}
+L'image de fond est identique sur toute les pages et montre une salle du labyrinthe.
+
+\paragraph{L'accueil}présente Deadly Science, son origine et le déroulement d'une partie. Ce premier paragraphe est suivi de l'évolution du jeu entre les soutenances depuis la naissance du projet à cette dernière présentation.
+
+\paragraph{Le groupe}présente chaque membre du groupe, accompagné de sa magnifique poto du CRI en médaillon.
+
+\paragraph{La galerie}regroupe des photos de chaque salle utilisées dans le labyrinthe et développés par Léandre et moi. Vous trouverez en dessous des photos finales celles des anciennes versions du jeu.
+
+\paragraph{Le codex}présente les objets de Deadly Science connus du public en trois catégories: ceux qui vous aident dans votre mission, ceux qui vous ralentisent dans votre mission et ceux qui... On ne sait pas trop à quoi ils servent en fait. Il seront plus amplement expliqués par la suite (ou vous pouvez allez voir le site).
+
+\paragraph{L'onglet de téléchargement}permet en accord avec toutes les probabilités, de télécharger le jeu, ainsi que les différents documents (cahier des charges et rapports) réalisé pendant la durée du projet.
+
+
+\subsection{Steve}
 \newpage
-\subsubsection{Menus de connexion}
 %%%%%%%%%%%%%%%%%%%%%% Steve%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Pour se connecter il y'a trois menus, le menu pour créer la partie, le menu pour changer les paramètres de la partie, et enfin le menu on peut voir les joueurs connectés et commencer la partie. Chacun des 3 menus ont subi une refonte graphique pour correspondre à l'ambiance du jeu et avoir un aspect visuel plus plaisant.
 
-\paragraph{Menu pour créer la partie}
+\subsubsection{Menu pour créer la partie}
 
 Voici à quoi ce menu ressemble : 
 
@@ -440,7 +484,7 @@ Voici à quoi ce menu ressemble :
 
 Il est composé de deux parties. Celle de gauche on peut écrire dans la barre blanche le nom de la salle que l'on veut créer et un bouton "Créer la salle" qui comme son nom l'indique permet de créer la salle et d'entrer dans un autre menu que l'on verra par la suite. La partie droite liste chacune des salles avec leur noms et le nombre de joueurs déjà présents dans la salle. Elle est sur un tableau défilant ce qui permet d'avoir autant de parties que l'on souhaite. Cela permet de savoir si par exemple on va attendre plus ou moins longtemps avant le début de la partie. Pour rejoindre la salle que l'on souhaite, c'est simple, il suffit de cliquer dessus et cela nous fait rentrer dans la dite salle. A noter que si la salle est remplie à son maximum, elle ne sera pas montrée comme visible, vu qu'on ne peut pas la rejoindre. En ce qui concerne les deux boutons du milieu, le bouton "Retour" nous fait retourner à l'écran principal et le deuxième bouton nous transporte dans le menu des paramètres du labyrinthe que l'on va maintenant regarder.
 
-\paragraph{Menu pour les paramètres de la partie}
+\subsubsection{Menu pour les paramètres de la partie}
 
 Ce menu ne sert que pour l'hôte de la partie, les autres joueurs n'ont pas besoin d'interagir avec celui-ci. Dans ce menu on peut changer de mode de jeu entre Classique et Nocturne (ces modes de jeu seront expliqués par la suite). On peut aussi changer le nombre de joueurs de la partie. Enfin on peut choisir la taille du labyrinthe parmis plusieurs dimensions prédéfinies ou bien choisir une taille personnalisée (par exemple un labyrinthe rectangulaire) en l'écrivant sur la barre blanche et confirmer. Pour sélectionner l'option que l'on souhaite, il suffit encore tout simplement de cliquer dessus. Par exemple sur la Figure 2, on peut voir que le mode de jeu choisi est Classique, que la salle peut contenir quatre joueurs et que la taille du labyrinthe est de dix en largeur et 10 en longueur. Lorsque l'on a choisi ses paramètres, il suffit d'appuyer sur le bouton "Retour" qui nous envoie sur le menu précédant et on peut créer la partie avec les paramètres enregistrés. On peut souligner que les modes de jeu et les tailles du labyrinthe sont sur des tableaux défilants, ce qui permet premièrement l'ajout de nouveaux modes ou de nouvelles tailles facile, mais aussi que l'on peut en ajouter autant qu'on veut, il suffit juste d'utiliser la molette de la sourie pour accéder aux options tout en bas.
 
@@ -454,7 +498,7 @@ Ce menu ne sert que pour l'hôte de la partie, les autres joueurs n'ont pas beso
 \end{figure}
 
 
-\paragraph{Menu pour commencer la partie}
+\subsubsection{Menu pour commencer la partie}
 
 Ce menu a la particuliarité d'être différend en fonction de notre rôle dans la partie. Si on est l'hôte de la salle, alors le bouton en bas à gauche est "Commencer" permettant de débuter la partie, et sinon il est nommé "Prêt" qui permet de savoir si chacun des joueurs est prêt à commencer la partie comme montré sur les Figures 3 et 4. D'ailleurs à droite, on peut voir la liste des joueurs avec leur pseudonyme et leur rôle. A nôter que l'actualisation des statuts des joueurs est quasiment instantané et que le bouton "Prêt" change si on est prêt ou pas. Si on ne l'est pas il sera renommé "Non Prêt". L'hôte ne peut commencer la partie que si chacun des joueurs, et chacun des joueurs entre dans la salle avec un statut "Non Prêt". Dès que le nombre de joueurs attendus correspond au nombre de joueurs dans la salle et que tous les joueurs sont prêts, l'hôte peut débuter la partie. Lorsque la partie commence, la salle n'est plus accésible ni visible. En dehors de ça, peu importe notre rôle, on peut décider à tout moment de quitter la salle en appuyant sur le bouton éponyme. Si l'on est hôte, tous les joueurs de la salle sont transportés dans le menu pour créer la salle. De plus, des protections ont été mises de manière à ce que même si, par exemple, l'hôte viendrait à cliquer sur le bouton "	Commencer" alors que tous les joueurs ne sont pas prêts, la partie ne débutera pas.
 
@@ -475,16 +519,46 @@ Ce menu a la particuliarité d'être différend en fonction de notre rôle dans 
     \label{Menu lorsqu'on n'est pas hôte}
 \end{figure}
 
+\subsubsection{Réseau}
+En dehors des menus et d'être chef de projet, j'ai été en charge de la gestion du réseau. Cela passe par la génération des joueurs, la synchronisation des objets 
+etc... Il est dur de visualiser ou de comprendre les effets du réseau mais je vais faire de mon mieux pour le faire.
 
-\paragraph{Interface}
-blablabla
+\paragraph{Génération des joueurs}
+
+L'une des plus grandes difficultés du projet et c'est sans doute ce qui nous a pris le plus de temps. Le pire, c'est qu'au premier abord on pourrait croire que ça 
+serait quelque chose de simple, il suffirait de mettre un identifiant à chacun des joueurs et en fonction de l'identifiant de l'instancier à la position que l'on 
+souhaite. Malheuresement ce ne fut pas assez simple.
+
+On a pensé premièrement à utiliser la variable LocalPlayer de Photon avec le dictionnaire des Players. Cela n'a 
+pas fonctionné car tout les joueurs avaient les mêmes propriétés, c'est-à-dire mêmes pseudos, mêmes identifiants etc... On a cru pendant longtemps que c'était le 
+LocalPlayer le problème mais avec nombreux tests, on sait rendu compte que c'était le dictionnaire qui ne marchait pas.
+
+Après on a pensé à utiliser les RaiseEvents, mais c'était inutile pour ce que l'on cherchait à faire. On a après pensé à utilisé les PhotonViews mais le problème c'est 
+que cela permettait de déterminer si on était le joueur mais pas par rapport aux autres. Or on cherchait un moyen de le distinguer des autres joueurs.
+
+On a pensé à utilisé l'hôte de la salle (que l'on appelle aussi le MasterClient) comme base pour envoyer les messages de tous les joueurs, mais ce fut beaucoup très complexe et non 
+performant. A la fin, on a utilisé les PhotonViews, les LocalPlayers et les RPCFonctions pour envoyer les messages en réseau. Cette méthode fut optimisée et parfaite 
+pour ce que l'on cherchait.
+
+\paragraph{Propritétés des joueurs}
+La génération des joueurs ne concerne que la première partie du réseau, elle ne se lance qu'au début de la partie. Il reste ensuite à synchroniser les mouvements, 
+rotations, animations des joueurs. Pour cela j'ai du utiliser les Photon Transform et Animator Views. Ce fut plus compliqué que attendu, vu que le joueur est consistué 
+de plusieurs parties et il fallait que toutes soient synchronisé pour tout le monde. 
+
+De plus, il fallait aussi cacher les animations au joueur qui les faisait car 
+sinon les animations rencontrer la caméra ce qui n'était pas du tout le résultat souhaiter. Heuresement, avec beaucoup de recherche et de travail, tout est maintenant 
+synchronisé au dixième de seconde, permettant des actions rapides pour dynamiser le jeu.
+
+Sans vouloir rentrer dans les aspects techniques du code, ce fut l'essentiel de mon acitivité en dehors des menus. En dehors de ça, j'ai du me charger de synchroniser tout les travaux de tous mes collègues comme le labyrinthe par exemple, car sinon les joueurs ne sont pas dans le même labyrinthe. 
 
 
-%%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Célian}
+
 
 
 \newpage
-\subsection{Principe du jeu}
+\paragraph{Principe du jeu}
 
 
 Notre jeu possède deux phases.
@@ -495,7 +569,7 @@ Quand tous les sérums ont été consommés, une nouvelle phase commence. Il ne 
 %%% TODO : Parler gen labyrinthe
 
 
-\subsection{Gameplay}
+\subsubsection{Gameplay}
 
 
 Une fois que vous êtes dans le labyrinthe,
@@ -509,7 +583,7 @@ Chaque joueur possède son nom au-dessus de sa tête, il sert d'une part à conn
 Pour connaître son propre statut, nous pouvons regarder en haut à gauche de l'écran, notre nom est affiché avec la même couleur que celle de notre statut.
 
 
-\subsection{Endurance}
+\subsubsection{Endurance}
 
 
 Pour que le jeu soit plus intéressant, j'ai pensé à intégrer une jauge d'endurance.
@@ -543,7 +617,7 @@ Pour qu'un joueur puisse savoir si un autre joueur est assommé, une barre d'end
 \end{figure}
 
 
-\subsection{Effets audio}
+\subsubsection{Effets audio}
 
 
 Deadly Science dispose de divers effets audio pour renforcer l'ambiance du jeu.
@@ -551,13 +625,13 @@ Il y a des musiques lors du menu ou du jeu ainsi que des effets sonores joués l
 De plus, les musiques s'enchaînent avec des transitions et les effets sonores peuvent être joués en réseau.
 
 
-\subsection{Effets visuels}
+\paragraph{Effets visuels}
 
 
 En plus d'effets audio, Deadly Science possède des effets visuels supplémentaires, ils accompagnent les actions des joueurs au cours du jeu.
 
 
-\subsubsection{Particules}
+\paragraph{Particules}
 
 
 Les particules sont présentes sous plusieurs formes.
@@ -573,7 +647,7 @@ Elles sont également présentes lors d'un coup donné à un autre joueur.
 \end{figure}
 
 
-\subsubsection{Post-traitement}
+\paragraph{Post-traitement}
 
 
 Le joueur condamné en seconde phase a une lourde responsabilité, c'est pour cela qu'un effet de vignettage rouge fait apparition à l'écran.
@@ -589,7 +663,6 @@ Cet effet oppressant est animé à la façon d'un battement de coeur et dure jus
 
 
 \newpage
-\subsection{Célian}
 \subsubsection{Joueur}
 
 
@@ -626,7 +699,7 @@ Vous avez sans doute remarqué que les joueurs possèdent des modèles 3D ainsi 
 Nous avons préféré utiliser un modèle déjà fait sur l'Asset Store de Unity, car il est compliqué et surtout long de modéliser un humanoïde ainsi que de lui associer un squelette. Les animations aussi ont été trouvées sur l'Asset Store, néanmoins, nous avons nous même scripté les animations. En effet, nous utilisons le composant Animator de Unity qui permet de jouer des animations ainsi que de lancer des transitions entre deux animations. Pour ce faire, j'ai juste modifié des variables présentes dans l'animator à partir du script gérant les mouvements du joueur comme par exemple la variable \emph{onGround} qui est booléenne. Steve les a ensuite portés en réseau pour que chaque joueur puisse voir ses adversaires bouger correctement.
 
 
-\subsubsection{Physiques}
+\paragraph{Physiques}
 
 
 Comme dit précédemment, les mouvements du joueur ont un grand impact sur le gameplay, il est alors indispensable de bien gérer les physiques du joueur.
@@ -649,7 +722,7 @@ Elle n'est pas appelée plus souvent, car elle saturait le réseau ce qui avait 
 Un dernier élément ajouté est l'affichage de statut et d'endurance au-dessus de la tête des joueurs. Ces éléments appartiennent aux joueurs non contrôlés par le client et sont toujours tournés vers la caméra. Il faut alors enlever celui du client au début de la partie et les mettre à jour lors d'un changement de statut ou d'endurance.
 
 
-\subsubsection{Sérums}
+\paragraph{Sérums}
 
 
 Les sérums sont composés d'un modèle 3D le représentant, d'une boîte de collision pour être collecté ainsi qu'un script qui se charge d'avertir le jeu lors d'un sérum ramassé.
@@ -675,25 +748,18 @@ J'ai alors créé un autre script qui combine deux volumes, celui fournit par l'
 
 
 \newpage
-\subsubsection{Derniers ajouts}
+\paragraph{Effets audio}
 
 
-Parlons à présent des éléments que j'ai apportés depuis la seconde soutenance.
-Étant principalement occupé par le gameplay du joueur lors des deux premières soutenances, j'ai pu me pencher vers les effets visuels et sonores pour finaliser le projet.
-
-
-\subsubsection{Effets audio}
-
-
-Lors de la seconde soutenance, j'avais introduit un mécanisme permettant de faire jouer des sons ainsi que des musiques comprenant des transitions. J'avais promis de rajouter quelques effets sonores, car il y en avait trop peu - chose promise, chose due - à présent, j'ai ajouté quelques sons tels que le son de victoire ou de défaite, le son de la prise d'un bonus ou même celui qui intervient lors d'un changement de phase. Je ne me suis pas seulement contenté d'ajouter de simples effets sonores, en effet, certains ont été un peu plus complexes à implémenter. Par exemple, le son des coups des joueurs, je voulais qu'on ait toujours une réponse à une action or lors d'un coup nous pouvons rater le joueur, comme le joueur ne se voit pas lui-même il ne peut pas voir si son coup a bien été pris en compte. De plus, il est illogique de jouer un son de coup réussi. J'ai alors cherché deux sons, un de coup réussi et un autre de coup raté, le bruit décrit un mouvement d'air. Il ne restait plus qu'à ajouter les conditions pour les lancer, je les ai mises dans la fonction Player.Attack lors du test de collision de joueur par rayons :
+Lors de la seconde soutenance, j'avais introduit un mécanisme permettant de jouer des sons ainsi que des musiques comprenant des transitions. J'avais promis de rajouter quelques effets sonores, car il y en avait trop peu - chose promise, chose due - à présent, j'ai ajouté quelques sons tels que le son de victoire ou de défaite, le son de la prise d'un bonus ou même celui qui intervient lors d'un changement de phase. Je ne me suis pas seulement contenté d'ajouter de simples effets sonores, en effet, certains ont été un peu plus complexes à implémenter. Par exemple, le son des coups des joueurs, je voulais qu'on ait toujours une réponse à une action or lors d'un coup nous pouvons rater le joueur, comme le joueur ne se voit pas lui-même il ne peut pas voir si son coup a bien été pris en compte. De plus, il est illogique de jouer un son de coup réussi. J'ai alors cherché deux sons, un de coup réussi et un autre de coup raté, le bruit décrit un mouvement dans l'air. Il ne restait plus qu'à ajouter les conditions pour les lancer, je les ai mises dans la fonction Player.Attack lors du test de collision de joueur par rayons :
 
 
 \begin{lstlisting}
 si rayon touche joueur alors
 	// Gestion du statut...
-	jouer son "hit"
+	jouer son "coup"
 sinon
-	jouer son "hit_failed"
+	jouer son "coup_rate"
 fin
 \end{lstlisting}
 
@@ -744,10 +810,10 @@ Unity dispose d'un moteur de particules très poussé et complet, il n'est pas �
 \end{figure}
 
 
-La catégorie principale permet d'ajuster la durée de vie ainsi que la vitesse de la particule, pour que le système soit plus vivant je préfère utiliser des valeurs aléatoires entre certaines valeurs, cela évite notamment que les particules disparaissent d'un coup.
+La catégorie principale permet d'ajuster la durée de vie ainsi que la vitesse de la particule. Pour que le système soit plus vivant je préfère utiliser des valeurs aléatoires entre certaines valeurs, cela évite notamment que les particules disparaissent d'un coup.
 
 
-La seconde catégorie permet de modifier les propriétés d'émission de particules, nous ne voulons pas ici qu'elles apparaissent en continu, mais qu'elles apparaissent d'un coup donc j'utilise le tableau \emph{Bursts} avec une entrée exécutée dès l'apparition du système.
+La seconde catégorie permet de modifier les propriétés d'émission de particules. Nous ne voulons pas ici qu'elles apparaissent en continu, mais qu'elles apparaissent d'un coup donc j'utilise le tableau \emph{Bursts} avec une entrée exécutée dès l'apparition du système.
 
 
 \begin{figure}[H]
@@ -772,15 +838,15 @@ Deux autres catégories vont permettre de modifier la vélocité (c'est-à-dire 
 \end{figure}
 
 
-Dernièrement, je vais parler de la catégorie se chargeant des traînées. J'ai fait en sorte qu'une certaine proportion des particules possède une traînée pour rendre plus joli. J'ai appliqué ici aussi un dégradé de couleur et modifié la largeur de traînée. Une autre option qui permet de rendre plus agréable l'effet est celle qui change le temps de vie en fonction de la durée de vie de la particule liée à cette traînée. Cela permet d'avoir une traînée non statique, la fin de la traînée se rapproche de plus en plus du centre de la particule.
+Enfin, je vais parler de la catégorie se chargeant des traînées. J'ai fait en sorte qu'une certaine proportion des particules possède une traînée pour rendre plus joli. J'ai appliqué ici aussi un dégradé de couleur et modifié la largeur de traînée. Une autre option qui permet de rendre plus agréable l'effet est celle qui change le temps de vie en fonction de la durée de vie de la particule liée à cette traînée. Cela permet d'avoir une traînée dynamique, la fin de la traînée se rapproche de plus en plus du centre de la particule.
 
 
 \paragraph{Gestionnaire de particules}
 
 
-Maintenant que les systèmes de particules ont été créés, il va falloir s'intéresser à comment les gérer, c'est-à-dire comment les instancier et détruire.
-Un système de particule est rattaché à un simple objet pouvant être instancié, déplacé et même détruit. En pratique, le système de particules se détruit lui-même quand toutes les particules ont été instanciées.
-Avant de commencer à coder la classe de ce gestionnaire, j'ai pensé qu'il ressemblait fortement au gestionnaire audio. En effet, il fournira une méthode statique principale qui fera apparaitre un système, tout comme la méthode \emph{Audio.Play} qui fait jouer un son (se qui revient a instancier un objet avec un composant échantillon audio). Alors je me suis beaucoup inspiré de cette classe qui utilise notamment le design pattern du Singleton. Nous avons juste à mettre dans le menu une instance de ce gestionnaire puis lui dire de ne pas s'enlever lors du changement de scène. Ceci est très utile, car nous pouvons à partir de n'importe quel fichier instancié des particules, sans avoir besoin de posséder en attribut le gestionnaire.
+Maintenant que les systèmes de particules ont été créés, il va falloir s'intéresser à comment les gérer, c'est-à-dire comment les générer et détruire.
+Un système de particule est rattaché à un simple objet pouvant être instancié, déplacé et même détruit. En pratique, le système de particules se détruit lui-même quand toutes les particules ont été générées.
+Avant de commencer à coder la classe de ce gestionnaire, j'ai pensé qu'il ressemblait fortement au gestionnaire audio. En effet, il fournira une méthode statique principale qui fera apparaitre un système, tout comme la méthode \emph{Audio.Play} qui fait jouer un son (se qui revient à générer un objet avec un composant échantillon audio). Alors je me suis beaucoup inspiré de cette classe qui utilise notamment le design pattern du Singleton. Nous avons juste à mettre dans le menu une instance de ce gestionnaire puis lui dire de ne pas s'enlever lors du changement de scène. Ceci est très utile, car nous pouvons à partir de n'importe quel fichier instancié des particules, sans avoir besoin de posséder en attribut le gestionnaire.
 Pour pouvoir regrouper les systèmes, j'ai utilisé un tableau composé de paires GameObject et String, le premier composant est le système de particules (une Prefab) et le second est l'identifiant de celui-ci. Pour remplir le tableau des systèmes, je préfère utiliser une nomenclature standardisée (comme pour Audio), tous les identifiants sont les mêmes que ceux des fichiers sans les extensions. Ils sont eux-mêmes nommés en snake case, c'est-à-dire en minuscule avec des underscores à la place des espaces. Je préfère utiliser une casse différente entre les fichiers sources et les fichiers de ressource.
 
 
@@ -849,7 +915,7 @@ Les particules associées aux coups sont des points rouges. Au début la couleur
 
 
 \newpage
-\subsubsection{Effets visuels supplémentaires}
+\paragraph{Effets visuels supplémentaires}
 
 
 Je vais à présent parler du contenu qui m'a fait le plus plaisir à implémenter du projet, le post-traitement d'image. J'entends par ceci l'effet vignettage rouge animé que nous voyons quand nous sommes condamnés. Cet effet immerge le joueur dans la peau du personnage et permet d'augmenter le sentiment de panique que fait face un joueur encore infecté en seconde phase. Cet effet visuel a lieu seulement sur l'image générée par la caméra, les différents éléments d'interface utilisateur ne sont alors pas affectés par celui-ci.
@@ -926,7 +992,7 @@ En changeant un peu les constantes, nous arrivons à un résultat très satisfai
 
 
 \newpage
-\subsubsection{Finalisation du jeu}
+\paragraph{Finalisation du jeu}
 
 
 Après les divers effets ajoutés, nous avons pu tester et apprécié notre jeu. Il manquait quelques finitions à apporter.
@@ -937,7 +1003,7 @@ Un autre aspect modifié est le label au-dessus de la tête du joueur. Il y avai
 Dernièrement, d'autres modifications mineures ont été ajoutées comme le changement de taille des boîtes de collisions des joueurs et des sérums et aussi la désactivation des attaques de joueurs quand ils sont assommés.
 
 
-\subsubsection{Résultats}
+\paragraph{Résultats}
 
 
 Pour conclure sur mes modifications apportées depuis la dernière soutenance, je trouve que le cahier des charges a été correctement respecté, aucun élément n'a été oublié ni incorrectement implémenté, au contraire, il y a eu même plusieurs ajouts supplémentaires.
@@ -945,119 +1011,10 @@ Pour conclure sur mes modifications apportées depuis la dernière soutenance, j
 
 J'ai beaucoup apprécié faire partie de cette équipe ainsi que d'avoir participé à ce projet, j'ai appris à travailler en groupe sur un long projet et également approfondi certaines connaissances ou maîtrises d'outils comme git par exemple que j'utilisais trop peu avant.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%% Leandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Leandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Léandre}
 \newpage
-\subsection{Objets}
-\paragraph{Génération d'Objets}
-Etant donné que nous étions en avance sur nos prévisions de progression dans le projet, nous nous étions dis lors de la seconde soutenance que nous aurions peut-être le temps de rajouter quelques éléments qui ne figuraient pas dans le cahier des charges avant la dernière soutenance. C'est effectivement ce qu'il s'est passé. Nous avons donc décidé d'implémenter un système d'Objets récupérables au sein des laboratoires, afin d'aider les Joueurs ou, au contraire, de les gêner. Pour cela, j'ai tout d'abord réfléchi à l'implémentation des Objets. Un Objet doit remplir plusieurs critères. Premièrement, il ne doit jamais apparaître à l'intérieur d'un Sérum. Ensuite, il ne doit pas y avoir d'Objets à chaque salle du Labyrinthe. Pour ces deux raisons, nous ne pouvions pas mettre au point un système d'apparition d'Objets à intervalle de temps réguliers, car dans le cas où les Joueurs auraient peur des éventuels effets négatifs, le nombre d'Objets ne cesserait d'augmenter jusqu'à dépasser la contenance du labyrinthe, ce qui n'est absolument pas le but recherché. Finalement, nous avons décidé de faire en sorte que dans le Labyrinthe, il y aurait chaque fois un nombre constant d'Objets, Sérums compris. Ainsi, lorsqu'un Objet ou un Sérum est ramassé, il suffit juste d'évaluer une case ou un Sérum ou un autre Objet ne se trouve pas, et d'y générer le nouvel Objet. Ce système permet ainsi d'éviter un surplus d'Objet dans le labyrinthe, et de rendre la recherche des Objets relativement dynamique, puisqu'ils ont la possibilité de se renouveler à l'infini sans pour autant menacer la fluidité du jeu. 
-
-\paragraph{Nombre d'Objets}
-Au début de la partie, nous devons donc définir un nombre d'Objets de base. Il fallait bien sûr prendre en compte le nombre de Sérums nécessaires, mais également la taille du labyrinthe. En effet, dans un labyrinthe 20x20, s'il n'y a que trois Objets, en trouver relève du défi pur et dur. Nous avons donc choisi de faire en sorte qu'il y ait toujours un Objet par lot de 25 salles. Ainsi, un labyrinthe 10x10 aura quatre Objets, tandis qu'un labyrinthe 20x20 en comportera seize, ce qui est raisonnable étant donné qu'un dédale 20x20 est quatre fois plus grand qu'un dédale 10x10. De plus, j'ai pris soin de vérifier que pour le nombre, il y avait assez pour mettre suffisamment de Sérum au début de la partie. Si le nombre de salles est trop faible, j'augmente donc le nombre d'Objets pour qu'il y ait au moins le bon nombre de Sérums au début. Concernant l'apparence des Objets, vous aurez peut-être reconnu les cubes de Portal.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Objet.png}
-    \caption{Un Objet}
-    \label{Un Objet}
-\end{figure}
-
-\paragraph{Sélection d'Objet}
-Maintenant que les Objets sont implémentés, il faut leur ajouter des effets différents. Actuellement, il existe une douzaine d'effets différents. Il existe trois catégories d'effets, et deux sortes d'Objets. Les catégories sont : effets positifs, effets négatifs, et effets inutiles. Les Objets, eux, peuvent soit s'appliquer au moment où le Joueur les prend, soit rester sur le Joueur jusqu'à pouvoir être utilisés. Pour ces derniers, j'ai donc rajouté un tableau de booléens visant à déterminer si le Joueur a déjà les effets d'un Objet spécifique, et surtout d'afficher la liste de ces Objets sur son écran. Bien sûr, un Joueur ne peut pas récupérer un Objet qu'il a déjà. L'algorithme que j'ai utilisé choisit donc un des Objets parmi ceux que le Joueur peut potentiellement recevoir. Par exemple, si le Joueur est déjà équipé de Bottes de Pégase, il ne peut pas retomber sur des Bottes de Pégase à moins de les avoir perdues. De plus, certains Objets nécessitent de se trouver en seconde phase, et d'autres ne peuvent être pris que par un Joueur Guéri.
-
-\paragraph{Image de la Carte}
-Avant de commencer à faire de nombreux Objets, j'ai commencé par développer la Carte. En effet, j'avais pris soin de laisser le coin inférieur-gauche de l'écran en vue de cet Objet. Le problème, c'est qu'il n'y a qu'un seul joueur qui a accès au plan du Labyrinthe. Le Créateur de la Partie. J'ai donc réarrangé mon algorithme de construction de la carte. En effet, j'avais, lors de mes recherches pour la construction du labyrinthe, formulé deux versions : une par salle, qui est d'ailleurs utilisée pour générer le labyrinthe tel que vous le voyez maintenant, et une par bloc, qui permettait justement de comparer les plans des différents labyrinthes de manière très simple. Tout ce qu'il me restait à faire, c'était donc de transposer ces deux algorithmes pour construire à la fois le labyrinthe tridimensionnel et l'image renfermant la carte du labyrinthe. Ensuite, Steve et Célian se sont débrouillés pour faire en sorte que lorsque le Créateur du Salon envoie le message aux autres joueurs leur indiquant qu'ils peuvent générer leur personnage, il leur envoie également le Mode de jeu actuel, les dimensions du Labyrinthe, et la carte. Voici comment j'ai pu faire en sorte que tous les Joueurs aient accès à la Carte.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Carte2020.png}
-    \caption{Un exemple de carte possible (en rouge, la position du joueur)}
-    \label{Un exemple de carte possible (en rouge, la position du joueur)}
-\end{figure}
-
-\paragraph{Affichage et Disparition de la Carte}
-Concernant son affichage, il m'a fallu plus de temps. J'attendais de la Carte qu'en plus d'afficher le plan du complexe, elle affiche la position du Joueur la détenant en temps réel, afin de lui fournir de véritables indications. J'ai donc dû effectuer de nombreux tests, pour faire en sorte que la carte ne soit pas affichée au début dans un premier temps, puisque Unity affiche les images par défaut, et ensuite pour mettre au point le curseur sur la Carte, l'actualiser en fonction de la position du Joueur et le décaler en fonction de cette position et par rapport à la Carte. La difficulté, ici, est évidemment que l'affichage de la carte est simplifié et ne prend pas en compte la position exacte des murs. Autrement dit, affecter au Curseur une bête position directement proportionnelle aux coordonnées du Joueur ne suffit pas ; il me fallait plutôt déterminer la salle où le Joueur se trouvait. C'est cette partie qui m'a pris le plus de temps, car une erreur de quelques centimètres peut afficher le Joueur de l'autre côté d'un mur qu'il n'a pourtant pas franchi. Mais heureusement, tout fonctionne actuellement à merveille. J'ai également pris soin de laisser une fonction permettant d'effacer la Carte au besoin.
-
-\paragraph{Objets de base}
-Une fois que la Carte a été achevée, je suis alors passé au développement de cinq Objets basiques. Les Bottes de Pégase, qui donne au Joueur une vitesse deux fois plus importante que la normale, les Bottes de Plomb, qui lui donnent au contraire une vitesse deux fois moins importante que la normale, la Carte, qui affiche évidemment la Carte, la Paralysie, qui l'immobilise un faible instant, et la Décharge, qui lui retire tous les Objets qu'il conserve sur lui. Il y avait donc trois Objets à effets constants et deux à effets immédiats. Pour les Bottes de Pégase et les Bottes de Plomb, il m'a suffit d'affecter une valeur à un ratio de vitesse que Célian avait laissé comme propriété sur les Joueurs. Pour la Carte, je n'avais plus qu'à lancer la fonction d'affichage de cette dernière, et pour la Paralysie, à baisser la valeur "Stamina" à 0, pour simuler le choc lorsqu'un autre Joueur vout frappe. Pour la Décharge, il me suffisait donc de mettre à false tous les éléments du tableau des Objets constants, de lancer la fonction annulant l'affichage de la carte, et de rétablir la vitesse à son ratio normal. Bien sûr, comme indiqué précédemment, un Joueur ne peut pas prendre de Bottes de Pégase s'il en a déjà sur lui. Cela dit, j'ai fait en sorte que le Joueur puisse récupérer des Bottes de Plomb lorsqu'il a les Bottes de Pégase, et ainsi de suite. L'Objet ainsi récupéré devient alors tout de suite effectif, au lieu de simplement rétablir la vitesse du Joueur à sa vitesse normale. Autrement dit, si vous avez les Bottes de Plomb et que vous récupérez des Bottes de Pégase, vous avancerez quatre fois plus vite par rapport à la vitesse que vous aviez. J'ai également fait attention à ce que les Objets du Joueur se réactualisent à chaque fois qu'il prend un Objet.
-
-\paragraph{Deuxième vague d'Objets}
-Suite à ces cinq Objets, je me suis lancé dans la confection de trois autres Objets de cet acabit : la Disparition, la Protection, et le Casque de CRS. Ces trois Objets sont à effets constants. La Protection a un effet très simple, elle permet d'annuler l'effet d'un Objet à effet négatif. Il s'agit donc juste d'un effet à prendre en compte lors de l'application des effets des différents Objets. La Disparition, elle, permet à un joueur Guéri en seconde phase de devenir invisible pendant quinze secondes. Il devient alors inconsistant : il ne peut être infecté durant ce labs de temps, mais il ne peut pas non plus prendre d'Objets. Le Casque de CRS, lui, dissimule le labyrinthe au Joueur, qui doit donc avancer à l'aveuglette pendant quinze secondes, le temps de retirer le Casque. Ces deux Objets m'ont donné plus de fil à retordre que les autres. En effet, je souhaitais faire en sorte que les quinze secondes puissent être interrompues, avec l'effet qui cesse, en vue de la Décharge. Evidemment, ce n'était pas nécessaire pour la Disparition, mais plus pour le Casque de CRS. 
-
-\paragraph{Développement d'un chronomètre désactivable}
-Pour cela, j'ai fait en sorte que le "chronomètre" soit constitué d'un entier indiquant le temps restant en seconde et d'un booléen indiquant si une seconde était en train d'être comptée. Ainsi, à chaque image du jeu, je vérifiais que la seconde aie terminé d'être comptée. Si c'était le cas, je relançais une seconde, sinon je ne faisais rien. Et ainsi de suite, jusqu'à ce que le nombre de secondes tombe à 0. Dans ce cas, je lançais automatiquement l'arrêt de l'effet. Ainsi, pour désactiver un Casque de CRS quand on se prend une Décharge, il suffit simplement de baisser le nombre de secondes restantes à 0. De plus, quand le compteur passe à 0, je prenais soin de retirer l'Objet en question du tableau des Objets du Joueur, et de remettre à jour l'affichage de ces valeurs à l'écran. Concernant le Casque de CRS, j'avais également voulu le faire au départ un simple affichage de rectangle noir avec la propriété OnGUI de Unity. Le soucis, c'est qu'avec cette méthode, on ne voyait ni le nom du Joueur, ni son état, ni le temps qu'il restait avant la fin de la Partie, ni la Carte s'il l'avait, ni le message comme quoi le Joueur avait reçu le Casque de CRS, ni la liste des Objets que le Joueur avait. J'ai donc dû me résoudre à utiliser une Image, pour pouvoir la reléguer en arrière-plan, entre l'image du dédale et les différents éléments constituant l'écran du Joueur. J'ai ensuite dû faire en sorte que l'affichage noir lié à la présence automatique du Casque par Unity disparaisse au début du jeu pour chaque Joueur. On en est donc à huit Objets.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Casque.png}
-    \caption{Avec le Casque de CRS, seuls les textes sont encore visibles.}
-    \label{Avec le Casque de CRS, seuls les textes sont encore visibles.}
-\end{figure}
-
-\paragraph{Dernière vague d'Objets}
-Les cinq Objets restants, je les ai implémenté avec plus de facilité que les précédents. Il s'agit du Champignon, du Sérum d'Urgence, de l'Herbe Bleue, du Catalyseur et des Ressorts. Le Champignon et les Ressorts sont des Objets Inutiles : le Champignon vous assène simplement des sons particuliers dans votre oreillette, à la manière d'hallucinations sonores, et les Ressorts vous font sauter automatiquement pendant quelques secondes. Etant donné que je savais déjà comment évaluer ce type de chronomètre, les Ressorts ont été relativement simples à encoder. Pour le Champignon, j'ai en revanche dû m'arranger avec Célian pour comprendre la manière dont il avait inséré les sons dans le programme. Le Catalyseur, lui, est un Objet à effet négatif qui reste jusqu'à ce que vous vous preniez une Décharge : il double tout simplement le temps de récupération après une Paralysie, que ce soit déclenché par l'Objet Paralysie ou par un autre Joueur. Quant au Sérum d'Urgence et à l'Herbe Bleue, ils ont été plus intéressants à développer. Pour commencer, ces deux Objets ne peuvent être récupérés qu'en seconde phase. Le premier, en plus, ne peut être pris que par un Joueur Guéri. Le Sérum d'Urgence permet à un Joueur Guéri de disparaître quand il se fait infecté. Autrement dit, quand un Joueur Condamné effleure le Joueur Guéri ayant ce Sérum d'Urgence, il a la surprise de voir ce Joueur disparaître au lieu de devenir simplement un nouveau Condamné. Le Joueur qui vient de disparaître, quant à lui, dispose de cinq secondes avant de redevenir visible, et donc de nouveau infectable. On peut donc considérer qu'il s'agit d'une vie supplémentaire.
-
-\paragraph{L'Herbe Bleue, un Objet Commun}
-L'Herbe Bleue, elle, est un Objet Commun. Autrement dit, quand un Joueur ramasse une Herbe Bleue, l'effet s'applique sur tout le monde. En effet, l'Herbe Bleue rallonge de trente secondes la durée de la seconde phase. Pour implémenter ces deux Objets, il m'a donc fallu comprendre où se déroulait l'infection d'un Joueur, et faire en sorte de pouvoir rallonger le temps de la seconde phase tout en affichant un message aux autres Joueurs pour les prévenir de ce détail. Pour le Sérum d'Urgence, j'ai donc regardé du côté de la fonction que Célian utilisait pour faire changer un Joueur d'état. Dans le cas où le nouvel état était l'état de Condamné, il m'a donc suffit de rajouter la condition de la présence du Sérum d'Urgence dans les Objets de Joueur en question. S'il en avait un, il ne me restait plus qu'à faire en sorte que l'état dans lequel il serait serait l'état d'invisible au lieu de Condamné, et de lancer en même temps un chronomètre de cinq secondes pour rétablir l'état Guéri du Joueur plus tard. J'ai procédé de la même manière pour l'Herbe Bleue : j'ai rendu la variable des chronomètres de seconde phase des Joueurs directement accessible via le script PlayerNetwork, où sont effectuées la majorité des fonctions en réseau. Ainsi, quand quelqu'un reçoit une Herbe Bleue, il lui suffit de lancer la fonction en réseau correspondante. Et quand un Joueur reçoit cette fonction, le chronomètre augmente de trente secondes. Avec, bien sûr, un petit message sur son écran dans le cas où il ne s'agirait pas du Joueur ayant récupéré ledit Objet.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{MessageHerbeBleue.png}
-    \caption{Comme l'Herbe Bleue est un Objet Commun, un message alerte les autres joueurs si quelqu'un en ramasse...}
-    \label{Comme l'Herbe Bleue est un Objet Commun, un message alerte les autres joueurs si quelqu'un en ramasse...}
-\end{figure}
-
-\subsection{Labyrinthe}
-blablabla
-\subsubsection{Partie de Léandre}
+\subsubsection{Labyrinthe}
 
 \paragraph{Génération aléatoire du Labyrinthe}
 Au début du projet, il a été décidé que je serais le responsable de l'ensemble des éléments aléatoires du jeu, ainsi que de la direction artistique. J'ai ainsi commencé en mettant au point un algorithme permettant de générer un dédale de telle sorte que l'ensemble des salles soit accessibles, et que pour accéder à une salle à partir d'un endroit du labyrinthe, il y ait plusieurs itinéraires. L'algorithme a été développé en faisant en sorte qu'il n'y ait aucune sortie, et que l'on puisse modifier la taille du labyrinthe. Au final, l'algorithme correspond à peu de choses près à l'algorithme de Prim, excepté le fait que le nombre d'impasse est nettement moins important. A côté de cette fonction, j'ai également créé une seconde fonction retournant une liste d'entiers aléatoires distincts dans un intervalle donné.
@@ -1125,7 +1082,7 @@ Concernant le mobilier, je me suis appliqué à mettre des chaises, des ustensil
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Lumières.png}
+    \includegraphics[width=0.8\textwidth]{Lumieres.png}
     \caption{Le rendu semble plus réaliste ainsi.}
     \label{Le rendu semble plus réaliste ainsi.}
 \end{figure}
@@ -1140,66 +1097,6 @@ Le rendu est beaucoup plus réaliste que ce que nous avions précédemment. Cela
     \label{Y a-t-il un sérum devant vous ? Ou une impasse ? Mystère...}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%% Steve%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Réseau - Steve}
-En dehors des menus et d'être chef de projet, j'ai été en charge de la gestion du réseau. Cela passe par la génération des joueurs, la synchronisation des objets 
-etc...
-
-\subsubsection{Génération des joueurs}
-
-L'une des plus grandes difficultés du projet et c'est sans doute ce qui nous a pris le plus de temps. Le pire, c'est qu'au premier abord on pourrait croire que ça 
-serait quelque chose de simple, il suffirait de mettre un identifiant à chacun des joueurs et en fonction de l'identifiant de l'instancier à la position que l'on 
-souhaite. Malheuresement ce ne fut pas assez simple.
-
-On a pensé premièrement à utiliser la variable LocalPlayer de Photon avec le dictionnaire des Players. Cela n'a 
-pas fonctionné car tout les joueurs avaient les mêmes propriétés, c'est-à-dire mêmes pseudos, mêmes identifiants etc... On a cru pendant longtemps que c'était le 
-LocalPlayer le problème mais avec nombreux tests, on sait rendu compte que c'était le dictionnaire qui ne marchait pas.
-
-Après on a pensé à utiliser les RaiseEvents, mais c'était inutile pour ce que l'on cherchait à faire. On a après pensé à utilisé les PhotonViews mais le problème c'est 
-que cela permettait de déterminer si on était le joueur mais pas par rapport aux autres. Or on cherchait un moyen de le distinguer des autres joueurs.
-
-On a pensé à utilisé l'hôte de la salle (que l'on appelle aussi le MasterClient) comme base pour envoyer les messages de tous les joueurs, mais ce fut beaucoup très complexe et non 
-performant. A la fin, on a utilisé les PhotonViews, les LocalPlayers et les RPCFonctions pour envoyer les messages en réseau. Cette méthode fut optimisée et parfaite 
-pour ce que l'on cherchait.
-
-\subsubsection{Propritétés des joueurs}
-La génération des joueurs ne concerne que la première partie du réseau, elle ne se lance qu'au début de la partie. Il reste ensuite à synchroniser les mouvements, 
-rotations, animations des joueurs. Pour cela j'ai du utiliser les Photon Transform et Animator Views. Ce fut plus compliqué que attendu, vu que le joueur est consistué 
-de plusieurs parties et il fallait que toutes soient synchronisé pour tout le monde. 
-
-De plus, il fallait aussi cacher les animations au joueur qui les faisait car 
-sinon les animations rencontrer la caméra ce qui n'était pas du tout le résultat souhaiter. Heuresement, avec beaucoup de recherche et de travail, tout est maintenant 
-synchronisé au dixième de seconde, permettant des actions rapides pour dynamiser le jeu.
-
-Sans vouloir rentrer dans les aspects techniques du code, ce fut l'essentiel de mon acitivité en dehors des menus. En dehors de ça, j'ai du me charger de synchroniser tout les travaux de tous mes collègues comme le labyrinthe par exemple, car sinon les joueurs ne sont pas dans le même labyrinthe. 
-
-\subsection{Site Web}
-Le site web se présente en 5 pages différentes:
-\begin{itemize}
-	\item{} L'accueil ( ou projet) qui présente le jeu.
-	\item{} Le groupe qui constitue la présentation de chacun
-	\item{} La galerie, collection de photos du jeu
-	\item{} Le codex, qui rasssemble les objets du jeu
-	\item{} La page de téléchargement
-\end{itemize}
-L'image de fond est identique sur toute les pages et montre une salle du labyrinthe.
-
-\paragraph{L'accueil}présente Deadly Science, son origine et le déroulement d'une partie. Ce premier paragraphe est suivi de l'évolution du jeu entre les soutenances depuis la naissance du projet à cette dernière présentation.
-
-\paragraph{Le groupe}présente chaque membre du groupe, accompagné de sa magnifique poto du CRI en médaillon.
-
-\paragraph{La galerie}regroupe des photos de chaque salle utilisées dans le labyrinthe et développés par Léandre et moi. Vous trouverez en dessous des photos finales celles des anciennes versions du jeu.
-
-\paragraph{Le codex}présente les objets de Deadly Science connus du public en trois catégories: ceux qui vous aident dans votre mission, ceux qui vous ralentisent dans votre mission et ceux qui... On ne sait pas trop à quoi ils servent en fait. Il seront plus amplement expliqués par la suite (ou vous pouvez allez voir le site).
-
-\paragraph{L'onglet de téléchargement}permet en accord avec toutes les probabilités, de télécharger le jeu, ainsi que les différents documents (cahier des charges et rapports) réalisé pendant la durée du projet.
-
-%%%%%%%%%%%%%%%%%%%%%% Yann %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Sons et musiques}
-blablabla
-\subsubsection{Sons}
-blablabla
 \subsubsection{Musiques}
 \paragraph{Première tentative}
 Pour travailler sur les musiques du jeu, j'ai utilisé un logiciel de partition nommé MuseScore, qui, en plus d'être gratuit, permet de générer directement une partition complète avec de nombreux instruments, et d'exporter la piste sonore en fichier MIDI. J'ai commencé dans un premier temps à faire plusieurs essais d'ambiance pour le thème de la Recherche de Sérum. Je tenais à rendre l'atmosphère assez stressante. Pour cela, j'ai utilisé un violon qui émet une note à intervalles précis et réguliers, à la manière d'une alarme d'évacuation. J'ai ensuite rajouté une percussion pour renforcer l'ambiance pesante et lourde, tout comme la contrebasse qui se charge du thème. Ensuite, Célian a remixé la piste obtenue, et le résultat est celui que vous pouvez entendre à vos oreilles en lançant une nouvelle partie.
@@ -1207,36 +1104,64 @@ Pour travailler sur les musiques du jeu, j'ai utilisé un logiciel de partition 
 \paragraph{Autres thèmes}
 Ensuite, j'ai commencé à faire le thème du Menu Principal. Ici, je tenais à rendre l'atmosphère plutôt pesante et inquiétante. J'ai donc inséré en fond un piano qui répète la même note à la manière d'un tictac d'horloge, accompagné d'un trombone qui se charge de la basse. Enfin, j'ai également composé deux mélodies, l'une pour la victoire, la seconde pour la mort du joueur. Pour la première, j'ai cherché à faire quelque chose d'assez joyeux et léger, tandis que pour l'autre, j'ai utilisé des instruments beaucoup plus graves ainsi que des notes plus longues pour accentuer le sentiment de deuil. Tout comme pour la musique de la recherche de sérums, c'est Célian qui s'est chargé de remixer le tout, en modifiant notamment l'instrumentation. Actuellement, le jeu possède donc quelques musiques originales. Le problème, c'est que... Ce n'est pas dit que beaucoup de personnes apprécient. Mais au moins, il n'y aura pas de soucis avec les droits d'auteurs !
 
+\subsubsection{Objets}
+\paragraph{Génération d'Objets}
+Etant donné que nous étions en avance sur nos prévisions de progression dans le projet, nous nous étions dis lors de la seconde soutenance que nous aurions peut-être le temps de rajouter quelques éléments qui ne figuraient pas dans le cahier des charges avant la dernière soutenance. C'est effectivement ce qu'il s'est passé. Nous avons donc décidé d'implémenter un système d'Objets récupérables au sein des laboratoires, afin d'aider les Joueurs ou, au contraire, de les gêner. Pour cela, j'ai tout d'abord réfléchi à l'implémentation des Objets. Un Objet doit remplir plusieurs critères. Premièrement, il ne doit jamais apparaître à l'intérieur d'un Sérum. Ensuite, il ne doit pas y avoir d'Objets à chaque salle du Labyrinthe. Pour ces deux raisons, nous ne pouvions pas mettre au point un système d'apparition d'Objets à intervalle de temps réguliers, car dans le cas où les Joueurs auraient peur des éventuels effets négatifs, le nombre d'Objets ne cesserait d'augmenter jusqu'à dépasser la contenance du labyrinthe, ce qui n'est absolument pas le but recherché. Finalement, nous avons décidé de faire en sorte que dans le Labyrinthe, il y aurait chaque fois un nombre constant d'Objets, Sérums compris. Ainsi, lorsqu'un Objet ou un Sérum est ramassé, il suffit juste d'évaluer une case ou un Sérum ou un autre Objet ne se trouve pas, et d'y générer le nouvel Objet. Ce système permet ainsi d'éviter un surplus d'Objet dans le labyrinthe, et de rendre la recherche des Objets relativement dynamique, puisqu'ils ont la possibilité de se renouveler à l'infini sans pour autant menacer la fluidité du jeu. 
 
-\subsection{Écrans de "pause" et de fin}
-\paragraph{"Pause"}
-Un écran de "pause" (c'est un jeu multijoueurs, il n'y a pas vraiment de pause) s'ouvre lorsque le joueur appuie sur la touche "echap". La souris apparait alors et il devient impossible de se déplacer.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{Pause.png}
-	\caption{L'écran de "pause"}
-	\label{L'écran de "pause"}
-\end{figure}
-
-
-On y retrouve certains paramètres: les touches pour jouer, le volume de la musique, des effets sonores et la sensibilité de la souris. pour des raisons évidentes d'identification, il est impossible de changer son pseudo en cours de partie. De même, la langue du jeu est seulement modifiable sur le menu principal. Pour quitter la fenêtre, il suffit de réappuyer sur la touche "echap", la souris disparait et le joueur peut de nouveau contrôler son avatar.
-
-\subsection{Écran de fin}
-\paragraph{Deux possibilités:}
-Soit le joueur est le premier condamné et à réussi à infecter tous les autres, ou le joueur à réussi à survivre toute les durée de la partie, il gagne et est notifié par un magnifique "Victoire" vert. Soit il était soigné mais a été réinfecté et meurt donc dans l'indifférence la plus totale du joueur qui s'empresse de relancer une autre partie. Il est alors notifié d'un "Défaite" rouge. Dans les deux cas il est impossible de se déplacer lorsque la partie est terminée. A cela s'ajoute un récapitulatif de la partie au centre de l'écran. Il y est inscrit chaque évênement auquel le joueur à fait face, le soin, la contamination, les différents objets rammassés. A chaque évênement, une nouvelle zone de texte est créée et se rajoute à la liste.
+\paragraph{Nombre d'Objets}
+Au début de la partie, nous devons donc définir un nombre d'Objets de base. Il fallait bien sûr prendre en compte le nombre de Sérums nécessaires, mais également la taille du labyrinthe. En effet, dans un labyrinthe 20x20, s'il n'y a que trois Objets, en trouver relève du défi pur et dur. Nous avons donc choisi de faire en sorte qu'il y ait toujours un Objet par lot de 25 salles. Ainsi, un labyrinthe 10x10 aura quatre Objets, tandis qu'un labyrinthe 20x20 en comportera seize, ce qui est raisonnable étant donné qu'un dédale 20x20 est quatre fois plus grand qu'un dédale 10x10. De plus, j'ai pris soin de vérifier que pour le nombre, il y avait assez pour mettre suffisamment de Sérum au début de la partie. Si le nombre de salles est trop faible, j'augmente donc le nombre d'Objets pour qu'il y ait au moins le bon nombre de Sérums au début. Concernant l'apparence des Objets, vous aurez peut-être reconnu les cubes de Portal.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.49\textwidth]{Victoire.png}
-	\includegraphics[width=0.49\textwidth]{Defaite.png}
-	\caption{Écrans de fin}
-	\label{Écrans de fin}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Objet.png}
+    \caption{Un Objet}
+    \label{Un Objet}
 \end{figure}
 
+\paragraph{Sélection d'Objet}
+Maintenant que les Objets sont implémentés, il faut leur ajouter des effets différents. Actuellement, il existe une douzaine d'effets différents. Il existe trois catégories d'effets, et deux sortes d'Objets. Les catégories sont : effets positifs, effets négatifs, et effets inutiles. Les Objets, eux, peuvent soit s'appliquer au moment où le Joueur les prend, soit rester sur le Joueur jusqu'à pouvoir être utilisés. Pour ces derniers, j'ai donc rajouté un tableau de booléens visant à déterminer si le Joueur a déjà les effets d'un Objet spécifique, et surtout d'afficher la liste de ces Objets sur son écran. Bien sûr, un Joueur ne peut pas récupérer un Objet qu'il a déjà. L'algorithme que j'ai utilisé choisit donc un des Objets parmi ceux que le Joueur peut potentiellement recevoir. Par exemple, si le Joueur est déjà équipé de Bottes de Pégase, il ne peut pas retomber sur des Bottes de Pégase à moins de les avoir perdues. De plus, certains Objets nécessitent de se trouver en seconde phase, et d'autres ne peuvent être pris que par un Joueur Guéri.
 
-%%%%%%%%%%%%%%%%%%%%%% Léandre %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Image de la Carte}
+Avant de commencer à faire de nombreux Objets, j'ai commencé par développer la Carte. En effet, j'avais pris soin de laisser le coin inférieur-gauche de l'écran en vue de cet Objet. Le problème, c'est qu'il n'y a qu'un seul joueur qui a accès au plan du Labyrinthe. Le Créateur de la Partie. J'ai donc réarrangé mon algorithme de construction de la carte. En effet, j'avais, lors de mes recherches pour la construction du labyrinthe, formulé deux versions : une par salle, qui est d'ailleurs utilisée pour générer le labyrinthe tel que vous le voyez maintenant, et une par bloc, qui permettait justement de comparer les plans des différents labyrinthes de manière très simple. Tout ce qu'il me restait à faire, c'était donc de transposer ces deux algorithmes pour construire à la fois le labyrinthe tridimensionnel et l'image renfermant la carte du labyrinthe. Ensuite, Steve et Célian se sont débrouillés pour faire en sorte que lorsque le Créateur du Salon envoie le message aux autres joueurs leur indiquant qu'ils peuvent générer leur personnage, il leur envoie également le Mode de jeu actuel, les dimensions du Labyrinthe, et la carte. Voici comment j'ai pu faire en sorte que tous les Joueurs aient accès à la Carte.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Carte2020.png}
+    \caption{Un exemple de carte possible (en rouge, la position du joueur)}
+    \label{Un exemple de carte possible (en rouge, la position du joueur)}
+\end{figure}
+
+\paragraph{Affichage et Disparition de la Carte}
+Concernant son affichage, il m'a fallu plus de temps. J'attendais de la Carte qu'en plus d'afficher le plan du complexe, elle affiche la position du Joueur la détenant en temps réel, afin de lui fournir de véritables indications. J'ai donc dû effectuer de nombreux tests, pour faire en sorte que la carte ne soit pas affichée au début dans un premier temps, puisque Unity affiche les images par défaut, et ensuite pour mettre au point le curseur sur la Carte, l'actualiser en fonction de la position du Joueur et le décaler en fonction de cette position et par rapport à la Carte. La difficulté, ici, est évidemment que l'affichage de la carte est simplifié et ne prend pas en compte la position exacte des murs. Autrement dit, affecter au Curseur une bête position directement proportionnelle aux coordonnées du Joueur ne suffit pas ; il me fallait plutôt déterminer la salle où le Joueur se trouvait. C'est cette partie qui m'a pris le plus de temps, car une erreur de quelques centimètres peut afficher le Joueur de l'autre côté d'un mur qu'il n'a pourtant pas franchi. Mais heureusement, tout fonctionne actuellement à merveille. J'ai également pris soin de laisser une fonction permettant d'effacer la Carte au besoin.
+
+\paragraph{Objets de base}
+Une fois que la Carte a été achevée, je suis alors passé au développement de cinq Objets basiques. Les Bottes de Pégase, qui donne au Joueur une vitesse deux fois plus importante que la normale, les Bottes de Plomb, qui lui donnent au contraire une vitesse deux fois moins importante que la normale, la Carte, qui affiche évidemment la Carte, la Paralysie, qui l'immobilise un faible instant, et la Décharge, qui lui retire tous les Objets qu'il conserve sur lui. Il y avait donc trois Objets à effets constants et deux à effets immédiats. Pour les Bottes de Pégase et les Bottes de Plomb, il m'a suffit d'affecter une valeur à un ratio de vitesse que Célian avait laissé comme propriété sur les Joueurs. Pour la Carte, je n'avais plus qu'à lancer la fonction d'affichage de cette dernière, et pour la Paralysie, à baisser la valeur "Stamina" à 0, pour simuler le choc lorsqu'un autre Joueur vout frappe. Pour la Décharge, il me suffisait donc de mettre à false tous les éléments du tableau des Objets constants, de lancer la fonction annulant l'affichage de la carte, et de rétablir la vitesse à son ratio normal. Bien sûr, comme indiqué précédemment, un Joueur ne peut pas prendre de Bottes de Pégase s'il en a déjà sur lui. Cela dit, j'ai fait en sorte que le Joueur puisse récupérer des Bottes de Plomb lorsqu'il a les Bottes de Pégase, et ainsi de suite. L'Objet ainsi récupéré devient alors tout de suite effectif, au lieu de simplement rétablir la vitesse du Joueur à sa vitesse normale. Autrement dit, si vous avez les Bottes de Plomb et que vous récupérez des Bottes de Pégase, vous avancerez quatre fois plus vite par rapport à la vitesse que vous aviez. J'ai également fait attention à ce que les Objets du Joueur se réactualisent à chaque fois qu'il prend un Objet.
+
+\paragraph{Deuxième vague d'Objets}
+Suite à ces cinq Objets, je me suis lancé dans la confection de trois autres Objets de cet acabit : la Disparition, la Protection, et le Casque de CRS. Ces trois Objets sont à effets constants. La Protection a un effet très simple, elle permet d'annuler l'effet d'un Objet à effet négatif. Il s'agit donc juste d'un effet à prendre en compte lors de l'application des effets des différents Objets. La Disparition, elle, permet à un joueur Guéri en seconde phase de devenir invisible pendant quinze secondes. Il devient alors inconsistant : il ne peut être infecté durant ce labs de temps, mais il ne peut pas non plus prendre d'Objets. Le Casque de CRS, lui, dissimule le labyrinthe au Joueur, qui doit donc avancer à l'aveuglette pendant quinze secondes, le temps de retirer le Casque. Ces deux Objets m'ont donné plus de fil à retordre que les autres. En effet, je souhaitais faire en sorte que les quinze secondes puissent être interrompues, avec l'effet qui cesse, en vue de la Décharge. Evidemment, ce n'était pas nécessaire pour la Disparition, mais plus pour le Casque de CRS. 
+
+\paragraph{Développement d'un chronomètre désactivable}
+Pour cela, j'ai fait en sorte que le "chronomètre" soit constitué d'un entier indiquant le temps restant en seconde et d'un booléen indiquant si une seconde était en train d'être comptée. Ainsi, à chaque image du jeu, je vérifiais que la seconde aie terminé d'être comptée. Si c'était le cas, je relançais une seconde, sinon je ne faisais rien. Et ainsi de suite, jusqu'à ce que le nombre de secondes tombe à 0. Dans ce cas, je lançais automatiquement l'arrêt de l'effet. Ainsi, pour désactiver un Casque de CRS quand on se prend une Décharge, il suffit simplement de baisser le nombre de secondes restantes à 0. De plus, quand le compteur passe à 0, je prenais soin de retirer l'Objet en question du tableau des Objets du Joueur, et de remettre à jour l'affichage de ces valeurs à l'écran. Concernant le Casque de CRS, j'avais également voulu le faire au départ un simple affichage de rectangle noir avec la propriété OnGUI de Unity. Le soucis, c'est qu'avec cette méthode, on ne voyait ni le nom du Joueur, ni son état, ni le temps qu'il restait avant la fin de la Partie, ni la Carte s'il l'avait, ni le message comme quoi le Joueur avait reçu le Casque de CRS, ni la liste des Objets que le Joueur avait. J'ai donc dû me résoudre à utiliser une Image, pour pouvoir la reléguer en arrière-plan, entre l'image du dédale et les différents éléments constituant l'écran du Joueur. J'ai ensuite dû faire en sorte que l'affichage noir lié à la présence automatique du Casque par Unity disparaisse au début du jeu pour chaque Joueur. On en est donc à huit Objets.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Casque.png}
+    \caption{Avec le Casque de CRS, seuls les textes sont encore visibles.}
+    \label{Avec le Casque de CRS, seuls les textes sont encore visibles.}
+\end{figure}
+
+\paragraph{Dernière vague d'Objets}
+Les cinq Objets restants, je les ai implémenté avec plus de facilité que les précédents. Il s'agit du Champignon, du Sérum d'Urgence, de l'Herbe Bleue, du Catalyseur et des Ressorts. Le Champignon et les Ressorts sont des Objets Inutiles : le Champignon vous assène simplement des sons particuliers dans votre oreillette, à la manière d'hallucinations sonores, et les Ressorts vous font sauter automatiquement pendant quelques secondes. Etant donné que je savais déjà comment évaluer ce type de chronomètre, les Ressorts ont été relativement simples à encoder. Pour le Champignon, j'ai en revanche dû m'arranger avec Célian pour comprendre la manière dont il avait inséré les sons dans le programme. Le Catalyseur, lui, est un Objet à effet négatif qui reste jusqu'à ce que vous vous preniez une Décharge : il double tout simplement le temps de récupération après une Paralysie, que ce soit déclenché par l'Objet Paralysie ou par un autre Joueur. Quant au Sérum d'Urgence et à l'Herbe Bleue, ils ont été plus intéressants à développer. Pour commencer, ces deux Objets ne peuvent être récupérés qu'en seconde phase. Le premier, en plus, ne peut être pris que par un Joueur Guéri. Le Sérum d'Urgence permet à un Joueur Guéri de disparaître quand il se fait infecté. Autrement dit, quand un Joueur Condamné effleure le Joueur Guéri ayant ce Sérum d'Urgence, il a la surprise de voir ce Joueur disparaître au lieu de devenir simplement un nouveau Condamné. Le Joueur qui vient de disparaître, quant à lui, dispose de cinq secondes avant de redevenir visible, et donc de nouveau infectable. On peut donc considérer qu'il s'agit d'une vie supplémentaire.
+
+\paragraph{L'Herbe Bleue, un Objet Commun}
+L'Herbe Bleue, elle, est un Objet Commun. Autrement dit, quand un Joueur ramasse une Herbe Bleue, l'effet s'applique sur tout le monde. En effet, l'Herbe Bleue rallonge de trente secondes la durée de la seconde phase. Pour implémenter ces deux Objets, il m'a donc fallu comprendre où se déroulait l'infection d'un Joueur, et faire en sorte de pouvoir rallonger le temps de la seconde phase tout en affichant un message aux autres Joueurs pour les prévenir de ce détail. Pour le Sérum d'Urgence, j'ai donc regardé du côté de la fonction que Célian utilisait pour faire changer un Joueur d'état. Dans le cas où le nouvel état était l'état de Condamné, il m'a donc suffit de rajouter la condition de la présence du Sérum d'Urgence dans les Objets de Joueur en question. S'il en avait un, il ne me restait plus qu'à faire en sorte que l'état dans lequel il serait serait l'état d'invisible au lieu de Condamné, et de lancer en même temps un chronomètre de cinq secondes pour rétablir l'état Guéri du Joueur plus tard. J'ai procédé de la même manière pour l'Herbe Bleue : j'ai rendu la variable des chronomètres de seconde phase des Joueurs directement accessible via le script PlayerNetwork, où sont effectuées la majorité des fonctions en réseau. Ainsi, quand quelqu'un reçoit une Herbe Bleue, il lui suffit de lancer la fonction en réseau correspondante. Et quand un Joueur reçoit cette fonction, le chronomètre augmente de trente secondes. Avec, bien sûr, un petit message sur son écran dans le cas où il ne s'agirait pas du Joueur ayant récupéré ledit Objet.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{MessageHerbeBleue.png}
+    \caption{Comme l'Herbe Bleue est un Objet Commun, un message alerte les autres joueurs si quelqu'un en ramasse...}
+    \label{Comme l'Herbe Bleue est un Objet Commun, un message alerte les autres joueurs si quelqu'un en ramasse...}
+\end{figure}
 
 
 \newpage
