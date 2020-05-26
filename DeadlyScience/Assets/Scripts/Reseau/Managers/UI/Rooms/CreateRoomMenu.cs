@@ -39,7 +39,7 @@ namespace ds
                 && !roommenu.activeSelf)
             {
                 if (inputfield.text.Length == 0)
-                    inputfield.text = "Test" + Random.Range(0, 9999);
+                    inputfield.text = "Salle" + Random.Range(0, 9999);
                 OnClick_CreateRoom();
             }
         }
