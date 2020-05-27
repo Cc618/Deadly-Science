@@ -20,7 +20,8 @@ There are always one player who remains infected, he has a last chance to win by
 ![](res/readme/win.png)
 
 ## Project Architecture
-- web : Website
+- Deadly-science-web : Website
 - doc : Documentation, documents and log
 - DeadlyScience : Unity project
-- res : Resources, raw format
+- res : Resources, raw format and README images
+- bin : Installers
