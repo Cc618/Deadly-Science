@@ -74,7 +74,7 @@
 
 \newpage
 \section{Introduction}
-Depuis le début de l'année, notre groupe a travaillé sur ce projet, qui est aujourd'hui fini. De plus nous avons pu rajouter bien plus de choses que ce que le cahier des charges demandait, c'est-à-dire :
+Depuis le début de l'année, notre groupe a travaillé sur ce projet, qui est aujourd'hui fini. Nous avons pu rajouter bien plus de choses que ce que le cahier des charges demandait, c'est-à-dire :
 
 \begin{itemize}
 \item Un autre mode de jeu que celui de base nommé le mode Nocturne, où toutes les lampes du laboratoire sont éteintes et où le joueur ne peut voir que grâce à sa lampe torche,
@@ -92,9 +92,9 @@ Depuis le début de l'année, notre groupe a travaillé sur ce projet, qui est a
 
 Evidemment, tout cela sera expliqué par la suite. On notera que nous n'avons pas été en retard durant toute la durée du projet, car les seules tâches sur lesquelles on était légèrement en retard étaient largement comblé par le reste.
 
-Nous sommes très fiers et confiants en notre projet. D'ailleurs nous allons le continuer pendant les vacances d'été tellement notre attachement sur le projet est grand. Ce fut un immense défi, que ce soit parce qu'il diffère largement d'un jeu de labyrinthe lambda, ou que ce soit pour la programmation car il nous a fallu comprendre et utiliser de nouveaux outils comme Unity ou Photon. Il a aussi fallu tout synchroniser en réseau, surtout que nous avons voulu faire un réseau plus large que nécessaire.
+Nous sommes très fiers et confiants du projet. Nous allons le continuer pendant les vacances d'été tellement notre attachement sur le projet est grand. Ce fut un immense défi, que ce soit parce qu'il diffère largement d'un jeu de labyrinthe lambda, ou pour la programmation car il nous a fallu comprendre et utiliser de nouveaux outils comme Unity ou Photon. Il a aussi fallu tout synchroniser en réseau, surtout que nous avons voulu faire un réseau plus large que nécessaire.
 
-Le projet a été déjà grandement crée lors des deux premières soutenances, ces derniers mois n'ont servis qu'a peaufiné le tout, résoudre des bugs...
+Le projet a déjà grandement avancé lors des deux premières soutenances, ces derniers mois n'ont servis qu'a peaufiné le jeu, résoudre des bugs...
 
 D'ailleurs pour réduire le plus de bugs, on a décidé de regrouper plus de 8 testeurs sur notre jeu en version alpha que l'on a réuni sur un salon dédié.
 
@@ -102,7 +102,7 @@ D'ailleurs pour réduire le plus de bugs, on a décidé de regrouper plus de 8 t
 \section{Reprise du cahier des charges}
 \subsection{Eléments}
 \paragraph{Caméra}
-Chaque joueur doit avoir une caméra, elle doit représenter un angle de vue humain de 180 degrés. Elle doit donc prévenir et arrêter les mouvements de caméra impossible pour un humain comme par exemple pouvoir regarder derrière la tête.
+Chaque joueur doit avoir une caméra, elle doit représenter un angle de vue humain de 180 degrés. Elle doit donc prévenir et arrêter les mouvements de caméra impossibles pour un humain comme par exemple pouvoir regarder derrière la tête.
 
 \paragraph{Déplacements}
 Chaque joueur doit pouvoir se déplacer dans toutes les directions. Il faut pouvoir facilement changer les vitesses, frictions en fonction de l'avancement du projet. Il peut aussi donner des coups de poing, qui baissent la barre d'endurance du joueur en face.
@@ -111,16 +111,16 @@ Chaque joueur doit pouvoir se déplacer dans toutes les directions. Il faut pouv
 Les joueurs ont au dessus de leur tête leur pseudo, coloré en fonction de leur statut, et une barre d'endurance qui descend en fonction des dommages encaissés. Lorsque celle-ci est vide, le joueur avance plus lentement et la barre devient grise et se recharge progressivement. 
 
 \paragraph{Statuts}
-Lorsqu'un joueur est corrompu, il faut voir si un joueur guéri n'est pas trop près de lui, sinon lui aussi devient corrompu et doit aller contaminer les autres joueurs.
+Lorsqu'un joueur est corrompu, il est nécessaire de verifier que si un joueur guéri n'est pas trop près de lui, sinon lui aussi devient corrompu et doit aller contaminer les autres joueurs.
 
 \paragraph{Phases}
-Lorsque tous les joueurs sauf un ont ramassé les sérums, la deuxième phase du jeu doit commencer. Le dernier joueur doit devenir corrompu et il faut aussi s'assurer que tous les joueurs soient soit guéri, soit corrompu, soit invisible. La partie doit se terminer lorsque tous les joueurs sont infectés, et l'on doit afficher un écran de victoire si l'on gagne, et un écran de défaite si ça n'est pas le cas.
+Lorsque tous les joueurs sauf un ont ramassé les sérums, la deuxième phase du jeu commence. Le dernier joueur doit devenir corrompu et il faut aussi s'assurer qu'aucun joueur soit infecté. La partie doit se terminer lorsque tous les joueurs sont infectés, et l'on doit afficher un écran de victoire si l'on gagne, et un écran de défaite si ça n'est pas le cas.
 
 \paragraph{Sérums}
-Les sérums peuvent être pris par les joueurs pour se guérir. Il faut faire attention à ce qu'un joueur corrompu ou guéri ne puisse pas prendre de sérum, et que les sérums sont bien détruits lorsqu'ils sont ramassés. Il faut aussi faire attention pour qu'il y ait exactement le bon nombre de sérums dans le labyrinthe, c'est-à-dire le nombre de joueurs moins 1.
+Les sérums peuvent être pris par les joueurs pour guérir. Il faut faire attention à ce qu'un joueur corrompu ou guéri ne puisse pas prendre de sérum, et que les sérums sont bien détruits lorsqu'ils sont ramassés. Il faut aussi faire attention pour qu'il y ait exactement le bon nombre de sérums dans le labyrinthe, c'est-à-dire le nombre de joueurs moins 1.
 
 \paragraph{Labyrinthe}
-Le jeu doit contenir un labyrinthe assez grand pour pouvoir se perdre. Il faut aussi mettre plusieurs salles différentes pour un meilleur gameplay et pour mieux se perdre. Chaque salle doit avoir des meubles divers spécifiques, avec des modèles différents. Il doit être généré aléatoirement de manière à ce qu'on ait un labyrinthe différent quasiment à chaque fois que l'on crée une nouvelle partie. Il faut aussi faire attention à ce que les sérums se génèrent à l'intérieur du labyrinthe.
+Le jeu doit contenir un labyrinthe assez grand pour pouvoir se perdre. Il faut aussi mettre plusieurs salles différentes pour un meilleur gameplay et pour mieux perdre ses repères. Chaque salle doit avoir des meubles divers spécifiques, avec des modèles différents. Il doit être généré aléatoirement de manière à ce qu'on ait un labyrinthe différent quasiment à chaque fois que l'on crée une nouvelle partie. Il faut aussi faire attention à ce que les sérums se génèrent à l'intérieur du labyrinthe.
 
 \paragraph{Modèles}
 Chaque composants du labyrinthe doit avoir un modèle particulier, que ce soit les joueurs, les sérums, les meubles et différents objets des salles et tous les autres objets aussi.
@@ -129,7 +129,7 @@ Chaque composants du labyrinthe doit avoir un modèle particulier, que ce soit l
 Il faut un menu principal, un menu pour créer la salle, la rejoindre, et la quitter. Le menu principal doit contenir un bouton pour commencer le jeu, et un bouton pour le quitter. Dans le second menu, il faut pouvoir accéder aux différents joueurs présents dans la salle puis pouvoir commencer la partie lorsque tous les joueurs sont prêts.
 
 \paragraph{Réseau}
-Le jeu doit être jouable en réseau, les effets des sérums doivent être synchronisés sur tous les joueurs, ainsi que la phase de la partie. Il faut aussi associer une caméra à chaque joueur, et faire attention qu'il y'en assez pour tout le monde, mais pas trop non plus! 
+Le jeu doit être jouable en réseau, les effets des sérums doivent être synchronisés sur tous les joueurs, ainsi que la phase de la partie. Il faut aussi associer une caméra à chaque joueur, et faire attention qu'il y en assez pour tout le monde, mais pas trop non plus! 
 
 \paragraph{Site Web}
 Il faut un site Web clair et net et esthétiquement plaisant à regarder. Il doit comporter les informations sur notre groupe, les liens pour télécharger les rapports de soutenance, de projet et le jeu. Il faut aussi qu'il contienne les règles et des images du jeu pour avoir une idée du jeu.
@@ -323,8 +323,8 @@ Changement des boutons en commutateur pour surligner le paramètre actif
 \paragraph{Soutenance 2}
 \begin{itemize}
     \item Optimisation des menus
-    \item Système d'identification des joueus grâce aux RaiseEvents
-    \item Identifications des joueurs locaux.
+    \item Système d'identification des joueurs grâce aux RaiseEvents
+    \item Identification des joueurs locaux.
     \item Synchronisation des objets du labyrinthe en réseau
 \end{itemize}
 
@@ -403,20 +403,20 @@ Vous pouvez dès à présent commencer une partie dans l'univers de Deadly Scien
 \end{figure}
 
 Seul le canvas change pour accéder aux pramètres, ce qui permet de garder la video en fond sans interruption.
-Vous trouverez centré en bas de paramètres, le langage du jeu, qui permet de choisir entre Français ou Anglais. Le changement est effectif immédiatement et sauvegardé pour les prochaines scènes et arties. Ce paramètre a été réalisé à l'aide d'un asset de l'asset store de Unity nommé Language Localization. Après quelques modifiacations permettant de l'apliquer aux zones de texte Text Mesh Pro, il fontionne parfaitement bien. Il permet de créer des dictionnaires
+Vous trouverez centré en bas de paramètres, le langage du jeu, qui permet de choisir entre Français ou Anglais. Le changement est effectif immédiatement et sauvegardé pour les prochaines scènes et parties. Ce paramètre a été réalisé à l'aide d'un asset de l'asset store de Unity nommé Language Localization. Après quelques modifications permettant de l'apliquer aux zones de texte Text Mesh Pro, il fontionne parfaitement bien. Il permet de créer des dictionnaires.
 \subparagraph{}
-Sur la gauche de ce menu se trouve le gestionnaire de touche du jeu. A côté de chaque action se trouve un bouton contenant la touche associée à cette action. Pour la changer, il suffit de cliquer sur le bouton et la première touche enfoncée sur le clavier est donc attribuée à cette action. Cela se fait simplement en analysant chaque touche du clavier une par une et en trouvant celle qui est enfoncée. Un script permettait auparavant d'instancier chaque action et son bouton associé mais cette utilisation aurai rendu compliqué le changement de langue au chargement du jeu. En effet les touches sont stockées à l'aide d'un dictionnaire, changer les noms des entrées réinitialiserai le dictionnaire, or le joueur n'a pas envie de refaire tous ses paramètres à cause d'un changement de langue.
+Sur la gauche de ce menu se trouve le gestionnaire de touche du jeu. A côté de chaque action se trouve un bouton contenant la touche associée à cette action. Pour la changer, il suffit de cliquer sur le bouton et la première touche enfoncée sur le clavier est donc attribuée à cette action. Cela se fait simplement en analysant chaque touche du clavier une par une et en trouvant celle qui est enfoncée. Un script permettait auparavant d'instancier chaque action et son bouton associé mais cette utilisation aurait rendu compliqué le changement de langue au chargement du jeu. En effet les touches sont stockées à l'aide d'un dictionnaire, changer les noms des entrées réinitialiserait le dictionnaire, or le joueur n'a pas envie de refaire tous ses paramètres à cause d'un changement de langue.
 
 \subparagraph{}
-A droite, vous pouvez trouver une zone de texte qui correspond à votre pseudo en jeu, transmis aux autre joueurs de la partie. Il est également possible de prende un pseudo aléatoire qui est constitué du mot "sujet" et d'un nombre entre 1000 et 9999. Nous avons opté pour cela car rappelons-le nous sommes dans un laboratoire expérimental. De plus le pseudo aléatoire est adapté au langage puisque "sujet" est remplacé par "subject" en Anglais.
+A droite, vous pouvez trouver une zone de texte qui correspond à votre pseudo dans le jeu, transmis aux autres joueurs de la partie. Il est également possible de prende un pseudo aléatoire qui est constitué du mot "sujet" et d'un nombre entre 1000 et 9999. Nous avons opté pour cela car rappelons-le nous sommes dans un laboratoire expérimental. De plus le pseudo aléatoire est adapté à la langue puisque "sujet" est remplacé par "subject" en Anglais.
 
 \subparagraph{}
-Finalement dans la partie en bas à droite de trouvent trois slider permettant de régler respectivement le volume de la musique, des effets sonores et la sensibilité de la souris.
+Finalement dans la partie en bas à droite de trouvent trois curseurs permettant de régler respectivement le volume de la musique, des effets sonores et la sensibilité de la souris.
 
 \begin{itemize}
 	\item{Le volume de la musique} correspond bien entendu à la musique du jeu qui permet d'approfondir l'expérience du joueur et contribue à l'ambiance lugubre du jeu. Il prend une valeur entre 0 et 1, ce qui correspond donc à couper totalement la musique ou mettre le volume au maximum.
-	\item{Le volume des effets sonores} correspond à tous les autre sons du jeu, instantanés et courts, tels que les bouton ou les coups porté entre les joueurs. Il est également compris entre 0 et 1, correspondant à la même interprétation: aucun son, ou le maximum.
-	\item{La sensibilité de la souris} permet, sans grosse surprise de régler la vitesse de la souris dans le jeu, qui est associé à la rotation du personnage. Elle a une plage de valeur plus petite, entre 0.1 et 0.7. Le minimum est à 0.1 car je ne voulais pas que les joueurs puissent empêcher la rotation du personnage et de la caméra, et le maximum est à 0.7 car au delà, le jeu devenait injouable car la caméra était incontrolable. Le joueur rentrait alors dans tout les murs et ne pouvait qu'à peine changer de salles.
+	\item{Le volume des effets sonores} correspond à tous les autre sons du jeu, instantanés et courts, tels que les boutons ou les coups portés entre les joueurs. Il est également compris entre 0 et 1, correspondant à la même interprétation: aucun son, ou le maximum.
+	\item{La sensibilité de la souris} permet, sans grosse surprise, de régler la vitesse de la souris dans le jeu et est associée à la rotation du personnage. Elle a une plage de valeur plus petite, entre 0.1 et 0.7. Le minimum est à 0.1 car je ne voulais pas que les joueurs puissent empêcher la rotation du personnage et de la caméra, et le maximum est à 0.7 car au delà, le jeu devenait injouable car la caméra était incontrolable. Le joueur rentrait alors dans tous les murs et ne pouvait que changer de salles.
 \end{itemize}
 
 \subsubsection{Ecran de "pause"}
@@ -430,11 +430,11 @@ Un écran de "pause" (c'est un jeu multijoueurs, il n'y a pas vraiment de pause)
 \end{figure}
 
 
-On y retrouve certains paramètres: les touches pour jouer, le volume de la musique, des effets sonores et la sensibilité de la souris. pour des raisons évidentes d'identification, il est impossible de changer son pseudo en cours de partie. De même, la langue du jeu est seulement modifiable sur le menu principal. Pour quitter la fenêtre, il suffit de réappuyer sur la touche "echap", la souris disparait et le joueur peut de nouveau contrôler son avatar.
+On y retrouve certains paramètres: les touches pour jouer, le volume de la musique, des effets sonores et la sensibilité de la souris. Pour des raisons évidentes d'identification, il est impossible de changer son pseudo en cours de partie. De même, la langue du jeu est seulement modifiable sur le menu principal. Pour quitter la fenêtre, il suffit de réappuyer sur la touche "echap", la souris disparait et le joueur peut de nouveau contrôler son avatar.
 
 \subsubsection{Écran de fin}
 \paragraph{Deux possibilités:}
-Soit le joueur est le premier condamné et à réussi à infecter tous les autres, ou le joueur à réussi à survivre toute les durée de la partie, il gagne et est notifié par un magnifique "Victoire" vert. Soit il était soigné mais a été réinfecté et meurt donc dans l'indifférence la plus totale du joueur qui s'empresse de relancer une autre partie. Il est alors notifié d'un "Défaite" rouge. Dans les deux cas il est impossible de se déplacer lorsque la partie est terminée. A cela s'ajoute un récapitulatif de la partie au centre de l'écran. Il y est inscrit chaque évênement auquel le joueur à fait face, le soin, la contamination, les différents objets rammassés. A chaque évênement, une nouvelle zone de texte est créée et se rajoute à la liste.
+Pour que cet écran s'affiche, il y'a deux possibilités. Soit le joueur est le premier condamné et à réussi à infecter tous les autres, ou soit le joueur à réussi à survivre toute la durée de la partie, il gagne et est notifié par un magnifique "Victoire" vert. Soit il était soigné mais a été réinfecté et meurt donc dans l'indifférence la plus totale du joueur qui s'empresse de relancer une autre partie. Il est alors notifié d'un "Défaite" rouge. Dans les deux cas il est impossible de se déplacer lorsque la partie est terminée. A cela s'ajoute un récapitulatif de la partie au centre de l'écran. Il y est inscrit chaque évênement auquel le joueur à fait face, le soin, la contamination, les différents objets ramassés. A chaque évenement, une nouvelle zone de texte est créée et se rajoute à la liste.
 
 \begin{figure}[H]
 	\centering
@@ -453,23 +453,22 @@ Le site web se présente en 5 pages différentes:
 	\item{} Le codex, qui rasssemble les objets du jeu
 	\item{} La page de téléchargement
 \end{itemize}
-L'image de fond est identique sur toute les pages et montre une salle du labyrinthe.
+L'image de fond est identique sur toutes les pages et montre une salle du labyrinthe.
 
 \paragraph{L'accueil}présente Deadly Science, son origine et le déroulement d'une partie. Ce premier paragraphe est suivi de l'évolution du jeu entre les soutenances depuis la naissance du projet à cette dernière présentation.
 
-\paragraph{Le groupe}présente chaque membre du groupe, accompagné de sa magnifique poto du CRI en médaillon.
+\paragraph{Le groupe}présente chaque membre du groupe, accompagné de sa magnifique photo du CRI en médaillon.
 
-\paragraph{La galerie}regroupe des photos de chaque salle utilisées dans le labyrinthe et développés par Léandre et moi. Vous trouverez en dessous des photos finales celles des anciennes versions du jeu.
+\paragraph{La galerie}regroupe des photos de chaque salle utilisée dans le labyrinthe et développée par Léandre et moi. Vous trouverez en dessous des photos finales celles des anciennes versions du jeu.
 
 \paragraph{Le codex}présente les objets de Deadly Science connus du public en trois catégories: ceux qui vous aident dans votre mission, ceux qui vous ralentisent dans votre mission et ceux qui... On ne sait pas trop à quoi ils servent en fait. Il seront plus amplement expliqués par la suite (ou vous pouvez allez voir le site).
 
-\paragraph{L'onglet de téléchargement}permet en accord avec toutes les probabilités, de télécharger le jeu, ainsi que les différents documents (cahier des charges et rapports) réalisé pendant la durée du projet.
+\paragraph{L'onglet de téléchargement}permet en accord avec toutes les probabilités, de télécharger le jeu, ainsi que les différents documents (cahier des charges et rapports) réalisés pendant la durée du projet.
 
-
-\subsection{Steve}
 \newpage
+\subsection{Steve}
 %%%%%%%%%%%%%%%%%%%%%% Steve%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Pour se connecter il y'a trois menus, le menu pour créer la partie, le menu pour changer les paramètres de la partie, et enfin le menu on peut voir les joueurs connectés et commencer la partie. Chacun des 3 menus ont subi une refonte graphique pour correspondre à l'ambiance du jeu et avoir un aspect visuel plus plaisant.
+Pour se connecter il y'a trois menus, le menu pour créer la partie, le menu pour changer les paramètres de la partie, et enfin le menu où l'on peut voir les joueurs connectés et commencer la partie. Chacun des 3 menus a subi une refonte graphique pour correspondre à l'ambiance du jeu et avoir un aspect visuel plus plaisant.
 
 \subsubsection{Menu pour créer la partie}
 
@@ -482,11 +481,11 @@ Voici à quoi ce menu ressemble :
     \label{Menu pour créer la salle}
 \end{figure}
 
-Il est composé de deux parties. Celle de gauche on peut écrire dans la barre blanche le nom de la salle que l'on veut créer et un bouton "Créer la salle" qui comme son nom l'indique permet de créer la salle et d'entrer dans un autre menu que l'on verra par la suite. La partie droite liste chacune des salles avec leur noms et le nombre de joueurs déjà présents dans la salle. Elle est sur un tableau défilant ce qui permet d'avoir autant de parties que l'on souhaite. Cela permet de savoir si par exemple on va attendre plus ou moins longtemps avant le début de la partie. Pour rejoindre la salle que l'on souhaite, c'est simple, il suffit de cliquer dessus et cela nous fait rentrer dans la dite salle. A noter que si la salle est remplie à son maximum, elle ne sera pas montrée comme visible, vu qu'on ne peut pas la rejoindre. En ce qui concerne les deux boutons du milieu, le bouton "Retour" nous fait retourner à l'écran principal et le deuxième bouton nous transporte dans le menu des paramètres du labyrinthe que l'on va maintenant regarder.
+Il est composé de deux parties. Celle de gauche où l'on peut écrire dans la barre blanche le nom de la salle que l'on veut créer et un bouton "Créer la salle" qui comme son nom l'indique permet de créer la salle et d'entrer dans un autre menu que l'on verra par la suite. La partie droite liste chacune des salles avec leur nom et le nombre de joueurs déjà présents dans la salle. Elle est sur un tableau défilant ce qui permet d'avoir autant de parties que l'on souhaite. Cela permet de savoir si par exemple on va attendre plus ou moins longtemps avant le début de la partie. Pour rejoindre la salle que l'on souhaite, c'est simple, il suffit de cliquer dessus et cela nous fait rentrer dans la dite salle. A noter que si la salle est remplie à son maximum, elle ne sera pas visible, vu qu'on ne peut pas la rejoindre. En ce qui concerne les deux boutons du milieu, le bouton "Retour" nous fait retourner à l'écran principal et le deuxième bouton nous transporte dans le menu des paramètres du labyrinthe que l'on va maintenant regarder.
 
 \subsubsection{Menu pour les paramètres de la partie}
 
-Ce menu ne sert que pour l'hôte de la partie, les autres joueurs n'ont pas besoin d'interagir avec celui-ci. Dans ce menu on peut changer de mode de jeu entre Classique et Nocturne (ces modes de jeu seront expliqués par la suite). On peut aussi changer le nombre de joueurs de la partie. Enfin on peut choisir la taille du labyrinthe parmis plusieurs dimensions prédéfinies ou bien choisir une taille personnalisée (par exemple un labyrinthe rectangulaire) en l'écrivant sur la barre blanche et confirmer. Pour sélectionner l'option que l'on souhaite, il suffit encore tout simplement de cliquer dessus. Par exemple sur la Figure 2, on peut voir que le mode de jeu choisi est Classique, que la salle peut contenir quatre joueurs et que la taille du labyrinthe est de dix en largeur et 10 en longueur. Lorsque l'on a choisi ses paramètres, il suffit d'appuyer sur le bouton "Retour" qui nous envoie sur le menu précédant et on peut créer la partie avec les paramètres enregistrés. On peut souligner que les modes de jeu et les tailles du labyrinthe sont sur des tableaux défilants, ce qui permet premièrement l'ajout de nouveaux modes ou de nouvelles tailles facile, mais aussi que l'on peut en ajouter autant qu'on veut, il suffit juste d'utiliser la molette de la sourie pour accéder aux options tout en bas.
+Ce menu ne sert que pour l'hôte de la partie, les autres joueurs n'ont pas besoin d'interagir avec celui-ci. Dans ce menu on peut changer de mode de jeu entre Classique et Nocturne (ces modes de jeu seront expliqués par la suite). On peut aussi changer le nombre de joueurs de la partie. Enfin on peut choisir la taille du labyrinthe parmis plusieurs dimensions prédéfinies ou bien choisir une taille personnalisée (par exemple un labyrinthe rectangulaire) en l'écrivant sur la barre blanche et confirmer. Pour sélectionner l'option que l'on souhaite, il suffit encore tout simplement de cliquer dessus. Par exemple sur la Figure 2, on peut voir que le mode de jeu choisi est Classique, que la salle peut contenir quatre joueurs et que la taille du labyrinthe est de dix en largeur et 10 en longueur. Lorsque l'on a choisi ses paramètres, il suffit d'appuyer sur le bouton "Retour" qui nous envoie sur le menu précédant et on peut créer la partie avec les paramètres enregistrés. On peut souligner que les modes de jeu et les tailles du labyrinthe sont sur des tableaux défilants, ce qui permet premièrement l'ajout de nouveaux modes ou de nouvelles tailles facilement, mais aussi que l'on peut en ajouter autant qu'on veut, il suffit juste d'utiliser la molette de la souris pour accéder aux options tout en bas.
 
 
 
@@ -500,7 +499,7 @@ Ce menu ne sert que pour l'hôte de la partie, les autres joueurs n'ont pas beso
 
 \subsubsection{Menu pour commencer la partie}
 
-Ce menu a la particuliarité d'être différend en fonction de notre rôle dans la partie. Si on est l'hôte de la salle, alors le bouton en bas à gauche est "Commencer" permettant de débuter la partie, et sinon il est nommé "Prêt" qui permet de savoir si chacun des joueurs est prêt à commencer la partie comme montré sur les Figures 3 et 4. D'ailleurs à droite, on peut voir la liste des joueurs avec leur pseudonyme et leur rôle. A nôter que l'actualisation des statuts des joueurs est quasiment instantané et que le bouton "Prêt" change si on est prêt ou pas. Si on ne l'est pas il sera renommé "Non Prêt". L'hôte ne peut commencer la partie que si chacun des joueurs, et chacun des joueurs entre dans la salle avec un statut "Non Prêt". Dès que le nombre de joueurs attendus correspond au nombre de joueurs dans la salle et que tous les joueurs sont prêts, l'hôte peut débuter la partie. Lorsque la partie commence, la salle n'est plus accésible ni visible. En dehors de ça, peu importe notre rôle, on peut décider à tout moment de quitter la salle en appuyant sur le bouton éponyme. Si l'on est hôte, tous les joueurs de la salle sont transportés dans le menu pour créer la salle. De plus, des protections ont été mises de manière à ce que même si, par exemple, l'hôte viendrait à cliquer sur le bouton "	Commencer" alors que tous les joueurs ne sont pas prêts, la partie ne débutera pas.
+Ce menu a la particuliarité d'être différent en fonction de notre rôle dans la partie. Si on est l'hôte de la salle, alors le bouton en bas à gauche est "Commencer" permettant de débuter la partie, et sinon il est nommé "Prêt" qui permet de savoir si chacun des joueurs est prêt à commencer la partie comme montré sur les Figures 3 et 4. D'ailleurs à droite, on peut voir la liste des joueurs avec leur pseudonyme et leur rôle. A nôter que l'actualisation des statuts des joueurs est quasiment instantanné et que le bouton "Prêt" change si on est prêt ou pas. Si on ne l'est pas il sera renommé "Non Prêt". L'hôte ne peut commencer la partie que si chacun des joueurs est prêt, et chacun des joueurs entre dans la salle avec un statut "Non Prêt". Dès que le nombre de joueurs attendu correspond au nombre de joueurs dans la salle et que tous les joueurs sont prêts, l'hôte peut débuter la partie. Lorsque la partie commence, la salle n'est plus accessible ni visible. En dehors de cela, peu importe notre rôle, on peut décider à tout moment de quitter la salle en appuyant sur le bouton éponyme. Si l'on est hôte, tous les joueurs de la salle sont transportés dans le menu pour créer la salle. De plus, des protections ont été mises de manière à ce que même si, par exemple, l'hôte viendrait à cliquer sur le bouton "	Commencer" alors que tous les joueurs ne seraient pas prêts, la partie ne débuterait pas.
 
 \newpage
 \begin{figure}[!ht]
@@ -521,43 +520,38 @@ Ce menu a la particuliarité d'être différend en fonction de notre rôle dans 
 
 \subsubsection{Réseau}
 En dehors des menus et d'être chef de projet, j'ai été en charge de la gestion du réseau. Cela passe par la génération des joueurs, la synchronisation des objets 
-etc... Il est dur de visualiser ou de comprendre les effets du réseau mais je vais faire de mon mieux pour le faire.
+etc... Il est dur de visualiser ou de comprendre les effets du réseau mais je ferai de mon mieux pour le faire.
 
 \paragraph{Génération des joueurs}
 
-L'une des plus grandes difficultés du projet et c'est sans doute ce qui nous a pris le plus de temps. Le pire, c'est qu'au premier abord on pourrait croire que ça 
+C'est l''une des plus grandes difficultés du projet et aussi sans doute ce qui nous a pris le plus de temps. Au premier abord, on pourrait croire que ça 
 serait quelque chose de simple, il suffirait de mettre un identifiant à chacun des joueurs et en fonction de l'identifiant de l'instancier à la position que l'on 
-souhaite. Malheuresement ce ne fut pas assez simple.
+souhaite. Malheuresement ce ne fut pas si simple.
 
 On a pensé premièrement à utiliser la variable LocalPlayer de Photon avec le dictionnaire des Players. Cela n'a 
-pas fonctionné car tout les joueurs avaient les mêmes propriétés, c'est-à-dire mêmes pseudos, mêmes identifiants etc... On a cru pendant longtemps que c'était le 
-LocalPlayer le problème mais avec nombreux tests, on sait rendu compte que c'était le dictionnaire qui ne marchait pas.
+pas fonctionné car tous les joueurs avaient les mêmes propriétés, c'est-à-dire mêmes pseudos, mêmes identifiants etc... On a cru pendant longtemps que c'était le 
+LocalPlayer le problème mais avec nombreux tests, on s'est rendu compte que c'était le dictionnaire qui ne marchait pas.
 
-Après on a pensé à utiliser les RaiseEvents, mais c'était inutile pour ce que l'on cherchait à faire. On a après pensé à utilisé les PhotonViews mais le problème c'est 
+Ensuite, on a pensé à utiliser les RaiseEvents, mais c'était inutile pour ce que l'on cherchait à faire. On a aussi pensé à utilisé les PhotonViews mais le problème c'est 
 que cela permettait de déterminer si on était le joueur mais pas par rapport aux autres. Or on cherchait un moyen de le distinguer des autres joueurs.
 
-On a pensé à utilisé l'hôte de la salle (que l'on appelle aussi le MasterClient) comme base pour envoyer les messages de tous les joueurs, mais ce fut beaucoup très complexe et non 
+On a pensé à utiliser l'hôte de la salle (que l'on appelle aussi le MasterClient) comme base pour envoyer les messages de tous les joueurs, mais ce fut beaucoup trop complexe et non 
 performant. A la fin, on a utilisé les PhotonViews, les LocalPlayers et les RPCFonctions pour envoyer les messages en réseau. Cette méthode fut optimisée et parfaite 
 pour ce que l'on cherchait.
 
 \paragraph{Propritétés des joueurs}
 La génération des joueurs ne concerne que la première partie du réseau, elle ne se lance qu'au début de la partie. Il reste ensuite à synchroniser les mouvements, 
-rotations, animations des joueurs. Pour cela j'ai du utiliser les Photon Transform et Animator Views. Ce fut plus compliqué que attendu, vu que le joueur est consistué 
-de plusieurs parties et il fallait que toutes soient synchronisé pour tout le monde. 
+rotations, animations des joueurs. Pour cela j'ai du utiliser les Photon Transform et Animator Views. Ce fut plus compliqué qu'à quoi nous nous attendions, vu que le joueur est consistué 
+de plusieurs parties et il fallait que toutes soient synchronisées pour tout le monde. 
 
-De plus, il fallait aussi cacher les animations au joueur qui les faisait car 
-sinon les animations rencontrer la caméra ce qui n'était pas du tout le résultat souhaiter. Heuresement, avec beaucoup de recherche et de travail, tout est maintenant 
-synchronisé au dixième de seconde, permettant des actions rapides pour dynamiser le jeu.
+De plus, il fallait aussi cacher les animations au joueur qui les faisait car sinon les animations rencontraient la caméra ce qui n'était pas du tout le résultat souhaité. Heuresement, avec beaucoup de recherche et de travail, tout est maintenant synchronisé au dixième de seconde, permettant des actions rapides pour dynamiser le jeu.
 
-Sans vouloir rentrer dans les aspects techniques du code, ce fut l'essentiel de mon acitivité en dehors des menus. En dehors de ça, j'ai du me charger de synchroniser tout les travaux de tous mes collègues comme le labyrinthe par exemple, car sinon les joueurs ne sont pas dans le même labyrinthe. 
+Sans vouloir rentrer dans les aspects techniques du code, ce fut l'essentiel de mon acitivité en dehors des menus. En dehors de cela, j'ai du me charger de synchroniser tout les travaux de tous mes collègues comme le labyrinthe par exemple, car sinon les joueurs ne sont pas dans le même labyrinthe. 
 
 
 %%%%%%%%%%%%%%%%%%%%%% Celian %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Célian}
-
-
-
 \newpage
+\subsection{Célian}
 \paragraph{Principe du jeu}
 
 
@@ -1166,34 +1160,34 @@ L'Herbe Bleue, elle, est un Objet Commun. Autrement dit, quand un Joueur ramasse
 
 \newpage
 \section{Réalisations}
-En ce qui concerne l'ambiance du groupe, il n'a pas eu durant la totalité du projet d'importantes discordes, vu que les travaux attendus ont toujours été donné à temps.
+En ce qui concerne l'ambiance du groupe, il n'y a pas eu durant la totalité du projet d'importantes discordes, vu que les travaux attendus ont toujours été donnés à temps.
 
 \subsection{Nos peines}
-L'une des plus grosses peines fut causée par Photon. A chaque fois que l'on voulait synchroniser quelque chose dans le réseau, c'était un défi. Par exemple, vers le milieu de la première soutenance, on a du refaire toute la structure du réseau car les méthodes et variables utilisées n'était disponibles que sur une version antérieure, ce qui nous a déjà fait perdre plus de 15 heures de travail. A chaque fois que l'on voulait ajouter une fonctionnalité sur le jeu, il fallait quasiment autant de temps pour la faire que pour la synchroniser sur le réseau. Mais malgré cela, avec persévérance et courage, nous sommes arrivés à nos buts. Je pense que le plus gros défi du projet fut la génération des joueurs en réseau. Plus de 20 heures ont été mises pour chercher une solution simple, efficace et pratique pour celle-ci. On a changé plusieurs fois de systèmes, mais finalement on a abouti sur un système performant, simple et optimisé. 
+L'une des plus grosses peines fut causée par Photon. A chaque fois que l'on voulait synchroniser quelque chose dans le réseau, c'était un défi. Par exemple, vers le milieu de la première soutenance, on a du refaire toute la structure du réseau car les méthodes et variables utilisées n'était disponibles que sur une version antérieure, ce qui nous a déjà fait perdre plus de 15 heures de travail. A chaque fois que l'on voulait ajouter une fonctionnalité sur le jeu, il fallait quasiment autant de temps pour la faire que pour la synchroniser sur le réseau. Mais malgré cela, avec persévérance et courage, nous sommes arrivés à nos buts. Je pense que le plus gros défi du projet fut la génération des joueurs en réseau. Plus de 20 heures ont été mise pour chercher une solution simple, efficace et pratique pour celle-ci. On a changé plusieurs fois de systèmes, mais finalement on a pu créer un système performant, simple et optimisé. 
 
-Lors du dernier semestre, un autre défi fut de taille. Vu que l'on instancie les joueurs dans une scène différente de celle des menus, la scène ne comportait soit deux caméras pour chaque joueur, soit aucune. Donc il a fallu regarder une à une chacune des méthodes pour voir à quel exact moment les caméras sont crées pour ne pas avoir de doublons. Ce fut extrêment long et fastidieux vu que le jeu tourne normalement à 60 FPS, c'est-à-dire 60 images par seconde. Donc il falllait regarder images par images, là où il fallait la détruire et là où créer la nouvelle. Ce ne fut pas particulièrement dur, mais surtout long et fastidieux.
+Lors du dernier semestre, un autre défi fut de taille. Vu que l'on instancie les joueurs dans une scène différente de celle des menus, la scène comportait soit deux caméras pour chaque joueur, soit aucune. Donc il a fallu regarder une à une chacune des méthodes pour voir à quel exact moment les caméras sont créées pour ne pas avoir de doublons. Ce fut extrêment long et fastidieux vu que le jeu tourne normalement à 60 FPS, c'est-à-dire 60 images par seconde. Donc il fallait regarder image par image, là où il fallait la détruire et là où créer la nouvelle. Ce ne fut pas particulièrement dur, mais surtout long et fastidieux.
 
-En dehors de ça, il a fallu juste corriger les différents bugs qui arrivé lors du dévellopement du jeu ou des phases de test, mais globalement, il n'y a pas eu de grandes peines. On a fallit avoir des problèmes de fusion de stockage avec Git mais grâce à la connaissance de Git par Célian, tout s'est bien passé.
+Outre cela, il a fallu juste corriger les différents bugs qui sont arrivés lors du dévellopement du jeu ou des phases de test, mais globalement, il n'y a pas eu de grandes peines. On a fallit avoir des problèmes de fusion de stockage avec Git mais grâce à la connaissance de Git par Célian, tout s'est bien passé.
 
 \subsection{Nos joies}
-Chacune de nos avancés sur le projet fut une joie en soi. Le fait de travailler dur et longtemps sur un système et de le voir marché est très jouissif. Par exemple, Célian a grandement apprécié travaillé sur les shaders du jeu. Steve, lui a aimé voir le réseau marchait correctement et les animations fluides en réseaux. 
+Chacune de nos avancée sur le projet fut une joie en soi. Le fait de travailler dur et longtemps sur un système et de le voir marcher est très jouissif. Par exemple, Célian a grandement apprécié travailler sur les shaders du jeu. Steve, lui a aimé voir le réseau marchait correctement et les animations fluides en réseaux. 
 
-Lors de la création du cahier des charges, on a cru que la plupart du temps du projet se serait consacré à la génération aléatoire du labyrinthe, vu que l'algorithme le gérant ne fut pas encore vu en cours. Mais finalement, Léandre y est arrivé très facilement. Le plus intéressant dans tout cela, c'est que lorsque l'on a eu des cours nous expliquant les différents algorithmes de génération de labyrinthe, la version de Léandre fut quasiment la même de celle de Prim, qui est très optimisée, alors qu'il n'en avait même pas connaissance. 
+Lors de la création du cahier des charges, on a cru que la plupart du temps du projet serait consacré à la génération aléatoire du labyrinthe, vu que l'algorithme le gérant n'a pas encore vu en cours. Mais finalement, Léandre y est arrivé très facilement. Le plus intéressant dans tout cela, c'est que lorsque l'on a eu des cours nous expliquant les différents algorithmes de génération de labyrinthe, la version de Léandre fut quasiment la même que celle de Prim, qui est très optimisée, alors qu'il n'en avait même pas connaissance. 
 
-Dès la deuxième soutenance, le jeu était désormais totalement jouable et je pense que ce fut notre plus grande joie pour ce projet. Le fait de voir tous nos travaux marcher ensemble et comme attendus, fut très gratifiant. On sentait que malgré la complexité des mécanismes internes utilisés, le jeu était très amusant à jouer. On s'est aussi rendu compte qu'il y'avait plusieurs statégies pour joueur, ceux qui préféraient se cacher et ramasser peu d'objets pour ne rien risquer, et à l'inverse, ceux qui courraient dans tout le labyrinthe à prendre tous les objets, bon ou mauvais.
+Dès la deuxième soutenance, le jeu était désormais totalement jouable et je pense que c'était notre plus grande joie pour ce projet. Le fait de voir tous nos travaux marcher ensemble et comme attendus, fut très gratifiant. On sentait que malgré la complexité des mécanismes internes utilisés, le jeu était très amusant à jouer. On s'est aussi rendu compte qu'il y'avait plusieurs statégies pour joueur, ceux qui préféraient se cacher et ramasser peu d'objets pour ne rien risquer, et à l'inverse, ceux qui courraient dans tout le labyrinthe à prendre tous les objets, bon ou mauvais.
 
-De plus, le système de combat a rajouté une nouvelle dimension au jeu : fallait-il aller au combat pour ralentir les autres joueurs ou bien fuir pour ne pas se voir immobiliser ? Globalement, le jeu fut dans sa grande majorité une immense joie à nos yeux. Il nous a fait progressé en programmation, nous a appris l'esprit et le travail d'équipe et nous a renforcé.
+De plus, le système de combat a rajouté une nouvelle dimension au jeu : fallait-il aller au combat pour ralentir les autres joueurs ou bien fuir pour ne pas se voir immobiliser ? Globalement, le jeu fut dans sa grande majorité une immense joie à nos yeux. Il nous a fait progresser en programmation, nous a appris l'esprit et le travail d'équipe et nous a renforcer.
 
 \newpage
 \section{Conclusion}
 
-En un semestre, nous avons ainsi réussi, en-dehors du cadre des cours et d'un petit problème de confinement, à réaliser un jeu en multijoueur sur Unity, tout en amassant des connaissances nécessaires à l'élaboration de ce projet. Le jeu que nous vous avions présenté lors de la seconde soutenance était déjà parfaitement jouable, mais actuellement, "Deadly Science" est désormais net, propre, avec de nombreuses options rajoutées pour faciliter la vie aux joueurs ou, au contraire, renforcer son immersion. Dire que nous ne sommes pas satisfaits du travail que nous avons fourni et du jeu que nous vous avons fourni serait absolument faux.
+En un semestre, nous avons ainsi réussi, en dehors du cadre des cours et du problème de confinement, à réaliser un jeu en multijoueur sur Unity, tout en amassant des connaissances nécessaires à l'élaboration de ce projet. Le jeu que nous vous avions présenté lors de la seconde soutenance était déjà parfaitement jouable, mais actuellement, "Deadly Science" est désormais net, propre, avec de nombreuses options rajoutées pour faciliter la vie aux joueurs ou, au contraire, renforcer son immersion. Dire que nous ne sommes pas satisfaits du travail que nous avons fourni serait absolument faux.
 
 En effet, loin de nous être contentés de suivre le cahier des charges, nous avons pu aller plus loin que les objectifs que nous nous étions fixés en rajoutant la possibilité de choisir un mode, de prendre des objets, de choisir le nombre de joueurs, ou même de modifier la taille du labyrinthe. Durant tout le projet, nous avons été en avance sur nos prédictions concernant l'évolution du jeu.
 
 Nous espérons donc que vous prendrez du plaisir à vous égarer dans les couloirs tortueux de "Deadly Science", à la recherche de votre rédemption ou de votre vengeance. Mais quoi qu'il en soit, le jeu est loin d'être totalement terminé ; nous comptons, même dans un cadre hors-soutenance, continuer à rajouter des objets, des salles, des modes, ou tout simplement des musiques. En un mot comme en mille, vous n'avez pas terminé de découvrir les bas-fonds des laboratoires de Deadly-Science !
 
-\subsection{Sources et remerciements}
+\paragraph{Sources et remerciements}
 
 Beaucoup d'éléments du jeu ont été conçus par nos soins, certains d'entre eux ont été créés par d'autres personnes que nous remercions car sans elles notre jeu ne serait pas aussi bien.
 
@@ -1206,10 +1200,7 @@ Beaucoup d'éléments du jeu ont été conçus par nos soins, certains d'entre e
     
 %%% TODO : Reformuler
 Nous tenons également à remercier toutes les personnes ayant contribuées aux outils gratuits ou open source que nous avons utilisés.
-Et enfin, un grand merci aux testeurs et examinateurs du jeu.
-
-
-\newpage
+Et enfin, un grand merci aux testeurs et examinateurs du jeu, à EPITA pour nous avoir permis de faire ce projet et à nos familles et amis pour nous aider moralement dans cette aventure.
 \begin{center}
 \emph{If you knew time as well as I do, you would play Deadly Science.}
 \end{center}
