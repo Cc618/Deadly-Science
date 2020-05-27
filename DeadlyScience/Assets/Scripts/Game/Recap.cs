@@ -11,10 +11,11 @@ public class Recap : MonoBehaviour
     private static int time = 0;
     private static string Time = "";
     private static bool chrono;
-    private int lang = PlayerPrefs.GetInt("language");
+    private int lang;
 
     private void Awake()
     {
+        lang = PlayerPrefs.GetInt("language");
         Text = GameObject.Find("EndScreen/Panel/ScrollView/Viewport/content/Recap").GetComponent<TMP_Text>();
         content = GameObject.Find("EndScreen/Panel/ScrollView/Viewport/content");
         if (lang == 1)

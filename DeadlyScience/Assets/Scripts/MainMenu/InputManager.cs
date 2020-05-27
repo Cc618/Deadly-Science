@@ -15,9 +15,9 @@ namespace ds
             buttonKeys = new Dictionary<string, KeyCode>();
 
             buttonKeys["Jump"] = KeyCode.Space;
-            buttonKeys["Forward"] = KeyCode.W;
+            buttonKeys["Forward"] = KeyCode.Z;
             buttonKeys["Backward"] = KeyCode.S;
-            buttonKeys["Left"] = KeyCode.A;
+            buttonKeys["Left"] = KeyCode.Q;
             buttonKeys["Right"] = KeyCode.D;
         }
 

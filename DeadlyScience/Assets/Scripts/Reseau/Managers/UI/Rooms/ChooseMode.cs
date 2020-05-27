@@ -19,7 +19,7 @@ namespace ds
             string s = _text.text;
             //Inutile depuis changement Yann mais j'ai laissé au cas ou
             s = s.Remove(_text.text.Length - 1);
-            while (s != new[] {"CLASSIQUE", "CLASSIC", "NOCTURNE", "NOCTURN"}[a])
+            while (s != new[] {"CLASSIQUE", "CLASSIC", "NOCTURNE", "NOCTURNAL"}[a])
                 a++;
             CreateRoomMenu.Mode = a / 2;
             print(CreateRoomMenu.Mode);

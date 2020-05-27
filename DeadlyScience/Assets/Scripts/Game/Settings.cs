@@ -66,7 +66,7 @@ namespace ds
                 Pseudo.text = PlayerPrefs.GetString("pseudo");
             else if (Pseudo)
             {
-                //OnRandomPseudo();
+                OnRandomPseudo();
             }
 
             PlayerPrefs.Save();

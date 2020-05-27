@@ -343,7 +343,10 @@ namespace ds
             PlayerState.startTime += 30;
             if (!AffichagePowerUp.affich)
             {
-                AffichagePowerUp.Nature = "Quelqu'un a obtenu l'Objet Herbe Bleue !";
+                if(PlayerPrefs.GetInt("language") == 1)
+                    AffichagePowerUp.Nature = "Quelqu'un a obtenu l'Objet Herbe Bleue !";
+                else
+                    AffichagePowerUp.Nature = "Someone took the Blue Grass !";
                 AffichagePowerUp.affich = true;
                 yield return new WaitForSeconds(5);
                 AffichagePowerUp.affich = false;
