@@ -6124,6 +6124,7 @@ GameObject:
   - component: {fileID: 1822125230}
   - component: {fileID: 1822125231}
   - component: {fileID: 1822125232}
+  - component: {fileID: 1822125234}
   - component: {fileID: 1822125233}
   m_Layer: 0
   m_Name: Game
@@ -6352,6 +6353,18 @@ MonoBehaviour:
     AT_UITextObject: {fileID: 0}
     AT_TextMeshbject: {fileID: 1601665850}
   AT_GameObjectChildsRoot: {fileID: 0}
+--- !u!114 &1822125234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822125226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df22f526b93e12c48b0fce577a597077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1840091888
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,12 +26,14 @@ namespace ds
             {
                 case PlayerState.PlayerStatus.HEALED:
                     text.color = Game.colors.healed;
+                    //EndGame.AddRecap("Soigné");
                     break;
                 case PlayerState.PlayerStatus.INFECTED:
                     text.color = Game.colors.infected;
                     break;
                 case PlayerState.PlayerStatus.REVENGE:
                     text.color = Game.colors.revenge;
+                    //EndGame.AddRecap("Condamné");
                     break;
                 case PlayerState.PlayerStatus.GHOST:
                     text.color = Game.colors.ghost;

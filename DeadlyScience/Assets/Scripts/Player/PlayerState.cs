@@ -23,6 +23,7 @@ namespace ds
         public static int revengeTime = 60 * 3;
 
         private PlayerStatus status = PlayerStatus.INFECTED;
+        private PlayerStatus before = PlayerStatus.INFECTED;
         public PlayerStatus Status
         {
             set
@@ -53,12 +54,22 @@ namespace ds
                     }
                 }
 
+                /*if (status != value)
+                {
+                    if (status == PlayerStatus.HEALED)
+                        recap.AddRecap(PlayerPrefs.GetString("pseudo") + " soigné");
+                    if (status == PlayerStatus.REVENGE)
+                        recap.AddRecap(PlayerPrefs.GetString("pseudo") + " condamné");
+                }*/
+
                 // Update status
                 status = value;
 
                 // Change the label's color
                 if (nameUi)
                     nameUi.SetStatus(status);
+
+                
 
                 // FX
                 Particles.Spawn(STATUS_STR[(int)status], transform.position + new Vector3(0, 1.5f, 0));
@@ -74,6 +85,20 @@ namespace ds
         {
             // Get parent
             labels = nameUi.transform.parent.gameObject;
+            recap = GameObject.FindObjectOfType<Recap>();
+        }
+
+        private void Update()
+        {
+            if (Status != before)
+            {
+                if (Status == PlayerStatus.HEALED)
+                    recap.AddRecap("Soigné");
+                if (Status == PlayerStatus.REVENGE)
+                    recap.AddRecap("Condamné");
+            }
+
+            before = Status;
         }
 
         public void StartAfterPlayerNetwork()
@@ -81,7 +106,7 @@ namespace ds
             player = GetComponent<Player>();
             net = GetComponent<PlayerNetwork>();
         }
-
+        private Recap recap;
         private Player player;
         private PlayerNetwork net;
         private GameObject labels;
@@ -115,14 +140,13 @@ namespace ds
                 {
                     case 0:
                         s = "Infect healed players !\n";
-                        EndGame.AddRecap("Corrupted");
                         break;
                     case 1:
                         s = "Infectez les Joueurs Guéris !\n";
-                        EndGame.AddRecap("Corrompu");
                         break;
                 }
-                
+
+                //EndGame.AddRecap("Corrompu");
             }
             AffichagePhase.Objectif = s;
             AffichagePhase.phase = 2;

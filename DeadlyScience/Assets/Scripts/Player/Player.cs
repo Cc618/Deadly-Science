@@ -35,6 +35,8 @@ namespace ds
         public Transform groundSensor;
         public LayerMask groundMask;
 
+        public Recap recap;
+
         public float Stamina
         {
             get => stamina;
@@ -90,6 +92,7 @@ namespace ds
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
             state = GetComponentInChildren<PlayerState>();
+            recap = GameObject.FindObjectOfType<Recap>();
             
             // Disable render only if this is the current player
              GetComponentInChildren<Renderer>().enabled = false;
@@ -334,14 +337,14 @@ namespace ds
                     Map.instance.Change(true);
                     alterations[0] = true;
                     Map.instance.Change(true);
-                    EndGame.AddRecap(contents[a], true);
+                    recap.AddRecap(contents[a], true);
                     break;
                 case "Protection":
                     alterations[1] = true;
-                    EndGame.AddRecap(contents[a], true);
+                    recap.AddRecap(contents[a], true);
                     break;
                 case "Décharge":
-                    EndGame.AddRecap(contents[a], true);
+                    recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -371,7 +374,7 @@ namespace ds
                     }
                     break;
                 case "Paralysie":
-                    EndGame.AddRecap(contents[a], true);
+                    recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -382,7 +385,7 @@ namespace ds
                     }
                     break;
                 case "Bottes de Plomb":
-                    EndGame.AddRecap(contents[a], true);
+                    recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -395,13 +398,13 @@ namespace ds
                     }
                     break;
                 case "Bottes de Pégase":
-                    EndGame.AddRecap(contents[a], true);
+                    recap.AddRecap(contents[a], true);
                     alterations[2] = true;
                     alterations[3] = false;
                     speedRatio = 2f;
                     break;
                 case "Casque de CRS":
-                    EndGame.AddRecap(contents[a], true);
+                    recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
                         alterations[1] = false;
@@ -413,8 +416,7 @@ namespace ds
                     }
                     break;
                 case "Disparition":
-                    EndGame.AddRecap(contents[a], true);
-                    EndGame.AddRecap("Invisible");
+                    recap.AddRecap(contents[a], true);
                     alterations[5] = true;
                     Disparition.Change(true);
                     break;
@@ -425,8 +427,7 @@ namespace ds
                     }
 					else
 					{
-                    	EndGame.AddRecap(contents[a], true);
-                    	EndGame.AddRecap("Sauts Forcés");
+                    	recap.AddRecap(contents[a], true);
                     	alterations[6] = true;
                    		Ressort.Change(true);
 					}
@@ -438,15 +439,13 @@ namespace ds
                     }
 					else
 					{
-                    	EndGame.AddRecap(contents[a], true);
-                    	EndGame.AddRecap("Hallucinations Auditives");
+                    	recap.AddRecap(contents[a], true);
                     	Audio.SetMusic("bimbam");
                     	alterations[7] = true;
 					}
                     break;
                 case "Sérum d'Urgence":
-                    EndGame.AddRecap(contents[a], true);
-                    EndGame.AddRecap("Mini-Sérum");
+                    recap.AddRecap(contents[a], true);
                     alterations[8] = true;
                     break;
                 case "Herbe Bleue":
@@ -456,8 +455,7 @@ namespace ds
                     }
 					else
 					{
-                    	EndGame.AddRecap(contents[a], true);
-                    	EndGame.AddRecap("Temps Ralongé");
+                    	recap.AddRecap(contents[a], true);
                     	net.SendHerbeBleue();
 					}
                     break;
@@ -468,8 +466,7 @@ namespace ds
                     }
 					else
 					{
-                    	EndGame.AddRecap(contents[a], true);
-                    	EndGame.AddRecap("Temps de Récupération Augmenté");
+                    	recap.AddRecap(contents[a], true);
                     	regeneration /= 2;
                     	alterations[9] = true;
 					}

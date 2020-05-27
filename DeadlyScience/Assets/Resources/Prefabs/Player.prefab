@@ -601,6 +601,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
+  recap: {fileID: 0}
   strength: 0.4
   regeneration: 0.3
   stunnedSpeedFactor: 0.1

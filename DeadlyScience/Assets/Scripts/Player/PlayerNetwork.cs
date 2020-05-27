@@ -231,7 +231,7 @@ namespace ds
             }
             else
             {
-                if (status == PlayerState.PlayerStatus.HEALED)
+                /*if (status == PlayerState.PlayerStatus.HEALED)
                 {
                     if (!s)
                     {
@@ -240,8 +240,8 @@ namespace ds
                 }
                 if (status == PlayerState.PlayerStatus.REVENGE)
                 {
-                    EndGame.AddRecap("Condamné");
-                }
+                    //EndGame.AddRecap("Condamné");
+                }*/
                 view.RPC("SetStatus", RpcTarget.All, id, status);
             }
         }
