@@ -11,12 +11,16 @@ public class Recap : MonoBehaviour
     private static int time = 0;
     private static string Time = "";
     private static bool chrono;
+    private int lang = PlayerPrefs.GetInt("language");
 
     private void Awake()
     {
         Text = GameObject.Find("EndScreen/Panel/ScrollView/Viewport/content/Recap").GetComponent<TMP_Text>();
         content = GameObject.Find("EndScreen/Panel/ScrollView/Viewport/content");
-        Text.text = "Entrée dans le laboratoire";
+        if (lang == 1)
+            Text.text = "Entrée dans le laboratoire";
+        else
+            Text.text = "Entered the lab";
     }
 
     private void Update()
@@ -33,32 +37,41 @@ public class Recap : MonoBehaviour
 
         if (objet)
         {
-            switch (Event)
+            if (lang == 1)
             {
-                case "Carte":
-                case "Protection":
-                case "Décharge":
-                case "Paralysie":
-                case "Disparition":
-                case "Herbe Bleue":
-                    go.text = $"{Event} ramassée à {Time}\n";
-                    break;
-                case "Casque de CRS":
-                case "Ressort":
-                case "Champignon":
-                case "Sérum d'Urgence":
-                case "Catalyseur":
-                    go.text = $"{Event} ramassé à {Time}\n";
-                    break;
-                case "Bottes de Plomb":
-                case "Bottes de Pégase":
-                    go.text = $"{Event} ramassées à {Time}\n";
-                    break;
+                switch (Event)
+                {
+                    case "Carte":
+                    case "Protection":
+                    case "Décharge":
+                    case "Paralysie":
+                    case "Disparition":
+                    case "Herbe Bleue":
+                        go.text = $"{Event} ramassée à {Time}\n";
+                        break;
+                    case "Casque de CRS":
+                    case "Ressort":
+                    case "Champignon":
+                    case "Sérum d'Urgence":
+                    case "Catalyseur":
+                        go.text = $"{Event} ramassé à {Time}\n";
+                        break;
+                    case "Bottes de Plomb":
+                    case "Bottes de Pégase":
+                        go.text = $"{Event} ramassées à {Time}\n";
+                        break;
+                }
             }
+            else
+                go.text = $"{Event} picked up at {Time}\n";
+            
         }
         else
         {
-            go.text = $"{Event} à {Time}\n";
+            if (lang == 1)
+                go.text = $"{Event} à {Time}\n";
+            else
+                go.text = $"{Event} at {Time}\n";
         }
     }
 

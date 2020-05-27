@@ -39,7 +39,10 @@ namespace ds
                 && !roommenu.activeSelf)
             {
                 if (inputfield.text.Length == 0)
-                    inputfield.text = "Salle" + Random.Range(0, 9999);
+                    if(PlayerPrefs.GetInt("language") == 1)
+                        inputfield.text = "Salle" + Random.Range(0, 9999);
+                    else
+                        inputfield.text = "Room" + Random.Range(0, 9999);
                 OnClick_CreateRoom();
             }
         }

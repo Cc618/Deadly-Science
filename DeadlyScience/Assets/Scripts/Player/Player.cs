@@ -110,7 +110,11 @@ namespace ds
         {
             canMove = true;
             StartCoroutine(SyncNet());
-            AffichagePowerUp.Nature = "Que la partie commence !";
+            if (PlayerPrefs.GetInt("language") == 1)
+                AffichagePowerUp.Nature = "Que la partie commence !";
+            else
+                AffichagePowerUp.Nature = "May the game begin";
+            
             AffichagePowerUp.affich = true;
             StartCoroutine(Attente());
         }
@@ -274,12 +278,16 @@ namespace ds
         }
         public void OnPowerUpCollect()
         {
+            int lang = PlayerPrefs.GetInt("language");
             Audio.Play("power_up");
             int x = 0;
             List<string> contents = new List<string>();
             if (!alterations[0])
             {
-                contents.Add("Carte");
+                if(lang == 1)
+                    contents.Add("Carte");
+                else
+                    contents.Add("Map");
                 Map.instance.Change(false);
             }
             if (!alterations[1])
@@ -288,52 +296,90 @@ namespace ds
             }
             if (!alterations[2])
             {
-                contents.Add("Bottes de Pégase");
+                if (lang == 1)
+                    contents.Add("Bottes de Pégase");
+                else
+                    contents.Add("Pegasus Boots");
             }
             if (!alterations[3])
             {
-                contents.Add("Bottes de Plomb");
+                if (lang == 1)
+                    contents.Add("Bottes de Plomb");
+                else
+                    contents.Add("Lead Boots");
             }
 
             if (!alterations[4])
             {
-                contents.Add("Casque de CRS");
+                if (lang == 1)
+                    contents.Add("Casque de CRS");
+                else
+                    contents.Add("Riot police helmet");
             }
             if (!alterations[5] && AffichagePhase.phase==2 && PlayerNetwork.local.playerState.Status!=PlayerState.PlayerStatus.REVENGE)
             {
-                contents.Add("Disparition");
+                if (lang == 1)
+                    contents.Add("Disparition");
+                else
+                    contents.Add("Invisibility");
             }
             if (!alterations[6])
             {
-                contents.Add("Ressort");
+                if (lang == 1)
+                    contents.Add("Ressort");
+                else
+                    contents.Add("Spring");
             }
             if (!alterations[7])
             {
-                contents.Add("Champignon");
+                if (lang == 1)
+                    contents.Add("Champignon");
+                else
+                    contents.Add("Mushroom");
             }
             if (!alterations[8] && PlayerNetwork.local.playerState.Status==PlayerState.PlayerStatus.HEALED)
             {
-                contents.Add("Sérum d'Urgence");
+                if (lang == 1)
+                    contents.Add("Sérum d'Urgence");
+                else
+                    contents.Add("Emergency serum");
             }
             if (AffichagePhase.phase==2 && AffichagePhase.phase==2 && PlayerNetwork.local.playerState.Status!=PlayerState.PlayerStatus.REVENGE)
             {
-                contents.Add("Herbe Bleue");
+                if (lang == 1)
+                    contents.Add("Herbe Bleue");
+                else
+                    contents.Add("Blue Grass");
             }
             if (!alterations[9])
             {
-                contents.Add("Catalyseur");
+                if (lang == 1)
+                    contents.Add("Catalyseur");
+                else
+                    contents.Add("Catalyst");
             }
             if (contents.Count <8)
             {
-                contents.Add("Décharge");
+                if (lang == 1)
+                    contents.Add("Décharge");
+                else
+                    contents.Add("Unload");
             }
-            contents.Add("Paralysie");
+            if (lang == 1)
+                contents.Add("Paralysie");
+            else
+                contents.Add("Paralysis");
             int a = Random.Range(0,contents.Count);
-            AffichagePowerUp.Nature = "Vous avez obtenu l'Objet "+contents[a]+".";
+
+            if(lang == 1)
+                AffichagePowerUp.Nature = "Vous avez obtenu l'Objet "+contents[a]+".";
+            else
+                AffichagePowerUp.Nature = "You got the item " + contents[a] + ".";
             AffichagePowerUp.affich = true;
             switch (contents[a])
             {
                 case "Carte":
+                case "Map":
                     Map.instance.Change(true);
                     alterations[0] = true;
                     Map.instance.Change(true);
@@ -344,6 +390,7 @@ namespace ds
                     recap.AddRecap(contents[a], true);
                     break;
                 case "Décharge":
+                case "Unload":
                     recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
@@ -374,6 +421,7 @@ namespace ds
                     }
                     break;
                 case "Paralysie":
+                case "Paralysis":
                     recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
@@ -385,6 +433,7 @@ namespace ds
                     }
                     break;
                 case "Bottes de Plomb":
+                case "Lead Boots":
                     recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
@@ -398,12 +447,14 @@ namespace ds
                     }
                     break;
                 case "Bottes de Pégase":
+                case "Pegasus Boots":
                     recap.AddRecap(contents[a], true);
                     alterations[2] = true;
                     alterations[3] = false;
                     speedRatio = 2f;
                     break;
                 case "Casque de CRS":
+                case "Riot police helmet":
                     recap.AddRecap(contents[a], true);
                     if (alterations[1])
                     {
@@ -416,12 +467,14 @@ namespace ds
                     }
                     break;
                 case "Disparition":
+                case "Invisibility":
                     recap.AddRecap(contents[a], true);
                     alterations[5] = true;
                     Disparition.Change(true);
                     break;
                 case "Ressort":
-					if (alterations[1])
+                case "Spring":
+                    if (alterations[1])
                     {
                        alterations[1] = false;
                     }
@@ -433,7 +486,8 @@ namespace ds
 					}
                     break;
                 case "Champignon":
-					if (alterations[1])
+                case "Mushroom":
+                    if (alterations[1])
                     {
                        alterations[1] = false;
                     }
@@ -445,10 +499,12 @@ namespace ds
 					}
                     break;
                 case "Sérum d'Urgence":
+                case "Emergency serum":
                     recap.AddRecap(contents[a], true);
                     alterations[8] = true;
                     break;
                 case "Herbe Bleue":
+                case "Blue Grass":
 					if (alterations[1] && PlayerNetwork.local.playerState.Status==PlayerState.PlayerStatus.HEALED)
                     {
                        alterations[1] = false;
@@ -460,6 +516,7 @@ namespace ds
 					}
                     break;
                 case "Catalyseur":
+                case "Catalyst":
 					if (alterations[1])
                     {
                        alterations[1] = false;

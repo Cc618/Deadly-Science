@@ -80,12 +80,14 @@ namespace ds
 
         public PlayerName nameUi;
         public PlayerStamina staminaUi;
+        private int lang;
 
         private void Start()
         {
             // Get parent
             labels = nameUi.transform.parent.gameObject;
             recap = GameObject.FindObjectOfType<Recap>();
+            lang = PlayerPrefs.GetInt("language");
         }
 
         private void Update()
@@ -93,9 +95,19 @@ namespace ds
             if (Status != before)
             {
                 if (Status == PlayerStatus.HEALED)
-                    recap.AddRecap("Soigné");
+                {
+                    if (lang == 1)
+                        recap.AddRecap("Soigné");
+                    else
+                        recap.AddRecap("Healed");
+                }
                 if (Status == PlayerStatus.REVENGE)
-                    recap.AddRecap("Condamné");
+                {
+                    if (lang == 1)
+                        recap.AddRecap("Condamné");
+                    else
+                        recap.AddRecap("Condemned");
+                }
             }
 
             before = Status;
@@ -130,7 +142,11 @@ namespace ds
 
         public void EndFirstPhase()
         {
-            string s = "Echappez au Condamné !\n";
+            string s = "";
+            if (PlayerPrefs.GetInt("language") == 1)
+                s = "Echappez au Condamné !\n";
+            else
+                s = "Escape the condemned !\n";
             // Revenge mode
             if (status == PlayerStatus.INFECTED)
             {

@@ -7,6 +7,12 @@ public class AffichagePowerUpJoueur : MonoBehaviour
 {
     public Text scoreText;
     public static string content = "";
+    private static int lang;
+
+    private void Start()
+    {
+        lang = PlayerPrefs.GetInt("language");
+    }
 
     void Update()
     {
@@ -16,7 +22,11 @@ public class AffichagePowerUpJoueur : MonoBehaviour
     public static void MaJ(bool[] modif)
     {
         content = "";
-        string[] contents = new string[] {"Carte", "Protection", "Bottes de Pégase", "Bottes de Plomb","Casque de CRS","Disparition","Ressort","Champignon","Sérum d'Urgence","Catalyseur"};
+        string[] contents;
+        if (lang == 1)
+            contents = new string[] { "Carte", "Protection", "Bottes de Pégase", "Bottes de Plomb", "Casque de CRS", "Disparition", "Ressort", "Champignon", "Sérum d'Urgence", "Catalyseur" };
+        else
+            contents = new string[] { "Map", "Protection", "Pegasus Boots", "Lead Boots", "Riot police helmet", "Invisibility", "Spring", "Mushroom", "Emergency serum", "Catalyst" };
         int a = 0;
         while (a < 10)
         {
@@ -29,7 +39,10 @@ public class AffichagePowerUpJoueur : MonoBehaviour
 
         if (content != "")
         {
-            content = "Power-Up Actuels :" + content;
+            if (PlayerPrefs.GetInt("language") == 1)
+                content = "Power-Up Actuels :" + content;
+            else
+                content = "Active Power-up :" + content;
         }
     }
 }

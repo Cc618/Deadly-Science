@@ -40,7 +40,10 @@ namespace ds
                     print(z);
                     if (x * z < 8 || x * z > 400)
                     {
-                        _test.text= "Le nombre de salle doit être compris entre 8 et 400.";
+                        if(PlayerPrefs.GetInt("language") == 1)
+                            _test.text= "Le nombre de salle doit être compris entre 8 et 400.";
+                        else
+                            _test.text = "Labyrinth size must be between 8 and 400 rooms";
                     }
                     else
                     {
@@ -52,8 +55,11 @@ namespace ds
                 else
                 {
                     print("Nope");
-                    _test.text= 
-                        "Le format à respecter est {00*00}, en remplaçant les '0' par les valeurs de votre choix.";
+                    if (PlayerPrefs.GetInt("language") == 1)
+                        _test.text =
+                            "Le format à respecter est {00*00}, en remplaçant les '0' par les valeurs de votre choix.";
+                    else
+                        _test.text = "Format of size is {00*00}, replacing '0''s by your values";
                 }
             }
 

@@ -34,9 +34,10 @@ namespace ds
 
         public void SetPlayerText(Photon.Realtime.Player player)
         {
+            int lang = PlayerPrefs.GetInt("language");
             if (player == PhotonNetwork.MasterClient)
             {
-                if(PlayerPrefs.GetInt("language") == 1)
+                if(lang == 1)
                     _text.text = "Hôte " + player.NickName;
                 else
                     _text.text = "Host " + player.NickName;
@@ -45,11 +46,17 @@ namespace ds
             {
                 if (Ready)
                 {
-                    _text.text = "Prêt " + player.NickName;
+                    if (lang == 1)
+                        _text.text = "Prêt " + player.NickName;
+                    else
+                        _text.text = "Ready " + player.NickName;
                 }
                 else
                 {
-                    _text.text = "Non Prêt " + player.NickName;
+                    if (lang == 1)
+                        _text.text = "Non Prêt " + player.NickName;
+                    else
+                        _text.text = "Not Ready " + player.NickName;
                 }
             }
         }
