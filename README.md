@@ -2,6 +2,10 @@
 
 S2 projet at EPITA by team Custos Carceris.
 
+\> [Website](https://cc618.github.io/Deadly-Science-Website/) <
+
+You can download the game via the [website](https://cc618.github.io/Deadly-Science-Website/) ('Téléchargements' section) or in the [bin](bin) folder.
+
 ## The game
 
 Deadly Science takes place in a maze, the goal is obviously to survive.
@@ -20,6 +24,7 @@ There are always one player who remains infected, he has a last chance to win by
 ![](res/readme/win.png)
 
 ## Project Architecture
+
 - Deadly-science-web : Website
 - doc : Documentation, documents and log
 - DeadlyScience : Unity project
